@@ -23,6 +23,22 @@ from openpyxl import load_workbook
 
 
 DEBUG = False
+MIN_GATE_LOG_BYTES = 2048  # Minimum gate.log size to prove real execution
+EXECUTION_SIGNATURES = [
+    "npm run",
+    "flutter",
+    "firebase",
+    "jest",
+    "playwright",
+    "gradle",
+    "BUILD SUCCESS",
+    "BUILD FAILED",
+    "PASS",
+    "FAIL",
+    "Tests:",
+    "exit code",
+    "Exit code"
+]
 
 
 def eprint(*args, **kwargs):
@@ -123,9 +139,9 @@ def find_latest_evidence(evidence_root: Path, order_id: str) -> Tuple[Path, str]
     return latest, None
 
 
-def validate_evidence_folder(evidence_path: Path) -> List[str]:
+def validate_evidence_folder(evidence_path: Path, order_gate_command: str) -> List[str]:
     """
-    Validate evidence folder contents.
+    Validate evidence folder contents with strict execution checks.
     Returns list of errors (empty if valid).
     """
     errors = []
@@ -134,6 +150,22 @@ def validate_evidence_folder(evidence_path: Path) -> List[str]:
     gate_log = evidence_path / "gate.log"
     if not gate_log.exists():
         errors.append(f"Missing gate.log in {evidence_path}")
+    else:
+        # Check minimum size
+        size = gate_log.stat().st_size
+        if size < MIN_GATE_LOG_BYTES:
+            errors.append(f"gate.log too small ({size} bytes < {MIN_GATE_LOG_BYTES} bytes minimum) in {evidence_path}")
+        
+        # Check for execution signatures
+        try:
+            with open(gate_log, 'r', errors='replace') as f:
+                log_content = f.read()
+            
+            signature_count = sum(1 for sig in EXECUTION_SIGNATURES if sig.lower() in log_content.lower())
+            if signature_count < 2:
+                errors.append(f"gate.log shows insufficient execution signatures ({signature_count} < 2 required) in {evidence_path}")
+        except Exception as e:
+            errors.append(f"Failed to read gate.log in {evidence_path}: {e}")
 
     # Check verdict.json exists and is valid
     verdict_path = evidence_path / "verdict.json"
@@ -147,10 +179,31 @@ def validate_evidence_folder(evidence_path: Path) -> List[str]:
             # Validate structure
             if not isinstance(verdict, dict):
                 errors.append(f"verdict.json is not a JSON object in {evidence_path}")
-            elif "end_to_end_working" not in verdict:
-                errors.append(f"verdict.json missing 'end_to_end_working' field in {evidence_path}")
-            elif verdict.get("end_to_end_working") is not True:
-                errors.append(f"verdict.json has end_to_end_working={verdict.get('end_to_end_working')} (expected true) in {evidence_path}")
+            else:
+                # Check required fields
+                if "order_id" not in verdict:
+                    errors.append(f"verdict.json missing 'order_id' field in {evidence_path}")
+                
+                if "run_ts" not in verdict:
+                    errors.append(f"verdict.json missing 'run_ts' field in {evidence_path}")
+                
+                if "end_to_end_working" not in verdict:
+                    errors.append(f"verdict.json missing 'end_to_end_working' field in {evidence_path}")
+                elif verdict.get("end_to_end_working") is not True:
+                    errors.append(f"verdict.json has end_to_end_working={verdict.get('end_to_end_working')} (expected true) in {evidence_path}")
+                
+                # Check artifacts list
+                artifacts = verdict.get("artifacts", [])
+                if not isinstance(artifacts, list) or len(artifacts) < 1:
+                    errors.append(f"verdict.json missing or empty 'artifacts' list in {evidence_path}")
+                
+                # Check mtime ordering: verdict created after gate.log
+                if gate_log.exists():
+                    verdict_mtime = verdict_path.stat().st_mtime
+                    gate_log_mtime = gate_log.stat().st_mtime
+                    if verdict_mtime < gate_log_mtime:
+                        errors.append(f"verdict.json created BEFORE gate.log (not derived from execution) in {evidence_path}")
+        
         except json.JSONDecodeError as e:
             errors.append(f"verdict.json is invalid JSON in {evidence_path}: {e}")
         except Exception as e:
@@ -165,7 +218,7 @@ def audit_orders(
     evidence_root: Path
 ) -> Tuple[List[Dict], bool]:
     """
-    Audit all Done orders.
+    Audit all Done orders with strict validation.
     Returns (audit_results, overall_pass).
     """
     results = []
@@ -174,6 +227,7 @@ def audit_orders(
     for order in orders:
         order_id = str(order.get("Order_ID", "")).strip()
         status = str(order.get("Status", "")).strip()
+        gate_command = str(order.get("Gate_Command", "")).strip()
 
         if status != "Done":
             continue  # Only audit Done orders
@@ -181,9 +235,18 @@ def audit_orders(
         result = {
             "order_id": order_id,
             "status": status,
+            "gate_command": gate_command,
             "passed": True,
             "errors": []
         }
+
+        # Check gate_command is non-trivial
+        if not gate_command:
+            result["errors"].append(f"Order {order_id} has empty Gate_Command")
+            result["passed"] = False
+        elif gate_command.startswith("echo ") and len(gate_command) < 50:
+            result["errors"].append(f"Order {order_id} has trivial Gate_Command (echo-only): {gate_command}")
+            result["passed"] = False
 
         # Check evidence folder
         evidence_path, err = find_latest_evidence(evidence_root, order_id)
@@ -193,8 +256,8 @@ def audit_orders(
         else:
             result["evidence_path"] = str(evidence_path.relative_to(evidence_root.parent))
             
-            # Validate evidence folder contents
-            validation_errors = validate_evidence_folder(evidence_path)
+            # Validate evidence folder contents with strict checks
+            validation_errors = validate_evidence_folder(evidence_path, gate_command)
             result["errors"].extend(validation_errors)
             if validation_errors:
                 result["passed"] = False
