@@ -1,0 +1,21 @@
+{
+  "timestamp": "2026-01-06T22:20:54+02:00",
+  "pwd": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER",
+  "git_sha": "NOGIT",
+  "node": "v20.19.5",
+  "npm": "10.8.2",
+  "java": "openjdk version "17.0.16" 2025-07-15",
+  "env_exit": 0,
+  "gate_exit": 0,
+  "fn_build_exit": 0,
+  "fn_tests_exit": 0,
+  "rest_build_exit": 0,
+  "rest_tests_exit": 1,
+  "web_build_exit": 1,
+  "web_lint_exit": 1,
+  "flutter_admin_exit": 1,
+  "flutter_customer_exit": 1,
+  "flutter_merchant_exit": 1,
+  "deploy_exit": 97,
+  "deploy_mode": "NORMAL"
+}

@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Urban Points Lebanon - Admin Dashboard</title>
+    
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-functions-compat.js"></script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #f5f5f5;
+            color: #333;
+        }
+        
+        .login-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .login-card {
+            background: white;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+        
+        .login-card h1 {
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+        
+        .login-card p {
+            margin-bottom: 30px;
+            color: #7f8c8d;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+            color: #2c3e50;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        
+        .form-group input:focus {
+            outline: none;
+            border-color: #3498db;
+        }
+        
+        .btn {
+            width: 100%;
+            padding: 12px;
+            background: #3498db;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .btn:hover {
+            background: #2980b9;
+        }
+        
+        .btn:disabled {
+            background: #95a5a6;
+            cursor: not-allowed;
+        }
+        
+        .error-message {
+            background: #e74c3c;
+            color: white;
+            padding: 12px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+            display: none;
+        }
+        
+        .error-message.show {
+            display: block;
+        }
+        
+        /* Dashboard Styles */
+        .dashboard {
+            display: none;
+        }
+        
+        .dashboard.show {
+            display: block;
+        }
+        
+        .navbar {
+            background: #2c3e50;
+            color: white;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .navbar h1 {
+            font-size: 20px;
+        }
+        
+        .navbar-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .navbar-right span {
+            font-size: 14px;
+        }
+        
+        .btn-logout {
+            background: #e74c3c;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        
+        .btn-logout:hover {
+            background: #c0392b;
+        }
+        
+        .tabs {
+            background: white;
+            padding: 0 30px;
+            border-bottom: 1px solid #ddd;
+            display: flex;
+            gap: 10px;
+        }
+        
+        .tab {
+            padding: 15px 20px;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s;
+            font-weight: 500;
+        }
+        
+        .tab:hover {
+            background: #f8f9fa;
+        }
+        
+        .tab.active {
+            border-bottom-color: #3498db;
+            color: #3498db;
+        }
+        
+        .content {
+            padding: 30px;
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .stat-card {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .stat-card h3 {
+            font-size: 14px;
+            color: #7f8c8d;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+        
+        .stat-card .value {
+            font-size: 32px;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        
+        .card {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+        
+        .card h2 {
+            margin-bottom: 20px;
+            color: #2c3e50;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        thead {
+            background: #f8f9fa;
+        }
+        
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        th {
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        
+        .badge {
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+        
+        .badge.pending {
+            background: #fff3cd;
+            color: #856404;
+        }
+        
+        .badge.approved {
+            background: #d4edda;
+            color: #155724;
+        }
+        
+        .badge.rejected {
+            background: #f8d7da;
+            color: #721c24;
+        }
+        
+        .badge.compliant {
+            background: #d4edda;
+            color: #155724;
+        }
+        
+        .badge.non_compliant {
+            background: #f8d7da;
+            color: #721c24;
+        }
+        
+        .btn-sm {
+            padding: 6px 12px;
+            font-size: 13px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-right: 5px;
+        }
+        
+        .btn-success {
+            background: #27ae60;
+            color: white;
+        }
+        
+        .btn-success:hover {
+            background: #229954;
+        }
+        
+        .btn-danger {
+            background: #e74c3c;
+            color: white;
+        }
+        
+        .btn-danger:hover {
+            background: #c0392b;
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #7f8c8d;
+        }
+        
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: #7f8c8d;
+        }
+        
+        .empty-state img {
+            width: 100px;
+            height: 100px;
+            opacity: 0.5;
+            margin-bottom: 20px;
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 1000;
+        }
+        
+        .modal.show {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .modal-content {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            width: 90%;
+            max-width: 500px;
+        }
+        
+        .modal-content h3 {
+            margin-bottom: 20px;
+        }
+        
+        .modal-content textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            min-height: 100px;
+            font-family: inherit;
+            resize: vertical;
+        }
+        
+        .modal-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Login Screen -->
+    <div id="loginScreen" class="login-container">
+        <div class="login-card">
+            <h1>Urban Points Lebanon</h1>
+            <p>Admin Dashboard</p>
+            
+            <div id="loginError" class="error-message"></div>
+            
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" required placeholder="admin@urbanpoints.com">
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" required placeholder="••••••••">
+                </div>
+                
+                <button type="submit" class="btn" id="loginBtn">Sign In</button>
+            </form>
+        </div>
+    </div>
+    
+    <!-- Dashboard -->
+    <div id="dashboardScreen" class="dashboard">
+        <nav class="navbar">
+            <h1>Urban Points Lebanon - Admin Dashboard</h1>
+            <div class="navbar-right">
+                <span id="adminEmail"></span>
+                <button class="btn-logout" onclick="logout()">Logout</button>
+            </div>
+        </nav>
+        
+        <div class="tabs">
+            <div class="tab active" onclick="switchTab('pending-offers')">Pending Offers</div>
+            <div class="tab" onclick="switchTab('merchant-compliance')">Merchant Compliance</div>
+            <div class="tab" onclick="switchTab('system-stats')">System Stats</div>
+        </div>
+        
+        <div class="content">
+            <!-- Pending Offers Tab -->
+            <div id="pending-offers" class="tab-content active">
+                <div class="card">
+                    <h2>Pending Offers</h2>
+                    <div id="pendingOffersLoading" class="loading">Loading...</div>
+                    <div id="pendingOffersEmpty" class="empty-state" style="display:none;">
+                        <h3>No Pending Offers</h3>
+                        <p>All offers have been reviewed.</p>
+                    </div>
+                    <div id="pendingOffersTable" style="display:none;">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Offer Title</th>
+                                    <th>Merchant</th>
+                                    <th>Points Cost</th>
+                                    <th>Created</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="pendingOffersBody"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Merchant Compliance Tab -->
+            <div id="merchant-compliance" class="tab-content">
+                <div class="card">
+                    <h2>Merchant Compliance (5 Offers/Month Required)</h2>
+                    <div id="complianceLoading" class="loading">Loading...</div>
+                    <div id="complianceEmpty" class="empty-state" style="display:none;">
+                        <h3>No Merchants Found</h3>
+                    </div>
+                    <div id="complianceTable" style="display:none;">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Merchant Name</th>
+                                    <th>Offers This Month</th>
+                                    <th>Compliance Status</th>
+                                    <th>Last Check</th>
+                                </tr>
+                            </thead>
+                            <tbody id="complianceBody"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- System Stats Tab -->
+            <div id="system-stats" class="tab-content">
+                <div class="stats-grid" id="statsGrid">
+                    <div class="stat-card">
+                        <h3>Total Redemptions</h3>
+                        <div class="value" id="statTotalRedemptions">-</div>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Total Points Redeemed</h3>
+                        <div class="value" id="statTotalPoints">-</div>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Active Customers</h3>
+                        <div class="value" id="statActiveCustomers">-</div>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Active Merchants</h3>
+                        <div class="value" id="statActiveMerchants">-</div>
+                    </div>
+                </div>
+                <div id="statsLoading" class="loading">Loading stats...</div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Rejection Modal -->
+    <div id="rejectModal" class="modal">
+        <div class="modal-content">
+            <h3>Reject Offer</h3>
+            <p style="margin-bottom:15px; color:#7f8c8d;">Please provide a reason for rejection:</p>
+            <textarea id="rejectReason" placeholder="e.g., Offer description is unclear, points cost is too high, etc."></textarea>
+            <div class="modal-actions">
+                <button class="btn-sm" onclick="closeRejectModal()">Cancel</button>
+                <button class="btn-sm btn-danger" onclick="confirmReject()">Confirm Rejection</button>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Firebase Configuration
+        const firebaseConfig = {
+            apiKey: 'AIzaSyBQi-N9xW2DGLOc2Esrd-o1dCJOxWv8eZM',
+            appId: '1:573269413177:web:42a047e6b83061e747ece8',
+            messagingSenderId: '573269413177',
+            projectId: 'urbangenspark',
+            authDomain: 'urbangenspark.firebaseapp.com',
+            storageBucket: 'urbangenspark.firebasestorage.app',
+        };
+        
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+        const db = firebase.firestore();
+        const functions = firebase.functions();
+        
+        // Global state
+        let currentUser = null;
+        let pendingOfferIdForReject = null;
+        
+        // Auth State Observer
+        auth.onAuthStateChanged(async (user) => {
+            if (user) {
+                // Check if user is admin
+                const adminDoc = await db.collection('admins').doc(user.uid).get();
+                if (adminDoc.exists) {
+                    currentUser = user;
+                    document.getElementById('loginScreen').style.display = 'none';
+                    document.getElementById('dashboardScreen').classList.add('show');
+                    document.getElementById('adminEmail').textContent = user.email;
+                    loadDashboard();
+                } else {
+                    showError('Access denied. You are not an admin.');
+                    await auth.signOut();
+                }
+            } else {
+                currentUser = null;
+                document.getElementById('loginScreen').style.display = 'flex';
+                document.getElementById('dashboardScreen').classList.remove('show');
+            }
+        });
+        
+        // Login Form Handler
+        document.getElementById('loginForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const loginBtn = document.getElementById('loginBtn');
+            
+            loginBtn.disabled = true;
+            loginBtn.textContent = 'Signing in...';
+            
+            try {
+                await auth.signInWithEmailAndPassword(email, password);
+            } catch (error) {
+                showError(error.message);
+                loginBtn.disabled = false;
+                loginBtn.textContent = 'Sign In';
+            }
+        });
+        
+        // Logout
+        async function logout() {
+            await auth.signOut();
+        }
+        
+        // Show Error
+        function showError(message) {
+            const errorDiv = document.getElementById('loginError');
+            errorDiv.textContent = message;
+            errorDiv.classList.add('show');
+            setTimeout(() => errorDiv.classList.remove('show'), 5000);
+        }
+        
+        // Switch Tab
+        function switchTab(tabId) {
+            // Update tab buttons
+            document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            // Update tab content
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            document.getElementById(tabId).classList.add('active');
+            
+            // Load data for the active tab
+            if (tabId === 'pending-offers') loadPendingOffers();
+            if (tabId === 'merchant-compliance') loadMerchantCompliance();
+            if (tabId === 'system-stats') loadSystemStats();
+        }
+        
+        // Load Dashboard
+        function loadDashboard() {
+            loadPendingOffers();
+        }
+        
+        // Load Pending Offers
+        async function loadPendingOffers() {
+            const loading = document.getElementById('pendingOffersLoading');
+            const empty = document.getElementById('pendingOffersEmpty');
+            const table = document.getElementById('pendingOffersTable');
+            const tbody = document.getElementById('pendingOffersBody');
+            
+            loading.style.display = 'block';
+            empty.style.display = 'none';
+            table.style.display = 'none';
+            
+            try {
+                const offersSnapshot = await db.collection('offers')
+                    .where('status', '==', 'pending')
+                    .orderBy('created_at', 'desc')
+                    .get();
+                
+                loading.style.display = 'none';
+                
+                if (offersSnapshot.empty) {
+                    empty.style.display = 'block';
+                    return;
+                }
+                
+                tbody.innerHTML = '';
+                
+                for (const doc of offersSnapshot.docs) {
+                    const offer = doc.data();
+                    const merchantDoc = await db.collection('merchants').doc(offer.merchant_id).get();
+                    const merchantName = merchantDoc.exists ? merchantDoc.data().name : 'Unknown';
+                    
+                    const row = `
+                        <tr>
+                            <td>${offer.title}</td>
+                            <td>${merchantName}</td>
+                            <td>${offer.points_cost} pts</td>
+                            <td>${formatDate(offer.created_at)}</td>
+                            <td><span class="badge pending">Pending</span></td>
+                            <td>
+                                <button class="btn-sm btn-success" onclick="approveOffer('${doc.id}', '${offer.title}')">Approve</button>
+                                <button class="btn-sm btn-danger" onclick="openRejectModal('${doc.id}')">Reject</button>
+                            </td>
+                        </tr>
+                    `;
+                    tbody.innerHTML += row;
+                }
+                
+                table.style.display = 'block';
+            } catch (error) {
+                console.error('Error loading pending offers:', error);
+                loading.innerHTML = `<p style="color:#e74c3c;">Error: ${error.message}</p>`;
+            }
+        }
+        
+        // Approve Offer
+        async function approveOffer(offerId, offerTitle) {
+            if (!confirm(`Approve offer "${offerTitle}"?`)) return;
+            
+            try {
+                const approveOfferFunc = functions.httpsCallable('approveOffer');
+                const result = await approveOfferFunc({ offerId });
+                
+                if (result.data.success) {
+                    alert('Offer approved successfully!');
+                    loadPendingOffers();
+                } else {
+                    alert('Error: ' + result.data.error);
+                }
+            } catch (error) {
+                console.error('Error approving offer:', error);
+                alert('Error: ' + error.message);
+            }
+        }
+        
+        // Open Reject Modal
+        function openRejectModal(offerId) {
+            pendingOfferIdForReject = offerId;
+            document.getElementById('rejectReason').value = '';
+            document.getElementById('rejectModal').classList.add('show');
+        }
+        
+        // Close Reject Modal
+        function closeRejectModal() {
+            pendingOfferIdForReject = null;
+            document.getElementById('rejectModal').classList.remove('show');
+        }
+        
+        // Confirm Reject
+        async function confirmReject() {
+            const reason = document.getElementById('rejectReason').value.trim();
+            
+            if (!reason) {
+                alert('Please provide a rejection reason.');
+                return;
+            }
+            
+            try {
+                const rejectOfferFunc = functions.httpsCallable('rejectOffer');
+                const result = await rejectOfferFunc({ 
+                    offerId: pendingOfferIdForReject, 
+                    reason 
+                });
+                
+                if (result.data.success) {
+                    alert('Offer rejected successfully!');
+                    closeRejectModal();
+                    loadPendingOffers();
+                } else {
+                    alert('Error: ' + result.data.error);
+                }
+            } catch (error) {
+                console.error('Error rejecting offer:', error);
+                alert('Error: ' + error.message);
+            }
+        }
+        
+        // Load Merchant Compliance
+        async function loadMerchantCompliance() {
+            const loading = document.getElementById('complianceLoading');
+            const empty = document.getElementById('complianceEmpty');
+            const table = document.getElementById('complianceTable');
+            const tbody = document.getElementById('complianceBody');
+            
+            loading.style.display = 'block';
+            empty.style.display = 'none';
+            table.style.display = 'none';
+            
+            try {
+                const merchantsSnapshot = await db.collection('merchants')
+                    .orderBy('compliance_status')
+                    .get();
+                
+                loading.style.display = 'none';
+                
+                if (merchantsSnapshot.empty) {
+                    empty.style.display = 'block';
+                    return;
+                }
+                
+                tbody.innerHTML = '';
+                
+                merchantsSnapshot.forEach(doc => {
+                    const merchant = doc.data();
+                    const offersCount = merchant.offers_created_this_month || 0;
+                    const complianceStatus = merchant.compliance_status || 'unknown';
+                    const lastCheck = merchant.last_compliance_check;
+                    
+                    const row = `
+                        <tr>
+                            <td>${merchant.name}</td>
+                            <td>${offersCount} / 5</td>
+                            <td><span class="badge ${complianceStatus}">${complianceStatus}</span></td>
+                            <td>${lastCheck ? formatDate(lastCheck) : 'Never'}</td>
+                        </tr>
+                    `;
+                    tbody.innerHTML += row;
+                });
+                
+                table.style.display = 'block';
+            } catch (error) {
+                console.error('Error loading merchant compliance:', error);
+                loading.innerHTML = `<p style="color:#e74c3c;">Error: ${error.message}</p>`;
+            }
+        }
+        
+        // Load System Stats
+        async function loadSystemStats() {
+            const loading = document.getElementById('statsLoading');
+            loading.style.display = 'block';
+            
+            try {
+                // Load aggregate stats from Firestore collections
+                const redemptionsSnapshot = await db.collection('redemptions')
+                    .where('status', '==', 'completed')
+                    .get();
+                
+                const customersSnapshot = await db.collection('customers').get();
+                const merchantsSnapshot = await db.collection('merchants').get();
+                
+                let totalPoints = 0;
+                redemptionsSnapshot.forEach(doc => {
+                    totalPoints += doc.data().points_awarded || 0;
+                });
+                
+                document.getElementById('statTotalRedemptions').textContent = redemptionsSnapshot.size;
+                document.getElementById('statTotalPoints').textContent = totalPoints.toLocaleString();
+                document.getElementById('statActiveCustomers').textContent = customersSnapshot.size;
+                document.getElementById('statActiveMerchants').textContent = merchantsSnapshot.size;
+                
+                loading.style.display = 'none';
+            } catch (error) {
+                console.error('Error loading system stats:', error);
+                loading.innerHTML = `<p style="color:#e74c3c;">Error: ${error.message}</p>`;
+            }
+        }
+        
+        // Format Date
+        function formatDate(timestamp) {
+            if (!timestamp) return 'N/A';
+            const date = timestamp.toDate ? timestamp.toDate() : new Date(timestamp);
+            return date.toLocaleDateString() + ' ' + date.toLocaleTimeString();
+        }
+    </script>
+</body>
+</html>

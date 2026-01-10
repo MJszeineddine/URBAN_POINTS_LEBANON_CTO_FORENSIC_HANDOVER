@@ -1,0 +1,39 @@
+{
+  "id": "evt_test_webhook_001",
+  "object": "event",
+  "api_version": "2024-04-10",
+  "created": 1704675600,
+  "type": "customer.subscription.created",
+  "data": {
+    "object": {
+      "id": "sub_test_123456789",
+      "object": "subscription",
+      "customer": "cus_test_merchant001",
+      "status": "active",
+      "current_period_start": 1704675600,
+      "current_period_end": 1707267600,
+      "cancel_at_period_end": false,
+      "items": {
+        "object": "list",
+        "data": [
+          {
+            "id": "si_test_123",
+            "object": "subscription_item",
+            "price": {
+              "id": "price_test_monthly_plan",
+              "object": "price",
+              "active": true,
+              "currency": "usd",
+              "unit_amount": 2999,
+              "recurring": {
+                "interval": "month",
+                "interval_count": 1
+              }
+            },
+            "quantity": 1
+          }
+        ]
+      }
+    }
+  }
+}
