@@ -1,0 +1,22 @@
+ BLOCKERS.md                                        |  259 -----
+ REPORT.md                                          |  309 -----
+ .../macos/Flutter/GeneratedPluginRegistrant.swift  |    6 +
+ apps/mobile-customer/pubspec.lock                  |  170 ++-
+ apps/mobile-customer/pubspec.yaml                  |    6 +
+ apps/mobile-customer/test/widget_test.dart         |   59 +-
+ .../macos/Flutter/GeneratedPluginRegistrant.swift  |    6 +
+ apps/mobile-merchant/pubspec.lock                  |  154 ++-
+ apps/mobile-merchant/pubspec.yaml                  |    3 +
+ apps/mobile-merchant/test/widget_test.dart         |   59 +-
+ apps/web-admin/_headers                            |    2 +-
+ apps/web-admin/headers.conf                        |    4 +-
+ apps/web-admin/index.html                          | 1216 ++++++++++++--------
+ apps/web-admin/package.json                        |   16 +-
+ apps/web-admin/vercel.json                         |    2 +-
+ archive/urban-points-lebanon-complete              |    1 -
+ archive/urban_points_lebanon_customer_v2           |    1 -
+ backend/firebase-functions                         |    0
+ infra/firebase.json                                |   16 +
+ infra/firestore.indexes.json                       |   50 +
+ infra/firestore.rules                              |   33 +-
+ 21 files changed, 1319 insertions(+), 1053 deletions(-)

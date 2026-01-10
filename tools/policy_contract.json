@@ -1,0 +1,38 @@
+{
+  "version": "1.0.0",
+  "release_policy": {
+    "stripe": {
+      "mode": "DEFERRED",
+      "required_for_release": false,
+      "rationale": "Stripe payment processing is disabled by default (STRIPE_ENABLED=0). Feature can be enabled in future releases by setting STRIPE_ENABLED=1 and providing live keys.",
+      "enforcement": {
+        "feature_flag": "STRIPE_ENABLED",
+        "default_value": "0",
+        "runtime_guards": "isStripeEnabled() checks all Stripe functions",
+        "contract_gate": "stripe_deferred_gate.sh"
+      }
+    }
+  },
+  "gate_requirements": {
+    "stripe_deferred_gate.sh": {
+      "required": true,
+      "must_pass": true,
+      "verifies": ["STRIPE_ENABLED=0 default", "no test keys in repo", "all functions guarded", "sk_live_ validation present"]
+    },
+    "final_gap_scan_gate.sh": {
+      "required": true,
+      "must_pass": true,
+      "stripe_handling": "ignore_as_deferred"
+    },
+    "external_dependency_gate.sh": {
+      "required": true,
+      "must_pass": true,
+      "stripe_handling": "skip_as_deferred"
+    },
+    "final_release_gate.sh": {
+      "required": true,
+      "must_pass": true,
+      "orchestrates": ["stripe_deferred_gate.sh", "external_dependency_gate.sh", "final_gap_scan_gate.sh"]
+    }
+  }
+}

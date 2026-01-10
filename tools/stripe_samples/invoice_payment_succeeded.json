@@ -1,0 +1,38 @@
+{
+  "id": "evt_test_webhook_002",
+  "object": "event",
+  "api_version": "2024-04-10",
+  "created": 1704675700,
+  "type": "invoice.payment_succeeded",
+  "data": {
+    "object": {
+      "id": "in_test_123456789",
+      "object": "invoice",
+      "customer": "cus_test_merchant001",
+      "subscription": "sub_test_123456789",
+      "status": "paid",
+      "amount_paid": 2999,
+      "amount_due": 2999,
+      "currency": "usd",
+      "paid": true,
+      "period_start": 1704675600,
+      "period_end": 1707267600,
+      "lines": {
+        "object": "list",
+        "data": [
+          {
+            "id": "il_test_123",
+            "object": "line_item",
+            "amount": 2999,
+            "currency": "usd",
+            "description": "1 × Monthly Plan (at $29.99 / month)",
+            "period": {
+              "start": 1704675600,
+              "end": 1707267600
+            }
+          }
+        ]
+      }
+    }
+  }
+}

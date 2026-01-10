@@ -1,0 +1,29 @@
+Date: Thu Jan  1 17:45:08 UTC 2026
+Uname: Linux e2b.local 6.1.102 #1 SMP PREEMPT_DYNAMIC Thu May 29 17:08:06 CST 2025 x86_64 GNU/Linux
+Node: v20.19.5
+NPM: 10.8.2
+Dart: Dart SDK version: 3.9.2 (stable) (Wed Aug 27 03:49:40 2025 -0700) on "linux_x64"
+Flutter: Flutter 3.35.4 • channel stable • https://github.com/flutter/flutter.git
+Firebase: 14.20.0
+Git Commit: 1ddc3f8a696089a35fd480b1aeccb7f43689d17e
+Git Status:
+ D BLOCKERS.md
+ D REPORT.md
+ M apps/mobile-customer/macos/Flutter/GeneratedPluginRegistrant.swift
+ M apps/mobile-customer/pubspec.lock
+ M apps/mobile-customer/pubspec.yaml
+ M apps/mobile-customer/test/widget_test.dart
+ M apps/mobile-merchant/macos/Flutter/GeneratedPluginRegistrant.swift
+ M apps/mobile-merchant/pubspec.lock
+ M apps/mobile-merchant/pubspec.yaml
+ M apps/mobile-merchant/test/widget_test.dart
+ M apps/web-admin/_headers
+ M apps/web-admin/headers.conf
+ M apps/web-admin/index.html
+ M apps/web-admin/package.json
+ M apps/web-admin/vercel.json
+ D archive/urban-points-lebanon-complete
+ D archive/urban_points_lebanon_customer_v2
+ M backend/firebase-functions
+ M infra/firebase.json
+ M infra/firestore.indexes.json

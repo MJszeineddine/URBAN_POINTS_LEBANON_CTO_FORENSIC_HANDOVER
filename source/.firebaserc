@@ -1,0 +1,31 @@
+{
+  "projects": {
+    "default": "urbangenspark",
+    "dev": "urbanpoints-lebanon-dev",
+    "staging": "urbanpoints-lebanon-staging",
+    "prod": "urbangenspark"
+  },
+  "targets": {
+    "urbangenspark": {
+      "hosting": {
+        "web-admin": [
+          "urbanpoints-web-admin-prod"
+        ]
+      }
+    },
+    "urbanpoints-lebanon-staging": {
+      "hosting": {
+        "web-admin": [
+          "urbanpoints-web-admin-staging"
+        ]
+      }
+    },
+    "urbanpoints-lebanon-dev": {
+      "hosting": {
+        "web-admin": [
+          "urbanpoints-web-admin-dev"
+        ]
+      }
+    }
+  }
+}
