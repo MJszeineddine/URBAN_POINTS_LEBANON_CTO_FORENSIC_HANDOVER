@@ -227,7 +227,26 @@ EOF
 }
 EOF
         
-        echo "No open orders after reconciliation. Loop complete. Evidence: $evidence_dir"
+        echo "No open orders after reconciliation."
+        echo ""
+        echo "=== Running Final Evidence Audit ==="
+        
+        # Run final evidence audit
+        set +e
+        bash tools/gates/final_evidence_audit.sh
+        audit_exit=$?
+        set -e
+        
+        if [ $audit_exit -ne 0 ]; then
+          echo ""
+          echo "❌ FINAL AUDIT FAILED"
+          echo "Project NOT complete. See audit evidence for details."
+          exit 1
+        fi
+        
+        echo ""
+        echo "✅ FINAL AUDIT PASSED"
+        echo "Loop complete. Evidence: $evidence_dir"
         break
       fi
       
