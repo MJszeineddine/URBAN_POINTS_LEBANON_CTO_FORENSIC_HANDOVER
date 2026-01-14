@@ -168,6 +168,47 @@ export const GetOffersByLocationSchema = z.object({
 });
 
 // ============================================================================
+// FCM PUSH NOTIFICATION SCHEMAS
+// ============================================================================
+
+export const RegisterFCMTokenSchema = z.object({
+  token: z.string().min(50, 'Invalid FCM token').max(500, 'Token too long'),
+  platform: z.enum(['ios', 'android', 'web']),
+  deviceId: z.string().min(1, 'Device ID required').max(200, 'Device ID too long'),
+});
+
+export const UnregisterFCMTokenSchema = z.object({
+  token: z.string().min(50, 'Invalid FCM token').max(500, 'Token too long'),
+});
+
+export const CreateCampaignSchema = z.object({
+  title: z.string().min(3, 'Title too short').max(100, 'Title too long'),
+  message: z.string().min(10, 'Message too short').max(500, 'Message too long'),
+  targetAudience: z.enum(['all', 'customers', 'merchants', 'custom']),
+  customUserIds: z.array(z.string()).optional(),
+  scheduledAt: z.string().refine((val) => !isNaN(Date.parse(val)), 'Invalid date format').optional(),
+  imageUrl: z.string().url('Invalid image URL').optional(),
+  actionUrl: z.string().url('Invalid action URL').optional(),
+}).refine((data) => {
+  if (data.targetAudience === 'custom') {
+    return data.customUserIds && data.customUserIds.length > 0;
+  }
+  return true;
+}, {
+  message: 'Custom user IDs required for custom audience',
+  path: ['customUserIds'],
+});
+
+export const SendCampaignSchema = z.object({
+  campaignId: z.string().min(1, 'Campaign ID required'),
+});
+
+export const GetCampaignStatsSchema = z.object({
+  campaignId: z.string().optional(),
+  limit: z.number().int().positive().max(100).optional(),
+});
+
+// ============================================================================
 // VALIDATION HELPER
 // ============================================================================
 
