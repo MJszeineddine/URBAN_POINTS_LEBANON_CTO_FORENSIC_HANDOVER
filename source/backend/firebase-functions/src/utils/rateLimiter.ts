@@ -108,6 +108,13 @@ export const RATE_LIMITS = {
   expire_points: { maxRequests: 10, windowMs: 3600000 }, // 10/hour (admin)
   transfer_points: { maxRequests: 50, windowMs: 3600000 }, // 50/hour (admin)
   
+  // FCM operations
+  register_fcm: { maxRequests: 20, windowMs: 3600000 }, // 20/hour
+  unregister_fcm: { maxRequests: 20, windowMs: 3600000 }, // 20/hour
+  create_campaign: { maxRequests: 10, windowMs: 3600000 }, // 10/hour (admin)
+  send_campaign: { maxRequests: 5, windowMs: 3600000 }, // 5/hour (admin)
+  campaign_stats: { maxRequests: 100, windowMs: 3600000 }, // 100/hour (admin)
+  
   // Payment operations
   initiatePayment: { maxRequests: 10, windowMs: 3600000 }, // 10/hour
 };

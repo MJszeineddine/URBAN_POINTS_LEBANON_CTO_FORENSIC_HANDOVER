@@ -35,6 +35,11 @@ import {
   GetOfferEditHistorySchema,
   ExpirePointsSchema,
   TransferPointsSchema,
+  RegisterFCMTokenSchema,
+  UnregisterFCMTokenSchema,
+  CreateCampaignSchema,
+  SendCampaignSchema,
+  GetCampaignStatsSchema,
 } from './validation/schemas';
 
 // Initialize Firebase Admin (avoid re-initialization in tests)
@@ -1009,3 +1014,149 @@ export const transferPointsCallable = functions
     return coreTransferPoints(validationResult, context, { db });
   }));
 
+// ============================================================================
+// V3: FCM PUSH CAMPAIGNS
+// ============================================================================
+
+import { 
+  registerFCMToken, 
+  unregisterFCMToken, 
+  createCampaign, 
+  sendCampaign, 
+  getCampaignStats 
+} from './core/fcm';
+
+/**
+ * registerFCMTokenCallable - Register device token for push notifications
+ */
+export const registerFCMTokenCallable = functions
+  .region('us-central1')
+  .runWith({
+    memory: '256MB',
+    timeoutSeconds: 30,
+    minInstances: 0,
+    maxInstances: 10
+  })
+  .https.onCall(monitorFunction('registerFCMTokenCallable', async (data, context) => {
+    // Apply validation and rate limiting (20 token registrations/hour)
+    const validationResult = await validateAndRateLimit(
+      data,
+      context,
+      RegisterFCMTokenSchema,
+      'register_fcm'
+    );
+
+    if (isValidationError(validationResult)) {
+      throw new functions.https.HttpsError('invalid-argument', validationResult.error);
+    }
+
+    return registerFCMToken(validationResult, context, { db });
+  }));
+
+/**
+ * unregisterFCMTokenCallable - Unregister device token
+ */
+export const unregisterFCMTokenCallable = functions
+  .region('us-central1')
+  .runWith({
+    memory: '256MB',
+    timeoutSeconds: 30,
+    minInstances: 0,
+    maxInstances: 10
+  })
+  .https.onCall(monitorFunction('unregisterFCMTokenCallable', async (data, context) => {
+    // Apply validation and rate limiting (20 token unregistrations/hour)
+    const validationResult = await validateAndRateLimit(
+      data,
+      context,
+      UnregisterFCMTokenSchema,
+      'unregister_fcm'
+    );
+
+    if (isValidationError(validationResult)) {
+      throw new functions.https.HttpsError('invalid-argument', validationResult.error);
+    }
+
+    return unregisterFCMToken(validationResult, context, { db });
+  }));
+
+/**
+ * createCampaignCallable - Create push notification campaign (admin only)
+ */
+export const createCampaignCallable = functions
+  .region('us-central1')
+  .runWith({
+    memory: '512MB',
+    timeoutSeconds: 120,
+    minInstances: 0,
+    maxInstances: 5
+  })
+  .https.onCall(monitorFunction('createCampaignCallable', async (data, context) => {
+    // Apply validation and rate limiting (10 campaign creations/hour for admins)
+    const validationResult = await validateAndRateLimit(
+      data,
+      context,
+      CreateCampaignSchema,
+      'create_campaign'
+    );
+
+    if (isValidationError(validationResult)) {
+      throw new functions.https.HttpsError('invalid-argument', validationResult.error);
+    }
+
+    return createCampaign(validationResult, context, { db });
+  }));
+
+/**
+ * sendCampaignCallable - Send campaign notifications (admin only)
+ */
+export const sendCampaignCallable = functions
+  .region('us-central1')
+  .runWith({
+    memory: '1GB',
+    timeoutSeconds: 540,
+    minInstances: 0,
+    maxInstances: 1
+  })
+  .https.onCall(monitorFunction('sendCampaignCallable', async (data, context) => {
+    // Apply validation and rate limiting (5 campaign sends/hour for admins)
+    const validationResult = await validateAndRateLimit(
+      data,
+      context,
+      SendCampaignSchema,
+      'send_campaign'
+    );
+
+    if (isValidationError(validationResult)) {
+      throw new functions.https.HttpsError('invalid-argument', validationResult.error);
+    }
+
+    return sendCampaign(validationResult, context, { db });
+  }));
+
+/**
+ * getCampaignStatsCallable - Get campaign statistics (admin only)
+ */
+export const getCampaignStatsCallable = functions
+  .region('us-central1')
+  .runWith({
+    memory: '256MB',
+    timeoutSeconds: 30,
+    minInstances: 0,
+    maxInstances: 10
+  })
+  .https.onCall(monitorFunction('getCampaignStatsCallable', async (data, context) => {
+    // Apply validation and rate limiting (100 stats queries/hour for admins)
+    const validationResult = await validateAndRateLimit(
+      data,
+      context,
+      GetCampaignStatsSchema,
+      'campaign_stats'
+    );
+
+    if (isValidationError(validationResult)) {
+      throw new functions.https.HttpsError('invalid-argument', validationResult.error);
+    }
+
+    return getCampaignStats(validationResult, context, { db });
+  }));
