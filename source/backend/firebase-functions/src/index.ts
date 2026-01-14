@@ -162,7 +162,7 @@ interface QRTokenResponse {
  * @param data - Request data with user, offer, and device info
  * @returns Secure token and display code
  */
-import { coreGenerateSecureQRToken, coreValidatePIN } from './core/qr';
+import { coreGenerateSecureQRToken, coreValidatePIN, revokeQRToken, getQRHistory, detectFraudPatterns } from './core/qr';
 import { coreCalculateDailyStats, coreApproveOffer, coreRejectOffer, coreGetMerchantComplianceStatus } from './core/admin';
 import { coreAwardPoints, processPointsEarning, processRedemption, getPointsBalance } from './core/points';
 import { createOffer, updateOfferStatus, handleOfferExpiration, aggregateOfferStats, getOffersByLocation, editOffer, cancelOffer, getOfferEditHistory } from './core/offers';
@@ -230,6 +230,58 @@ export const validatePIN = functions
       return { success: false, error: 'System configuration error' };
     }
     return coreValidatePIN(data, context, { db, secret });
+  }));
+
+// ============================================================================
+// V3: QR History & Revocation Functions
+// ============================================================================
+
+/**
+ * revokeQRTokenCallable - Customer or admin revokes QR token
+ */
+export const revokeQRTokenCallable = functions
+  .region('us-central1')
+  .runWith({
+    memory: '256MB',
+    timeoutSeconds: 30,
+    minInstances: 0,
+    maxInstances: 10
+  })
+  .https.onCall(monitorFunction('revokeQRTokenCallable', async (data, context) => {
+    const secret = process.env.QR_TOKEN_SECRET || 'urban-points-lebanon-secret-key';
+    return revokeQRToken(data, context, { db, secret });
+  }));
+
+/**
+ * getQRHistoryCallable - Retrieve QR token history
+ */
+export const getQRHistoryCallable = functions
+  .region('us-central1')
+  .runWith({
+    memory: '256MB',
+    timeoutSeconds: 60,
+    minInstances: 0,
+    maxInstances: 10
+  })
+  .https.onCall(monitorFunction('getQRHistoryCallable', async (data, context) => {
+    const secret = process.env.QR_TOKEN_SECRET || 'urban-points-lebanon-secret-key';
+    return getQRHistory(data, context, { db, secret });
+  }));
+
+/**
+ * detectFraudPatternsCallable - Admin fraud detection analysis
+ */
+export const detectFraudPatternsCallable = functions
+  .region('us-central1')
+  .runWith({
+    memory: '512MB',
+    timeoutSeconds: 120,
+    minInstances: 0,
+    maxInstances: 5
+  })
+  .https.onCall(monitorFunction('detectFraudPatternsCallable', async (data, context) => {
+    const secret = process.env.QR_TOKEN_SECRET || 'urban-points-lebanon-secret-key';
+    return detectFraudPatterns(data, context, { db, secret });
   }));
 
 // ============================================================================
