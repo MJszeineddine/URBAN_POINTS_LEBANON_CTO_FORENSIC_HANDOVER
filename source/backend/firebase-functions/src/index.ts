@@ -25,6 +25,16 @@ import {
   ProcessPointsEarningSchema,
   ProcessRedemptionSchema,
   CreateOfferSchema,
+  GenerateQRTokenSchema,
+  ValidatePINSchema,
+  RevokeQRTokenSchema,
+  GetQRHistorySchema,
+  DetectFraudPatternsSchema,
+  EditOfferSchema,
+  CancelOfferSchema,
+  GetOfferEditHistorySchema,
+  ExpirePointsSchema,
+  TransferPointsSchema,
 } from './validation/schemas';
 
 // Initialize Firebase Admin (avoid re-initialization in tests)
@@ -176,12 +186,24 @@ export const generateSecureQRToken = functions
     maxInstances: 10
   })
   .https.onCall(monitorFunction('generateSecureQRToken', async (data: QRTokenRequest, context): Promise<QRTokenResponse> => {
+    // Apply validation and rate limiting (10 QR/hour per user)
+    const validationResult = await validateAndRateLimit(
+      data,
+      context,
+      GenerateQRTokenSchema,
+      'qr_gen'
+    );
+
+    if (isValidationError(validationResult)) {
+      return { success: false, error: validationResult.error };
+    }
+
     const secret = process.env.QR_TOKEN_SECRET;
     if (!secret) {
       console.error('CRITICAL: QR_TOKEN_SECRET environment variable not set');
       return { success: false, error: 'System configuration error' };
     }
-    return coreGenerateSecureQRToken(data, context, { db, secret });
+    return coreGenerateSecureQRToken(validationResult, context, { db, secret });
   }));
 
 // ============================================================================
@@ -224,12 +246,24 @@ export const validatePIN = functions
     maxInstances: 10
   })
   .https.onCall(monitorFunction('validatePIN', async (data: PINValidationRequest, context): Promise<PINValidationResponse> => {
+    // Apply validation and rate limiting (50 PIN validations/hour per merchant)
+    const validationResult = await validateAndRateLimit(
+      data,
+      context,
+      ValidatePINSchema,
+      'pin_validate'
+    );
+
+    if (isValidationError(validationResult)) {
+      return { success: false, error: validationResult.error };
+    }
+
     const secret = process.env.QR_TOKEN_SECRET;
     if (!secret) {
       console.error('CRITICAL: QR_TOKEN_SECRET environment variable not set');
       return { success: false, error: 'System configuration error' };
     }
-    return coreValidatePIN(data, context, { db, secret });
+    return coreValidatePIN(validationResult, context, { db, secret });
   }));
 
 // ============================================================================
@@ -248,8 +282,20 @@ export const revokeQRTokenCallable = functions
     maxInstances: 10
   })
   .https.onCall(monitorFunction('revokeQRTokenCallable', async (data, context) => {
+    // Apply validation and rate limiting (20 revocations/hour per user)
+    const validationResult = await validateAndRateLimit(
+      data,
+      context,
+      RevokeQRTokenSchema,
+      'qr_revoke'
+    );
+
+    if (isValidationError(validationResult)) {
+      throw new functions.https.HttpsError('invalid-argument', validationResult.error);
+    }
+
     const secret = process.env.QR_TOKEN_SECRET || 'urban-points-lebanon-secret-key';
-    return revokeQRToken(data, context, { db, secret });
+    return revokeQRToken(validationResult, context, { db, secret });
   }));
 
 /**
@@ -264,8 +310,20 @@ export const getQRHistoryCallable = functions
     maxInstances: 10
   })
   .https.onCall(monitorFunction('getQRHistoryCallable', async (data, context) => {
+    // Apply validation and rate limiting (100 history queries/hour)
+    const validationResult = await validateAndRateLimit(
+      data,
+      context,
+      GetQRHistorySchema,
+      'qr_history'
+    );
+
+    if (isValidationError(validationResult)) {
+      throw new functions.https.HttpsError('invalid-argument', validationResult.error);
+    }
+
     const secret = process.env.QR_TOKEN_SECRET || 'urban-points-lebanon-secret-key';
-    return getQRHistory(data, context, { db, secret });
+    return getQRHistory(validationResult, context, { db, secret });
   }));
 
 /**
@@ -280,8 +338,20 @@ export const detectFraudPatternsCallable = functions
     maxInstances: 5
   })
   .https.onCall(monitorFunction('detectFraudPatternsCallable', async (data, context) => {
+    // Apply validation and rate limiting (30 fraud scans/hour for admins)
+    const validationResult = await validateAndRateLimit(
+      data,
+      context,
+      DetectFraudPatternsSchema,
+      'fraud_detect'
+    );
+
+    if (isValidationError(validationResult)) {
+      throw new functions.https.HttpsError('invalid-argument', validationResult.error);
+    }
+
     const secret = process.env.QR_TOKEN_SECRET || 'urban-points-lebanon-secret-key';
-    return detectFraudPatterns(data, context, { db, secret });
+    return detectFraudPatterns(validationResult, context, { db, secret });
   }));
 
 // ============================================================================
@@ -765,7 +835,19 @@ export const editOfferCallable = functions
     maxInstances: 10
   })
   .https.onCall(monitorFunction('editOfferCallable', async (data, context) => {
-    return editOffer(data, context, { db });
+    // Apply validation and rate limiting (30 offer edits/hour per merchant)
+    const validationResult = await validateAndRateLimit(
+      data,
+      context,
+      EditOfferSchema,
+      'offer_edit'
+    );
+
+    if (isValidationError(validationResult)) {
+      throw new functions.https.HttpsError('invalid-argument', validationResult.error);
+    }
+
+    return editOffer(validationResult, context, { db });
   }));
 
 /**
@@ -780,7 +862,19 @@ export const cancelOfferCallable = functions
     maxInstances: 10
   })
   .https.onCall(monitorFunction('cancelOfferCallable', async (data, context) => {
-    return cancelOffer(data, context, { db });
+    // Apply validation and rate limiting (20 offer cancellations/hour per merchant)
+    const validationResult = await validateAndRateLimit(
+      data,
+      context,
+      CancelOfferSchema,
+      'offer_cancel'
+    );
+
+    if (isValidationError(validationResult)) {
+      throw new functions.https.HttpsError('invalid-argument', validationResult.error);
+    }
+
+    return cancelOffer(validationResult, context, { db });
   }));
 
 /**
@@ -795,7 +889,19 @@ export const getOfferEditHistoryCallable = functions
     maxInstances: 10
   })
   .https.onCall(monitorFunction('getOfferEditHistoryCallable', async (data, context) => {
-    return getOfferEditHistory(data, context, { db });
+    // Apply validation and rate limiting (100 history queries/hour)
+    const validationResult = await validateAndRateLimit(
+      data,
+      context,
+      GetOfferEditHistorySchema,
+      'offer_history'
+    );
+
+    if (isValidationError(validationResult)) {
+      throw new functions.https.HttpsError('invalid-argument', validationResult.error);
+    }
+
+    return getOfferEditHistory(validationResult, context, { db });
   }));
 
 // ============================================================================
@@ -851,7 +957,20 @@ export const expirePointsManual = functions
     if (!adminDoc.exists) {
       throw new functions.https.HttpsError('permission-denied', 'Admin access required');
     }
-    return coreExpirePoints(data, context, { db });
+
+    // Apply validation and rate limiting (10 manual expiration runs/hour for admins)
+    const validationResult = await validateAndRateLimit(
+      data,
+      context,
+      ExpirePointsSchema,
+      'expire_points'
+    );
+
+    if (isValidationError(validationResult)) {
+      throw new functions.https.HttpsError('invalid-argument', validationResult.error);
+    }
+
+    return coreExpirePoints(validationResult, context, { db });
   }));
 
 /**
@@ -874,6 +993,19 @@ export const transferPointsCallable = functions
     if (!adminDoc.exists) {
       throw new functions.https.HttpsError('permission-denied', 'Admin access required');
     }
-    return coreTransferPoints(data, context, { db });
+
+    // Apply validation and rate limiting (50 points transfers/hour for admins)
+    const validationResult = await validateAndRateLimit(
+      data,
+      context,
+      TransferPointsSchema,
+      'transfer_points'
+    );
+
+    if (isValidationError(validationResult)) {
+      throw new functions.https.HttpsError('invalid-argument', validationResult.error);
+    }
+
+    return coreTransferPoints(validationResult, context, { db });
   }));
 
