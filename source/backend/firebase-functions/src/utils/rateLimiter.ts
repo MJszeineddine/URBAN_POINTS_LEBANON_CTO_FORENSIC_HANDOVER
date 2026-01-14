@@ -87,8 +87,27 @@ export async function isRateLimited(
  * Rate limit configurations for different operations
  */
 export const RATE_LIMITS = {
-  earnPoints: { maxRequests: 50, windowMs: 60000 }, // 50/min
-  redeemPoints: { maxRequests: 30, windowMs: 60000 }, // 30/min
-  createOffer: { maxRequests: 20, windowMs: 60000 }, // 20/min
-  initiatePayment: { maxRequests: 10, windowMs: 60000 }, // 10/min
+  // Points operations
+  earnPoints: { maxRequests: 50, windowMs: 3600000 }, // 50/hour
+  redeemPoints: { maxRequests: 30, windowMs: 3600000 }, // 30/hour
+  
+  // Offer operations
+  createOffer: { maxRequests: 20, windowMs: 3600000 }, // 20/hour
+  offer_edit: { maxRequests: 30, windowMs: 3600000 }, // 30/hour
+  offer_cancel: { maxRequests: 20, windowMs: 3600000 }, // 20/hour
+  offer_history: { maxRequests: 100, windowMs: 3600000 }, // 100/hour
+  
+  // QR operations
+  qr_gen: { maxRequests: 10, windowMs: 3600000 }, // 10/hour
+  pin_validate: { maxRequests: 50, windowMs: 3600000 }, // 50/hour
+  qr_revoke: { maxRequests: 20, windowMs: 3600000 }, // 20/hour
+  qr_history: { maxRequests: 100, windowMs: 3600000 }, // 100/hour
+  fraud_detect: { maxRequests: 30, windowMs: 3600000 }, // 30/hour (admin)
+  
+  // Admin operations
+  expire_points: { maxRequests: 10, windowMs: 3600000 }, // 10/hour (admin)
+  transfer_points: { maxRequests: 50, windowMs: 3600000 }, // 50/hour (admin)
+  
+  // Payment operations
+  initiatePayment: { maxRequests: 10, windowMs: 3600000 }, // 10/hour
 };
