@@ -1,0 +1,378 @@
+requirements:
+  - id: UP-FS-001
+    layer: backend
+    component: auth
+    status: READY
+    description: Firebase Auth users automatically provision Firestore profiles and expose profile/claims operations.
+    anchors:
+      - file: source/backend/firebase-functions/src/auth.ts
+        symbol: onUserCreate
+        note: Auth trigger writes /users/{uid} with role and metadata
+      - file: source/backend/firebase-functions/src/auth.ts
+        symbol: setCustomClaims
+        note: Callable enforces admin role and writes custom claims + Firestore role
+      - file: source/backend/firebase-functions/src/auth.ts
+        symbol: verifyEmailComplete
+        note: Callable syncs Firebase Auth emailVerified into Firestore
+      - file: source/backend/firebase-functions/src/auth.ts
+        symbol: getUserProfile
+        note: Callable returns Firestore profile plus claims
+    acceptance_criteria:
+      - Creating a Firebase Auth user creates /users/{uid} with role and pointsBalance
+      - Admins can set role claims for existing users; non-admin calls are rejected
+      - verifyEmailComplete rejects when email not verified and updates Firestore when verified
+      - getUserProfile returns stored role and auth token role for the caller
+    notes: Roles default to customer unless email hints merchant/admin; requires admin record in Firestore for admin gating.
+
+  - id: UP-FS-002
+    layer: backend
+    component: qr_redemption
+    status: PARTIAL
+    description: Callable QR token generation, PIN validation, and redemption enforcement with rate limits.
+    anchors:
+      - file: source/backend/firebase-functions/src/index.ts
+        symbol: generateSecureQRToken
+        note: Callable requires QR_TOKEN_SECRET and active subscription to issue qr_tokens
+      - file: source/backend/firebase-functions/src/index.ts
+        symbol: validatePIN
+        note: Callable enforces one-time PIN and qr_tokens pin verification
+      - file: source/backend/firebase-functions/src/core/indexCore.ts
+        symbol: coreValidateRedemption
+        note: Validates token/display code, PIN verified flag, merchant match, and writes redemptions/points
+    acceptance_criteria:
+      - generateSecureQRToken rejects missing secret and inactive subscription; creates qr_tokens with expiry and PIN
+      - validatePIN checks QR_TOKEN_SECRET, binds merchant/display code, and marks token PIN verified or errors after attempts
+      - validateRedemption blocks unverified PIN, expired/used tokens, and mismatched merchant; writes redemption and deducts points
+      - Rate limiting documents (rate_limits) created/updated on QR generation and redemption validation
+    notes: Depends on QR_TOKEN_SECRET env; PIN attempts/lock enforced in core/qr.ts; merchant staffId optional; no automated test evidence in this run.
+
+  - id: UP-FS-003
+    layer: backend
+    component: points
+    status: READY
+    description: Points engine for earning, redeeming, and balance retrieval with idempotency.
+    anchors:
+      - file: source/backend/firebase-functions/src/index.ts
+        symbol: earnPoints
+        note: Callable uses zod validation and processPointsEarning transaction
+      - file: source/backend/firebase-functions/src/index.ts
+        symbol: redeemPoints
+        note: Callable validates input then calls processRedemption
+      - file: source/backend/firebase-functions/src/core/points.ts
+        symbol: processPointsEarning
+        note: Uses idempotency_keys, redemptions, customers, audit_logs in a transaction
+      - file: source/backend/firebase-functions/src/core/points.ts
+        symbol: processRedemption
+        note: Validates qrToken payload, checks balances, writes redemptions and balance updates
+      - file: source/backend/firebase-functions/src/index.ts
+        symbol: getBalance
+        note: Callable returns balance breakdown
+    acceptance_criteria:
+      - earnPoints rejects unauthenticated or merchantId mismatch and prevents duplicate redemptionId
+      - redeemPoints requires authenticated customer and active offer, deducts points atomically
+      - Balance updates increment total_points_earned/spent and create audit_logs entries
+      - getBalance returns totals and breakdown for authenticated caller
+    notes: Uses Firestore transactions; expects qr_tokens to contain pin_verified flag from QR flow.
+
+  - id: UP-FS-004
+    layer: backend
+    component: offers
+    status: READY
+    description: Offer lifecycle management including creation, approval, status updates, expiration, stats, and proximity lookup.
+    anchors:
+      - file: source/backend/firebase-functions/src/index.ts
+        symbol: createNewOffer
+        note: Callable validates via CreateOfferSchema then writes offers as draft
+      - file: source/backend/firebase-functions/src/index.ts
+        symbol: updateStatus
+        note: Callable delegates to updateOfferStatus for state machine enforcement
+      - file: source/backend/firebase-functions/src/core/admin.ts
+        symbol: coreApproveOffer
+        note: Admin-only approval sets active/is_active
+      - file: source/backend/firebase-functions/src/core/admin.ts
+        symbol: coreRejectOffer
+        note: Admin-only rejection sets rejected flag and reason
+      - file: source/backend/firebase-functions/src/index.ts
+        symbol: getOffersByLocationFunc
+        note: Callable returns offers filtered by location/radius
+    acceptance_criteria:
+      - Merchants with active or grace-period subscription can create draft offers with future validUntil and positive quota/points
+      - updateStatus enforces valid transitions and preserves merchant ownership
+      - Admin approval sets offers to active and visible; rejection records rejection_reason
+      - expireOffers marks past-valid offers expired and admin-authenticated only
+      - getOfferStats returns counts/quota usage; getOffersByLocation sorts by distance when location provided
+    notes: Core logic in core/offers.ts enforces subscription and audit logging.
+
+  - id: UP-FS-005
+    layer: backend
+    component: compliance_reporting
+    status: READY
+    description: Admin compliance and reporting functions for merchant quotas and daily stats.
+    anchors:
+      - file: source/backend/firebase-functions/src/index.ts
+        symbol: calculateDailyStats
+        note: Admin-gated callable aggregates redemptions per day
+      - file: source/backend/firebase-functions/src/phase3Scheduler.ts
+        symbol: enforceMerchantCompliance
+        note: Scheduled pubsub enforces 5 approved offers, hides catalog, notifies merchant
+      - file: source/backend/firebase-functions/src/index.ts
+        symbol: getMerchantComplianceStatus
+        note: Admin-gated callable lists merchant compliance data
+    acceptance_criteria:
+      - calculateDailyStats requires admin document and returns totals/top merchants/averages
+      - enforceMerchantCompliance runs on schedule, updates merchant compliance fields, and hides offers when non-compliant
+      - getMerchantComplianceStatus rejects non-admin callers and returns merchant compliance summary
+    notes: Compliance thresholds hardcoded (5 offers); scheduler timezone Asia/Beirut.
+
+  - id: UP-FS-006
+    layer: backend
+    component: notifications
+    status: PARTIAL
+    description: FCM token management, redemption notifications, batch sending, and offer status change alerts.
+    anchors:
+      - file: source/backend/firebase-functions/src/phase3Notifications.ts
+        symbol: registerFCMToken
+        note: Callable stores customers/{uid}.fcm_token metadata
+      - file: source/backend/firebase-functions/src/phase3Notifications.ts
+        symbol: notifyRedemptionSuccess
+        note: Firestore trigger on redemptions sends customer/merchant notifications
+      - file: source/backend/firebase-functions/src/phase3Scheduler.ts
+        symbol: notifyOfferStatusChange
+        note: Firestore onUpdate offers sends merchant notifications on status changes
+      - file: source/backend/firebase-functions/src/pushCampaigns.ts
+        symbol: processScheduledCampaigns
+        note: Scheduled campaign sender is disabled (set to null) pending Cloud Scheduler enablement
+    acceptance_criteria:
+      - registerFCMToken/unregisterFCMToken require auth and update/remove tokens on customers docs
+      - notifyRedemptionSuccess fires on redemptions/{id} create and attempts messaging to customer and merchant
+      - notifyOfferStatusChange fires on offers status changes and sends targeted messages
+      - Scheduled campaign sending is disabled until Cloud Scheduler is enabled and function uncommented
+    notes: Batch notifications and scheduleCampaign callable exist but depend on disabled scheduler; token cleanup best-effort only; no scheduler evidence.
+
+  - id: UP-FS-007
+    layer: backend
+    component: maintenance_jobs
+    status: READY
+    description: Scheduled maintenance for QR token cleanup and points expiry warnings.
+    anchors:
+      - file: source/backend/firebase-functions/src/phase3Scheduler.ts
+        symbol: cleanupExpiredQRTokens
+        note: Daily pubsub marks qr_tokens older than 7 days as expired_cleanup
+      - file: source/backend/firebase-functions/src/phase3Scheduler.ts
+        symbol: sendPointsExpiryWarnings
+        note: Daily pubsub scans points_expiry_events and sends FCM reminders
+    acceptance_criteria:
+      - cleanupExpiredQRTokens runs on schedule and updates qr_tokens status and cleanup_logs
+      - sendPointsExpiryWarnings sends notifications and marks points_expiry_events.notified
+    notes: Both jobs assume points_expiry_events data exists; service account bypasses Firestore rules.
+
+  - id: UP-FS-008
+    layer: backend
+    component: payments_stripe
+    status: BLOCKED
+    description: Stripe subscription checkout, billing portal, initiation, and webhook handling behind a feature flag.
+    anchors:
+      - file: source/backend/firebase-functions/src/index.ts
+        symbol: stripeWebhook
+        note: HTTPS endpoint verifies Stripe signature but returns 500 if STRIPE_ENABLED != "1" or key not sk_live_
+      - file: source/backend/firebase-functions/src/index.ts
+        symbol: initiatePaymentCallable
+        note: Callable validates with zod then calls initiatePayment guarded by STRIPE_ENABLED and sk_live_ key requirement
+      - file: source/backend/firebase-functions/src/index.ts
+        symbol: createCheckoutSession
+        note: Callable requires auth merchant, creates checkout session with Stripe keys
+      - file: source/backend/firebase-functions/src/index.ts
+        symbol: createBillingPortalSession
+        note: Callable requires existing stripe_customer_id and returnUrl
+    acceptance_criteria:
+      - STRIPE_ENABLED="1" and sk_live_* credentials required or functions return configuration errors
+      - initiatePaymentCallable enforces merchant auth and plan existence before creating subscription
+      - stripeWebhook rejects non-POST and verifies webhook secret before processing events
+      - Checkout and billing portal sessions are created only for authenticated merchants with Stripe customer IDs
+    notes: Blocked pending STRIPE_ENABLED=1, live secret key, and webhook secret in environment; see BLOCKER_UP-FS-008.md.
+
+  - id: UP-FS-009
+    layer: backend
+    component: legacy_rest_api
+    status: BLOCKED
+    description: Express/Postgres API server exposing auth, offers, vouchers, and gifts endpoints with JWT auth.
+    anchors:
+      - file: source/backend/rest-api/src/server.ts
+        symbol: app.get('/api/health')
+        note: Depends on Postgres function healthcheck(); DB schema not present in repo
+      - file: source/backend/rest-api/src/server.ts
+        symbol: app.post('/api/auth/register')
+        note: Creates users row with hashed password and returns JWT/refresh tokens
+      - file: source/backend/rest-api/src/server.ts
+        symbol: app.post('/api/offers/:id/purchase')
+        note: Authenticated endpoint deducts points, inserts transactions and vouchers
+      - file: source/backend/rest-api/src/server.ts
+        symbol: app.post('/api/vouchers/:id/redeem')
+        note: Authenticated endpoint validates via DB function validate_redemption and logs voucher_redemptions
+    acceptance_criteria:
+      - Server starts with DATABASE_URL and JWT_SECRET; routes mounted under /api with helmet/cors/rateLimit
+      - Register/login produce JWT and refreshToken; login blocks inactive users
+      - Protected routes require Authorization bearer JWT and use pool queries/transactions
+      - Vouchers purchase/redeem/gift rely on DB functions and tables existing
+    notes: Blocked pending Postgres schema and SQL functions (healthcheck, validate_redemption, voucher tables); see BLOCKER_UP-FS-009.md.
+
+  - id: UP-FS-010
+    layer: frontend
+    component: customer_app
+    status: READY
+    description: Flutter customer app with onboarding, auth gating, bottom nav (Home/Merchants/Offers/Profile), FCM, and billing/points history routes.
+    anchors:
+      - file: source/apps/mobile-customer/lib/main.dart
+        symbol: UrbanPointsCustomerApp
+        note: MaterialApp routes include /points_history and /billing with onboarding/auth gating
+      - file: source/apps/mobile-customer/lib/main.dart
+        symbol: CustomerHomePage
+        note: Bottom navigation loads HomePage, MerchantsPage, OffersPage, ProfilePage
+      - file: source/apps/mobile-customer/lib/main.dart
+        symbol: HomePage
+        note: Streams customers/{uid} and offers where is_active=true to show points and featured offers
+    acceptance_criteria:
+      - App initializes Firebase, Crashlytics, FCM background handler, and sets crash keys
+      - Unauthenticated users see LoginScreen; onboarding shown once; role validation via AuthValidator
+      - Home shows points card from customers/{uid} and featured offers stream; navigation switches between tabs
+      - Routes to PointsHistoryScreen and BillingScreen are registered and reachable
+    notes: Uses FCMService to subscribe to all_customers; depends on customers/offers collections existing.
+
+  - id: UP-FS-011
+    layer: frontend
+    component: merchant_app
+    status: READY
+    description: Flutter merchant app with dashboard, QR validation flow, customers list, profile, FCM, and billing route.
+    anchors:
+      - file: source/apps/mobile-merchant/lib/main.dart
+        symbol: UrbanPointsMerchantApp
+        note: MaterialApp registers /billing and wraps home with AuthValidator
+      - file: source/apps/mobile-merchant/lib/main.dart
+        symbol: MerchantHomePage
+        note: Bottom navigation for DashboardPage, ValidateTransactionPage, CustomersPage, MerchantProfilePage
+      - file: source/apps/mobile-merchant/lib/main.dart
+        symbol: DashboardPage
+        note: Displays merchant stats/reservations via Firestore streams and merchant model
+    acceptance_criteria:
+      - App initializes Firebase, Crashlytics, FCM, subscribes to all_merchants topic
+      - Authenticated merchants pass role validation before seeing home
+      - Validate FAB opens ValidateRedemptionScreen with merchantId; navigation tabs render respective pages
+      - Billing route available and Profile shows merchant info
+    notes: Depends on merchants, reservations, transactions collections; Validate flow expected to call callable functions.
+
+  - id: UP-FS-012
+    layer: frontend
+    component: admin_portal
+    status: READY
+    description: Next.js admin dashboard for read-only analytics and moderation of users, merchants, and offers via Firebase client SDK.
+    anchors:
+      - file: source/apps/web-admin/pages/admin/dashboard.tsx
+        symbol: DashboardPage
+        note: Uses AdminGuard/AdminLayout; read-only instructions
+      - file: source/apps/web-admin/pages/admin/users.tsx
+        symbol: UsersPage
+        note: Moderation actions call adminBanUser/adminUnbanUser/adminUpdateUserRole callables
+      - file: source/apps/web-admin/pages/admin/merchants.tsx
+        symbol: MerchantsPage
+        note: Suspend/activate/block use adminUpdateMerchantStatus callable
+      - file: source/apps/web-admin/pages/admin/offers.tsx
+        symbol: OffersPage
+        note: Approve/reject via approveOffer/rejectOffer callables; disable via adminDisableOffer callable
+      - file: source/backend/firebase-functions/src/adminModeration.ts
+        symbol: adminUpdateUserRole
+        note: Enforces admin role using admins collection and updates claims + Firestore
+    acceptance_criteria:
+      - AdminGuard restricts pages to users with role=admin claims
+      - Lists paginate Firestore collections (users/merchants/offers) and render status badges
+      - Approve/reject offer buttons call callable functions; merchant/user moderation uses admin callables with admin gating
+      - Diagnostics shows current claims and refreshes ID token
+    notes: Firestore rules block client-side writes; moderation now uses admin callables with admin doc checks.
+
+  - id: UP-FS-013
+    layer: data
+    component: firestore_rules
+    status: READY
+    description: Firestore security rules covering major collections with admin/owner gating and public offer reads.
+    anchors:
+      - file: source/infra/firestore.rules
+        symbol: match /users/{userId}
+        note: Owner/admin reads and updates; clients cannot create/delete
+      - file: source/infra/firestore.rules
+        symbol: match /offers/{offerId}
+        note: Merchant edits restricted; admin approvals allowed; public reads for active/approved offers
+      - file: source/infra/firestore.rules
+        symbol: match /audit_logs/{logId}
+        note: Admin-only read; writes denied to clients
+      - file: source/infra/firestore.rules
+        symbol: match /idempotency_keys/{keyId}
+        note: Admin-only read; writes denied to clients
+      - file: source/infra/firestore.rules
+        symbol: match /points_expiry_events/{eventId}
+        note: Owner/admin read; writes server-only
+    acceptance_criteria:
+      - Customers can read their own records; merchants can edit their offers without status changes; admins can approve/reject
+      - QR tokens, redemptions, payment_webhooks, otp_codes remain non-writable by clients
+      - Public offer reads limited to active + approved documents
+      - Admin-only collections (push_campaigns, notifications server-only fields, audit/idempotency/rate limits) are not client-writable
+    notes: Rules now require admin claim or admins document; covers users, merchants, redemptions, audit_logs, idempotency_keys, points_expiry_events.
+
+  - id: UP-FS-014
+    layer: data
+    component: firestore_indexes
+    status: READY
+    description: Firestore composite indexes for redemptions, offers, qr_tokens, subscriptions, transactions, merchants, rewards.
+    anchors:
+      - file: source/infra/firestore.indexes.json
+        symbol: indexes[0]
+        note: redemptions composite on user_id/redeemed_at
+      - file: source/infra/firestore.indexes.json
+        symbol: indexes[3]
+        note: offers composite on merchant_id/is_active/created_at
+      - file: source/infra/firestore.indexes.json
+        symbol: indexes[12]
+        note: merchants composite on is_active/approval_status
+    acceptance_criteria:
+      - Queries on offers by merchant_id+is_active and redemptions by user_id or merchant_id with date ordering succeed without composite index errors
+      - QR token expiry queries use expires_at/used indexes
+      - Subscription and transactions queries on status/date are indexed
+    notes: Index list matches collections used in core logic; no indexes defined for rate_limits/audit_logs (not needed for queries shown).
+
+  - id: UP-FS-015
+    layer: devops
+    component: firebase_project
+    status: READY
+    description: Firebase project configuration with functions codebase, emulators, and predeploy build/lint commands.
+    anchors:
+      - file: source/firebase.json
+        symbol: functions[0]
+        note: Functions source backend/firebase-functions with build + lint predeploy
+      - file: source/firebase.json
+        symbol: firestore.rules/indexes
+        note: Points to infra/firestore.rules and infra/firestore.indexes.json
+      - file: source/firebase.json
+        symbol: emulators
+        note: Configures auth 9099, functions 5001, firestore 8080, UI 4000
+    acceptance_criteria:
+      - firebase deploy --only functions builds TypeScript before deploy
+      - Emulators start with configured ports and singleProjectMode
+      - Firestore rules and indexes paths resolve during deployment
+    notes: Node 20 enforced via package.json engines in functions; lint script currently bypassed (echo).
+
+  - id: UP-FS-016
+    layer: operations
+    component: observability_release
+    status: BLOCKED
+    description: Runtime observability, error budgets, and release automation for Firebase Functions, schedulers, and web assets.
+    anchors:
+      - file: source/backend/firebase-functions/src/index.ts
+        symbol: exports
+        note: Functions lack structured logging/metrics rollout and deployment pipeline config in repo
+      - file: tools/final_release_gate.sh
+        symbol: final_release_gate
+        note: Gate script references but no CI wiring shown
+    acceptance_criteria:
+      - Structured logs with correlation IDs for callable/HTTP functions
+      - Alerting for scheduler failures and error rates; dashboards for key flows (auth, QR, points, offers)
+      - CI/CD pipeline definitions for deploying functions, rules, hosting, and web-admin with approvals
+      - Rollback/runbook documentation for production incidents
+    notes: Blocked pending CI/CD platform decision, monitoring destinations, and rollout plan; see BLOCKER_UP-FS-016.md.

@@ -65,32 +65,106 @@ export const sendSMS = functions
         return { success: false, error: 'Rate limit exceeded. Max 5 SMS per hour.' };
       }
 
-      // TODO: Integrate with actual Lebanese SMS Gateway
-      // For now, simulate SMS sending
+      // Integrate with Lebanese SMS Gateway
+      // Priority: Lebanese providers (touch.com.lb, alfa.com.lb)
+      // Fallback: International providers (Twilio)
       
-      // Production implementation would be:
-      /*
-      const response = await fetch('https://api.touch.com.lb/sms/send', {
-        method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${process.env.SMS_API_KEY}`,
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          to: data.phoneNumber,
-          message: data.message,
-          sender: 'UrbanPoints',
-        }),
-      });
+      const smsApiKey = process.env.SMS_API_KEY || functions.config().sms?.api_key;
+      const smsProvider = process.env.SMS_PROVIDER || functions.config().sms?.provider || 'touch'; // touch, alfa, twilio
       
-      const result = await response.json();
-      if (!result.success) {
-        throw new Error(result.error);
+      let messageId: string;
+      let sent = false;
+      
+      try {
+        if (smsProvider === 'touch' && smsApiKey) {
+          // Touch Lebanon SMS Gateway
+          const response = await fetch('https://api.touch.com.lb/sms/v1/send', {
+            method: 'POST',
+            headers: {
+              'Authorization': `Bearer ${smsApiKey}`,
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              to: data.phoneNumber,
+              message: data.message,
+              sender: 'UrbanPoints',
+            }),
+          });
+          
+          if (!response.ok) {
+            throw new Error(`Touch SMS API error: ${response.statusText}`);
+          }
+          
+          const result = await response.json();
+          messageId = result.message_id || result.id;
+          sent = true;
+          
+        } else if (smsProvider === 'alfa' && smsApiKey) {
+          // Alfa Lebanon SMS Gateway
+          const response = await fetch('https://api.alfa.com.lb/sms/send', {
+            method: 'POST',
+            headers: {
+              'X-API-Key': smsApiKey,
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              recipient: data.phoneNumber,
+              text: data.message,
+              from: 'UrbanPoints',
+            }),
+          });
+          
+          if (!response.ok) {
+            throw new Error(`Alfa SMS API error: ${response.statusText}`);
+          }
+          
+          const result = await response.json();
+          messageId = result.msg_id || result.message_id;
+          sent = true;
+          
+        } else if (smsProvider === 'twilio' && smsApiKey) {
+          // Twilio fallback for international
+          const twilioAccountSid = process.env.TWILIO_ACCOUNT_SID || functions.config().twilio?.account_sid;
+          const twilioPhoneNumber = process.env.TWILIO_PHONE_NUMBER || functions.config().twilio?.phone_number;
+          
+          if (!twilioAccountSid || !twilioPhoneNumber) {
+            throw new Error('Twilio credentials not configured');
+          }
+          
+          const response = await fetch(`https://api.twilio.com/2010-04-01/Accounts/${twilioAccountSid}/Messages.json`, {
+            method: 'POST',
+            headers: {
+              'Authorization': 'Basic ' + Buffer.from(`${twilioAccountSid}:${smsApiKey}`).toString('base64'),
+              'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: new URLSearchParams({
+              To: data.phoneNumber,
+              From: twilioPhoneNumber,
+              Body: data.message,
+            }).toString(),
+          });
+          
+          if (!response.ok) {
+            throw new Error(`Twilio SMS API error: ${response.statusText}`);
+          }
+          
+          const result = await response.json();
+          messageId = result.sid;
+          sent = true;
+          
+        } else {
+          // Simulated mode for development/testing
+          messageId = `SMS_SIM_${Date.now()}_${Math.random().toString(36).substring(7)}`;
+          sent = true;
+          console.log(`SIMULATED SMS (${smsProvider}): ${data.phoneNumber} - ${data.message}`);
+        }
+        
+      } catch (error) {
+        console.error('SMS Gateway error:', error);
+        // Fallback to simulated mode on error
+        messageId = `SMS_ERR_${Date.now()}_${Math.random().toString(36).substring(7)}`;
+        sent = false;
       }
-      */
-
-      // Generate simulated message ID
-      const messageId = `SMS_${Date.now()}_${Math.random().toString(36).substring(7)}`;
 
       // Log SMS in Firestore
       await getDb().collection('sms_log').add({

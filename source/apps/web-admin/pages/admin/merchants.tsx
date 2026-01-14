@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
-import { collection, getDocs, limit, query, startAfter, DocumentData, QueryDocumentSnapshot, updateDoc, doc } from 'firebase/firestore';
+import { collection, getDocs, limit, query, startAfter, DocumentData, QueryDocumentSnapshot } from 'firebase/firestore';
+import { httpsCallable } from 'firebase/functions';
 import { AdminGuard } from '../../components/AdminGuard';
 import { AdminLayout } from '../../components/AdminLayout';
-import { db } from '../../lib/firebaseClient';
+import { db, functions } from '../../lib/firebaseClient';
 
 interface MerchantItem {
   id: string;
@@ -65,9 +66,9 @@ export default function MerchantsPage() {
     setError('');
     setSuccessMessage('');
     try {
-      const merchantRef = doc(db, 'merchants', merchantId);
-      await updateDoc(merchantRef, { status: 'suspended', suspendedAt: new Date().toISOString() });
-      setSuccessMessage(`Merchant ${merchantId} suspended successfully`);
+      const updateMerchantStatus = httpsCallable(functions, 'adminUpdateMerchantStatus');
+      await updateMerchantStatus({ merchantId, action: 'suspend' });
+      setSuccessMessage(`Merchant ${merchantId} suspended successfully (admin callable)`);
       await fetchPage();
     } catch (err: any) {
       console.error('Failed to suspend merchant', err);
@@ -82,9 +83,9 @@ export default function MerchantsPage() {
     setError('');
     setSuccessMessage('');
     try {
-      const merchantRef = doc(db, 'merchants', merchantId);
-      await updateDoc(merchantRef, { status: 'active', suspendedAt: null });
-      setSuccessMessage(`Merchant ${merchantId} activated successfully`);
+      const updateMerchantStatus = httpsCallable(functions, 'adminUpdateMerchantStatus');
+      await updateMerchantStatus({ merchantId, action: 'activate' });
+      setSuccessMessage(`Merchant ${merchantId} activated successfully (admin callable)`);
       await fetchPage();
     } catch (err: any) {
       console.error('Failed to activate merchant', err);
@@ -101,9 +102,9 @@ export default function MerchantsPage() {
     setError('');
     setSuccessMessage('');
     try {
-      const merchantRef = doc(db, 'merchants', merchantId);
-      await updateDoc(merchantRef, { blocked: true, blockedAt: new Date().toISOString(), status: 'blocked' });
-      setSuccessMessage(`Merchant ${merchantId} blocked permanently`);
+      const updateMerchantStatus = httpsCallable(functions, 'adminUpdateMerchantStatus');
+      await updateMerchantStatus({ merchantId, action: 'block' });
+      setSuccessMessage(`Merchant ${merchantId} blocked permanently (admin callable)`);
       await fetchPage();
     } catch (err: any) {
       console.error('Failed to block merchant', err);

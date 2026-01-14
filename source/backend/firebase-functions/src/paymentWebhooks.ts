@@ -379,6 +379,8 @@ export async function processFailedPayment(
 
     const transactionDoc = transactionQuery.docs[0];
 
+    const transaction = transactionDoc.data();
+    
     // Update transaction status
     await transactionDoc.ref.update({
       status: 'failed',
@@ -388,7 +390,22 @@ export async function processFailedPayment(
 
     console.log(`Payment failed: ${payload.transactionId}`);
 
-    // TODO: Send failure notification to user
+    // Send failure notification to user
+    await getDb().collection('notifications').add({
+      user_id: transaction.user_id,
+      title: 'Payment Failed',
+      message: `Your payment of ${payload.amount.toFixed(2)} ${payload.currency.toUpperCase()} could not be processed. Please try again or use a different payment method.`,
+      type: 'payment_failed',
+      is_read: false,
+      priority: 'high',
+      data: {
+        transaction_id: payload.transactionId,
+        amount: payload.amount,
+        currency: payload.currency,
+        payment_method: paymentMethod
+      },
+      created_at: admin.firestore.FieldValue.serverTimestamp(),
+    });
 
   } catch (error) {
     console.error('Error processing failed payment:', error);

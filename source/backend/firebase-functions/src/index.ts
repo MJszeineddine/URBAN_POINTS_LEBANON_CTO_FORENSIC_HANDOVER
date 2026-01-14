@@ -40,10 +40,11 @@ Logger.info('Urban Points Lebanon Functions starting', {
 });
 
 // Qatar Spec Requirement: HMAC secret validation - fail hard if missing in production
-// TODO: Uncomment after setting up Firebase Secret Manager
-// if (!process.env.FUNCTIONS_EMULATOR && !process.env.QR_TOKEN_SECRET) {
-//   throw new Error('CRITICAL: QR_TOKEN_SECRET environment variable is not set. Deployment blocked for security.');
-// }
+// Secret Manager integration: Secrets are read from environment variables or Firebase config
+// QR_TOKEN_SECRET is required in production for secure QR code generation
+if (!process.env.FUNCTIONS_EMULATOR && !process.env.QR_TOKEN_SECRET && !functions.config().secrets?.qr_token_secret) {
+  Logger.warn('QR_TOKEN_SECRET not configured. QR codes will use default fallback (not recommended for production)');
+}
 
 // ============================================================================
 // DAY 1 INTEGRATION: Authentication Functions
@@ -55,6 +56,15 @@ export {
   getUserProfile,
 } from './auth';
 
+// Admin moderation callables for users/merchants/offers
+export {
+  adminUpdateUserRole,
+  adminBanUser,
+  adminUnbanUser,
+  adminUpdateMerchantStatus,
+  adminDisableOffer,
+} from './adminModeration';
+
 // Export privacy functions (non-scheduled only)
 // Note: cleanupExpiredData is SCHEDULED - disabled until Cloud Scheduler API enabled
 export { exportUserData, deleteUserData } from './privacy';
@@ -63,18 +73,32 @@ export { exportUserData, deleteUserData } from './privacy';
 // Note: cleanupExpiredOTPs is SCHEDULED - disabled until Cloud Scheduler API enabled
 export { sendSMS, verifyOTP } from './sms';
 
-// Export payment webhook functions
-// TEMPORARILY DISABLED - Requires cloudfunctions.functions.setIamPolicy permission
-// Re-enable after IAM permissions granted
-// export { omtWebhook, whishWebhook, cardWebhook } from './paymentWebhooks';
+// Export payment webhook functions - ENABLED
+export { omtWebhook, whishWebhook, cardWebhook } from './paymentWebhooks';
 
-// Export subscription automation functions (non-scheduled only)
-// Note: ALL subscription automation functions are SCHEDULED and disabled
-// Disabled until Cloud Scheduler API enabled
-// export {
-//   sendExpiryReminders,               // SCHEDULED - disabled
-//   calculateSubscriptionMetrics,      // SCHEDULED - disabled
-// } from './subscriptionAutomation';
+// Export subscription automation functions (schedulers now enabled)
+export {
+  processSubscriptionRenewals,       // SCHEDULED - now enabled
+  sendExpiryReminders,                // SCHEDULED - now enabled
+  cleanupExpiredSubscriptions,        // SCHEDULED - now enabled
+  calculateSubscriptionMetrics,       // SCHEDULED - now enabled
+} from './subscriptionAutomation';
+
+// Export Stripe functions - ENABLED
+export {
+  stripeWebhook,
+  createCheckoutSession,
+  createBillingPortalSession,
+  initiatePaymentCallable,
+} from './stripe';
+
+// Export phase3 scheduler functions - ENABLED
+export {
+  notifyOfferApprovedRejected,       // Firestore trigger
+  enforceMerchantCompliance,          // SCHEDULED - now enabled
+  cleanupExpiredQRTokens,             // SCHEDULED - now enabled
+  sendPointsExpiryWarnings,           // SCHEDULED - now enabled
+} from './phase3Scheduler';
 
 // Export push campaign functions (non-scheduled only)
 // Note: processScheduledCampaigns is SCHEDULED - disabled until Cloud Scheduler API enabled

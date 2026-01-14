@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { collection, getDocs, limit, query, startAfter, DocumentData, QueryDocumentSnapshot, updateDoc, doc } from 'firebase/firestore';
+import { collection, getDocs, limit, query, startAfter, DocumentData, QueryDocumentSnapshot } from 'firebase/firestore';
 import { httpsCallable } from 'firebase/functions';
 import { AdminGuard } from '../../components/AdminGuard';
 import { AdminLayout } from '../../components/AdminLayout';
@@ -103,9 +103,9 @@ export default function OffersPage() {
     setError('');
     setSuccessMessage('');
     try {
-      const offerRef = doc(db, 'offers', offerId);
-      await updateDoc(offerRef, { status: 'disabled', disabledAt: new Date().toISOString() });
-      setSuccessMessage(`Offer ${offerId} disabled successfully`);
+      const disableOffer = httpsCallable(functions, 'adminDisableOffer');
+      await disableOffer({ offerId, reason: 'disabled_via_admin_portal' });
+      setSuccessMessage(`Offer ${offerId} disabled successfully (admin callable)`);
       await fetchPage();
     } catch (err: any) {
       console.error('Failed to disable offer', err);

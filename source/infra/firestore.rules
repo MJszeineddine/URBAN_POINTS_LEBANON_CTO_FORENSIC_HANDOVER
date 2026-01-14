@@ -1,302 +1,135 @@
 rules_version = '2';
-
-// ============================================================================
-// Urban Points Lebanon - Production Firestore Security Rules
-// Generated: Autonomous Deployment Session
-// Project: urbangenspark
-// ============================================================================
-
 service cloud.firestore {
   match /databases/{database}/documents {
-    
-    // ========================================================================
-    // HELPER FUNCTIONS
-    // ========================================================================
-    
     function isAuthenticated() {
       return request.auth != null;
     }
-    
+
+    function isAdmin() {
+      return isAuthenticated() && (request.auth.token.role == 'admin' || exists(/databases/$(database)/documents/admins/$(request.auth.uid)));
+    }
+
     function isOwner(userId) {
       return isAuthenticated() && request.auth.uid == userId;
     }
-    
-    function isAdmin() {
-      return isAuthenticated() && 
-             exists(/databases/$(database)/documents/admins/$(request.auth.uid));
+
+    function isMerchantOwner(merchantId) {
+      return isAuthenticated() && request.auth.uid == merchantId;
     }
-    
-    function isMerchant(merchantId) {
-      return isAuthenticated() && 
-             exists(/databases/$(database)/documents/merchants/$(merchantId)) &&
-             request.auth.uid == merchantId;
+
+    // Users profile documents
+    match /users/{userId} {
+      allow read: if isOwner(userId) || isAdmin();
+      allow create: if false; // Created by Cloud Functions on auth user creation
+      allow update: if isOwner(userId) || isAdmin();
+      allow delete: if isAdmin();
     }
-    
-    function isCustomer() {
-      return isAuthenticated() && 
-             exists(/databases/$(database)/documents/customers/$(request.auth.uid));
-    }
-    
-    // ========================================================================
-    // CUSTOMERS COLLECTION
-    // ========================================================================
-    
+
+    // Customers collection
     match /customers/{customerId} {
       allow read: if isOwner(customerId) || isAdmin();
-      allow create: if isAuthenticated() && request.auth.uid == customerId;
+      allow create: if isOwner(customerId);
       allow update: if isOwner(customerId) || isAdmin();
       allow delete: if isAdmin();
     }
-    
-    // ========================================================================
-    // MERCHANTS COLLECTION
-    // ========================================================================
-    
+
+    // Merchants collection
     match /merchants/{merchantId} {
-      // Public read for merchant directory
-      allow read: if true;
+      allow read: if true; // Public directory
       allow create: if isAuthenticated();
-      allow update: if isMerchant(merchantId) || isAdmin();
+      allow update: if isMerchantOwner(merchantId) || isAdmin();
       allow delete: if isAdmin();
     }
-    
-    // ========================================================================
-    // ADMINS COLLECTION (Read-only, managed by Cloud Functions)
-    // ========================================================================
-    
+
+    // Admins registry (read-only to admins)
     match /admins/{adminId} {
       allow read: if isOwner(adminId) || isAdmin();
-      allow write: if false; // Only Cloud Functions can write
+      allow write: if false;
     }
-    
-    // ========================================================================
-    // OFFERS/REWARDS COLLECTION
-    // Qatar Spec Requirement 5: Admin approval workflow enforcement
-    // ========================================================================
-    
+
+    // Offers lifecycle
     match /offers/{offerId} {
-      // Public read for active AND approved offers
-      allow read: if (resource.data.is_active == true && resource.data.status == 'approved') || 
-                     resource.data.merchant_id == request.auth.uid ||
-                     isAdmin();
-      
-      // Merchants can create offers, but they start as PENDING
-      allow create: if isAuthenticated() && 
-                       request.resource.data.merchant_id == request.auth.uid &&
-                       request.resource.data.status == 'pending' &&
-                       request.resource.data.is_active == false;
-      
-      // Merchants can update their own offers, but CANNOT change status or activate
-      allow update: if resource.data.merchant_id == request.auth.uid && 
-                       request.resource.data.status == resource.data.status &&
-                       request.resource.data.is_active == resource.data.is_active &&
-                       request.resource.data.merchant_id == resource.data.merchant_id;
-      
-      // Only admins can approve/reject and activate offers
+      allow read: if (resource.data.is_active == true && (resource.data.status == 'active' || resource.data.status == 'approved')) ||
+                    (isAuthenticated() && (resource.data.merchant_id == request.auth.uid || isAdmin()));
+
+      allow create: if isAuthenticated() && request.resource.data.merchant_id == request.auth.uid;
+
+      // Merchants can update their own offers without changing status/is_active
+      allow update: if isMerchantOwner(resource.data.merchant_id)
+                    && request.resource.data.status == resource.data.status
+                    && request.resource.data.is_active == resource.data.is_active
+                    && request.resource.data.merchant_id == resource.data.merchant_id;
+
+      // Admins can update/approve/reject
       allow update: if isAdmin();
-      
+
       allow delete: if isAdmin();
     }
-    
-    // ========================================================================
-    // QR_TOKENS COLLECTION (Cloud Functions Only)
-    // ========================================================================
-    
+
+    // QR tokens (server-only writes)
     match /qr_tokens/{tokenId} {
-      allow read: if isAuthenticated() && (
-        resource.data.user_id == request.auth.uid ||
-        resource.data.merchant_id == request.auth.uid ||
-        isAdmin()
-      );
-      allow write: if false; // Only Cloud Functions
+      allow read: if isAuthenticated() && (resource.data.user_id == request.auth.uid || resource.data.merchant_id == request.auth.uid || isAdmin());
+      allow write: if false;
     }
-    
-    // ========================================================================
-    // REDEMPTIONS COLLECTION (Cloud Functions Only)
-    // ========================================================================
-    
+
+    // Redemptions (server-only writes)
     match /redemptions/{redemptionId} {
-      allow read: if isAuthenticated() && (
-        resource.data.user_id == request.auth.uid ||
-        resource.data.merchant_id == request.auth.uid ||
-        isAdmin()
-      );
-      allow write: if false; // Only Cloud Functions
+      allow read: if isAuthenticated() && (resource.data.user_id == request.auth.uid || resource.data.merchant_id == request.auth.uid || isAdmin());
+      allow write: if false;
     }
-    
-    // ========================================================================
-    // SUBSCRIPTIONS COLLECTION
-    // ========================================================================
-    
-    match /subscriptions/{subscriptionId} {
-      allow read: if isAuthenticated() && (
-        resource.data.user_id == request.auth.uid ||
-        isAdmin()
-      );
-      allow write: if false; // Only Cloud Functions
+
+    // Idempotency keys (server-only)
+    match /idempotency_keys/{keyId} {
+      allow read: if isAdmin();
+      allow write: if false;
     }
-    
-    // ========================================================================
-    // SUBSCRIPTION_PLANS COLLECTION
-    // ========================================================================
-    
-    match /subscription_plans/{planId} {
-      allow read: if true; // Public
-      allow write: if isAdmin();
+
+    // Audit logs (server-only)
+    match /audit_logs/{logId} {
+      allow read: if isAdmin();
+      allow write: if false;
     }
-    
-    // ========================================================================
-    // PAYMENT_TRANSACTIONS COLLECTION
-    // ========================================================================
-    
-    match /payment_transactions/{transactionId} {
-      allow read: if isAuthenticated() && (
-        resource.data.user_id == request.auth.uid ||
-        isAdmin()
-      );
-      allow write: if false; // Only Cloud Functions
+
+    // Rate limits (server-only)
+    match /rate_limits/{limitId} {
+      allow read: if isAdmin();
+      allow write: if false;
     }
-    
-    // ========================================================================
-    // PUSH_CAMPAIGNS COLLECTION
-    // ========================================================================
-    
+
+    // Points expiry events (server writes, owner/admin reads)
+    match /points_expiry_events/{eventId} {
+      allow read: if isAuthenticated() && (resource.data.user_id == request.auth.uid || isAdmin());
+      allow write: if false;
+    }
+
+    // Notifications collection
+    match /notifications/{notificationId} {
+      allow read: if isAuthenticated() && resource.data.user_id == request.auth.uid;
+      allow write: if false;
+    }
+
+    // Push campaigns (admin only)
     match /push_campaigns/{campaignId} {
       allow read, write: if isAdmin();
     }
-    
-    // ========================================================================
-    // NOTIFICATIONS COLLECTION
-    // ========================================================================
-    
-    match /notifications/{notificationId} {
-      allow read: if isAuthenticated() && resource.data.user_id == request.auth.uid;
-      allow write: if false; // Only Cloud Functions
-    }
-    
-    // ========================================================================
-    // DAILY_STATS COLLECTION
-    // ========================================================================
-    
-    match /daily_stats/{date} {
-      allow read: if isAdmin();
-      allow write: if false; // Only Cloud Functions
-    }
-    
-    // ========================================================================
-    // OTP_CODES COLLECTION (Cloud Functions Only)
-    // ========================================================================
-    
-    match /otp_codes/{otpId} {
-      allow read, write: if false; // Only Cloud Functions
-    }
-    
-    // ========================================================================
-    // SMS_LOG COLLECTION (Admin Only)
-    // ========================================================================
-    
-    match /sms_log/{logId} {
-      allow read: if isAdmin();
-      allow write: if false; // Only Cloud Functions
-    }
-    
-    // ========================================================================
-    // CAMPAIGN_LOGS COLLECTION (Admin Only)
-    // ========================================================================
-    
-    match /campaign_logs/{logId} {
-      allow read: if isAdmin();
-      allow write: if false; // Only Cloud Functions
-    }
-    
-    // ========================================================================
-    // SUBSCRIPTION_METRICS COLLECTION (Admin Only)
-    // ========================================================================
-    
-    match /subscription_metrics/{metricId} {
-      allow read: if isAdmin();
-      allow write: if false; // Only Cloud Functions
-    }
-    
-    // ========================================================================
-    // SUBSCRIPTION_RENEWAL_LOGS COLLECTION (Admin Only)
-    // ========================================================================
-    
-    match /subscription_renewal_logs/{logId} {
-      allow read: if isAdmin();
-      allow write: if false; // Only Cloud Functions
-    }
-    
-    // ========================================================================
-    // PAYMENT_WEBHOOKS COLLECTION (Cloud Functions Only)
-    // ========================================================================
-    
+
+    // Payment webhooks (server-only)
     match /payment_webhooks/{webhookId} {
       allow read: if isAdmin();
-      allow write: if false; // Only Cloud Functions
+      allow write: if false;
     }
-    
-    // ========================================================================
-    // TRANSACTIONS COLLECTION (for backward compatibility)
-    // ========================================================================
-    
-    match /transactions/{transactionId} {
-      allow read: if isAuthenticated() && (
-        resource.data.user_id == request.auth.uid ||
-        resource.data.merchant_id == request.auth.uid ||
-        isAdmin()
-      );
-      allow write: if false; // Only Cloud Functions
+
+    // OTP codes (server-only)
+    match /otp_codes/{otpId} {
+      allow read, write: if false;
     }
-    
-    // ========================================================================
-    // REWARDS COLLECTION (alias for offers)
-    // ========================================================================
-    
-    match /rewards/{rewardId} {
-      allow read: if resource.data.is_active == true || 
-                     resource.data.merchant_id == request.auth.uid ||
-                     isAdmin();
-      allow create: if isAuthenticated();
-      allow update: if resource.data.merchant_id == request.auth.uid || isAdmin();
-      allow delete: if isAdmin();
-    }
-    
-    // ========================================================================
-    // REFERRALS COLLECTION
-    // ========================================================================
-    
-    match /referrals/{referralId} {
-      allow read: if isAuthenticated() && (
-        resource.data.referrer_id == request.auth.uid ||
-        resource.data.referee_id == request.auth.uid ||
-        isAdmin()
-      );
-      allow write: if false; // Only Cloud Functions
-    }
-    
-    // ========================================================================
-    // SYSTEM_ALERTS COLLECTION (Admin Only)
-    // ========================================================================
-    
+
+    // System alerts (admin only)
     match /system_alerts/{alertId} {
       allow read, write: if isAdmin();
     }
-    
-    // ========================================================================
-    // RATE_LIMITS COLLECTION (Cloud Functions Only)
-    // Qatar Spec Requirement 6: Abuse prevention storage
-    // ========================================================================
-    
-    match /rate_limits/{limitId} {
-      allow read: if isAdmin();
-      allow write: if false; // Only Cloud Functions
-    }
-    
-    // ========================================================================
-    // DEFAULT DENY ALL
-    // ========================================================================
-    
+
+    // Default deny
     match /{document=**} {
       allow read, write: if false;
     }

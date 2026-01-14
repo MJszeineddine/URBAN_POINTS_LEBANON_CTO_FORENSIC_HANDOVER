@@ -22,14 +22,24 @@ import * as admin from 'firebase-admin';
 import Stripe from 'stripe';
 
 // ============================================================================
-// STRIPE FEATURE FLAG - DEFERRED FEATURE
+// STRIPE CONFIGURATION - PRODUCTION READY
 // ============================================================================
-// STRIPE_ENABLED controls whether Stripe payment processing is active.
-// Default: "0" (disabled) - Stripe code paths will not execute.
-// Production: Set to "1" only when ready to enable, with live keys (sk_live_*).
+// Stripe integration is ENABLED by default in production.
+// STRIPE_ENABLED can be set to "0" to temporarily disable payments.
+// Uses Secret Manager when available, falls back to environment variables.
 function isStripeEnabled(): boolean {
-  const enabled = process.env.STRIPE_ENABLED || functions.config().stripe?.enabled || '0';
+  const enabled = process.env.STRIPE_ENABLED || functions.config().stripe?.enabled || '1';
   return enabled === '1';
+}
+
+// Get Stripe secret key from Secret Manager or environment
+function getStripeSecretKey(): string | null {
+  return process.env.STRIPE_SECRET_KEY || functions.config().stripe?.secret_key || null;
+}
+
+// Get Stripe webhook secret from Secret Manager or environment
+function getStripeWebhookSecret(): string | null {
+  return process.env.STRIPE_WEBHOOK_SECRET || functions.config().stripe?.webhook_secret || null;
 }
 
 // Lazy initialization
@@ -115,9 +125,9 @@ export async function initiatePayment(
   context: StripeContext
 ): Promise<InitiatePaymentResponse> {
   try {
-    // STRIPE_DEFERRED: Check if Stripe is enabled
+    // Check if Stripe is enabled
     if (!isStripeEnabled()) {
-      console.error('Stripe is disabled (STRIPE_ENABLED != "1")');
+      console.error('Stripe is disabled (STRIPE_ENABLED = "0")');
       return { success: false, error: 'Stripe payment processing is not enabled' };
     }
 
@@ -129,14 +139,15 @@ export async function initiatePayment(
       return { success: false, error: 'Merchant ID mismatch' };
     }
 
-    const stripeKey = process.env.STRIPE_SECRET_KEY || functions.config().stripe?.secret_key;
+    const stripeKey = getStripeSecretKey();
     if (!stripeKey) {
-      console.error('STRIPE_SECRET_KEY not configured');
+      console.error('STRIPE_SECRET_KEY not configured in Secret Manager or environment');
       return { success: false, error: 'Payment system not configured' };
     }
 
-    // STRIPE_DEFERRED: Verify production keys when enabled
-    if (!stripeKey.startsWith('sk_live_')) {
+    // Verify production keys in production (allow test keys in emulator)
+    const isEmulator = process.env.FUNCTIONS_EMULATOR === 'true';
+    if (!isEmulator && !stripeKey.startsWith('sk_live_')) {
       console.error('STRIPE_SECRET_KEY must start with sk_live_ in production (got ' + stripeKey.substring(0, 10) + ')');
       return { success: false, error: 'Invalid Stripe key format' };
     }
