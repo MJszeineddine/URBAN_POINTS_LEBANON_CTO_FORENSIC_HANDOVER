@@ -4,3 +4,61 @@ build/
 dist/
 *.log
 **/docs/evidence/**
+# Environment Variables and Secrets
+.env
+.env.local
+.env.*.local
+firebase-debug.log
+functions/.runtimeconfig.json
+
+# Android Signing Keys
+*.keystore
+*.jks
+android/key.properties
+android/app/upload-keystore.jks
+
+# iOS Signing
+*.mobileprovision
+*.cer
+*.p8
+*.p12
+ios/Runner/GeneratedPluginRegistrant.java
+ios/Pods/
+ios/Podfile.lock
+
+# Google Services
+google-services.json
+GoogleService-Info.plist
+firebase.json
+.firebase/
+
+# Sensitive Credentials
+secrets/
+credentials/
+*.pem
+*.key
+*.asc
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*.swn
+*.iml
+.DS_Store
+Thumbs.db
+
+# Emulator
+emulator.log
+firestore-debug.log
+
+# Build outputs
+.next/
+out/
+.turbo/
+coverage/
+.nyc_output/
+
+# OS
+*.zip

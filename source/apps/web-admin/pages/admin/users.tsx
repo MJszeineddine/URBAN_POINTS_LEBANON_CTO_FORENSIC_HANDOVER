@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { collection, getDocs, limit, query, startAfter, DocumentData, QueryDocumentSnapshot, updateDoc, doc } from 'firebase/firestore';
+import { collection, getDocs, limit, query, startAfter, DocumentData, QueryDocumentSnapshot } from 'firebase/firestore';
 import { httpsCallable } from 'firebase/functions';
 import { AdminGuard } from '../../components/AdminGuard';
 import { AdminLayout } from '../../components/AdminLayout';
@@ -66,9 +66,9 @@ export default function UsersPage() {
     setError('');
     setSuccessMessage('');
     try {
-      const userRef = doc(db, 'users', userId);
-      await updateDoc(userRef, { banned: true, bannedAt: new Date().toISOString() });
-      setSuccessMessage(`User ${userId} banned successfully`);
+      const banUser = httpsCallable(functions, 'adminBanUser');
+      await banUser({ userId });
+      setSuccessMessage(`User ${userId} banned successfully (admin callable)`);
       await fetchPage();
     } catch (err: any) {
       console.error('Failed to ban user', err);
@@ -83,9 +83,9 @@ export default function UsersPage() {
     setError('');
     setSuccessMessage('');
     try {
-      const userRef = doc(db, 'users', userId);
-      await updateDoc(userRef, { banned: false, bannedAt: null });
-      setSuccessMessage(`User ${userId} unbanned successfully`);
+      const unbanUser = httpsCallable(functions, 'adminUnbanUser');
+      await unbanUser({ userId });
+      setSuccessMessage(`User ${userId} unbanned successfully (admin callable)`);
       await fetchPage();
     } catch (err: any) {
       console.error('Failed to unban user', err);
@@ -106,19 +106,9 @@ export default function UsersPage() {
     setError('');
     setSuccessMessage('');
     try {
-      // Attempt to use backend setCustomClaims function if available
-      // Fallback to Firestore updateDoc on users/{uid}.role field
-      try {
-        const setCustomClaims = httpsCallable(functions, 'setCustomClaims');
-        await setCustomClaims({ uid: userId, claims: { role: newRole, admin: newRole === 'admin' } });
-        setSuccessMessage(`User ${userId} role changed to ${newRole} (via backend)`);
-      } catch (backendErr: any) {
-        // Fallback to Firestore field update
-        console.warn('Backend setCustomClaims failed, using Firestore fallback', backendErr);
-        const userRef = doc(db, 'users', userId);
-        await updateDoc(userRef, { role: newRole, roleUpdatedAt: new Date().toISOString() });
-        setSuccessMessage(`User ${userId} role changed to ${newRole} (Firestore only - custom claims NOT set)`);
-      }
+      const updateUserRole = httpsCallable(functions, 'adminUpdateUserRole');
+      await updateUserRole({ userId, role: newRole });
+      setSuccessMessage(`User ${userId} role changed to ${newRole} (admin callable)`);
       await fetchPage();
     } catch (err: any) {
       console.error('Failed to change user role', err);
