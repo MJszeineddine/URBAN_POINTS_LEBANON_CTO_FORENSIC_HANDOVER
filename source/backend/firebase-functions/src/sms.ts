@@ -73,7 +73,6 @@ export const sendSMS = functions
       const smsProvider = process.env.SMS_PROVIDER || functions.config().sms?.provider || 'touch'; // touch, alfa, twilio
       
       let messageId: string;
-      let sent = false;
       
       try {
         if (smsProvider === 'touch' && smsApiKey) {
@@ -97,7 +96,6 @@ export const sendSMS = functions
           
           const result = await response.json();
           messageId = result.message_id || result.id;
-          sent = true;
           
         } else if (smsProvider === 'alfa' && smsApiKey) {
           // Alfa Lebanon SMS Gateway
@@ -120,7 +118,6 @@ export const sendSMS = functions
           
           const result = await response.json();
           messageId = result.msg_id || result.message_id;
-          sent = true;
           
         } else if (smsProvider === 'twilio' && smsApiKey) {
           // Twilio fallback for international
@@ -150,12 +147,10 @@ export const sendSMS = functions
           
           const result = await response.json();
           messageId = result.sid;
-          sent = true;
           
         } else {
           // Simulated mode for development/testing
           messageId = `SMS_SIM_${Date.now()}_${Math.random().toString(36).substring(7)}`;
-          sent = true;
           console.log(`SIMULATED SMS (${smsProvider}): ${data.phoneNumber} - ${data.message}`);
         }
         
@@ -163,7 +158,6 @@ export const sendSMS = functions
         console.error('SMS Gateway error:', error);
         // Fallback to simulated mode on error
         messageId = `SMS_ERR_${Date.now()}_${Math.random().toString(36).substring(7)}`;
-        sent = false;
       }
 
       // Log SMS in Firestore
