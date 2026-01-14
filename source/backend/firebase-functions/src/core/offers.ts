@@ -703,3 +703,444 @@ async function checkAdminRole(uid: string, db: admin.firestore.Firestore): Promi
     return false;
   }
 }
+
+// ============================================================================
+// V3: OFFER EDIT & CANCEL FUNCTIONS
+// ============================================================================
+
+export interface EditOfferRequest {
+  offerId: string;
+  title?: string;
+  description?: string;
+  validUntil?: string; // ISO date - can extend only
+  terms?: string;
+  category?: string;
+}
+
+export interface EditOfferResponse {
+  success: boolean;
+  offerId?: string;
+  changes?: string[];
+  error?: string;
+}
+
+export interface CancelOfferRequest {
+  offerId: string;
+  reason: string;
+}
+
+export interface CancelOfferResponse {
+  success: boolean;
+  offerId?: string;
+  refundedCustomers?: number;
+  error?: string;
+}
+
+export interface GetOfferEditHistoryRequest {
+  offerId: string;
+}
+
+export interface GetOfferEditHistoryResponse {
+  success: boolean;
+  history?: Array<{
+    timestamp: string;
+    editedBy: string;
+    changes: Record<string, any>;
+    reason?: string;
+  }>;
+  error?: string;
+}
+
+/**
+ * editOffer - Merchant updates offer details
+ * 
+ * Requirements:
+ * ✅ Merchant can only edit own offers
+ * ✅ Cannot edit if offer has active redemptions (safety)
+ * ✅ Cannot change points value (immutable after creation)
+ * ✅ Cannot change quota (immutable after creation)
+ * ✅ Can extend validUntil date (not shorten)
+ * ✅ Creates edit history audit trail
+ * 
+ * @param data - Edit request with optional fields
+ * @param context - Auth context
+ * @param deps - Dependencies (db)
+ * @returns Edit response with changes made
+ */
+export async function editOffer(
+  data: EditOfferRequest,
+  context: OffersContext,
+  deps: OffersDeps
+): Promise<EditOfferResponse> {
+  try {
+    // Auth check
+    if (!context.auth) {
+      return { success: false, error: 'Unauthenticated' };
+    }
+
+    // Validate input
+    if (!data.offerId) {
+      return { success: false, error: 'Offer ID is required' };
+    }
+
+    if (!data.title && !data.description && !data.validUntil && !data.terms && !data.category) {
+      return { success: false, error: 'At least one field must be provided for editing' };
+    }
+
+    // Get offer
+    const offerRef = deps.db.collection('offers').doc(data.offerId);
+    const offerDoc = await offerRef.get();
+
+    if (!offerDoc.exists) {
+      return { success: false, error: 'Offer not found' };
+    }
+
+    const offer = offerDoc.data()!;
+
+    // Verify merchant ownership
+    if (offer.merchant_id !== context.auth.uid) {
+      return { success: false, error: 'Unauthorized: You can only edit your own offers' };
+    }
+
+    // Check if offer can be edited
+    if (offer.status === 'cancelled' || offer.status === 'expired') {
+      return { success: false, error: `Cannot edit ${offer.status} offers` };
+    }
+
+    // Safety check: Don't allow editing if there are active redemptions
+    if (offer.quota_used > 0 && offer.status === 'active') {
+      // Allow only non-critical edits (terms, description) if redemptions exist
+      if (data.title || data.validUntil || data.category) {
+        return {
+          success: false,
+          error: 'Cannot edit title, date, or category for offers with active redemptions. Only description and terms can be updated.',
+        };
+      }
+    }
+
+    // Validate validUntil extension (can only extend, not shorten)
+    if (data.validUntil) {
+      const newValidUntil = new Date(data.validUntil);
+      const currentValidUntil = offer.valid_until?.toDate();
+
+      if (!currentValidUntil) {
+        return { success: false, error: 'Current valid_until date not found' };
+      }
+
+      if (newValidUntil < currentValidUntil) {
+        return {
+          success: false,
+          error: 'Cannot shorten offer duration. You can only extend the valid_until date.',
+        };
+      }
+
+      if (newValidUntil < new Date()) {
+        return { success: false, error: 'New valid_until date must be in the future' };
+      }
+    }
+
+    // Build update object and track changes
+    const updates: Record<string, any> = {
+      updated_at: admin.firestore.FieldValue.serverTimestamp(),
+    };
+    const changes: string[] = [];
+    const changeDetails: Record<string, any> = {};
+
+    if (data.title && data.title !== offer.title) {
+      updates.title = data.title;
+      changes.push('title');
+      changeDetails.title = { old: offer.title, new: data.title };
+    }
+
+    if (data.description && data.description !== offer.description) {
+      updates.description = data.description;
+      changes.push('description');
+      changeDetails.description = { old: offer.description, new: data.description };
+    }
+
+    if (data.validUntil) {
+      const newDate = admin.firestore.Timestamp.fromDate(new Date(data.validUntil));
+      updates.valid_until = newDate;
+      changes.push('valid_until');
+      changeDetails.valid_until = {
+        old: offer.valid_until?.toDate().toISOString(),
+        new: data.validUntil,
+      };
+    }
+
+    if (data.terms && data.terms !== offer.terms) {
+      updates.terms = data.terms;
+      changes.push('terms');
+      changeDetails.terms = { old: offer.terms, new: data.terms };
+    }
+
+    if (data.category && data.category !== offer.category) {
+      updates.category = data.category;
+      changes.push('category');
+      changeDetails.category = { old: offer.category, new: data.category };
+    }
+
+    if (changes.length === 0) {
+      return { success: true, offerId: data.offerId, changes: [] };
+    }
+
+    // Update offer
+    await offerRef.update(updates);
+
+    // Create edit history entry
+    await deps.db.collection('offer_edit_history').add({
+      offer_id: data.offerId,
+      merchant_id: context.auth.uid,
+      changes: changeDetails,
+      timestamp: admin.firestore.FieldValue.serverTimestamp(),
+    });
+
+    // Create audit log
+    await deps.db.collection('audit_logs').add({
+      operation: 'offer_edit',
+      user_id: context.auth.uid,
+      target_id: data.offerId,
+      target_type: 'offer',
+      details: {
+        changes: changeDetails,
+        fieldsChanged: changes,
+      },
+      timestamp: admin.firestore.FieldValue.serverTimestamp(),
+    });
+
+    return {
+      success: true,
+      offerId: data.offerId,
+      changes,
+    };
+  } catch (error) {
+    console.error('Error editing offer:', error);
+    return {
+      success: false,
+      error: error instanceof Error ? error.message : 'Internal error',
+    };
+  }
+}
+
+/**
+ * cancelOffer - Merchant or admin cancels an offer
+ * 
+ * Requirements:
+ * ✅ Merchant can cancel own offers
+ * ✅ Admin can cancel any offer
+ * ✅ Cannot cancel already cancelled/expired offers
+ * ✅ Notifies customers who have pending redemptions
+ * ✅ Creates cancellation audit trail
+ * ✅ Updates merchant compliance metrics
+ * 
+ * @param data - Cancel request with reason
+ * @param context - Auth context
+ * @param deps - Dependencies (db)
+ * @returns Cancel response with affected customer count
+ */
+export async function cancelOffer(
+  data: CancelOfferRequest,
+  context: OffersContext,
+  deps: OffersDeps
+): Promise<CancelOfferResponse> {
+  try {
+    // Auth check
+    if (!context.auth) {
+      return { success: false, error: 'Unauthenticated' };
+    }
+
+    // Validate input
+    if (!data.offerId || !data.reason) {
+      return { success: false, error: 'Offer ID and reason are required' };
+    }
+
+    if (data.reason.length < 10) {
+      return { success: false, error: 'Cancellation reason must be at least 10 characters' };
+    }
+
+    // Get offer
+    const offerRef = deps.db.collection('offers').doc(data.offerId);
+    const offerDoc = await offerRef.get();
+
+    if (!offerDoc.exists) {
+      return { success: false, error: 'Offer not found' };
+    }
+
+    const offer = offerDoc.data()!;
+
+    // Check authorization (merchant owns offer OR user is admin)
+    const isAdmin = await checkAdminRole(context.auth.uid, deps.db);
+    const isMerchantOwner = offer.merchant_id === context.auth.uid;
+
+    if (!isAdmin && !isMerchantOwner) {
+      return { success: false, error: 'Unauthorized: Only offer owner or admin can cancel' };
+    }
+
+    // Check if offer can be cancelled
+    if (offer.status === 'cancelled') {
+      return { success: false, error: 'Offer is already cancelled' };
+    }
+
+    if (offer.status === 'expired') {
+      return { success: false, error: 'Cannot cancel expired offer' };
+    }
+
+    // Count pending redemptions for this offer
+    const pendingRedemptions = await deps.db
+      .collection('redemptions')
+      .where('offer_id', '==', data.offerId)
+      .where('status', '==', 'pending')
+      .get();
+
+    const affectedCustomers = new Set<string>();
+
+    // Update offer status
+    await offerRef.update({
+      status: 'cancelled',
+      cancelled_at: admin.firestore.FieldValue.serverTimestamp(),
+      cancelled_by: context.auth.uid,
+      cancellation_reason: data.reason,
+      updated_at: admin.firestore.FieldValue.serverTimestamp(),
+    });
+
+    // Cancel pending redemptions and collect affected customers
+    const batch = deps.db.batch();
+    
+    for (const redemptionDoc of pendingRedemptions.docs) {
+      const redemption = redemptionDoc.data();
+      affectedCustomers.add(redemption.customer_id);
+
+      batch.update(redemptionDoc.ref, {
+        status: 'cancelled',
+        cancellation_reason: `Offer cancelled: ${data.reason}`,
+        cancelled_at: admin.firestore.FieldValue.serverTimestamp(),
+      });
+
+      // Create notification for affected customer
+      const notificationRef = deps.db.collection('notifications').doc();
+      batch.set(notificationRef, {
+        user_id: redemption.customer_id,
+        title: 'Offer Cancelled',
+        message: `The offer "${offer.title}" has been cancelled. Reason: ${data.reason}`,
+        type: 'offer',
+        is_read: false,
+        created_at: admin.firestore.FieldValue.serverTimestamp(),
+      });
+    }
+
+    await batch.commit();
+
+    // Update merchant metrics (decrement active offer count)
+    const merchantRef = deps.db.collection('merchants').doc(offer.merchant_id);
+    await merchantRef.update({
+      active_offer_count: admin.firestore.FieldValue.increment(-1),
+      updated_at: admin.firestore.FieldValue.serverTimestamp(),
+    });
+
+    // Create audit log
+    await deps.db.collection('audit_logs').add({
+      operation: 'offer_cancel',
+      user_id: context.auth.uid,
+      target_id: data.offerId,
+      target_type: 'offer',
+      details: {
+        reason: data.reason,
+        merchantId: offer.merchant_id,
+        offerTitle: offer.title,
+        previousStatus: offer.status,
+        affectedCustomers: affectedCustomers.size,
+        cancelledBy: isAdmin ? 'admin' : 'merchant',
+      },
+      timestamp: admin.firestore.FieldValue.serverTimestamp(),
+    });
+
+    return {
+      success: true,
+      offerId: data.offerId,
+      refundedCustomers: affectedCustomers.size,
+    };
+  } catch (error) {
+    console.error('Error cancelling offer:', error);
+    return {
+      success: false,
+      error: error instanceof Error ? error.message : 'Internal error',
+    };
+  }
+}
+
+/**
+ * getOfferEditHistory - Retrieve edit history for an offer
+ * 
+ * Requirements:
+ * ✅ Merchant can view own offer history
+ * ✅ Admin can view any offer history
+ * ✅ Returns chronological list of edits
+ * ✅ Includes what changed and who made the change
+ * 
+ * @param data - Request with offer ID
+ * @param context - Auth context
+ * @param deps - Dependencies (db)
+ * @returns Edit history array
+ */
+export async function getOfferEditHistory(
+  data: GetOfferEditHistoryRequest,
+  context: OffersContext,
+  deps: OffersDeps
+): Promise<GetOfferEditHistoryResponse> {
+  try {
+    // Auth check
+    if (!context.auth) {
+      return { success: false, error: 'Unauthenticated' };
+    }
+
+    // Validate input
+    if (!data.offerId) {
+      return { success: false, error: 'Offer ID is required' };
+    }
+
+    // Get offer to verify ownership
+    const offerDoc = await deps.db.collection('offers').doc(data.offerId).get();
+
+    if (!offerDoc.exists) {
+      return { success: false, error: 'Offer not found' };
+    }
+
+    const offer = offerDoc.data()!;
+
+    // Check authorization
+    const isAdmin = await checkAdminRole(context.auth.uid, deps.db);
+    const isMerchantOwner = offer.merchant_id === context.auth.uid;
+
+    if (!isAdmin && !isMerchantOwner) {
+      return { success: false, error: 'Unauthorized: Can only view history of your own offers' };
+    }
+
+    // Fetch edit history
+    const historySnapshot = await deps.db
+      .collection('offer_edit_history')
+      .where('offer_id', '==', data.offerId)
+      .orderBy('timestamp', 'desc')
+      .get();
+
+    const history = historySnapshot.docs.map((doc) => {
+      const data = doc.data();
+      return {
+        timestamp: data.timestamp?.toDate().toISOString() || new Date().toISOString(),
+        editedBy: data.merchant_id,
+        changes: data.changes,
+        reason: data.reason,
+      };
+    });
+
+    return {
+      success: true,
+      history,
+    };
+  } catch (error) {
+    console.error('Error fetching offer edit history:', error);
+    return {
+      success: false,
+      error: error instanceof Error ? error.message : 'Internal error',
+    };
+  }
+}

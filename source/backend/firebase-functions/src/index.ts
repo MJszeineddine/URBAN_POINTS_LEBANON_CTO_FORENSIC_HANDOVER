@@ -165,7 +165,7 @@ interface QRTokenResponse {
 import { coreGenerateSecureQRToken, coreValidatePIN } from './core/qr';
 import { coreCalculateDailyStats, coreApproveOffer, coreRejectOffer, coreGetMerchantComplianceStatus } from './core/admin';
 import { coreAwardPoints, processPointsEarning, processRedemption, getPointsBalance } from './core/points';
-import { createOffer, updateOfferStatus, handleOfferExpiration, aggregateOfferStats, getOffersByLocation } from './core/offers';
+import { createOffer, updateOfferStatus, handleOfferExpiration, aggregateOfferStats, getOffersByLocation, editOffer, cancelOffer, getOfferEditHistory } from './core/offers';
 import { coreValidateRedemption } from './core/indexCore';
 
 export const generateSecureQRToken = functions
@@ -695,6 +695,55 @@ export const getOfferStats = functions
   })
   .https.onCall(monitorFunction('getOfferStats', async (data, context) => {
     return aggregateOfferStats(data, context, { db });
+  }));
+
+// ============================================================================
+// V3: Offer Edit & Cancel Functions
+// ============================================================================
+
+/**
+ * editOfferCallable - Merchant edits offer details
+ */
+export const editOfferCallable = functions
+  .region('us-central1')
+  .runWith({
+    memory: '256MB',
+    timeoutSeconds: 60,
+    minInstances: 0,
+    maxInstances: 10
+  })
+  .https.onCall(monitorFunction('editOfferCallable', async (data, context) => {
+    return editOffer(data, context, { db });
+  }));
+
+/**
+ * cancelOfferCallable - Merchant or admin cancels offer
+ */
+export const cancelOfferCallable = functions
+  .region('us-central1')
+  .runWith({
+    memory: '256MB',
+    timeoutSeconds: 60,
+    minInstances: 0,
+    maxInstances: 10
+  })
+  .https.onCall(monitorFunction('cancelOfferCallable', async (data, context) => {
+    return cancelOffer(data, context, { db });
+  }));
+
+/**
+ * getOfferEditHistoryCallable - Retrieve edit history for an offer
+ */
+export const getOfferEditHistoryCallable = functions
+  .region('us-central1')
+  .runWith({
+    memory: '256MB',
+    timeoutSeconds: 30,
+    minInstances: 0,
+    maxInstances: 10
+  })
+  .https.onCall(monitorFunction('getOfferEditHistoryCallable', async (data, context) => {
+    return getOfferEditHistory(data, context, { db });
   }));
 
 // ============================================================================
