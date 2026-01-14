@@ -12,6 +12,7 @@
  */
 
 import * as admin from 'firebase-admin';
+import { sendNotification } from './fcm';
 
 // ============================================================================
 // INTERFACES
@@ -262,6 +263,30 @@ export async function processPointsEarning(
       };
     });
 
+    // Send FCM push notification for points earned
+    if (result.success && !result.alreadyProcessed) {
+      try {
+        // Get offer details for notification
+        const offerDoc = await deps.db.collection('offers').doc(data.offerId).get();
+        const offerTitle = offerDoc.exists ? offerDoc.data()!.title : 'Offer';
+
+        await sendNotification({
+          userId: data.customerId,
+          title: 'Points Earned!',
+          body: `You've earned ${data.amount} points from "${offerTitle}". New balance: ${result.newBalance} points.`,
+          data: {
+            type: 'points_earned',
+            offerId: data.offerId,
+            amount: String(data.amount),
+            newBalance: String(result.newBalance),
+          },
+        }, deps);
+      } catch (error) {
+        console.error('Failed to send FCM notification for points earning:', error);
+        // Don't fail the transaction if notification fails
+      }
+    }
+
     return result;
   } catch (error) {
     console.error('Error processing points earning:', error);
@@ -411,6 +436,31 @@ export async function processRedemption(
         newBalance: newBalance,
       };
     });
+
+    // Send FCM push notification for successful redemption
+    if (result.success && result.redemptionId) {
+      try {
+        // Get offer details for notification
+        const offerDoc = await deps.db.collection('offers').doc(data.offerId).get();
+        const offerTitle = offerDoc.exists ? offerDoc.data()!.title : 'Offer';
+
+        await sendNotification({
+          userId: data.customerId,
+          title: 'Redemption Successful!',
+          body: `You've redeemed "${offerTitle}" for ${result.pointsDeducted} points. New balance: ${result.newBalance} points.`,
+          data: {
+            type: 'redemption_success',
+            redemptionId: result.redemptionId,
+            offerId: data.offerId,
+            pointsDeducted: String(result.pointsDeducted),
+            newBalance: String(result.newBalance),
+          },
+        }, deps);
+      } catch (error) {
+        console.error('Failed to send FCM notification for redemption:', error);
+        // Don't fail the redemption if notification fails
+      }
+    }
 
     return result;
   } catch (error) {
@@ -668,6 +718,31 @@ export async function expirePoints(
         console.error(`Error expiring points for transaction ${doc.id}:`, error);
         // Continue processing other transactions
       }
+    }
+
+    // Send FCM notifications to affected customers (if not dry run)
+    if (!data.dryRun && customersAffected.size > 0) {
+      const fcmPromises = Array.from(customersAffected).map(async (customerId) => {
+        try {
+          // Calculate points expired for this customer from the snapshot
+          const customerExpiredPoints = expiredSnapshot.docs
+            .filter((doc: admin.firestore.QueryDocumentSnapshot) => doc.data().user_id === customerId)
+            .reduce((sum: number, doc: admin.firestore.QueryDocumentSnapshot) => sum + (doc.data().amount || 0), 0);
+
+          await sendNotification({
+            userId: customerId,
+            title: 'Points Expiration Notice',
+            body: `${customerExpiredPoints} points have expired after 365 days. Keep earning to maintain your balance!`,
+            data: {
+              type: 'points_expired',
+              pointsExpired: String(customerExpiredPoints),
+            },
+          }, deps);
+        } catch (error) {
+          console.error(`Failed to send expiration FCM to customer ${customerId}:`, error);
+        }
+      });
+      await Promise.allSettled(fcmPromises);
     }
 
     return {

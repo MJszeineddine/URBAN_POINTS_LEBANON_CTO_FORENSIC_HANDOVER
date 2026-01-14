@@ -11,6 +11,7 @@
  */
 
 import * as admin from 'firebase-admin';
+import { sendNotification } from './fcm';
 
 // ============================================================================
 // INTERFACES
@@ -1029,6 +1030,25 @@ export async function cancelOffer(
     }
 
     await batch.commit();
+
+    // Send FCM push notifications to affected customers
+    const fcmPromises = Array.from(affectedCustomers).map(async (customerId) => {
+      try {
+        await sendNotification({
+          userId: customerId,
+          title: 'Offer Cancelled',
+          body: `"${offer.title}" has been cancelled. ${data.reason}`,
+          data: {
+            type: 'offer_cancelled',
+            offerId: data.offerId,
+            offerTitle: offer.title,
+          },
+        }, deps);
+      } catch (error) {
+        console.error(`Failed to send FCM to customer ${customerId}:`, error);
+      }
+    });
+    await Promise.allSettled(fcmPromises);
 
     // Update merchant metrics (decrement active offer count)
     const merchantRef = deps.db.collection('merchants').doc(offer.merchant_id);
