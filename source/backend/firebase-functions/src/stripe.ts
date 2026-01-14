@@ -37,10 +37,11 @@ function getStripeSecretKey(): string | null {
   return process.env.STRIPE_SECRET_KEY || functions.config().stripe?.secret_key || null;
 }
 
+// Reserved for future webhook implementation
 // Get Stripe webhook secret from Secret Manager or environment
-function getStripeWebhookSecret(): string | null {
-  return process.env.STRIPE_WEBHOOK_SECRET || functions.config().stripe?.webhook_secret || null;
-}
+// function getStripeWebhookSecret(): string | null {
+//   return process.env.STRIPE_WEBHOOK_SECRET || functions.config().stripe?.webhook_secret || null;
+// }
 
 // Lazy initialization
 let _db: admin.firestore.Firestore | null = null;

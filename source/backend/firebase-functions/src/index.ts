@@ -112,7 +112,7 @@ export {
 
 // Export phase3 scheduler functions - ENABLED
 export {
-  notifyOfferApprovedRejected,       // Firestore trigger
+  notifyOfferStatusChange,            // Firestore trigger
   enforceMerchantCompliance,          // SCHEDULED - now enabled
   cleanupExpiredQRTokens,             // SCHEDULED - now enabled
   sendPointsExpiryWarnings,           // SCHEDULED - now enabled
@@ -698,21 +698,8 @@ export const getOfferStats = functions
   }));
 
 // ============================================================================
-// PRODUCTION READY: Stripe Payment Integration
-// ============================================================================
-export { stripeWebhook, initiatePaymentCallable, createCheckoutSession, createBillingPortalSession } from './stripe';
-
-// ============================================================================
 // PHASE 3: Automation, Notifications, and Compliance
 // ============================================================================
-
-// Scheduler jobs (automated, no manual invocation needed)
-export {
-  notifyOfferStatusChange,
-  enforceMerchantCompliance,
-  cleanupExpiredQRTokens,
-  sendPointsExpiryWarnings,
-} from './phase3Scheduler';
 
 // Notification service functions (callable + triggered)
 export {
@@ -721,4 +708,71 @@ export {
   notifyRedemptionSuccess,
   sendBatchNotification,
 } from './phase3Notifications';
+
+// ============================================================================
+// V3: Points Expiration & Transfer
+// ============================================================================
+
+import { expirePoints as coreExpirePoints, transferPoints as coreTransferPoints } from './core/points';
+
+/**
+ * expirePointsScheduled - Daily scheduler to expire old points
+ * Runs at 4 AM Lebanon time (UTC+2/+3 depending on DST)
+ */
+export const expirePointsScheduled = functions
+  .region('us-central1')
+  .pubsub.schedule('0 4 * * *')
+  .timeZone('Asia/Beirut')
+  .onRun(monitorFunction('expirePointsScheduled', async () => {
+    Logger.info('Starting scheduled points expiration');
+    const result = await coreExpirePoints({ dryRun: false }, { auth: { uid: 'system' } }, { db });
+    Logger.info('Scheduled points expiration complete', result);
+    return null;
+  }));
+
+/**
+ * expirePointsManual - Manual callable for testing expiration logic
+ */
+export const expirePointsManual = functions
+  .region('us-central1')
+  .runWith({
+    memory: '256MB',
+    timeoutSeconds: 300,
+    minInstances: 0,
+    maxInstances: 1
+  })
+  .https.onCall(monitorFunction('expirePointsManual', async (data, context) => {
+    // Admin-only
+    if (!context.auth) {
+      throw new functions.https.HttpsError('unauthenticated', 'Authentication required');
+    }
+    const adminDoc = await db.collection('admins').doc(context.auth.uid).get();
+    if (!adminDoc.exists) {
+      throw new functions.https.HttpsError('permission-denied', 'Admin access required');
+    }
+    return coreExpirePoints(data, context, { db });
+  }));
+
+/**
+ * transferPointsCallable - Admin-only points transfer between customers
+ */
+export const transferPointsCallable = functions
+  .region('us-central1')
+  .runWith({
+    memory: '256MB',
+    timeoutSeconds: 60,
+    minInstances: 0,
+    maxInstances: 5
+  })
+  .https.onCall(monitorFunction('transferPointsCallable', async (data, context) => {
+    // Admin-only
+    if (!context.auth) {
+      throw new functions.https.HttpsError('unauthenticated', 'Authentication required');
+    }
+    const adminDoc = await db.collection('admins').doc(context.auth.uid).get();
+    if (!adminDoc.exists) {
+      throw new functions.https.HttpsError('permission-denied', 'Admin access required');
+    }
+    return coreTransferPoints(data, context, { db });
+  }));
 

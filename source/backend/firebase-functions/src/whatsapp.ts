@@ -52,101 +52,95 @@ interface VerifyWhatsAppOTPResponse {
  * - Storage of message metadata for audit
  * 
  * @param data - Phone number, message, and type
+ * @param context - Auth context
  * @returns Success status and message ID
  */
-export const sendWhatsAppMessage = functions
-  .runWith({
-    memory: '256MB',
-    timeoutSeconds: 60,
-    minInstances: 0,
-    maxInstances: 20,
-  })
-  .https.onCall(async (data: WhatsAppRequest, context): Promise<WhatsAppResponse> => {
-    try {
-      // Verify authentication for non-OTP messages
-      if (data.type !== 'otp' && !context.auth) {
-        return { success: false, error: 'Unauthenticated' };
-      }
+async function coreSendWhatsAppMessage(data: WhatsAppRequest, context: functions.https.CallableContext): Promise<WhatsAppResponse> {
+  try {
+    // Verify authentication for non-OTP messages
+    if (data.type !== 'otp' && !context.auth) {
+      return { success: false, error: 'Unauthenticated' };
+    }
 
-      // Validate phone number format (Lebanese +961)
-      if (!data.phoneNumber.match(/^\+961[3-9]\d{7}$/)) {
-        return { success: false, error: 'Invalid Lebanese phone number' };
-      }
+    // Validate phone number format (Lebanese +961)
+    if (!data.phoneNumber.match(/^\+961[3-9]\d{7}$/)) {
+      return { success: false, error: 'Invalid Lebanese phone number' };
+    }
 
-      // Rate limiting check
-      const hourAgo = new Date(Date.now() - 3600000);
+    // Rate limiting check
+    const hourAgo = new Date(Date.now() - 3600000);
+    
+    const recentMessages = await getDb()
+      .collection('whatsapp_log')
+      .where('recipient', '==', data.phoneNumber)
+      .where('sent_at', '>=', admin.firestore.Timestamp.fromDate(hourAgo))
+      .count()
+      .get();
+
+    if (recentMessages.data().count >= 5) {
+      return { success: false, error: 'Rate limit exceeded. Max 5 messages per hour.' };
+    }
+
+    // Get Twilio WhatsApp credentials
+    const twilioAccountSid = process.env.TWILIO_ACCOUNT_SID || functions.config().twilio?.account_sid;
+    const twilioAuthToken = process.env.TWILIO_AUTH_TOKEN || functions.config().twilio?.auth_token;
+    const whatsappNumber = process.env.WHATSAPP_NUMBER || functions.config().whatsapp?.number || 'whatsapp:+1234567890';
+
+    if (!twilioAccountSid || !twilioAuthToken) {
+      console.log('Twilio WhatsApp not configured. Simulating message send.');
+      // Simulation mode for development
+      const messageId = `sim_${Date.now()}`;
       
-      const recentMessages = await getDb()
-        .collection('whatsapp_log')
-        .where('recipient', '==', data.phoneNumber)
-        .where('sent_at', '>=', admin.firestore.Timestamp.fromDate(hourAgo))
-        .count()
-        .get();
-
-      if (recentMessages.data().count >= 5) {
-        return { success: false, error: 'Rate limit exceeded. Max 5 messages per hour.' };
-      }
-
-      // Get Twilio WhatsApp credentials
-      const twilioAccountSid = process.env.TWILIO_ACCOUNT_SID || functions.config().twilio?.account_sid;
-      const twilioAuthToken = process.env.TWILIO_AUTH_TOKEN || functions.config().twilio?.auth_token;
-      const whatsappNumber = process.env.WHATSAPP_NUMBER || functions.config().whatsapp?.number || 'whatsapp:+1234567890';
-
-      if (!twilioAccountSid || !twilioAuthToken) {
-        console.log('Twilio WhatsApp not configured. Simulating message send.');
-        // Simulation mode for development
-        const messageId = `sim_${Date.now()}`;
-        
-        await getDb().collection('whatsapp_log').add({
-          recipient: data.phoneNumber,
-          message: data.message,
-          type: data.type,
-          status: 'sent',
-          messageId,
-          sent_at: admin.firestore.FieldValue.serverTimestamp(),
-        });
-
-        return {
-          success: true,
-          messageId,
-        };
-      }
-
-      // Send via Twilio WhatsApp API
-      const encodedMessage = encodeURIComponent(data.message);
-      const authString = Buffer.from(`${twilioAccountSid}:${twilioAuthToken}`).toString('base64');
-
-      const response = await fetch(
-        `https://api.twilio.com/2010-04-01/Accounts/${twilioAccountSid}/Messages.json`,
-        {
-          method: 'POST',
-          headers: {
-            'Authorization': `Basic ${authString}`,
-            'Content-Type': 'application/x-www-form-urlencoded',
-          },
-          body: `From=${encodeURIComponent(whatsappNumber)}&To=whatsapp:${encodeURIComponent(data.phoneNumber)}&Body=${encodedMessage}`,
-        }
-      );
-
-      if (!response.ok) {
-        const errorText = await response.text();
-        throw new Error(`Twilio API error: ${response.status} ${errorText}`);
-      }
-
-      const result = await response.json() as any;
-      const messageId = result.sid;
-
-      // Log message for audit trail
       await getDb().collection('whatsapp_log').add({
         recipient: data.phoneNumber,
         message: data.message,
         type: data.type,
         status: 'sent',
         messageId,
-        whatsapp_id: messageId,
-        provider: 'twilio',
         sent_at: admin.firestore.FieldValue.serverTimestamp(),
       });
+
+      return {
+        success: true,
+        messageId,
+      };
+    }
+
+    // Send via Twilio WhatsApp API
+    const encodedMessage = encodeURIComponent(data.message);
+    const authString = Buffer.from(`${twilioAccountSid}:${twilioAuthToken}`).toString('base64');
+
+    const response = await fetch(
+      `https://api.twilio.com/2010-04-01/Accounts/${twilioAccountSid}/Messages.json`,
+      {
+        method: 'POST',
+        headers: {
+          'Authorization': `Basic ${authString}`,
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: `From=${encodeURIComponent(whatsappNumber)}&To=whatsapp:${encodeURIComponent(data.phoneNumber)}&Body=${encodedMessage}`,
+      }
+    );
+
+    if (!response.ok) {
+      const errorText = await response.text();
+      throw new Error(`Twilio API error: ${response.status} ${errorText}`);
+    }
+
+    const result = await response.json() as any;
+    const messageId = result.sid;
+
+    // Log message for audit trail
+    await getDb().collection('whatsapp_log').add({
+      recipient: data.phoneNumber,
+      message: data.message,
+      type: data.type,
+      status: 'sent',
+      messageId,
+      whatsapp_id: messageId,
+      provider: 'twilio',
+      sent_at: admin.firestore.FieldValue.serverTimestamp(),
+    });
 
       return {
         success: true,
@@ -161,6 +155,20 @@ export const sendWhatsAppMessage = functions
         error: error instanceof Error ? error.message : 'Internal error',
       };
     }
+}
+
+/**
+ * Cloud Function wrapper for sendWhatsAppMessage
+ */
+export const sendWhatsAppMessage = functions
+  .runWith({
+    memory: '256MB',
+    timeoutSeconds: 60,
+    minInstances: 0,
+    maxInstances: 20,
+  })
+  .https.onCall(async (data: WhatsAppRequest, context): Promise<WhatsAppResponse> => {
+    return coreSendWhatsAppMessage(data, context);
   });
 
 /**
@@ -209,7 +217,7 @@ export const sendWhatsAppOTP = functions
       // Send OTP via WhatsApp
       const message = `Your Urban Points verification code is: ${code}\n\nValid for 5 minutes. Do not share this code.`;
       
-      const sendResult = await sendWhatsAppMessage({
+      const sendResult = await coreSendWhatsAppMessage({
         phoneNumber: data.phoneNumber,
         message,
         type: 'otp',

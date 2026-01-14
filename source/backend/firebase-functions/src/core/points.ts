@@ -7,6 +7,8 @@
  * - Real-time balance breakdown
  * - Replay protection
  * - Audit logging
+ * - Points expiration (v3)
+ * - Points transfer (v3)
  */
 
 import * as admin from 'firebase-admin';
@@ -86,6 +88,33 @@ export interface PointsDeps {
   db: admin.firestore.Firestore;
 }
 
+export interface ExpirePointsRequest {
+  dryRun?: boolean; // Preview mode
+}
+
+export interface ExpirePointsResponse {
+  success: boolean;
+  totalPointsExpired?: number;
+  customersAffected?: number;
+  expiredTransactions?: string[];
+  error?: string;
+}
+
+export interface TransferPointsRequest {
+  fromCustomerId: string;
+  toCustomerId: string;
+  amount: number;
+  reason: string;
+}
+
+export interface TransferPointsResponse {
+  success: boolean;
+  transactionId?: string;
+  fromBalance?: number;
+  toBalance?: number;
+  error?: string;
+}
+
 // ============================================================================
 // PHASE 1A: PRODUCTION-READY POINTS ENGINE
 // ============================================================================
@@ -156,7 +185,28 @@ export async function processPointsEarning(
       const currentBalance = customerDoc.data()?.points_balance || 0;
       const newBalance = currentBalance + data.amount;
 
-      // 3. Create redemption record
+      // Calculate expiry date (365 days from now)
+      const expiryDate = new Date();
+      expiryDate.setDate(expiryDate.getDate() + 365);
+
+      // 3. Create points_transaction record (for expiry tracking)
+      const pointsTransactionRef = deps.db.collection('points_transactions').doc();
+      transaction.set(pointsTransactionRef, {
+        user_id: data.customerId,
+        merchant_id: data.merchantId,
+        type: 'earn',
+        amount: data.amount,
+        balance_before: currentBalance,
+        balance_after: newBalance,
+        reason: `Points earned from offer ${data.offerId}`,
+        offer_id: data.offerId,
+        redemption_id: data.redemptionId,
+        expires_at: admin.firestore.Timestamp.fromDate(expiryDate),
+        expired: false,
+        created_at: admin.firestore.FieldValue.serverTimestamp(),
+      });
+
+      // 4. Create redemption record (legacy compatibility)
       const redemptionRef = deps.db.collection('redemptions').doc();
       const redemptionData = {
         customer_id: data.customerId,
@@ -171,30 +221,32 @@ export async function processPointsEarning(
       };
       transaction.set(redemptionRef, redemptionData);
 
-      // 4. Update customer balance
+      // 5. Update customer balance
       transaction.update(customerRef, {
         points_balance: newBalance,
         total_points_earned: admin.firestore.FieldValue.increment(data.amount),
         updated_at: admin.firestore.FieldValue.serverTimestamp(),
       });
 
-      // 5. Create audit log
+      // 6. Create audit log
       const auditRef = deps.db.collection('audit_logs').doc();
       transaction.set(auditRef, {
         operation: 'points_earning',
         user_id: data.merchantId,
         target_user_id: data.customerId,
         redemption_id: redemptionRef.id,
+        points_transaction_id: pointsTransactionRef.id,
         data: {
           offerId: data.offerId,
           amount: data.amount,
           previousBalance: currentBalance,
           newBalance: newBalance,
+          expiresAt: expiryDate.toISOString(),
         },
         timestamp: admin.firestore.FieldValue.serverTimestamp(),
       });
 
-      // 6. Save idempotency record
+      // 7. Save idempotency record
       transaction.set(idempotencyRef, {
         redemptionId: data.redemptionId,
         transactionId: redemptionRef.id,
@@ -473,4 +525,316 @@ export async function coreAwardPoints(
     redemptionId: result.transactionId,
     error: result.error,
   };
+}
+
+// ============================================================================
+// PHASE 3: POINTS EXPIRATION & TRANSFER (v3)
+// ============================================================================
+
+/**
+ * expirePoints - Scheduled function to expire old points
+ * 
+ * Requirements:
+ * ✅ Default expiry: 365 days from earning
+ * ✅ Only expires 'earn' transactions with expires_at field
+ * ✅ Atomic balance deduction
+ * ✅ Creates expiration audit trail
+ * ✅ Supports dry-run mode for testing
+ * 
+ * Usage: Run daily via Cloud Scheduler
+ * 
+ * @param data - Expiry request (optional dryRun flag)
+ * @param context - Auth context (admin only)
+ * @param deps - Dependencies (db)
+ * @returns Expiry response with totals
+ */
+export async function expirePoints(
+  data: ExpirePointsRequest,
+  context: PointsContext,
+  deps: PointsDeps
+): Promise<ExpirePointsResponse> {
+  try {
+    // Admin-only operation
+    if (!context.auth) {
+      return { success: false, error: 'Unauthenticated' };
+    }
+
+    const dryRun = data.dryRun || false;
+    const now = admin.firestore.Timestamp.now();
+    
+    // Query all points_transactions with expiry date in the past
+    const expiredQuery = deps.db
+      .collection('points_transactions')
+      .where('type', '==', 'earn')
+      .where('expires_at', '<=', now)
+      .where('expired', '==', false)
+      .limit(100); // Process in batches
+
+    const expiredSnapshot = await expiredQuery.get();
+    
+    if (expiredSnapshot.empty) {
+      return {
+        success: true,
+        totalPointsExpired: 0,
+        customersAffected: 0,
+        expiredTransactions: [],
+      };
+    }
+
+    let totalPointsExpired = 0;
+    const customersAffected = new Set<string>();
+    const expiredTransactions: string[] = [];
+
+    // Process each expired transaction
+    for (const doc of expiredSnapshot.docs) {
+      const transaction = doc.data();
+      const customerId = transaction.user_id;
+      const pointsAmount = transaction.amount;
+
+      if (dryRun) {
+        // Preview mode - just count
+        totalPointsExpired += pointsAmount;
+        customersAffected.add(customerId);
+        expiredTransactions.push(doc.id);
+        continue;
+      }
+
+      // Actual expiry - run atomic transaction
+      try {
+        await deps.db.runTransaction(async (t) => {
+          // 1. Get customer
+          const customerRef = deps.db.collection('customers').doc(customerId);
+          const customerDoc = await t.get(customerRef);
+          
+          if (!customerDoc.exists) {
+            console.warn(`Customer ${customerId} not found for expired points`);
+            return;
+          }
+
+          const currentBalance = customerDoc.data()?.points_balance || 0;
+          
+          // Safety check - don't go negative
+          const deduction = Math.min(pointsAmount, currentBalance);
+          const newBalance = currentBalance - deduction;
+
+          // 2. Update customer balance
+          t.update(customerRef, {
+            points_balance: newBalance,
+            total_points_expired: admin.firestore.FieldValue.increment(deduction),
+            updated_at: admin.firestore.FieldValue.serverTimestamp(),
+          });
+
+          // 3. Mark original transaction as expired
+          t.update(doc.ref, {
+            expired: true,
+            expired_at: admin.firestore.FieldValue.serverTimestamp(),
+          });
+
+          // 4. Create expiration transaction record
+          const expiryTransactionRef = deps.db.collection('points_transactions').doc();
+          t.set(expiryTransactionRef, {
+            user_id: customerId,
+            type: 'expire',
+            amount: -deduction,
+            balance_before: currentBalance,
+            balance_after: newBalance,
+            reason: 'Points expired after 365 days',
+            related_transaction_id: doc.id,
+            created_at: admin.firestore.FieldValue.serverTimestamp(),
+          });
+
+          // 5. Audit log
+          const auditRef = deps.db.collection('audit_logs').doc();
+          t.set(auditRef, {
+            operation: 'points_expiration',
+            user_id: 'system',
+            target_user_id: customerId,
+            data: {
+              transactionId: doc.id,
+              pointsExpired: deduction,
+              previousBalance: currentBalance,
+              newBalance: newBalance,
+              originalEarnDate: transaction.created_at,
+              expiryDate: transaction.expires_at,
+            },
+            timestamp: admin.firestore.FieldValue.serverTimestamp(),
+          });
+        });
+
+        totalPointsExpired += pointsAmount;
+        customersAffected.add(customerId);
+        expiredTransactions.push(doc.id);
+      } catch (error) {
+        console.error(`Error expiring points for transaction ${doc.id}:`, error);
+        // Continue processing other transactions
+      }
+    }
+
+    return {
+      success: true,
+      totalPointsExpired,
+      customersAffected: customersAffected.size,
+      expiredTransactions,
+    };
+  } catch (error) {
+    console.error('Error in expirePoints:', error);
+    return {
+      success: false,
+      error: error instanceof Error ? error.message : 'Internal error',
+    };
+  }
+}
+
+/**
+ * transferPoints - Transfer points between customers (admin operation)
+ * 
+ * Requirements:
+ * ✅ Admin-only operation
+ * ✅ Atomic transaction
+ * ✅ Validates sufficient balance
+ * ✅ Creates transfer audit trail
+ * ✅ Updates both balances
+ * 
+ * Use cases:
+ * - Customer support adjustments
+ * - Fraud refunds
+ * - Manual corrections
+ * 
+ * @param data - Transfer request
+ * @param context - Auth context (admin only)
+ * @param deps - Dependencies (db)
+ * @returns Transfer response with new balances
+ */
+export async function transferPoints(
+  data: TransferPointsRequest,
+  context: PointsContext,
+  deps: PointsDeps
+): Promise<TransferPointsResponse> {
+  try {
+    // Admin-only operation
+    if (!context.auth) {
+      return { success: false, error: 'Unauthenticated' };
+    }
+
+    // Validate input
+    if (!data.fromCustomerId || !data.toCustomerId || !data.reason) {
+      return { success: false, error: 'Missing required fields' };
+    }
+
+    if (data.amount <= 0) {
+      return { success: false, error: 'Transfer amount must be positive' };
+    }
+
+    if (data.fromCustomerId === data.toCustomerId) {
+      return { success: false, error: 'Cannot transfer to same customer' };
+    }
+
+    // Run atomic transaction
+    const result = await deps.db.runTransaction(async (t) => {
+      // 1. Get source customer
+      const fromRef = deps.db.collection('customers').doc(data.fromCustomerId);
+      const fromDoc = await t.get(fromRef);
+      
+      if (!fromDoc.exists) {
+        throw new Error('Source customer not found');
+      }
+
+      const fromBalance = fromDoc.data()?.points_balance || 0;
+      if (fromBalance < data.amount) {
+        throw new Error(`Insufficient points. Required: ${data.amount}, Available: ${fromBalance}`);
+      }
+
+      // 2. Get destination customer
+      const toRef = deps.db.collection('customers').doc(data.toCustomerId);
+      const toDoc = await t.get(toRef);
+      
+      if (!toDoc.exists) {
+        throw new Error('Destination customer not found');
+      }
+
+      const toBalance = toDoc.data()?.points_balance || 0;
+
+      // 3. Calculate new balances
+      const newFromBalance = fromBalance - data.amount;
+      const newToBalance = toBalance + data.amount;
+
+      // 4. Update source customer
+      t.update(fromRef, {
+        points_balance: newFromBalance,
+        updated_at: admin.firestore.FieldValue.serverTimestamp(),
+      });
+
+      // 5. Update destination customer
+      t.update(toRef, {
+        points_balance: newToBalance,
+        total_points_earned: admin.firestore.FieldValue.increment(data.amount),
+        updated_at: admin.firestore.FieldValue.serverTimestamp(),
+      });
+
+      // 6. Create transfer transaction records
+      const transferId = deps.db.collection('points_transactions').doc().id;
+
+      // Deduction transaction
+      const fromTransactionRef = deps.db.collection('points_transactions').doc();
+      t.set(fromTransactionRef, {
+        user_id: data.fromCustomerId,
+        type: 'transfer',
+        amount: -data.amount,
+        balance_before: fromBalance,
+        balance_after: newFromBalance,
+        reason: `Transfer to ${data.toCustomerId}: ${data.reason}`,
+        transfer_id: transferId,
+        transfer_to: data.toCustomerId,
+        created_at: admin.firestore.FieldValue.serverTimestamp(),
+      });
+
+      // Addition transaction
+      const toTransactionRef = deps.db.collection('points_transactions').doc();
+      t.set(toTransactionRef, {
+        user_id: data.toCustomerId,
+        type: 'transfer',
+        amount: data.amount,
+        balance_before: toBalance,
+        balance_after: newToBalance,
+        reason: `Transfer from ${data.fromCustomerId}: ${data.reason}`,
+        transfer_id: transferId,
+        transfer_from: data.fromCustomerId,
+        created_at: admin.firestore.FieldValue.serverTimestamp(),
+      });
+
+      // 7. Audit log
+      const auditRef = deps.db.collection('audit_logs').doc();
+      t.set(auditRef, {
+        operation: 'points_transfer',
+        user_id: context.auth!.uid,
+        data: {
+          transferId,
+          fromCustomerId: data.fromCustomerId,
+          toCustomerId: data.toCustomerId,
+          amount: data.amount,
+          reason: data.reason,
+          fromBalanceBefore: fromBalance,
+          fromBalanceAfter: newFromBalance,
+          toBalanceBefore: toBalance,
+          toBalanceAfter: newToBalance,
+        },
+        timestamp: admin.firestore.FieldValue.serverTimestamp(),
+      });
+
+      return {
+        success: true,
+        transactionId: transferId,
+        fromBalance: newFromBalance,
+        toBalance: newToBalance,
+      };
+    });
+
+    return result;
+  } catch (error) {
+    console.error('Error transferring points:', error);
+    return {
+      success: false,
+      error: error instanceof Error ? error.message : 'Internal error',
+    };
+  }
 }
