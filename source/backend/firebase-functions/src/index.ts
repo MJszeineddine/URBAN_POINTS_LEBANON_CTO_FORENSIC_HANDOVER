@@ -73,6 +73,24 @@ export { exportUserData, deleteUserData } from './privacy';
 // Note: cleanupExpiredOTPs is SCHEDULED - disabled until Cloud Scheduler API enabled
 export { sendSMS, verifyOTP } from './sms';
 
+// Export WhatsApp Verification functions (Twilio WhatsApp Business API)
+export { 
+  sendWhatsAppMessage, 
+  sendWhatsAppOTP, 
+  verifyWhatsAppOTP, 
+  getWhatsAppVerificationStatus,
+  cleanupExpiredWhatsAppOTPs,
+} from './whatsapp';
+
+// Export Manual Payment functions (Whish/OMT cash-based payments)
+export {
+  recordManualPayment,
+  approveManualPayment,
+  rejectManualPayment,
+  getPendingManualPayments,
+  getManualPaymentHistory,
+} from './manualPayments';
+
 // Export payment webhook functions - ENABLED
 export { omtWebhook, whishWebhook, cardWebhook } from './paymentWebhooks';
 

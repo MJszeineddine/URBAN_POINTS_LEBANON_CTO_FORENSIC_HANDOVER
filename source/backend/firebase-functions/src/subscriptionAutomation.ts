@@ -12,10 +12,10 @@ const db = admin.firestore();
  * Process Subscription Renewals
  * Runs daily at 2 AM to process expiring subscriptions
  * 
- * Actions:
+ * Actions (for v2 - Manual Payments mode):
  * - Check subscriptions expiring in next 24 hours
- * - Process auto-renewal payments
- * - Send renewal notifications
+ * - Send WhatsApp renewal reminders with manual payment instructions
+ * - For Stripe subscriptions: attempt auto-renewal
  * - Handle failed renewals
  */
 export const processSubscriptionRenewals = functions
@@ -51,6 +51,7 @@ export const processSubscriptionRenewals = functions
       const renewalResults = {
         successful: 0,
         failed: 0,
+        manual_payment_requested: 0,
         total: expiringSubscriptions.size,
       };
 
@@ -66,8 +67,7 @@ export const processSubscriptionRenewals = functions
             continue;
           }
 
-          // Customer data available if needed for future enhancements
-          // const customer = customerDoc.data()!;
+          const customer = customerDoc.data() as any;
 
           // Get subscription plan details
           const planQuery = await db.collection('subscription_plans')
@@ -81,9 +81,36 @@ export const processSubscriptionRenewals = functions
             continue;
           }
 
-          const plan = planQuery.docs[0].data();
+          const plan = planQuery.docs[0].data() as any;
 
-          // Process payment with Stripe saved payment method
+          // For manual payment subscriptions: send WhatsApp renewal reminder
+          if (subscription.payment_method === 'manual' || !subscription.stripe_subscription_id) {
+            // Send WhatsApp reminder with manual payment instructions
+            if (customer.phone_number) {
+              const message = `Your Urban Points subscription expires in 24 hours. To renew:\n\n` +
+                `1. Visit Whish or OMT agent\n` +
+                `2. Pay ${plan.price_lbp || '0'} LBP for ${plan.name || plan.plan_id}\n` +
+                `3. Get receipt number (WM-YYYY-XXXXXX or OMT-YYYY-XXXXXX)\n` +
+                `4. Submit in app under "Manual Payment"\n\nQuestions? Contact support.`;
+              
+              try {
+                // Call sendWhatsAppMessage function
+                const sendWhatsAppMessage = require('./whatsapp').sendWhatsAppMessage;
+                await sendWhatsAppMessage({
+                  phoneNumber: customer.phone_number,
+                  message,
+                  type: 'notification',
+                }, { auth: { uid: 'system' } });
+                
+                renewalResults.manual_payment_requested++;
+              } catch (whatsappError) {
+                console.error(`Failed to send WhatsApp reminder for ${subscription.user_id}:`, whatsappError);
+              }
+            }
+            continue; // Skip Stripe processing for manual payment subscriptions
+          }
+
+          // Process payment with Stripe saved payment method (for non-manual subscriptions)
           let paymentSuccess = false;
           let paymentError: string | undefined;
 
@@ -165,7 +192,22 @@ export const processSubscriptionRenewals = functions
 
             renewalResults.successful++;
 
-            // Send success notification
+            // Send success notification via WhatsApp if available
+            if (customer.phone_number) {
+              const message = `Your subscription has been renewed for another month. Enjoy your premium benefits!`;
+              try {
+                const sendWhatsAppMessage = require('./whatsapp').sendWhatsAppMessage;
+                await sendWhatsAppMessage({
+                  phoneNumber: customer.phone_number,
+                  message,
+                  type: 'notification',
+                }, { auth: { uid: 'system' } });
+              } catch (whatsappError) {
+                console.error(`Failed to send renewal success notification:`, whatsappError);
+              }
+            }
+
+            // Also send in-app notification
             await db.collection('notifications').add({
               user_id: subscription.user_id,
               title: 'Subscription Renewed',
