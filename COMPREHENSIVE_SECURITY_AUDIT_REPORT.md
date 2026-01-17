@@ -31,8 +31,8 @@ This comprehensive security audit identified **12 security vulnerabilities** acr
 
 **Vulnerable Code**:
 ```env
-DATABASE_URL=postgresql://neondb_owner:npg_x8vEcA2PSgdT@ep-lingering-heart-a4qe9ayp-pooler.us-east-1.aws.neon.tech/neondb?sslmode=require
-JWT_SECRET=urban_points_lebanon_super_secret_jwt_key_2025_production
+DATABASE_URL=postgresql://[REDACTED_USERNAME]:[REDACTED_PASSWORD]@[REDACTED_HOST]/neondb?sslmode=require
+JWT_SECRET=[REDACTED_JWT_SECRET]
 ```
 
 **Description**:  
@@ -385,7 +385,7 @@ app.post('/api/auth/register', async (req, res) => {
 - `/source/apps/mobile-merchant/lib/firebase_options.dart`
 - `/source/apps/web-admin/index.html:95`
 
-**API Key**: `AIzaSyBQi-N9xW2DGLOc2Esrd-o1dCJOxWv8eZM`
+**API Key**: `[REDACTED_FIREBASE_API_KEY]`
 
 **Description**:  
 Firebase API keys are hardcoded in client-side code and committed to version control. While Firebase API keys are designed to be public, exposure still creates risks:

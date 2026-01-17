@@ -45,7 +45,7 @@ This comprehensive audit covered:
 ### 🚨 BLOCKER ISSUES (Must Fix Before Production)
 
 #### 1. **Hardcoded Production Secrets** 🔴 CRITICAL
-- **File**: `source/backend/rest-api/.env`
+- **Location**: Backend environment configuration file
 - **Issue**: Production database credentials and JWT secret committed to Git
 - **Impact**: Complete system compromise, data breach
 - **Action**: 
