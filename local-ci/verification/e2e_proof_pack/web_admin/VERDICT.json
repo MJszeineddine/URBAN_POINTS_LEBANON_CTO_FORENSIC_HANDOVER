@@ -1,0 +1,10 @@
+{
+  "timestamp_utc": "2026-01-17T00:15:19Z",
+  "service": "web_admin",
+  "verdict": "BLOCKED",
+  "reason": "Playwright or web-admin build not available",
+  "details": "",
+  "evidence_paths": [
+    "local-ci/verification/e2e_proof_pack/web_admin/playwright.log"
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "timestamp_utc": "2026-01-17T01:30:00Z",
+  "git_commit": "2e0398c",
+  "full_stack_status": "NO",
+  "clone_percent": 70.0,
+  "verdict": "GO_BUILDS_ONLY",
+  "gates": {
+    "cto_gate": "PASS",
+    "reality_gate": "PASS",
+    "e2e_proof": "NOT_PROVEN"
+  },
+  "blockers": [
+    "No end-to-end user journey proofs captured (flow_proof_*.md files marked BLOCKED)",
+    "Qatar baseline is weak (cites internal docs, not external sources)"
+  ],
+  "evidence_paths": {
+    "gates": "local-ci/verification/ceo_bundle_latest/EVID_gates/",
+    "parity": "local-ci/verification/ceo_bundle_latest/EVID_parity/",
+    "clone_parity_json": "local-ci/verification/ceo_bundle_latest/EVID_parity/clone_parity.json",
+    "feature_matrix": "local-ci/verification/ceo_bundle_latest/EVID_parity/feature_matrix.csv",
+    "verdict_proof": "local-ci/verification/ceo_bundle_latest/EVID_gates/VERDICT.json"
+  },
+  "summary": "Systems build and test without errors. No proven end-to-end journeys. Clone% is 70.0% measured as implementations with code present but without user-journey proof."
+}

@@ -1,0 +1,257 @@
+{
+  "total_hits": 431,
+  "files_scanned": 114,
+  "top_50": [
+    {
+      "file": "source/backend/firebase-functions/src/__tests__/pin-system.test.ts",
+      "count": 71,
+      "critical": false
+    },
+    {
+      "file": "source/backend/firebase-functions/src/__tests__/pushCampaigns.test.ts",
+      "count": 24,
+      "critical": false
+    },
+    {
+      "file": "source/backend/firebase-functions/src/__tests__/integration.test.ts",
+      "count": 18,
+      "critical": false
+    },
+    {
+      "file": "tools/reality_diff_gate.sh",
+      "count": 17,
+      "critical": false
+    },
+    {
+      "file": "source/ARTIFACTS/GAP_CLOSURE/COMPREHENSIVE_FRONTEND_BACKEND_DESIGN_GAPS.md",
+      "count": 13,
+      "critical": false
+    },
+    {
+      "file": "source/backend/firebase-functions/src/__tests__/paymentWebhooks.test.ts",
+      "count": 13,
+      "critical": false
+    },
+    {
+      "file": "source/ARTIFACTS/ZERO_GAPS/diff.patch",
+      "count": 12,
+      "critical": false
+    },
+    {
+      "file": "source/backend/firebase-functions/coverage/lcov-report/src/core/points.ts.html",
+      "count": 12,
+      "critical": false
+    },
+    {
+      "file": "source/backend/firebase-functions/coverage/src/core/points.ts.html",
+      "count": 12,
+      "critical": false
+    },
+    {
+      "file": "tools/gates/cto_verify.py",
+      "count": 11,
+      "critical": false
+    },
+    {
+      "file": "source/ARTIFACTS/ZERO_GAPS/PHASE3_TESTING_REPORT.md",
+      "count": 10,
+      "critical": false
+    },
+    {
+      "file": "source/backend/firebase-functions/src/__tests__/core-admin.test.ts",
+      "count": 10,
+      "critical": false
+    },
+    {
+      "file": "source/backend/firebase-functions/src/__tests__/alert-functions.test.ts",
+      "count": 8,
+      "critical": false
+    },
+    {
+      "file": "source/backend/firebase-functions/package-lock.json",
+      "count": 7,
+      "critical": false
+    },
+    {
+      "file": "source/backend/firebase-functions/src/__tests__/pin-system-qa.test.ts",
+      "count": 7,
+      "critical": false
+    },
+    {
+      "file": "source/backend/rest-api/package-lock.json",
+      "count": 7,
+      "critical": false
+    },
+    {
+      "file": "tools/gates/hard_gate_v2_customer.py",
+      "count": 7,
+      "critical": false
+    },
+    {
+      "file": "tools/feature_completeness_gate.sh",
+      "count": 7,
+      "critical": false
+    },
+    {
+      "file": "source/backend/firebase-functions/src/__tests__/core-points.test.ts",
+      "count": 6,
+      "critical": false
+    },
+    {
+      "file": "source/ARTIFACTS/PHASE_6_7/reports/PHASE6_REPORT.md",
+      "count": 4,
+      "critical": false
+    },
+    {
+      "file": "source/ARTIFACTS/ZERO_GAPS/EXECUTIVE_SUMMARY.md",
+      "count": 4,
+      "critical": false
+    },
+    {
+      "file": "source/backend/firebase-functions/lib/sms.js",
+      "count": 4,
+      "critical": false
+    },
+    {
+      "file": "source/backend/firebase-functions/coverage/lcov-report/src/core/admin.ts.html",
+      "count": 4,
+      "critical": false
+    },
+    {
+      "file": "source/backend/firebase-functions/coverage/lcov-report/src/sms.ts.html",
+      "count": 4,
+      "critical": false
+    },
+    {
+      "file": "source/backend/firebase-functions/coverage/src/core/admin.ts.html",
+      "count": 4,
+      "critical": false
+    },
+    {
+      "file": "source/backend/firebase-functions/coverage/src/sms.ts.html",
+      "count": 4,
+      "critical": false
+    },
+    {
+      "file": "source/backend/firebase-functions/src/sms.ts",
+      "count": 4,
+      "critical": false
+    },
+    {
+      "file": "source/backend/firebase-functions/src/__tests__/subscriptionAutomation.test.ts",
+      "count": 4,
+      "critical": false
+    },
+    {
+      "file": "source/apps/mobile-merchant/test/widget_test.dart",
+      "count": 4,
+      "critical": false
+    },
+    {
+      "file": "tools/stripe_webhook_replay.js",
+      "count": 4,
+      "critical": false
+    },
+    {
+      "file": "tools/final_e2e_correct.js",
+      "count": 4,
+      "critical": false
+    },
+    {
+      "file": "source/ARTIFACTS/GAP_CLOSURE/app_icons_spec.md",
+      "count": 3,
+      "critical": false
+    },
+    {
+      "file": "source/ARTIFACTS/GAP_CLOSURE/admin_ops_report.md",
+      "count": 3,
+      "critical": false
+    },
+    {
+      "file": "source/apps/web-admin/index.html",
+      "count": 3,
+      "critical": false
+    },
+    {
+      "file": "source/ARTIFACTS/PHASE_6_7/reports/BASELINE_REPORT.md",
+      "count": 2,
+      "critical": false
+    },
+    {
+      "file": "source/ARTIFACTS/LAUNCH_HARDENING/onboarding_flow_spec.md",
+      "count": 2,
+      "critical": false
+    },
+    {
+      "file": "source/ARTIFACTS/GAP_CLOSURE/monitoring_activation.md",
+      "count": 2,
+      "critical": false
+    },
+    {
+      "file": "source/ARTIFACTS/GAP_CLOSURE/P0_P1_FINAL_EXECUTION_REPORT.md",
+      "count": 2,
+      "critical": false
+    },
+    {
+      "file": "source/ARTIFACTS/ZERO_GAPS/FINAL_GO_NO_GO.md",
+      "count": 2,
+      "critical": false
+    },
+    {
+      "file": "source/ARTIFACTS/ZERO_GAPS/BUSINESS_LOGIC_FINAL_REPORT.md",
+      "count": 2,
+      "critical": false
+    },
+    {
+      "file": "source/CTO_HANDOVER_SUMMARY.md",
+      "count": 2,
+      "critical": false
+    },
+    {
+      "file": "source/backend/firebase-functions/tools/run_tests_with_emulators.cjs",
+      "count": 2,
+      "critical": false
+    },
+    {
+      "file": "source/backend/firebase-functions/tools/run_phase3_ci.cjs",
+      "count": 2,
+      "critical": false
+    },
+    {
+      "file": "source/backend/firebase-functions/jest.setup.js",
+      "count": 2,
+      "critical": false
+    },
+    {
+      "file": "source/backend/firebase-functions/VALIDATION_MIDDLEWARE_AUDIT.md",
+      "count": 2,
+      "critical": false
+    },
+    {
+      "file": "source/backend/firebase-functions/README.md",
+      "count": 2,
+      "critical": false
+    },
+    {
+      "file": "source/backend/firebase-functions/coverage/lcov-report/pushCampaigns.ts.html",
+      "count": 2,
+      "critical": false
+    },
+    {
+      "file": "source/backend/firebase-functions/coverage/lcov-report/sms.ts.html",
+      "count": 2,
+      "critical": false
+    },
+    {
+      "file": "source/backend/firebase-functions/coverage/pushCampaigns.ts.html",
+      "count": 2,
+      "critical": false
+    },
+    {
+      "file": "source/backend/firebase-functions/coverage/sms.ts.html",
+      "count": 2,
+      "critical": false
+    }
+  ],
+  "critical_hits": []
+}

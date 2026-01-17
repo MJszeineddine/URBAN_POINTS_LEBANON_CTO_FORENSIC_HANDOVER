@@ -1,0 +1,1106 @@
+---
+# FULL-STACK REALITY MAP - URBAN POINTS LEBANON
+# Machine-readable specification
+# Generated: 2026-01-14
+# Methodology: Evidence-Based Code Analysis
+
+metadata:
+  audit_date: "2026-01-14"
+  repository: "URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER"
+  surfaces_audited: 4
+  total_features: 85
+  done: 52
+  partial: 13
+  not_done: 20
+  backend_orphans: 47
+
+surfaces:
+  - name: "Customer App (Flutter)"
+    path: "source/apps/mobile-customer"
+    type: "flutter"
+    features_done: 19
+    features_partial: 6
+    features_not_done: 5
+
+  - name: "Merchant App (Flutter)"
+    path: "source/apps/mobile-merchant"
+    type: "flutter"
+    features_done: 17
+    features_partial: 5
+    features_not_done: 5
+
+  - name: "Admin Web (Next.js)"
+    path: "source/apps/web-admin"
+    type: "nextjs"
+    features_done: 16
+    features_partial: 2
+    features_not_done: 10
+
+  - name: "Backend Functions"
+    path: "source/backend/firebase-functions"
+    type: "firebase-functions"
+    exported_functions: 99
+    called_by_clients: 52
+    orphans: 47
+
+features:
+  # ==========================
+  # CUSTOMER APP
+  # ==========================
+  - id: "customer_auth_email"
+    surface: "customer-app"
+    category: "authentication"
+    name: "Email/Password Authentication"
+    status: "DONE"
+    frontend_anchors:
+      - "source/apps/mobile-customer/lib/screens/auth/login_screen.dart:LoginScreen"
+      - "source/apps/mobile-customer/lib/services/auth_service.dart:signInWithEmailPassword"
+    backend_anchors:
+      - "source/backend/firebase-functions/src/auth.ts:onUserCreate"
+    classification_reason: "Email/password authentication fully implemented with Firebase Auth. Backend onUserCreate trigger creates user document automatically."
+
+  - id: "customer_auth_google"
+    surface: "customer-app"
+    category: "authentication"
+    name: "Google Sign-In"
+    status: "DONE"
+    frontend_anchors:
+      - "source/apps/mobile-customer/lib/screens/auth/login_screen.dart:_signInWithGoogle"
+      - "source/apps/mobile-customer/lib/services/auth_service.dart:signInWithGoogle"
+    backend_anchors:
+      - "source/backend/firebase-functions/src/auth.ts:onUserCreate"
+    classification_reason: "GoogleAuthProvider popup flow implemented. Backend onUserCreate trigger handles new Google auth users. UI button exists in LoginScreen."
+
+  - id: "customer_auth_whatsapp"
+    surface: "customer-app"
+    category: "authentication"
+    name: "WhatsApp Authentication"
+    status: "NOT_DONE"
+    frontend_anchors: []
+    backend_anchors:
+      - "source/backend/firebase-functions/src/whatsapp.ts:sendWhatsAppOTP"
+      - "source/backend/firebase-functions/src/whatsapp.ts:verifyWhatsAppOTP"
+    classification_reason: "Backend Twilio WhatsApp Business API fully implemented (sendWhatsAppOTP, verifyWhatsAppOTP, getWhatsAppVerificationStatus) but zero UI screens, navigation routes, or service method calls in customer app."
+
+  - id: "customer_onboarding"
+    surface: "customer-app"
+    category: "onboarding"
+    name: "Onboarding Flow"
+    status: "DONE"
+    frontend_anchors:
+      - "source/apps/mobile-customer/lib/screens/onboarding/onboarding_screen.dart:OnboardingScreen"
+      - "source/apps/mobile-customer/lib/screens/onboarding/welcome_screen.dart:WelcomeScreen"
+      - "source/apps/mobile-customer/lib/screens/onboarding/how_it_works_screen.dart"
+      - "source/apps/mobile-customer/lib/screens/onboarding/notification_priming_screen.dart"
+    backend_anchors: []
+    classification_reason: "Complete onboarding flow with 4 screens: welcome, how it works, notification priming. OnboardingService checks shouldShowOnboarding() via SharedPreferences. Client-side only."
+
+  - id: "customer_permissions_location"
+    surface: "customer-app"
+    category: "permissions"
+    name: "Location Permissions"
+    status: "DONE"
+    frontend_anchors:
+      - "source/apps/mobile-customer/lib/services/location_service.dart"
+    backend_anchors: []
+    classification_reason: "LocationService exists with permission request logic. Integrated into offer discovery (proximity-based). Client-side only."
+
+  - id: "customer_permissions_fcm"
+    surface: "customer-app"
+    category: "permissions"
+    name: "FCM Permissions & Setup"
+    status: "DONE"
+    frontend_anchors:
+      - "source/apps/mobile-customer/lib/services/fcm_service.dart:FCMService"
+      - "source/apps/mobile-customer/lib/main.dart:FirebaseMessaging.onBackgroundMessage"
+    backend_anchors:
+      - "source/backend/firebase-functions/src/phase3Notifications.ts:registerFCMToken"
+      - "source/backend/firebase-functions/src/core/fcm.ts:registerFCMToken"
+    classification_reason: "FCM setup complete with foreground/background handlers. FCMService saves token to Firestore. Backend registerFCMToken callable exists but not called (tokens saved directly)."
+
+  - id: "customer_offers_feed"
+    surface: "customer-app"
+    category: "offers"
+    name: "Offers Feed"
+    status: "DONE"
+    frontend_anchors:
+      - "source/apps/mobile-customer/lib/screens/offers_list_screen.dart:OffersListScreen"
+      - "source/apps/mobile-customer/lib/services/offers_repository.dart"
+    backend_anchors:
+      - "source/backend/firebase-functions/src/index.ts:getOffersByLocationFunc"
+    classification_reason: "OffersListScreen displays offers with location-based sorting. Calls backend 'getAvailableOffers' via FirebaseFunctions.instance.httpsCallable. Backend getOffersByLocationFunc returns offers sorted by proximity."
+
+  - id: "customer_offers_search"
+    surface: "customer-app"
+    category: "offers"
+    name: "Offers Search"
+    status: "PARTIAL"
+    frontend_anchors:
+      - "source/apps/mobile-customer/lib/screens/offers_list_screen.dart:OffersListScreen"
+    backend_anchors: []
+    classification_reason: "UI has search bar widget in OffersListScreen, but implementation is client-side filtering only (no backend search index). No Algolia or Firestore composite index integration."
+
+  - id: "customer_offers_filters"
+    surface: "customer-app"
+    category: "offers"
+    name: "Offers Filters"
+    status: "PARTIAL"
+    frontend_anchors:
+      - "source/apps/mobile-customer/lib/screens/offers_list_screen.dart:OffersListScreen"
+    backend_anchors: []
+    classification_reason: "Category selector exists in UI but filtering is client-side only. No backend query parameters for advanced filtering (price range, rating, distance radius)."
+
+  - id: "customer_offer_detail"
+    surface: "customer-app"
+    category: "offers"
+    name: "Offer Details"
+    status: "DONE"
+    frontend_anchors:
+      - "source/apps/mobile-customer/lib/screens/offer_detail_screen.dart:OfferDetailScreen"
+    backend_anchors: []
+    classification_reason: "Full offer detail screen with merchant info, terms, pricing. Direct Firestore reads for offer and merchant data. No backend callable required."
+
+  - id: "customer_favorites"
+    surface: "customer-app"
+    category: "offers"
+    name: "Favorites"
+    status: "PARTIAL"
+    frontend_anchors:
+      - "source/apps/mobile-customer/lib/screens/offer_detail_screen.dart:_toggleFavorite"
+    backend_anchors: []
+    classification_reason: "Favorite toggle exists in OfferDetailScreen. Writes to customers/{uid}/favorites subcollection. No dedicated favorites list screen or navigation route to view all favorites."
+
+  - id: "customer_points_balance"
+    surface: "customer-app"
+    category: "wallet"
+    name: "Points Balance Display"
+    status: "DONE"
+    frontend_anchors:
+      - "source/apps/mobile-customer/lib/screens/points_history_screen.dart:PointsHistoryScreen"
+      - "source/apps/mobile-customer/lib/services/customer_service.dart:getBalance"
+    backend_anchors:
+      - "source/backend/firebase-functions/src/index.ts:getBalance"
+      - "source/backend/firebase-functions/src/core/points.ts:getPointsBalance"
+    classification_reason: "Points balance displayed in PointsHistoryScreen. Calls backend 'getBalance' callable function. Backend returns balance from points_wallets collection."
+
+  - id: "customer_points_history"
+    surface: "customer-app"
+    category: "wallet"
+    name: "Points History"
+    status: "DONE"
+    frontend_anchors:
+      - "source/apps/mobile-customer/lib/screens/points_history_screen.dart:PointsHistoryScreen"
+      - "source/apps/mobile-customer/lib/services/auth_service.dart:getPointsHistory"
+    backend_anchors:
+      - "source/backend/firebase-functions/src/index.ts:getBalance"
+    classification_reason: "Points history screen with chart visualization (fl_chart). Calls 'getPointsHistory' callable. Backend returns transactions array with timestamp, amount, type."
+
+  - id: "customer_qr_generation"
+    surface: "customer-app"
+    category: "redemption"
+    name: "QR Code Generation"
+    status: "DONE"
+    frontend_anchors:
+      - "source/apps/mobile-customer/lib/screens/qr_generation_screen.dart:QRGenerationScreen"
+      - "source/apps/mobile-customer/lib/services/customer_service.dart:generateQRToken"
+    backend_anchors:
+      - "source/backend/firebase-functions/src/index.ts:generateSecureQRToken"
+      - "source/backend/firebase-functions/src/core/qr.ts:coreGenerateSecureQRToken"
+    classification_reason: "QR generation screen with 60-second expiry timer. Calls 'generateSecureQRToken' callable with userId, offerId, merchantId, deviceHash. Backend generates cryptographic token with HMAC signature. QR displayed using qr_flutter package."
+
+  - id: "customer_redemption_confirmation"
+    surface: "customer-app"
+    category: "redemption"
+    name: "Redemption Confirmation"
+    status: "NOT_DONE"
+    frontend_anchors: []
+    backend_anchors:
+      - "source/backend/firebase-functions/src/index.ts:validateRedemption"
+    classification_reason: "No confirmation screen in customer app after merchant scans QR. Merchant app handles redemption validation flow. Customer sees result only via FCM notification (notifyRedemptionSuccess trigger exists in backend)."
+
+  - id: "customer_redemption_history"
+    surface: "customer-app"
+    category: "redemption"
+    name: "Redemption History"
+    status: "PARTIAL"
+    frontend_anchors:
+      - "source/apps/mobile-customer/lib/screens/points_history_screen.dart:PointsHistoryScreen"
+    backend_anchors: []
+    classification_reason: "Redemptions appear in points history as negative transactions. No dedicated redemption history view with offer titles, merchant names, dates. Only generic transaction list."
+
+  - id: "customer_fcm_foreground"
+    surface: "customer-app"
+    category: "notifications"
+    name: "FCM Foreground Handling"
+    status: "DONE"
+    frontend_anchors:
+      - "source/apps/mobile-customer/lib/services/fcm_service.dart:_handleForegroundMessage"
+    backend_anchors:
+      - "source/backend/firebase-functions/src/phase3Notifications.ts:notifyRedemptionSuccess"
+    classification_reason: "FCM foreground handler displays in-app notification banner. FCMService processes RemoteMessage and shows SnackBar."
+
+  - id: "customer_fcm_background"
+    surface: "customer-app"
+    category: "notifications"
+    name: "FCM Background Handling"
+    status: "DONE"
+    frontend_anchors:
+      - "source/apps/mobile-customer/lib/main.dart:firebaseMessagingBackgroundHandler"
+    backend_anchors:
+      - "source/backend/firebase-functions/src/phase3Notifications.ts:notifyRedemptionSuccess"
+    classification_reason: "Background message handler registered in main.dart. Processes notifications when app terminated/backgrounded."
+
+  - id: "customer_deep_links"
+    surface: "customer-app"
+    category: "notifications"
+    name: "Deep Link Handling"
+    status: "NOT_DONE"
+    frontend_anchors: []
+    backend_anchors: []
+    classification_reason: "No deep link handling found. No flutter_deep_link, uni_links, or go_router integration. FCM notifications have hardcoded navigation logic (points_history, offers) but no URL scheme handling."
+
+  - id: "customer_notifications_screen"
+    surface: "customer-app"
+    category: "notifications"
+    name: "Notifications Screen"
+    status: "DONE"
+    frontend_anchors:
+      - "source/apps/mobile-customer/lib/screens/notifications_screen.dart:NotificationsScreen"
+    backend_anchors: []
+    classification_reason: "NotificationsScreen exists with list view of past notifications. Reads from customers/{uid}/notifications subcollection. No backend callable - direct Firestore queries."
+
+  - id: "customer_profile_view"
+    surface: "customer-app"
+    category: "profile"
+    name: "Profile View"
+    status: "DONE"
+    frontend_anchors:
+      - "source/apps/mobile-customer/lib/screens/profile_screen.dart:ProfileScreen"
+    backend_anchors:
+      - "source/backend/firebase-functions/src/auth.ts:getUserProfile"
+    classification_reason: "ProfileScreen displays user info (name, email, role). Direct Firestore read from users/{uid}. Backend getUserProfile callable exists but not used in this screen."
+
+  - id: "customer_profile_edit"
+    surface: "customer-app"
+    category: "profile"
+    name: "Profile Edit"
+    status: "DONE"
+    frontend_anchors:
+      - "source/apps/mobile-customer/lib/screens/edit_profile_screen.dart:EditProfileScreen"
+    backend_anchors: []
+    classification_reason: "Edit profile screen with form fields for name, phone. Updates users/{uid} document directly via Firestore. No backend callable - client-side writes."
+
+  - id: "customer_settings"
+    surface: "customer-app"
+    category: "profile"
+    name: "Settings"
+    status: "DONE"
+    frontend_anchors:
+      - "source/apps/mobile-customer/lib/screens/settings_screen.dart:SettingsScreen"
+    backend_anchors: []
+    classification_reason: "Settings screen with sections for account, notifications, privacy, about. Toggle switches for notification preferences stored in Firestore."
+
+  - id: "customer_delete_account"
+    surface: "customer-app"
+    category: "profile"
+    name: "Delete Account (GDPR)"
+    status: "NOT_DONE"
+    frontend_anchors: []
+    backend_anchors:
+      - "source/backend/firebase-functions/src/privacy.ts:deleteUserData"
+      - "source/backend/firebase-functions/src/privacy.ts:exportUserData"
+    classification_reason: "Backend GDPR functions exist (deleteUserData, exportUserData), but no UI in settings to trigger them. No 'Delete Account' or 'Export Data' buttons found."
+
+  - id: "customer_billing"
+    surface: "customer-app"
+    category: "billing"
+    name: "Billing Screen with Stripe"
+    status: "DONE"
+    frontend_anchors:
+      - "source/apps/mobile-customer/lib/screens/billing/billing_screen.dart:BillingScreen"
+      - "source/apps/mobile-customer/lib/services/stripe_client.dart"
+    backend_anchors:
+      - "source/backend/firebase-functions/src/stripe.ts:createCheckoutSession"
+      - "source/backend/firebase-functions/src/stripe.ts:createBillingPortalSession"
+    classification_reason: "BillingScreen with Stripe integration. StripeClient calls createCheckoutSession and createBillingPortalSession callables. Opens Stripe hosted pages via url_launcher."
+
+  - id: "customer_sms_otp"
+    surface: "customer-app"
+    category: "authentication"
+    name: "SMS OTP Authentication"
+    status: "NOT_DONE"
+    frontend_anchors: []
+    backend_anchors:
+      - "source/backend/firebase-functions/src/sms.ts:sendSMS"
+      - "source/backend/firebase-functions/src/sms.ts:verifyOTP"
+    classification_reason: "Backend SMS OTP functions exported but no phone auth UI in customer app."
+
+  # ==========================
+  # MERCHANT APP
+  # ==========================
+  - id: "merchant_auth_email"
+    surface: "merchant-app"
+    category: "authentication"
+    name: "Email/Password Authentication"
+    status: "DONE"
+    frontend_anchors:
+      - "source/apps/mobile-merchant/lib/screens/auth/login_screen.dart:LoginScreen"
+      - "source/apps/mobile-merchant/lib/services/auth_service.dart:signInWithEmailPassword"
+    backend_anchors:
+      - "source/backend/firebase-functions/src/auth.ts:onUserCreate"
+    classification_reason: "Email/password auth implemented. Same auth service as customer app. Backend onUserCreate trigger creates merchant doc with role='merchant'."
+
+  - id: "merchant_auth_google"
+    surface: "merchant-app"
+    category: "authentication"
+    name: "Google Sign-In"
+    status: "DONE"
+    frontend_anchors:
+      - "source/apps/mobile-merchant/lib/screens/auth/login_screen.dart"
+      - "source/apps/mobile-merchant/lib/services/auth_service.dart:signInWithGoogle"
+    backend_anchors:
+      - "source/backend/firebase-functions/src/auth.ts:onUserCreate"
+    classification_reason: "Google Sign-In implemented. Backend sets custom claims with role='merchant'."
+
+  - id: "merchant_role_validation"
+    surface: "merchant-app"
+    category: "authentication"
+    name: "Role Validation"
+    status: "DONE"
+    frontend_anchors:
+      - "source/apps/mobile-merchant/lib/utils/role_validator.dart:AuthValidator"
+      - "source/apps/mobile-merchant/lib/screens/auth/role_blocked_screen.dart"
+    backend_anchors:
+      - "source/backend/firebase-functions/src/auth.ts:setCustomClaims"
+    classification_reason: "AuthValidator widget checks custom claims. If role != 'merchant', shows RoleBlockedScreen. Backend setCustomClaims function sets role claim."
+
+  - id: "merchant_create_offer"
+    surface: "merchant-app"
+    category: "offers"
+    name: "Create Offer"
+    status: "DONE"
+    frontend_anchors:
+      - "source/apps/mobile-merchant/lib/screens/create_offer_screen.dart:CreateOfferScreen"
+      - "source/apps/mobile-merchant/lib/services/merchant_service.dart:createOffer"
+    backend_anchors:
+      - "source/backend/firebase-functions/src/index.ts:createNewOffer"
+      - "source/backend/firebase-functions/src/core/offers.ts:createOffer"
+    classification_reason: "CreateOfferScreen with form (title, description, category, points_cost, pricing). Calls backend 'createOffer' callable. Backend validates and creates offer with status='pending' (requires admin approval)."
+
+  - id: "merchant_edit_offer"
+    surface: "merchant-app"
+    category: "offers"
+    name: "Edit Offer"
+    status: "DONE"
+    frontend_anchors:
+      - "source/apps/mobile-merchant/lib/screens/edit_offer_screen.dart:EditOfferScreen"
+    backend_anchors:
+      - "source/backend/firebase-functions/src/index.ts:editOfferCallable"
+      - "source/backend/firebase-functions/src/core/offers.ts:editOffer"
+    classification_reason: "EditOfferScreen allows editing pending/rejected offers. Backend editOfferCallable exists. Edit history tracked in offer_edit_history collection."
+
+  - id: "merchant_pause_offer"
+    surface: "merchant-app"
+    category: "offers"
+    name: "Pause/Activate Offer"
+    status: "DONE"
+    frontend_anchors:
+      - "source/apps/mobile-merchant/lib/screens/edit_offer_screen.dart:_toggleActiveStatus"
+    backend_anchors:
+      - "source/backend/firebase-functions/src/index.ts:updateStatus"
+      - "source/backend/firebase-functions/src/core/offers.ts:updateOfferStatus"
+    classification_reason: "Toggle button in EditOfferScreen AppBar to pause/activate offers. Calls updateStatus backend function to change isActive flag."
+
+  - id: "merchant_delete_offer"
+    surface: "merchant-app"
+    category: "offers"
+    name: "Delete Offer"
+    status: "PARTIAL"
+    frontend_anchors:
+      - "source/apps/mobile-merchant/lib/screens/my_offers_screen.dart"
+    backend_anchors:
+      - "source/backend/firebase-functions/src/index.ts:cancelOfferCallable"
+    classification_reason: "Backend cancelOfferCallable exists but UI integration unclear. MyOffersScreen has delete action but implementation may call Firestore directly instead of callable."
+
+  - id: "merchant_my_offers"
+    surface: "merchant-app"
+    category: "offers"
+    name: "My Offers List"
+    status: "DONE"
+    frontend_anchors:
+      - "source/apps/mobile-merchant/lib/screens/my_offers_screen.dart:MyOffersScreen"
+    backend_anchors: []
+    classification_reason: "MyOffersScreen displays merchant's offers with status filters (all/active/pending/rejected). Direct Firestore query (where merchantId == uid)."
+
+  - id: "merchant_media_upload"
+    surface: "merchant-app"
+    category: "offers"
+    name: "Media Upload"
+    status: "NOT_DONE"
+    frontend_anchors: []
+    backend_anchors: []
+    classification_reason: "No image picker or Firebase Storage upload logic found in CreateOfferScreen or EditOfferScreen. Offer schema has imageUrl field but no UI to populate it."
+
+  - id: "merchant_profile"
+    surface: "merchant-app"
+    category: "profile"
+    name: "Store Profile Management"
+    status: "PARTIAL"
+    frontend_anchors: []
+    backend_anchors: []
+    classification_reason: "No dedicated merchant profile edit screen found. Merchant doc exists in Firestore (merchants/{uid}) with name, email, location, but no UI to edit store hours, address, description, logo."
+
+  - id: "merchant_qr_scanner"
+    surface: "merchant-app"
+    category: "redemption"
+    name: "QR Scanner"
+    status: "DONE"
+    frontend_anchors:
+      - "source/apps/mobile-merchant/lib/screens/qr_scanner_screen.dart:QRScannerScreen"
+    backend_anchors:
+      - "source/backend/firebase-functions/src/index.ts:validatePIN"
+    classification_reason: "QRScannerScreen uses mobile_scanner package. Extracts displayCode from QR, navigates to PINEntryScreen. Merchant enters PIN from customer's screen."
+
+  - id: "merchant_pin_validation"
+    surface: "merchant-app"
+    category: "redemption"
+    name: "PIN Validation"
+    status: "DONE"
+    frontend_anchors:
+      - "source/apps/mobile-merchant/lib/screens/qr_scanner_screen.dart:PINEntryScreen"
+    backend_anchors:
+      - "source/backend/firebase-functions/src/index.ts:validatePIN"
+      - "source/backend/firebase-functions/src/core/qr.ts:coreValidatePIN"
+    classification_reason: "PINEntryScreen calls 'validatePIN' callable with displayCode and pin. Backend verifies PIN, returns nonce and offer details."
+
+  - id: "merchant_redemption_confirm"
+    surface: "merchant-app"
+    category: "redemption"
+    name: "Redemption Confirmation"
+    status: "DONE"
+    frontend_anchors:
+      - "source/apps/mobile-merchant/lib/screens/validate_redemption_screen.dart:ValidateRedemptionScreen"
+    backend_anchors:
+      - "source/backend/firebase-functions/src/index.ts:validateRedemption"
+      - "source/backend/firebase-functions/src/core/indexCore.ts:coreValidateRedemption"
+    classification_reason: "ValidateRedemptionScreen shows offer details and 'Confirm Redemption' button. Calls 'validateRedemption' callable with nonce. Backend processes redemption atomically."
+
+  - id: "merchant_redemption_logs"
+    surface: "merchant-app"
+    category: "redemption"
+    name: "Redemption Logs"
+    status: "PARTIAL"
+    frontend_anchors: []
+    backend_anchors: []
+    classification_reason: "No dedicated redemption history screen in merchant app. Redemptions stored in redemptions collection but no UI to view/filter/export them."
+
+  - id: "merchant_anti_fraud"
+    surface: "merchant-app"
+    category: "redemption"
+    name: "Anti-Fraud Limits"
+    status: "NOT_DONE"
+    frontend_anchors: []
+    backend_anchors:
+      - "source/backend/firebase-functions/src/index.ts:detectFraudPatternsCallable"
+      - "source/backend/firebase-functions/src/core/qr.ts:detectFraudPatterns"
+    classification_reason: "Backend fraud detection function exists (detects duplicate redemptions, velocity attacks), but no UI in merchant app to view fraud alerts or configure limits."
+
+  - id: "merchant_analytics"
+    surface: "merchant-app"
+    category: "analytics"
+    name: "Analytics Dashboard"
+    status: "DONE"
+    frontend_anchors:
+      - "source/apps/mobile-merchant/lib/screens/merchant_analytics_screen.dart:MerchantAnalyticsScreen"
+    backend_anchors:
+      - "source/backend/firebase-functions/src/index.ts:getOfferStats"
+      - "source/backend/firebase-functions/src/core/offers.ts:aggregateOfferStats"
+    classification_reason: "MerchantAnalyticsScreen with charts (redemption trends, top offers). Calls 'getOfferStats' callable. Backend aggregates from redemptions collection."
+
+  - id: "merchant_subscription"
+    surface: "merchant-app"
+    category: "billing"
+    name: "Subscription Status"
+    status: "PARTIAL"
+    frontend_anchors:
+      - "source/apps/mobile-merchant/lib/services/auth_service.dart:checkSubscriptionAccess"
+    backend_anchors: []
+    classification_reason: "AuthService has checkSubscriptionAccess method calling backend 'checkSubscriptionAccess' callable, but function not found in backend exports. Likely placeholder or deprecated."
+
+  - id: "merchant_billing"
+    surface: "merchant-app"
+    category: "billing"
+    name: "Billing Screen"
+    status: "DONE"
+    frontend_anchors:
+      - "source/apps/mobile-merchant/lib/screens/billing/billing_screen.dart:BillingScreen"
+    backend_anchors:
+      - "source/backend/firebase-functions/src/stripe.ts:createCheckoutSession"
+    classification_reason: "BillingScreen with Stripe integration. Same implementation as customer app."
+
+  - id: "merchant_fcm"
+    surface: "merchant-app"
+    category: "notifications"
+    name: "FCM Notifications"
+    status: "DONE"
+    frontend_anchors:
+      - "source/apps/mobile-merchant/lib/services/fcm_service.dart:FCMService"
+      - "source/apps/mobile-merchant/lib/main.dart:firebaseMessagingBackgroundHandler"
+    backend_anchors:
+      - "source/backend/firebase-functions/src/phase3Scheduler.ts:notifyOfferStatusChange"
+    classification_reason: "FCM setup complete with foreground/background handlers. Backend trigger notifyOfferStatusChange sends notification when offer approved/rejected."
+
+  - id: "merchant_staff"
+    surface: "merchant-app"
+    category: "management"
+    name: "Staff Accounts"
+    status: "NOT_DONE"
+    frontend_anchors: []
+    backend_anchors: []
+    classification_reason: "No staff account creation, role assignment, or permission management found. Single merchant account only."
+
+  - id: "merchant_auth_whatsapp"
+    surface: "merchant-app"
+    category: "authentication"
+    name: "WhatsApp Authentication"
+    status: "NOT_DONE"
+    frontend_anchors: []
+    backend_anchors:
+      - "source/backend/firebase-functions/src/whatsapp.ts:sendWhatsAppOTP"
+    classification_reason: "Backend implemented but no client integration."
+
+  - id: "merchant_auth_sms"
+    surface: "merchant-app"
+    category: "authentication"
+    name: "SMS OTP Authentication"
+    status: "NOT_DONE"
+    frontend_anchors: []
+    backend_anchors:
+      - "source/backend/firebase-functions/src/sms.ts:sendSMS"
+    classification_reason: "Backend implemented but no client integration."
+
+  # ==========================
+  # ADMIN WEB
+  # ==========================
+  - id: "admin_auth"
+    surface: "admin-web"
+    category: "authentication"
+    name: "Admin Login"
+    status: "DONE"
+    frontend_anchors:
+      - "source/apps/web-admin/pages/admin/login.tsx"
+      - "source/apps/web-admin/components/AdminGuard.tsx"
+    backend_anchors:
+      - "source/backend/firebase-functions/src/auth.ts:setCustomClaims"
+    classification_reason: "Admin login page with email/password. AdminGuard HOC checks custom claim role='admin'. Backend setCustomClaims sets admin role."
+
+  - id: "admin_rbac"
+    surface: "admin-web"
+    category: "authentication"
+    name: "Role-Based Access Control"
+    status: "DONE"
+    frontend_anchors:
+      - "source/apps/web-admin/components/AdminGuard.tsx"
+    backend_anchors:
+      - "source/backend/firebase-functions/src/adminModeration.ts:adminUpdateUserRole"
+    classification_reason: "RBAC enforced via custom claims. AdminGuard blocks non-admin access. Backend adminUpdateUserRole allows role changes."
+
+  - id: "admin_users_list"
+    surface: "admin-web"
+    category: "users"
+    name: "Users List"
+    status: "DONE"
+    frontend_anchors:
+      - "source/apps/web-admin/pages/admin/users.tsx"
+    backend_anchors: []
+    classification_reason: "UsersPage displays all users from Firestore users collection. Direct query with DataTable component."
+
+  - id: "admin_ban_user"
+    surface: "admin-web"
+    category: "users"
+    name: "Ban/Unban User"
+    status: "DONE"
+    frontend_anchors:
+      - "source/apps/web-admin/pages/admin/users.tsx"
+    backend_anchors:
+      - "source/backend/firebase-functions/src/adminModeration.ts:adminBanUser"
+      - "source/backend/firebase-functions/src/adminModeration.ts:adminUnbanUser"
+    classification_reason: "Ban/unban buttons call 'adminBanUser' and 'adminUnbanUser' callables. Backend sets isBanned flag and disables Firebase Auth account."
+
+  - id: "admin_search_users"
+    surface: "admin-web"
+    category: "users"
+    name: "Search Users"
+    status: "PARTIAL"
+    frontend_anchors:
+      - "source/apps/web-admin/pages/admin/users.tsx"
+    backend_anchors: []
+    classification_reason: "Client-side search bar exists but filters already-loaded users. No backend search index or pagination."
+
+  - id: "admin_merchants_list"
+    surface: "admin-web"
+    category: "merchants"
+    name: "Merchants List"
+    status: "DONE"
+    frontend_anchors:
+      - "source/apps/web-admin/pages/admin/merchants.tsx"
+    backend_anchors: []
+    classification_reason: "MerchantsPage displays all merchants from Firestore merchants collection."
+
+  - id: "admin_merchant_approval"
+    surface: "admin-web"
+    category: "merchants"
+    name: "Merchant Approval"
+    status: "DONE"
+    frontend_anchors:
+      - "source/apps/web-admin/pages/admin/merchants.tsx"
+    backend_anchors:
+      - "source/backend/firebase-functions/src/adminModeration.ts:adminUpdateMerchantStatus"
+    classification_reason: "Approve/suspend/reactivate buttons call 'adminUpdateMerchantStatus' callable. Backend updates merchant status field."
+
+  - id: "admin_offers_list"
+    surface: "admin-web"
+    category: "offers"
+    name: "Offers List"
+    status: "DONE"
+    frontend_anchors:
+      - "source/apps/web-admin/pages/admin/offers.tsx"
+    backend_anchors: []
+    classification_reason: "OffersPage displays all offers with status filter (pending/approved/rejected)."
+
+  - id: "admin_approve_offer"
+    surface: "admin-web"
+    category: "offers"
+    name: "Approve Offer"
+    status: "DONE"
+    frontend_anchors:
+      - "source/apps/web-admin/pages/admin/offers.tsx"
+    backend_anchors:
+      - "source/backend/firebase-functions/src/index.ts:approveOffer"
+      - "source/backend/firebase-functions/src/core/admin.ts:coreApproveOffer"
+    classification_reason: "Approve button calls 'approveOffer' callable. Backend changes offer status from 'pending' to 'approved'."
+
+  - id: "admin_reject_offer"
+    surface: "admin-web"
+    category: "offers"
+    name: "Reject Offer"
+    status: "DONE"
+    frontend_anchors:
+      - "source/apps/web-admin/pages/admin/offers.tsx"
+    backend_anchors:
+      - "source/backend/firebase-functions/src/index.ts:rejectOffer"
+      - "source/backend/firebase-functions/src/core/admin.ts:coreRejectOffer"
+    classification_reason: "Reject button with reason field calls 'rejectOffer' callable. Backend updates status and stores rejection reason."
+
+  - id: "admin_disable_offer"
+    surface: "admin-web"
+    category: "offers"
+    name: "Disable Offer"
+    status: "DONE"
+    frontend_anchors:
+      - "source/apps/web-admin/pages/admin/offers.tsx"
+    backend_anchors:
+      - "source/backend/firebase-functions/src/adminModeration.ts:adminDisableOffer"
+    classification_reason: "Disable button for emergency takedown calls 'adminDisableOffer' callable."
+
+  - id: "admin_points_adjustment"
+    surface: "admin-web"
+    category: "points"
+    name: "Points Adjustment"
+    status: "NOT_DONE"
+    frontend_anchors: []
+    backend_anchors:
+      - "source/backend/firebase-functions/src/index.ts:transferPointsCallable"
+      - "source/backend/firebase-functions/src/core/points.ts:transferPoints"
+    classification_reason: "Backend transferPointsCallable exists for admin-only points transfers, but no UI in admin web to input customer ID and amount."
+
+  - id: "admin_points_expiration"
+    surface: "admin-web"
+    category: "points"
+    name: "Manual Points Expiration"
+    status: "NOT_DONE"
+    frontend_anchors: []
+    backend_anchors:
+      - "source/backend/firebase-functions/src/index.ts:expirePointsManual"
+      - "source/backend/firebase-functions/src/core/points.ts:expirePoints"
+    classification_reason: "Backend expirePointsManual callable for testing expiration logic, but no UI trigger in admin web."
+
+  - id: "admin_daily_stats"
+    surface: "admin-web"
+    category: "analytics"
+    name: "Daily Stats Dashboard"
+    status: "DONE"
+    frontend_anchors:
+      - "source/apps/web-admin/pages/admin/analytics.tsx"
+    backend_anchors:
+      - "source/backend/firebase-functions/src/index.ts:calculateDailyStats"
+      - "source/backend/firebase-functions/src/core/admin.ts:coreCalculateDailyStats"
+    classification_reason: "AnalyticsPage calls 'calculateDailyStats' callable. Backend aggregates redemptions, points, unique customers, top merchants. NOTE: Contains placeholder comment 'Math.random() * 100 - would need actual aggregation'."
+
+  - id: "admin_redemption_audit"
+    surface: "admin-web"
+    category: "analytics"
+    name: "Redemption Audit Logs"
+    status: "PARTIAL"
+    frontend_anchors: []
+    backend_anchors: []
+    classification_reason: "Redemptions stored in Firestore with timestamps, but no dedicated audit log viewer in admin web with filters by date/merchant/customer."
+
+  - id: "admin_fraud_dashboard"
+    surface: "admin-web"
+    category: "security"
+    name: "Fraud Detection Dashboard"
+    status: "NOT_DONE"
+    frontend_anchors: []
+    backend_anchors:
+      - "source/backend/firebase-functions/src/index.ts:detectFraudPatternsCallable"
+      - "source/backend/firebase-functions/src/core/qr.ts:detectFraudPatterns"
+    classification_reason: "Backend detectFraudPatternsCallable exists (scans for duplicate/velocity attacks), but no UI in admin web to view fraud alerts or trigger manual scans."
+
+  - id: "admin_manual_payments_pending"
+    surface: "admin-web"
+    category: "payments"
+    name: "Manual Payments Pending List"
+    status: "DONE"
+    frontend_anchors:
+      - "source/apps/web-admin/pages/admin/payments.tsx"
+    backend_anchors:
+      - "source/backend/firebase-functions/src/manualPayments.ts:getPendingManualPayments"
+    classification_reason: "PaymentsPage calls 'getPendingManualPayments' callable. Displays OMT/Whish cash payments awaiting admin review."
+
+  - id: "admin_approve_payment"
+    surface: "admin-web"
+    category: "payments"
+    name: "Approve Manual Payment"
+    status: "DONE"
+    frontend_anchors:
+      - "source/apps/web-admin/pages/admin/payments.tsx"
+    backend_anchors:
+      - "source/backend/firebase-functions/src/manualPayments.ts:approveManualPayment"
+    classification_reason: "Approve button calls 'approveManualPayment' callable. Backend updates payment status, grants subscription access."
+
+  - id: "admin_reject_payment"
+    surface: "admin-web"
+    category: "payments"
+    name: "Reject Manual Payment"
+    status: "DONE"
+    frontend_anchors:
+      - "source/apps/web-admin/pages/admin/payments.tsx"
+    backend_anchors:
+      - "source/backend/firebase-functions/src/manualPayments.ts:rejectManualPayment"
+    classification_reason: "Reject button with reason field calls 'rejectManualPayment' callable."
+
+  - id: "admin_stripe"
+    surface: "admin-web"
+    category: "payments"
+    name: "Stripe Integration"
+    status: "NOT_DONE"
+    frontend_anchors: []
+    backend_anchors:
+      - "source/backend/firebase-functions/src/stripe.ts:stripeWebhook"
+      - "source/backend/firebase-functions/src/stripe.ts:createCheckoutSession"
+    classification_reason: "Backend Stripe webhook and checkout session creation exist, but no admin UI to view Stripe transactions, refund payments, or configure pricing."
+
+  - id: "admin_create_campaign"
+    surface: "admin-web"
+    category: "campaigns"
+    name: "Create Push Campaign"
+    status: "NOT_DONE"
+    frontend_anchors: []
+    backend_anchors:
+      - "source/backend/firebase-functions/src/index.ts:createCampaignCallable"
+      - "source/backend/firebase-functions/src/core/fcm.ts:createCampaign"
+    classification_reason: "Backend createCampaignCallable exists for creating push campaigns with targeting, but no UI in admin web to compose, schedule, or send campaigns."
+
+  - id: "admin_send_campaign"
+    surface: "admin-web"
+    category: "campaigns"
+    name: "Send Push Campaign"
+    status: "NOT_DONE"
+    frontend_anchors: []
+    backend_anchors:
+      - "source/backend/firebase-functions/src/index.ts:sendCampaignCallable"
+      - "source/backend/firebase-functions/src/core/fcm.ts:sendCampaign"
+    classification_reason: "Backend sendCampaignCallable exists (sends to FCM tokens), but no UI trigger."
+
+  - id: "admin_campaign_stats"
+    surface: "admin-web"
+    category: "campaigns"
+    name: "Campaign Analytics"
+    status: "NOT_DONE"
+    frontend_anchors: []
+    backend_anchors:
+      - "source/backend/firebase-functions/src/index.ts:getCampaignStatsCallable"
+      - "source/backend/firebase-functions/src/core/fcm.ts:getCampaignStats"
+    classification_reason: "Backend getCampaignStatsCallable exists (delivery metrics), but no UI dashboard."
+
+  - id: "admin_compliance"
+    surface: "admin-web"
+    category: "compliance"
+    name: "Merchant Compliance Dashboard"
+    status: "DONE"
+    frontend_anchors:
+      - "source/apps/web-admin/pages/admin/compliance.tsx"
+    backend_anchors:
+      - "source/backend/firebase-functions/src/index.ts:getMerchantComplianceStatus"
+      - "source/backend/firebase-functions/src/core/admin.ts:coreGetMerchantComplianceStatus"
+    classification_reason: "CompliancePage displays merchants with active offer count and subscription status. Client-side logic checks if activeOffers < 5 (minimum requirement). Backend getMerchantComplianceStatus callable exists."
+
+  - id: "admin_diagnostics"
+    surface: "admin-web"
+    category: "system"
+    name: "Diagnostics Page"
+    status: "DONE"
+    frontend_anchors:
+      - "source/apps/web-admin/pages/admin/diagnostics.tsx"
+    backend_anchors: []
+    classification_reason: "DiagnosticsPage exists with placeholder health checks. No actual backend monitoring integration (Sentry metrics, Cloud Functions logs, Firestore read/write latency)."
+
+  - id: "admin_qr_history"
+    surface: "admin-web"
+    category: "security"
+    name: "QR History Viewer"
+    status: "NOT_DONE"
+    frontend_anchors: []
+    backend_anchors:
+      - "source/backend/firebase-functions/src/index.ts:getQRHistoryCallable"
+      - "source/backend/firebase-functions/src/core/qr.ts:getQRHistory"
+    classification_reason: "Backend QR generation history exists but no admin UI to view by customer/merchant/date."
+
+  - id: "admin_qr_revoke"
+    surface: "admin-web"
+    category: "security"
+    name: "QR Token Revocation"
+    status: "NOT_DONE"
+    frontend_anchors: []
+    backend_anchors:
+      - "source/backend/firebase-functions/src/index.ts:revokeQRTokenCallable"
+      - "source/backend/firebase-functions/src/core/qr.ts:revokeQRToken"
+    classification_reason: "Backend manual token revocation exists but no admin UI trigger."
+
+  - id: "admin_offer_history"
+    surface: "admin-web"
+    category: "offers"
+    name: "Offer Edit History Viewer"
+    status: "NOT_DONE"
+    frontend_anchors: []
+    backend_anchors:
+      - "source/backend/firebase-functions/src/index.ts:getOfferEditHistoryCallable"
+      - "source/backend/firebase-functions/src/core/offers.ts:getOfferEditHistory"
+    classification_reason: "Backend tracks offer edit history but no admin UI to view audit trail."
+
+backend_orphans:
+  triggers:
+    - name: "onUserCreate"
+      path: "source/backend/firebase-functions/src/auth.ts"
+      reason: "Firebase Auth trigger - called by Firebase, not clients"
+    - name: "notifyOfferStatusChange"
+      path: "source/backend/firebase-functions/src/phase3Scheduler.ts"
+      reason: "Firestore offers trigger - called by Firebase, not clients"
+    - name: "notifyRedemptionSuccess"
+      path: "source/backend/firebase-functions/src/phase3Notifications.ts"
+      reason: "Firestore redemptions trigger - called by Firebase, not clients"
+
+  scheduled:
+    - name: "processSubscriptionRenewals"
+      path: "source/backend/firebase-functions/src/subscriptionAutomation.ts"
+    - name: "sendExpiryReminders"
+      path: "source/backend/firebase-functions/src/subscriptionAutomation.ts"
+    - name: "cleanupExpiredSubscriptions"
+      path: "source/backend/firebase-functions/src/subscriptionAutomation.ts"
+    - name: "calculateSubscriptionMetrics"
+      path: "source/backend/firebase-functions/src/subscriptionAutomation.ts"
+    - name: "enforceMerchantCompliance"
+      path: "source/backend/firebase-functions/src/phase3Scheduler.ts"
+    - name: "cleanupExpiredQRTokens"
+      path: "source/backend/firebase-functions/src/phase3Scheduler.ts"
+    - name: "sendPointsExpiryWarnings"
+      path: "source/backend/firebase-functions/src/phase3Scheduler.ts"
+    - name: "cleanupExpiredOTPs"
+      path: "source/backend/firebase-functions/src/sms.ts"
+    - name: "cleanupExpiredWhatsAppOTPs"
+      path: "source/backend/firebase-functions/src/whatsapp.ts"
+    - name: "processScheduledCampaigns"
+      path: "source/backend/firebase-functions/src/pushCampaigns.ts"
+      status: "disabled"
+    - name: "expirePointsScheduled"
+      path: "source/backend/firebase-functions/src/core/points.ts"
+
+  webhooks:
+    - name: "omtWebhook"
+      path: "source/backend/firebase-functions/src/paymentWebhooks.ts"
+      reason: "OMT payment gateway calls"
+    - name: "whishWebhook"
+      path: "source/backend/firebase-functions/src/paymentWebhooks.ts"
+      reason: "Whish payment gateway calls"
+    - name: "cardWebhook"
+      path: "source/backend/firebase-functions/src/paymentWebhooks.ts"
+      reason: "Card payment gateway calls"
+    - name: "stripeWebhook"
+      path: "source/backend/firebase-functions/src/stripe.ts"
+      reason: "Stripe payment processor calls"
+
+  no_ui:
+    - name: "setCustomClaims"
+      path: "source/backend/firebase-functions/src/auth.ts"
+      reason: "Admin-only, no UI"
+    - name: "verifyEmailComplete"
+      path: "source/backend/firebase-functions/src/auth.ts"
+      reason: "No UI integration found"
+    - name: "expirePointsManual"
+      path: "source/backend/firebase-functions/src/core/points.ts"
+      reason: "Admin UI missing"
+    - name: "transferPointsCallable"
+      path: "source/backend/firebase-functions/src/core/points.ts"
+      reason: "Admin UI missing"
+    - name: "revokeQRTokenCallable"
+      path: "source/backend/firebase-functions/src/core/qr.ts"
+      reason: "Admin UI missing"
+    - name: "getQRHistoryCallable"
+      path: "source/backend/firebase-functions/src/core/qr.ts"
+      reason: "Admin UI missing"
+    - name: "detectFraudPatternsCallable"
+      path: "source/backend/firebase-functions/src/core/qr.ts"
+      reason: "Admin UI missing"
+    - name: "getOfferEditHistoryCallable"
+      path: "source/backend/firebase-functions/src/core/offers.ts"
+      reason: "Admin UI missing"
+    - name: "exportUserData"
+      path: "source/backend/firebase-functions/src/privacy.ts"
+      reason: "GDPR function, no UI"
+    - name: "deleteUserData"
+      path: "source/backend/firebase-functions/src/privacy.ts"
+      reason: "GDPR function, no UI"
+    - name: "cleanupExpiredData"
+      path: "source/backend/firebase-functions/src/privacy.ts"
+      reason: "Scheduled function"
+    - name: "sendSMS"
+      path: "source/backend/firebase-functions/src/sms.ts"
+      reason: "No UI integration"
+    - name: "verifyOTP"
+      path: "source/backend/firebase-functions/src/sms.ts"
+      reason: "No UI integration"
+    - name: "sendWhatsAppMessage"
+      path: "source/backend/firebase-functions/src/whatsapp.ts"
+      reason: "No UI integration"
+    - name: "sendWhatsAppOTP"
+      path: "source/backend/firebase-functions/src/whatsapp.ts"
+      reason: "No UI integration"
+    - name: "verifyWhatsAppOTP"
+      path: "source/backend/firebase-functions/src/whatsapp.ts"
+      reason: "No UI integration"
+    - name: "getWhatsAppVerificationStatus"
+      path: "source/backend/firebase-functions/src/whatsapp.ts"
+      reason: "No UI integration"
+    - name: "recordManualPayment"
+      path: "source/backend/firebase-functions/src/manualPayments.ts"
+      reason: "No client calls"
+    - name: "getManualPaymentHistory"
+      path: "source/backend/firebase-functions/src/manualPayments.ts"
+      reason: "No client calls"
+    - name: "registerFCMTokenCallable"
+      path: "source/backend/firebase-functions/src/core/fcm.ts"
+      reason: "Apps write directly to Firestore"
+    - name: "unregisterFCMTokenCallable"
+      path: "source/backend/firebase-functions/src/core/fcm.ts"
+      reason: "Apps write directly to Firestore"
+    - name: "createCampaignCallable"
+      path: "source/backend/firebase-functions/src/core/fcm.ts"
+      reason: "Admin UI missing"
+    - name: "sendCampaignCallable"
+      path: "source/backend/firebase-functions/src/core/fcm.ts"
+      reason: "Admin UI missing"
+    - name: "getCampaignStatsCallable"
+      path: "source/backend/firebase-functions/src/core/fcm.ts"
+      reason: "Admin UI missing"
+    - name: "sendPersonalizedNotification"
+      path: "source/backend/firebase-functions/src/pushCampaigns.ts"
+      reason: "No client calls"
+    - name: "scheduleCampaign"
+      path: "source/backend/firebase-functions/src/pushCampaigns.ts"
+      reason: "No client calls"
+    - name: "sendBatchNotification"
+      path: "source/backend/firebase-functions/src/pushCampaigns.ts"
+      reason: "No client calls"
+
+  unclear:
+    - name: "editOfferCallable"
+      path: "source/backend/firebase-functions/src/core/offers.ts"
+      reason: "EditOfferScreen exists but unclear if it calls callable or Firestore"
+    - name: "cancelOfferCallable"
+      path: "source/backend/firebase-functions/src/core/offers.ts"
+      reason: "MyOffersScreen has delete but integration unclear"
+
+critical_findings:
+  high_impact:
+    - id: "whatsapp_no_client"
+      title: "WhatsApp Authentication: Backend Ready, Zero Client Integration"
+      description: "Backend fully implemented (Twilio) but ZERO UI screens, navigation, or service methods across all 3 apps"
+      backend: "source/backend/firebase-functions/src/whatsapp.ts"
+      affected_surfaces: ["customer-app", "merchant-app"]
+
+    - id: "gdpr_no_ui"
+      title: "GDPR Compliance: Functions Exist, No UI Triggers"
+      description: "deleteUserData and exportUserData functions exist but no settings UI to trigger them"
+      backend: "source/backend/firebase-functions/src/privacy.ts"
+      affected_surfaces: ["customer-app"]
+
+    - id: "campaigns_no_admin"
+      title: "Push Campaign Management: Full Backend, No Admin Interface"
+      description: "Complete backend (create/send/stats) but admin web has no campaign composer/scheduler/analytics"
+      backend: "source/backend/firebase-functions/src/core/fcm.ts"
+      affected_surfaces: ["admin-web"]
+
+    - id: "fraud_no_dashboard"
+      title: "Fraud Detection: Backend Logic, No Visibility"
+      description: "Backend detectFraudPatterns exists but no UI in admin or merchant apps to view alerts"
+      backend: "source/backend/firebase-functions/src/core/qr.ts"
+      affected_surfaces: ["admin-web", "merchant-app"]
+
+    - id: "deep_links_missing"
+      title: "Deep Link Handling: FCM Sends Data, No URL Scheme Setup"
+      description: "No flutter_deep_link, uni_links, or go_router integration despite FCM notifications with data payloads"
+      affected_surfaces: ["customer-app", "merchant-app"]
+
+  medium_impact:
+    - id: "media_upload_missing"
+      title: "Media Upload: Schema Field Exists, No UI Implementation"
+      description: "Offer imageUrl field in schema but no image picker or Firebase Storage upload"
+      affected_surfaces: ["merchant-app"]
+
+    - id: "staff_accounts_missing"
+      title: "Merchant Staff: No Multi-User Support"
+      description: "No staff account creation, role assignment, or permission management for locations with multiple employees"
+      affected_surfaces: ["merchant-app"]
+
+    - id: "points_transfer_no_ui"
+      title: "Points Transfer: Admin Callable Exists, No UI"
+      description: "Backend transferPointsCallable exists but no UI for customer service adjustments"
+      backend: "source/backend/firebase-functions/src/core/points.ts"
+      affected_surfaces: ["admin-web"]
+
+    - id: "redemption_history_basic"
+      title: "Redemption History: Generic Transaction List Only"
+      description: "Customer app shows redemptions in generic points history, no redemption-specific view with receipts"
+      affected_surfaces: ["customer-app"]
+
+    - id: "favorites_no_list"
+      title: "Favorites: Toggle Exists, No List View"
+      description: "Favorite toggle exists but no 'My Favorites' screen or navigation route"
+      affected_surfaces: ["customer-app"]
+
+  code_quality:
+    - id: "fcm_direct_writes"
+      title: "FCM Token Management: Bypassing Backend Callables"
+      description: "Apps write FCM tokens directly to Firestore instead of using registerFCMTokenCallable (which supports platform/deviceId)"
+      affected_surfaces: ["customer-app", "merchant-app"]
+
+    - id: "placeholder_analytics"
+      title: "Analytics Placeholder: calculateDailyStats Contains Mock Data"
+      description: "Backend function contains 'Math.random() * 100' comment indicating mock data"
+      backend: "source/backend/firebase-functions/src/core/admin.ts"
+
+    - id: "missing_backend_function"
+      title: "Missing Backend Function: checkSubscriptionAccess Called But Not Exported"
+      description: "Merchant app calls checkSubscriptionAccess callable but function not exported in backend"
+      affected_surfaces: ["merchant-app"]

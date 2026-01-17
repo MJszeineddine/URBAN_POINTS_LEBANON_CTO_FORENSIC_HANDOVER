@@ -19,7 +19,7 @@ class _OfferDetailScreenState extends State<OfferDetailScreen> {
   Customer? _customer;
   bool _isLoading = true;
   bool _isFavorite = false;
-  final FirebaseFunctions _functions = FirebaseFunctions.instance;
+  final FirebaseFunctions _functions = FirebaseFunctions.instance; // ignore: unused_field
 
   @override
   void initState() {
@@ -258,7 +258,7 @@ class _OfferDetailScreenState extends State<OfferDetailScreen> {
                           color: Theme.of(context).colorScheme.onPrimaryContainer,
                         ),
                       ),
-                      title: Text('Merchant' ?? 'Merchant'),
+                      title: const Text('Merchant'),
                       subtitle: const Text('Tap for merchant details'),
                       trailing: const Icon(Icons.chevron_right),
                       onTap: () {
@@ -295,13 +295,13 @@ class _OfferDetailScreenState extends State<OfferDetailScreen> {
                   _DetailRow(
                     icon: Icons.category,
                     label: 'Category',
-                    value: widget.offer.description ?? 'General',
+                    value: widget.offer.description.isNotEmpty ? widget.offer.description : 'General',
                   ),
                   const SizedBox(height: 8),
                   _DetailRow(
                     icon: Icons.calendar_today,
                     label: 'Valid Until',
-                    value: widget.offer.validUntil != null
+                    value: widget.offer.validUntil.isNotEmpty
                         ? _formatDate(widget.offer.validUntilDate)
                         : 'No expiry',
                   ),
@@ -322,8 +322,9 @@ class _OfferDetailScreenState extends State<OfferDetailScreen> {
                       borderRadius: BorderRadius.circular(8),
                     ),
                     child: Text(
-                      widget.offer.description ??
-                          '• Valid for single use only\n'
+                      widget.offer.description.isNotEmpty
+                          ? widget.offer.description
+                          : '• Valid for single use only\n'
                               '• Cannot be combined with other offers\n'
                               '• No cash value\n'
                               '• Subject to availability\n'

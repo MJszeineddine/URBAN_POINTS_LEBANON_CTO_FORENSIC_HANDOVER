@@ -1,0 +1,85 @@
+{
+  "timestamp_utc": "2026-01-17T00:00:00Z",
+  "full_stack_status_cto_rule": "NO (missing 5 real E2E journey packs)",
+  "surfaces": [
+    {
+      "name": "Mobile Customer",
+      "path": "source/apps/mobile-customer",
+      "stack": {
+        "language": "Dart",
+        "framework": "Flutter",
+        "firebase": true
+      },
+      "build": {
+        "command": "unknown (derive from pubspec.yaml / project tooling)",
+        "evidence": "source/apps/mobile-customer/pubspec.yaml"
+      },
+      "test": {
+        "unit": "unknown (flutter test)",
+        "integration": "integration_test present",
+        "evidence": "source/apps/mobile-customer/integration_test"
+      }
+    },
+    {
+      "name": "Mobile Merchant",
+      "path": "source/apps/mobile-merchant",
+      "stack": {
+        "language": "Dart",
+        "framework": "Flutter",
+        "firebase": true
+      },
+      "build": {
+        "command": "unknown (derive from pubspec.yaml / project tooling)",
+        "evidence": "source/apps/mobile-merchant/pubspec.yaml"
+      },
+      "test": {
+        "unit": "unknown (flutter test)",
+        "integration": "integration_test present",
+        "evidence": "source/apps/mobile-merchant/integration_test"
+      }
+    },
+    {
+      "name": "Web Admin",
+      "path": "source/apps/web-admin",
+      "stack": {
+        "language": "TypeScript",
+        "framework": "Next.js",
+        "playwright": true
+      },
+      "build": {
+        "command": "unknown (derive from package.json scripts)",
+        "evidence": "source/apps/web-admin/package.json"
+      },
+      "test": {
+        "e2e": "Playwright configured",
+        "evidence": "source/apps/web-admin/playwright.config.ts",
+        "status": "BLOCKED (environment prerequisites not met)"
+      }
+    }
+  ],
+  "backend": [
+    {
+      "name": "Firebase Cloud Functions",
+      "path": "source/backend/firebase-functions",
+      "engine": "Node",
+      "evidence": "source/backend/firebase-functions/package.json",
+      "status": "BLOCKED in emulator proof (firebase.json missing)"
+    },
+    {
+      "name": "REST API (Express)",
+      "path": "source/backend/rest-api",
+      "engine": "Node",
+      "database": "PostgreSQL",
+      "evidence": "source/backend/rest-api/package.json",
+      "status": "NOT_PROVEN (no E2E journey exercising endpoints)"
+    }
+  ],
+  "journey_proofs_required": 5,
+  "journey_proofs_found": 0,
+  "journey_pack_requirements": [
+    "RUN.log (deterministic)",
+    "UI evidence (screenshots or video)",
+    "manifest.json with sha256 hashes",
+    "verdict.json with timestamps and commit"
+  ]
+}

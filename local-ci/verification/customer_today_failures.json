@@ -1,0 +1,100 @@
+{
+  "generated_at": "2026-01-15T00:00:00Z",
+  "total_customer_failures": 9,
+  "customer_failures": [
+    {
+      "id": "CUST-AUTH-003",
+      "status": "MISSING",
+      "why": "WhatsApp OTP authentication screens exist but not wired into auth flow. Backend callable exists.",
+      "frontend_anchors": [
+        "source/apps/mobile-customer/lib/screens/auth/whatsapp_phone_screen.dart",
+        "source/apps/mobile-customer/lib/screens/auth/whatsapp_otp_screen.dart"
+      ],
+      "backend_anchors": [
+        "source/backend/firebase-functions/src/whatsapp.ts:sendWhatsAppOTP",
+        "source/backend/firebase-functions/src/whatsapp.ts:verifyWhatsAppOTP"
+      ],
+      "task": "Wire WhatsApp screens into auth flow in main.dart"
+    },
+    {
+      "id": "CUST-OFFER-002",
+      "status": "PARTIAL",
+      "why": "Local search exists in offers_list_screen.dart but no backend callable for full-text search",
+      "frontend_anchors": [
+        "source/apps/mobile-customer/lib/screens/offers_list_screen.dart:_searchOffers"
+      ],
+      "backend_anchors": [],
+      "task": "Implement backend searchOffers callable + wire UI to call it"
+    },
+    {
+      "id": "CUST-OFFER-003",
+      "status": "PARTIAL",
+      "why": "Local filter exists but no backend compound queries",
+      "frontend_anchors": [
+        "source/apps/mobile-customer/lib/screens/offers_list_screen.dart:_filterOffers"
+      ],
+      "backend_anchors": [],
+      "task": "Implement backend getFilteredOffers callable + wire UI"
+    },
+    {
+      "id": "CUST-OFFER-005",
+      "status": "PARTIAL",
+      "why": "Favorite toggle works but NO dedicated FavoritesScreen exists",
+      "frontend_anchors": [
+        "source/apps/mobile-customer/lib/screens/offer_detail_screen.dart:_toggleFavorite"
+      ],
+      "backend_anchors": [],
+      "task": "Create FavoritesScreen and wire route /favorites"
+    },
+    {
+      "id": "CUST-REDEEM-002",
+      "status": "MISSING",
+      "why": "NO RedemptionConfirmationScreen exists to show customer the result",
+      "frontend_anchors": [],
+      "backend_anchors": [
+        "source/backend/firebase-functions/src/core/qr.ts:confirmRedemption"
+      ],
+      "task": "Create RedemptionConfirmationScreen"
+    },
+    {
+      "id": "CUST-REDEEM-003",
+      "status": "PARTIAL",
+      "why": "Redemptions shown in points_history but NO dedicated RedemptionHistoryScreen",
+      "frontend_anchors": [
+        "source/apps/mobile-customer/lib/screens/points_history_screen.dart:_recentRedemptions"
+      ],
+      "backend_anchors": [],
+      "task": "Create RedemptionHistoryScreen and wire route /redemption_history"
+    },
+    {
+      "id": "CUST-NOTIF-003",
+      "status": "MISSING",
+      "why": "NO deep link handling for notification taps. handleMessageOpenedApp hardcoded.",
+      "frontend_anchors": [
+        "source/apps/mobile-customer/lib/main.dart:handleMessageOpenedApp"
+      ],
+      "backend_anchors": [],
+      "task": "Implement deep_link_service.dart + wire iOS/Android + update main.dart"
+    },
+    {
+      "id": "CUST-GDPR-001",
+      "status": "MISSING",
+      "why": "NO 'Delete Account' button in Settings screen",
+      "frontend_anchors": [],
+      "backend_anchors": [
+        "source/backend/firebase-functions/src/privacy.ts:deleteUserData"
+      ],
+      "task": "Add Delete Account button to settings_screen.dart"
+    },
+    {
+      "id": "CUST-GDPR-002",
+      "status": "MISSING",
+      "why": "NO 'Export My Data' button in Settings screen",
+      "frontend_anchors": [],
+      "backend_anchors": [
+        "source/backend/firebase-functions/src/privacy.ts:exportUserData"
+      ],
+      "task": "Add Export Data button to settings_screen.dart"
+    }
+  ]
+}

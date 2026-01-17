@@ -1,0 +1,54 @@
+{
+  "timestamp": "2026-01-16T15:16:02.914058",
+  "status": "FAIL",
+  "checks": {
+    "requirement_status": {
+      "passed": false,
+      "failures": [
+        "MERCH-OFFER-006: BLOCKED but missing blocker doc",
+        "MERCH-PROFILE-001: BLOCKED but missing blocker doc",
+        "MERCH-REDEEM-004: BLOCKED but missing blocker doc",
+        "MERCH-REDEEM-005: BLOCKED but missing blocker doc",
+        "MERCH-SUBSCRIPTION-001: BLOCKED but missing blocker doc",
+        "MERCH-STAFF-001: BLOCKED but missing blocker doc",
+        "ADMIN-POINTS-001: BLOCKED but missing blocker doc",
+        "ADMIN-POINTS-002: BLOCKED but missing blocker doc",
+        "ADMIN-POINTS-003: BLOCKED but missing blocker doc",
+        "ADMIN-ANALYTICS-001: BLOCKED but missing blocker doc",
+        "ADMIN-ANALYTICS-002: BLOCKED but missing blocker doc",
+        "ADMIN-FRAUD-001: BLOCKED but missing blocker doc",
+        "ADMIN-PAYMENT-004: BLOCKED but missing blocker doc",
+        "ADMIN-CAMPAIGN-001: BLOCKED but missing blocker doc",
+        "ADMIN-CAMPAIGN-002: BLOCKED but missing blocker doc",
+        "ADMIN-CAMPAIGN-003: BLOCKED but missing blocker doc",
+        "BACKEND-SECURITY-001: BLOCKED but missing blocker doc",
+        "BACKEND-DATA-001: BLOCKED but missing blocker doc",
+        "BACKEND-ORPHAN-001: BLOCKED but missing blocker doc",
+        "TEST-MERCHANT-001: Status is MISSING, must be READY or BLOCKED",
+        "TEST-WEB-001: Status is MISSING, must be READY or BLOCKED",
+        "TEST-BACKEND-001: Status is MISSING, must be READY or BLOCKED"
+      ]
+    },
+    "requirement_anchors": {
+      "passed": true,
+      "failures": []
+    },
+    "anchor_files_exist": {
+      "passed": true,
+      "failures": []
+    },
+    "critical_modules_clean": {
+      "passed": true,
+      "failures": []
+    },
+    "test_logs_exist": {
+      "passed": true,
+      "failures": []
+    }
+  },
+  "summary": {
+    "total_checks": 5,
+    "passed_checks": 4,
+    "failed_checks": 1
+  }
+}

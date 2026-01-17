@@ -1,0 +1,6 @@
+FILE -rw-r--r--  1 mohammadzeineddine  staff  570 Jan 17 01:21 local-ci/verification/ceo_bundle_latest/old_bundle_snapshot/BLOCKER_BASELINE_WEAK.md
+FILE -rw-r--r--  1 mohammadzeineddine  staff  671 Jan 17 01:21 local-ci/verification/ceo_bundle_latest/old_bundle_snapshot/CEO_CLONE_PARITY_REPORT.md
+FILE -rw-r--r--  1 mohammadzeineddine  staff  992 Jan 17 01:21 local-ci/verification/ceo_bundle_latest/old_bundle_snapshot/CEO_EXEC_SUMMARY.md
+FILE -rw-r--r--  1 mohammadzeineddine  staff  514 Jan 17 01:21 local-ci/verification/ceo_bundle_latest/old_bundle_snapshot/CEO_MISSING_TO_100.md
+FILE -rw-r--r--  1 mohammadzeineddine  staff  478 Jan 17 01:21 local-ci/verification/ceo_bundle_latest/old_bundle_snapshot/EVIDENCE_INDEX.txt
+FILE -rw-r--r--  1 mohammadzeineddine  staff  272 Jan 17 01:21 local-ci/verification/ceo_bundle_latest/old_bundle_snapshot/ceo_clone_parity.json

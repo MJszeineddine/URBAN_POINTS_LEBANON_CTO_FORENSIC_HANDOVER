@@ -1,0 +1,275 @@
+Commit: 2e0398c
+Status:
+ M .DS_Store
+ M source/apps/mobile-customer/analysis_options.yaml
+ M source/apps/mobile-customer/android/app/src/main/AndroidManifest.xml
+ M source/apps/mobile-customer/ios/Runner/Info.plist
+ M source/apps/mobile-customer/lib/main.dart
+ M source/apps/mobile-customer/lib/screens/billing/billing_screen.dart
+ M source/apps/mobile-customer/lib/screens/edit_profile_screen.dart
+ M source/apps/mobile-customer/lib/screens/offer_detail_screen.dart
+ M source/apps/mobile-customer/lib/screens/offers_list_screen.dart
+ M source/apps/mobile-customer/lib/screens/points_history_screen.dart
+ M source/apps/mobile-customer/lib/screens/profile_screen.dart
+ M source/apps/mobile-customer/lib/screens/qr_generation_screen.dart
+ M source/apps/mobile-customer/lib/screens/settings_screen.dart
+ M source/apps/mobile-customer/lib/services/location_service.dart
+ M source/apps/mobile-customer/lib/services/offers_repository.dart
+ M source/apps/mobile-customer/pubspec.lock
+ M source/apps/mobile-customer/pubspec.yaml
+ M source/apps/mobile-customer/test/widget_test.dart
+ M source/apps/mobile-merchant/analysis_options.yaml
+ M source/apps/mobile-merchant/lib/services/merchant_service.dart
+ M source/apps/web-admin/.next/BUILD_ID
+ M source/apps/web-admin/.next/build-manifest.json
+ M source/apps/web-admin/.next/cache/.tsbuildinfo
+ M source/apps/web-admin/.next/fallback-build-manifest.json
+ M source/apps/web-admin/.next/routes-manifest.json
+ D source/apps/web-admin/.next/server/chunks/ssr/[root-of-the-server]__277bcc8b._.js
+ D source/apps/web-admin/.next/server/chunks/ssr/[root-of-the-server]__277bcc8b._.js.map
+ D source/apps/web-admin/.next/server/chunks/ssr/_36ffd951._.js
+ D source/apps/web-admin/.next/server/chunks/ssr/_36ffd951._.js.map
+ D source/apps/web-admin/.next/server/chunks/ssr/_3a20354c._.js
+ D source/apps/web-admin/.next/server/chunks/ssr/_3a20354c._.js.map
+ D source/apps/web-admin/.next/server/chunks/ssr/_58fbc086._.js
+ D source/apps/web-admin/.next/server/chunks/ssr/_58fbc086._.js.map
+ D source/apps/web-admin/.next/server/chunks/ssr/_7e2d046c._.js
+ D source/apps/web-admin/.next/server/chunks/ssr/_7e2d046c._.js.map
+ D source/apps/web-admin/.next/server/chunks/ssr/_a8d84b62._.js
+ D source/apps/web-admin/.next/server/chunks/ssr/_a8d84b62._.js.map
+ D source/apps/web-admin/.next/server/chunks/ssr/_fff11b40._.js
+ D source/apps/web-admin/.next/server/chunks/ssr/_fff11b40._.js.map
+ D source/apps/web-admin/.next/server/chunks/ssr/node_modules_next_f9424c9d._.js
+ D source/apps/web-admin/.next/server/chunks/ssr/node_modules_next_f9424c9d._.js.map
+ M source/apps/web-admin/.next/server/middleware-build-manifest.js
+ M source/apps/web-admin/.next/server/pages-manifest.json
+ M source/apps/web-admin/.next/server/pages/404.html
+ M source/apps/web-admin/.next/server/pages/500.html
+ M source/apps/web-admin/.next/server/pages/_error.js
+ M source/apps/web-admin/.next/server/pages/_error.js.nft.json
+ M source/apps/web-admin/.next/server/pages/admin/dashboard.html
+ M source/apps/web-admin/.next/server/pages/admin/dashboard.js.nft.json
+ M source/apps/web-admin/.next/server/pages/admin/dashboard/build-manifest.json
+ M source/apps/web-admin/.next/server/pages/admin/dashboard/client-build-manifest.json
+ M source/apps/web-admin/.next/server/pages/admin/diagnostics.html
+ M source/apps/web-admin/.next/server/pages/admin/diagnostics.js.nft.json
+ M source/apps/web-admin/.next/server/pages/admin/diagnostics/build-manifest.json
+ M source/apps/web-admin/.next/server/pages/admin/diagnostics/client-build-manifest.json
+ M source/apps/web-admin/.next/server/pages/admin/login.html
+ M source/apps/web-admin/.next/server/pages/admin/login.js.nft.json
+ M source/apps/web-admin/.next/server/pages/admin/login/build-manifest.json
+ M source/apps/web-admin/.next/server/pages/admin/login/client-build-manifest.json
+ M source/apps/web-admin/.next/server/pages/admin/merchants.html
+ M source/apps/web-admin/.next/server/pages/admin/merchants.js.nft.json
+ M source/apps/web-admin/.next/server/pages/admin/merchants/build-manifest.json
+ M source/apps/web-admin/.next/server/pages/admin/merchants/client-build-manifest.json
+ M source/apps/web-admin/.next/server/pages/admin/offers.html
+ M source/apps/web-admin/.next/server/pages/admin/offers.js.nft.json
+ M source/apps/web-admin/.next/server/pages/admin/offers/build-manifest.json
+ M source/apps/web-admin/.next/server/pages/admin/offers/client-build-manifest.json
+ M source/apps/web-admin/.next/server/pages/admin/users.html
+ M source/apps/web-admin/.next/server/pages/admin/users.js.nft.json
+ M source/apps/web-admin/.next/server/pages/admin/users/build-manifest.json
+ M source/apps/web-admin/.next/server/pages/admin/users/client-build-manifest.json
+ D source/apps/web-admin/.next/static/7nSBCYF48OtAn8mrhCAWU/_buildManifest.js
+ D source/apps/web-admin/.next/static/7nSBCYF48OtAn8mrhCAWU/_clientMiddlewareManifest.json
+ D source/apps/web-admin/.next/static/7nSBCYF48OtAn8mrhCAWU/_ssgManifest.js
+ D source/apps/web-admin/.next/static/chunks/03ef6a5b8b80e373.js
+ D source/apps/web-admin/.next/static/chunks/077fb83f84256c44.js
+ D source/apps/web-admin/.next/static/chunks/097a5ad357dd255f.js
+ D source/apps/web-admin/.next/static/chunks/1e5afef80e035110.js
+ D source/apps/web-admin/.next/static/chunks/20aefb63af8bfc73.js
+ D source/apps/web-admin/.next/static/chunks/34a182be16e80c1b.js
+ D source/apps/web-admin/.next/static/chunks/39f16b88538e2f68.js
+ D source/apps/web-admin/.next/static/chunks/4d152b6efacb9eff.js
+ D source/apps/web-admin/.next/static/chunks/5f78e8d6ab034f4e.js
+ D source/apps/web-admin/.next/static/chunks/6b01f113a960ff30.js
+ D source/apps/web-admin/.next/static/chunks/71513bc03ddb40f1.js
+ D source/apps/web-admin/.next/static/chunks/be9108b90869004c.js
+ D source/apps/web-admin/.next/static/chunks/ec251e510b8ff283.js
+ D source/apps/web-admin/.next/static/chunks/turbopack-3893d63edba09f33.js
+ D source/apps/web-admin/.next/static/chunks/turbopack-4069a3abfad4b8cd.js
+ D source/apps/web-admin/.next/static/chunks/turbopack-48127b9aa38b594e.js
+ D source/apps/web-admin/.next/static/chunks/turbopack-519ac84cd51fecda.js
+ D source/apps/web-admin/.next/static/chunks/turbopack-937f30744a4ac0e2.js
+ D source/apps/web-admin/.next/static/chunks/turbopack-97623aa1f2a8a591.js
+ M source/apps/web-admin/.next/trace
+ M source/apps/web-admin/.next/trace-build
+ M source/apps/web-admin/.next/types/routes.d.ts
+ M source/apps/web-admin/.next/types/validator.ts
+ M source/apps/web-admin/package-lock.json
+ M source/apps/web-admin/package.json
+ M source/backend/firebase-functions/jest.config.js
+ M source/backend/firebase-functions/jest.setup.js
+ M source/backend/firebase-functions/package.json
+ M source/backend/firebase-functions/src/core/admin.ts
+ M source/backend/firebase-functions/src/core/offers.ts
+ M source/backend/firebase-functions/src/core/points.ts
+ M source/backend/firebase-functions/src/index.ts
+ M spec/requirements.yaml
+ M tools/gates/cto_verify.py
+?? COPILOT_100_FULLSTACK_ZERO_GAPS.md
+?? CUSTOMER_APP_AUTOPILOT_COMPLETE.md
+?? CUSTOMER_APP_TODAY_0_GAPS.md
+?? HARD_GATE_V2_FINAL_VERDICT.md
+?? PHASE3_DELIVERY_SUMMARY.md
+?? PHASE3_DOCUMENTATION_INDEX.md
+?? PHASE3_FINAL_COMPLETION_SUMMARY.md
+?? PHASE3_FINAL_IMPLEMENTATION_RECORD.md
+?? PHASE3_VERIFICATION_FINAL.md
+?? QUICK_REFERENCE.md
+?? WEEK_DELTA_REPORT.md
+?? docs/BLOCKER_ADMIN_ANALYTICS_FRAUD.md
+?? docs/BLOCKER_ADMIN_PAYMENT_CAMPAIGNS.md
+?? docs/BLOCKER_ADMIN_POINTS_MANAGEMENT.md
+?? docs/BLOCKER_ADMIN_WEB_TESTS.md
+?? docs/BLOCKER_ANTI-FRAUD_RATE_LIMITING.md
+?? docs/BLOCKER_BACKEND_DATA_QUALITY.md
+?? docs/BLOCKER_BACKEND_ORPHAN_FUNCTIONS.md
+?? docs/BLOCKER_BACKEND_SECURITY_001.md
+?? docs/BLOCKER_BACKEND_UNIT_TESTS.md
+?? docs/BLOCKER_CAMPAIGN_STATS.md
+?? docs/BLOCKER_CREATE_PUSH_CAMPAIGN.md
+?? docs/BLOCKER_DAILY_STATS_DASHBOARD.md
+?? docs/BLOCKER_EXPIRE_POINTS_MANUAL.md
+?? docs/BLOCKER_FCM_TOKEN_REGISTRATION_VIA_BACKEND.md
+?? docs/BLOCKER_FIRESTORE_COMPOSITE_INDEXES.md
+?? docs/BLOCKER_FIRESTORE_CONFIG.md
+?? docs/BLOCKER_FIRESTORE_SECURITY_RULES.md
+?? docs/BLOCKER_FRAUD_DETECTION_DASHBOARD.md
+?? docs/BLOCKER_MANUAL_POINTS_ADJUSTMENT.md
+?? docs/BLOCKER_MEDIA_UPLOAD_IMAGES_VIDEOS.md
+?? docs/BLOCKER_MERCHANT_APP_FEATURES.md
+?? docs/BLOCKER_MERCHANT_APP_UNIT_TESTS.md
+?? docs/BLOCKER_POINTS_TRANSFER_USER-TO-USER.md
+?? docs/BLOCKER_QATAR_BASELINE_WEAK.md
+?? docs/BLOCKER_REDEMPTION_AUDIT_LOGS.md
+?? docs/BLOCKER_REDEMPTION_LOGS_HISTORY.md
+?? docs/BLOCKER_REMOVE_MOCK_DATA_FROM_ANALYTICS.md
+?? docs/BLOCKER_RESOLVE_ORPHAN_FUNCTIONS.md
+?? docs/BLOCKER_SEND_CAMPAIGN.md
+?? docs/BLOCKER_STAFF_ACCOUNT_MANAGEMENT.md
+?? docs/BLOCKER_STORE_PROFILE_MANAGEMENT.md
+?? docs/BLOCKER_STRIPE_INTEGRATION_PAGES.md
+?? docs/BLOCKER_SUBSCRIPTION_STATUS_DISPLAY.md
+?? docs/CEO_QATAR_CLONE_STATUS.md
+?? docs/CLONE_PARITY_REPORT_QATAR.md
+?? docs/CTO_ADMIN_REALITY_REPORT.md
+?? docs/CTO_ADMIN_STATUS_REPORT.md
+?? docs/CTO_GAP_AUDIT.md
+?? docs/CTO_NEXT_FIXES.md
+?? docs/CTO_PHASE2_PARTIALS_LIST.md
+?? docs/CUSTOMER_APP_TODAY_INPUTS.md
+?? docs/MASTER_FILE_EXECUTION_STATUS.md
+?? docs/PM_BACKLOG.md
+?? docs/QATAR_BASELINE_FEATURES.yaml
+?? docs/QATAR_BASELINE_SOURCES.md
+?? docs/REALITY_MAP_FULL_STACK.md
+?? docs/parity/evidence/fullstack/20260116_151127/
+?? local-ci/verification/admin_report_evidence/
+?? local-ci/verification/autopilot_fail.txt
+?? local-ci/verification/autopilot_pass.txt
+?? local-ci/verification/ceo_bundle_20260116_2320/
+?? local-ci/verification/ceo_bundle_latest/
+?? local-ci/verification/clone_parity/
+?? local-ci/verification/cto_verify_report.json
+?? local-ci/verification/cto_verify_report_after_infra.json
+?? local-ci/verification/cto_verify_report_after_last_run.json
+?? local-ci/verification/cto_verify_report_phase2.json
+?? local-ci/verification/cto_verify_report_phase2_final.json
+?? local-ci/verification/cto_verify_report_phase3.json
+?? local-ci/verification/cto_verify_report_phase3_blockers_fix.json
+?? local-ci/verification/cto_verify_report_phase4.json
+?? local-ci/verification/customer_today_failures.json
+?? local-ci/verification/e2e_proof_pack/
+?? local-ci/verification/exit_allow_blocked.txt
+?? local-ci/verification/exit_normal.txt
+?? local-ci/verification/generate_summary.py
+?? local-ci/verification/hang_ps.txt
+?? local-ci/verification/hang_ps_after.txt
+?? local-ci/verification/hang_ps_before.txt
+?? local-ci/verification/hard_gate_v2_report.json
+?? local-ci/verification/missing_anchors.json
+?? local-ci/verification/phase4_evidence/
+?? local-ci/verification/phase4_summary.json
+?? local-ci/verification/reality_gate/
+?? local-ci/verification/summary.json
+?? local-ci/verification/surface_map.json
+?? source/apps/mobile-customer/lib/screens/auth/whatsapp_otp_screen.dart
+?? source/apps/mobile-customer/lib/screens/auth/whatsapp_phone_screen.dart
+?? source/apps/mobile-customer/lib/screens/favorites_screen.dart
+?? source/apps/mobile-customer/lib/screens/redemption/
+?? source/apps/mobile-customer/lib/services/deep_link_service.dart
+?? source/apps/mobile-customer/local-ci/
+?? source/apps/mobile-customer/test/screens/
+?? source/apps/mobile-customer/test/services/
+?? source/apps/mobile-merchant/lib/screens/auth/whatsapp_otp_screen.dart
+?? source/apps/mobile-merchant/lib/screens/auth/whatsapp_phone_screen.dart
+?? source/apps/mobile-merchant/lib/screens/offer_creation_screen.dart
+?? source/apps/mobile-merchant/lib/screens/profile_edit_screen.dart
+?? source/apps/mobile-merchant/lib/screens/redemption_approval_screen.dart
+?? source/apps/mobile-merchant/lib/screens/redemption_history_screen.dart
+?? source/apps/mobile-merchant/lib/screens/staff_management_screen.dart
+?? source/apps/mobile-merchant/lib/screens/subscription_screen.dart
+?? source/apps/mobile-merchant/lib/services/offer_service.dart
+?? source/apps/mobile-merchant/lib/services/redemption_service.dart
+?? source/apps/mobile-merchant/lib/services/staff_service.dart
+?? source/apps/mobile-merchant/lib/services/subscription_service.dart
+?? source/apps/mobile-merchant/src/
+?? source/apps/mobile-merchant/test/offer_creation_test.dart
+?? source/apps/mobile-merchant/test/redemption_approval_test.dart
+?? source/apps/web-admin/components/AuditLogsTable.tsx
+?? source/apps/web-admin/components/BillingPanel.tsx
+?? source/apps/web-admin/components/CampaignForm.tsx
+?? source/apps/web-admin/components/CampaignSendForm.tsx
+?? source/apps/web-admin/components/CampaignStatsTable.tsx
+?? source/apps/web-admin/components/FraudPanel.tsx
+?? source/apps/web-admin/components/PointsAdjustForm.tsx
+?? source/apps/web-admin/components/PointsExpireForm.tsx
+?? source/apps/web-admin/components/PointsTransferForm.tsx
+?? source/apps/web-admin/components/StatsPanel.tsx
+?? source/apps/web-admin/pages/admin/audit-logs.tsx
+?? source/apps/web-admin/pages/admin/billing.tsx
+?? source/apps/web-admin/pages/admin/campaigns/
+?? source/apps/web-admin/pages/admin/fraud.tsx
+?? source/apps/web-admin/pages/admin/points.tsx
+?? source/apps/web-admin/playwright.config.ts
+?? source/apps/web-admin/src/
+?? source/apps/web-admin/tests/
+?? source/backend/firebase-functions/src/__tests__/fcm.test.ts
+?? source/backend/firebase-functions/src/__tests__/points.test.ts
+?? source/backend/firebase-functions/src/access/
+?? source/backend/firebase-functions/src/analytics/
+?? source/backend/firebase-functions/src/core/merchants.ts
+?? source/backend/firebase-functions/src/core/redemptions.ts
+?? source/backend/firebase-functions/src/fcm.ts
+?? source/backend/firebase-functions/src/fraud.ts
+?? source/backend/firebase-functions/src/payments/
+?? source/backend/firebase-functions/src/webhooks/
+?? source/backend/firebase-functions/src/whatsapp.test.ts.skip
+?? spec/REALITY_MAP_FULL_STACK.yaml
+?? spec/requirements.yaml.backup
+?? tools/autopilot_customer_0gaps.py
+?? tools/clone_parity/
+?? tools/collect_build_test_evidence.sh
+?? tools/compute_reality_counts.py
+?? tools/compute_spec_counts.py
+?? tools/e2e/
+?? tools/fix_blockers_autogen.py
+?? tools/fix_missing_blocker_docs.py
+?? tools/gates/cto_verify.py.old
+?? tools/gates/hard_gate_v2_customer.py
+?? tools/gates/reality_gate.sh
+?? tools/gates/reality_gate_new.sh
+?? tools/gates/run_reality_gate.sh
+?? tools/generate_admin_report_data.py
+?? tools/generate_admin_report_final.py
+?? tools/generate_cto_admin_report.py
+?? tools/generate_cto_verdict.py
+?? tools/generate_evidence_pack.py
+?? tools/phase4_add_anchors.py
+?? tools/phase4_create_anchor_files.py
+?? tools/phase4_extract_blocks.py
+?? tools/phase4_full_completion.py
+?? tools/print_gate_failures.py
+?? tools/run_with_timeout.py

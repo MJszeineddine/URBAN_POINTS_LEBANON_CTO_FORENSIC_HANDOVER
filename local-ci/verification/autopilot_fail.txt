@@ -1,0 +1,2 @@
+FAIL: Requirement still failing after passing customer analyze/test. You must implement missing wiring/backend/UI/tests for CUST-REDEEM-003 in code, then re-run autopilot.
+See local-ci/verification/cto_verify_report.json and gate_run.log.

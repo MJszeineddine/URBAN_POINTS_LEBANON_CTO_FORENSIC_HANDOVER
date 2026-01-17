@@ -1,0 +1,1 @@
+d9c772aea5ab5f754ad5df4054f3308942f94e79c0100f4e58bdc9105aee9522  local-ci/verification/reality_gate/REALITY_EVIDENCE_PACK.md

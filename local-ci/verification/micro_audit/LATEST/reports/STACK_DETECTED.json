@@ -1,0 +1,106 @@
+{
+  "timestamp_utc": "2026-01-17T02:57:00Z",
+  "git_commit": "2e0398c",
+  "surfaces": {
+    "mobile_customer": {
+      "path": "source/apps/mobile-customer",
+      "anchors": [
+        "source/apps/mobile-customer/pubspec.yaml#L1-L30"
+      ],
+      "language": "Dart",
+      "framework": "Flutter",
+      "sdk_version": "^3.9.2",
+      "firebase_packages": [
+        "firebase_core",
+        "cloud_firestore",
+        "firebase_auth",
+        "cloud_functions",
+        "firebase_messaging",
+        "firebase_crashlytics"
+      ],
+      "testing": {
+        "unit": "flutter test",
+        "integration": "integration_test/pain_test.dart"
+      }
+    },
+    "mobile_merchant": {
+      "path": "source/apps/mobile-merchant",
+      "anchors": [
+        "source/apps/mobile-merchant/pubspec.yaml#L1-L30"
+      ],
+      "language": "Dart",
+      "framework": "Flutter",
+      "sdk_version": "^3.9.2",
+      "firebase_packages": [
+        "firebase_core",
+        "cloud_firestore",
+        "firebase_auth",
+        "cloud_functions",
+        "firebase_messaging",
+        "firebase_crashlytics"
+      ],
+      "testing": {
+        "unit": "flutter test",
+        "integration": "integration_test/pain_test.dart"
+      }
+    },
+    "web_admin": {
+      "path": "source/apps/web-admin",
+      "anchors": [
+        "source/apps/web-admin/package.json#L1-L40"
+      ],
+      "language": "TypeScript",
+      "framework": "Next.js",
+      "next_version": "^16.1.1",
+      "react_version": "^18.3.1",
+      "firebase_sdk": "^10.14.1",
+      "testing": {
+        "playwright": "@playwright/test ^1.40.0",
+        "unit": "No tests (echo skipping)"
+      }
+    }
+  },
+  "backend": {
+    "firebase_functions": {
+      "path": "source/backend/firebase-functions",
+      "anchors": [
+        "source/backend/firebase-functions/package.json#L1-L40"
+      ],
+      "node_version": "20",
+      "dependencies": [
+        "firebase-admin@^12.0.0",
+        "firebase-functions@^4.9.0",
+        "stripe@^15.0.0",
+        "zod@^3.23.8",
+        "winston@^3.11.0",
+        "@sentry/node@^7.85.0"
+      ],
+      "testing": {
+        "jest": "^29.5.14",
+        "script": "npm test"
+      }
+    },
+    "rest_api": {
+      "path": "source/backend/rest-api",
+      "anchors": [
+        "source/backend/rest-api/package.json#L1-L40"
+      ],
+      "language": "TypeScript",
+      "framework": "Express",
+      "database": "PostgreSQL (pg@^8.11.3)",
+      "engines": {
+        "node": ">=18.0.0"
+      },
+      "security": [
+        "helmet",
+        "express-rate-limit",
+        "cors",
+        "bcrypt",
+        "jsonwebtoken"
+      ],
+      "testing": {
+        "jest": "jest --coverage --passWithNoTests"
+      }
+    }
+  }
+}

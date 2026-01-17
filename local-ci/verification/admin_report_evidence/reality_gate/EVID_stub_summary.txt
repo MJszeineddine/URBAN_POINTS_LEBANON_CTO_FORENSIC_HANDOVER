@@ -1,0 +1,137 @@
+=== STUB_SCAN_SUMMARY.JSON (head -120) ===
+{
+  "total_hits": 429,
+  "files_scanned": 113,
+  "top_50": [
+    {
+      "file": "source/backend/firebase-functions/src/__tests__/pin-system.test.ts",
+      "count": 71,
+      "critical": false
+    },
+    {
+      "file": "source/backend/firebase-functions/src/__tests__/pushCampaigns.test.ts",
+      "count": 24,
+      "critical": false
+    },
+    {
+      "file": "source/backend/firebase-functions/src/__tests__/integration.test.ts",
+      "count": 18,
+      "critical": false
+    },
+    {
+      "file": "tools/reality_diff_gate.sh",
+      "count": 17,
+      "critical": false
+    },
+    {
+      "file": "source/ARTIFACTS/GAP_CLOSURE/COMPREHENSIVE_FRONTEND_BACKEND_DESIGN_GAPS.md",
+      "count": 13,
+      "critical": false
+    },
+    {
+      "file": "source/backend/firebase-functions/src/__tests__/paymentWebhooks.test.ts",
+      "count": 13,
+      "critical": false
+    },
+    {
+      "file": "source/ARTIFACTS/ZERO_GAPS/diff.patch",
+      "count": 12,
+      "critical": false
+    },
+    {
+      "file": "source/backend/firebase-functions/coverage/lcov-report/src/core/points.ts.html",
+      "count": 12,
+      "critical": false
+    },
+    {
+      "file": "source/backend/firebase-functions/coverage/src/core/points.ts.html",
+      "count": 12,
+      "critical": false
+    },
+    {
+      "file": "tools/gates/cto_verify.py",
+      "count": 11,
+      "critical": false
+    },
+    {
+      "file": "source/ARTIFACTS/ZERO_GAPS/PHASE3_TESTING_REPORT.md",
+      "count": 10,
+      "critical": false
+    },
+    {
+      "file": "source/backend/firebase-functions/src/__tests__/core-admin.test.ts",
+      "count": 10,
+      "critical": false
+    },
+    {
+      "file": "source/backend/firebase-functions/src/__tests__/alert-functions.test.ts",
+      "count": 8,
+      "critical": false
+    },
+    {
+      "file": "source/backend/firebase-functions/package-lock.json",
+      "count": 7,
+      "critical": false
+    },
+    {
+      "file": "source/backend/firebase-functions/src/__tests__/pin-system-qa.test.ts",
+      "count": 7,
+      "critical": false
+    },
+    {
+      "file": "source/backend/rest-api/package-lock.json",
+      "count": 7,
+      "critical": false
+    },
+    {
+      "file": "tools/gates/hard_gate_v2_customer.py",
+      "count": 7,
+      "critical": false
+    },
+    {
+      "file": "tools/feature_completeness_gate.sh",
+      "count": 7,
+      "critical": false
+    },
+    {
+      "file": "source/backend/firebase-functions/src/__tests__/core-points.test.ts",
+      "count": 6,
+      "critical": false
+    },
+    {
+      "file": "source/ARTIFACTS/PHASE_6_7/reports/PHASE6_REPORT.md",
+      "count": 4,
+      "critical": false
+    },
+    {
+      "file": "source/ARTIFACTS/ZERO_GAPS/EXECUTIVE_SUMMARY.md",
+      "count": 4,
+      "critical": false
+    },
+    {
+      "file": "source/backend/firebase-functions/lib/sms.js",
+      "count": 4,
+      "critical": false
+    },
+    {
+      "file": "source/backend/firebase-functions/coverage/lcov-report/src/core/admin.ts.html",
+      "count": 4,
+      "critical": false
+    },
+    {
+
+
+=== STUB ANALYSIS ===
+total_hits: 429
+critical_hits_count: 0
+top_10_noncritical:
+  1. source/backend/firebase-functions/src/__tests__/pin-system.test.ts (71 hits)
+  2. source/backend/firebase-functions/src/__tests__/pushCampaigns.test.ts (24 hits)
+  3. source/backend/firebase-functions/src/__tests__/integration.test.ts (18 hits)
+  4. tools/reality_diff_gate.sh (17 hits)
+  5. source/ARTIFACTS/GAP_CLOSURE/COMPREHENSIVE_FRONTEND_BACKEND_DESIGN_GAPS.md (13 hits)
+  6. source/backend/firebase-functions/src/__tests__/paymentWebhooks.test.ts (13 hits)
+  7. source/ARTIFACTS/ZERO_GAPS/diff.patch (12 hits)
+  8. source/backend/firebase-functions/coverage/lcov-report/src/core/points.ts.html (12 hits)
+  9. source/backend/firebase-functions/coverage/src/core/points.ts.html (12 hits)
+  10. tools/gates/cto_verify.py (11 hits)

@@ -1,0 +1,13 @@
+id,area,item,status,blocker_reason,evidence_path,next_action
+GAP-001,E2E Journeys,Minimum 5 real journey packs,NOT_PROVEN,No packs found under e2e_journeys,local-ci/verification/e2e_journeys/,Produce 5+ packs with RUN.log+UI+manifest.json+verdict.json
+GAP-002,Backend Emulator,Firebase emulator proof,BLOCKED,firebase.json missing,local-ci/verification/e2e_proof_pack/backend_emulator/VERDICT.json,Add firebase.json and run e2e_backend_emulator_proof.sh
+GAP-003,Web Admin,E2E Playwright run,BLOCKED,Environment prerequisites not met,local-ci/verification/e2e_proof_pack/web_admin/VERDICT.json,Install browsers and run e2e_web_admin_playwright_proof.sh
+GAP-004,Mobile Customer,Integration test proof,BLOCKED,No device/emulator configured,local-ci/verification/e2e_proof_pack/mobile_customer/VERDICT.json,Configure emulator/device and run e2e_mobile_customer_integration_proof.sh
+GAP-005,Mobile Merchant,Integration test proof,BLOCKED,No device/emulator configured,local-ci/verification/e2e_proof_pack/mobile_merchant/VERDICT.json,Configure emulator/device and run e2e_mobile_merchant_integration_proof.sh
+GAP-006,REST API,E2E exercised endpoints,NOT_PROVEN,No journey invoking Express routes,source/backend/rest-api/,Add journey pack covering REST flows and record metrics
+GAP-007,Admin Campaigns,Create+Publish flow,NOT_PROVEN,No Web Admin journey artifacts,source/apps/web-admin/,Write Playwright scenario and produce journey pack artifacts
+GAP-008,Fraud/Rate Limiting,Guardrails under load,NOT_PROVEN,No rate-limit evidence,docs/BLOCKER_ANTI-FRAUD_RATE_LIMITING.md,Create stress test journey and capture 429/guards
+GAP-009,Stripe Payments,Payment intent flow,NOT_PROVEN,No Stripe journey artifacts,source/backend/firebase-functions/,Add payment scenario and evidence pack
+GAP-010,Clone Parity,Recompute after proofs,NOT_PROVEN,Parity stale at 70.0,local-ci/verification/clone_parity/,Run parity tool post proofs and store VERDICT.json
+GAP-011,Performance,REST API p95/p99,NOT_PROVEN,No perf metrics collected,docs/PERFORMANCE_AND_SCALE.md,Generate perf artifacts under local-ci/verification/perf
+GAP-012,Crash/Telemetry,Mobile crashlytics evidence,NOT_PROVEN,No telemetry artifacts,source/apps/mobile-*,Add crash/telemetry metrics to perf artifacts

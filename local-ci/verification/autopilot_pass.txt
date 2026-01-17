@@ -1,0 +1,2 @@
+PASS: Customer CUST-* + TEST-CUSTOMER-* show no remaining failures in gate report.
+See gate_run.log, customer_app_analyze.log, customer_app_test.log, cto_verify_report.json

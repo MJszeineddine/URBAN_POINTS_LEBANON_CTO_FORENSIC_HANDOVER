@@ -1,0 +1,34 @@
+=== ALL EXIT FILES ===
+
+FILE: local-ci/verification/reality_gate/backend_build_exit.txt
+0
+
+FILE: local-ci/verification/reality_gate/backend_test_exit.txt
+0
+
+FILE: local-ci/verification/reality_gate/cto_gate_normal_exit.txt
+0
+
+FILE: local-ci/verification/reality_gate/customer_analyze_exit.txt
+0
+
+FILE: local-ci/verification/reality_gate/customer_test_exit.txt
+0
+
+FILE: local-ci/verification/reality_gate/merchant_analyze_exit.txt
+0
+
+FILE: local-ci/verification/reality_gate/merchant_test_exit.txt
+0
+
+FILE: local-ci/verification/reality_gate/reality_gate_exit.txt
+0
+
+FILE: local-ci/verification/reality_gate/stub_scan_exit.txt
+0
+
+FILE: local-ci/verification/reality_gate/web_build_exit.txt
+0
+
+FILE: local-ci/verification/reality_gate/web_test_exit.txt
+0

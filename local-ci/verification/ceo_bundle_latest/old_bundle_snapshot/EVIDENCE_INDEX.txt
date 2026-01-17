@@ -1,0 +1,13 @@
+Evidence Index
+
+- docs/CTO_ADMIN_REALITY_REPORT.md
+- local-ci/verification/reality_gate/exits.json
+- local-ci/verification/e2e_proof_pack/VERDICT.json
+- local-ci/verification/e2e_proof_pack/flow_proof_*.md
+- docs/QATAR_BASELINE_FEATURES.yaml
+- docs/QATAR_BASELINE_SOURCES.md
+- local-ci/verification/clone_parity/clone_parity.json
+- local-ci/verification/clone_parity/feature_matrix.csv
+- docs/CLONE_PARITY_REPORT_QATAR.md
+- docs/CEO_QATAR_CLONE_STATUS.md
+- WEEK_DELTA_REPORT.md

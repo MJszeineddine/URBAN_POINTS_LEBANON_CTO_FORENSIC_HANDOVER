@@ -1,0 +1,9 @@
+{
+  "reality_gate_exit": 0,
+  "all_exits_zero": true,
+  "reality_build_test_pass": true,
+  "e2e_proof_present": false,
+  "critical_stub_hits_count": 0,
+  "reality_completion_percent": 70.0,
+  "explanation": "Reality % = 0 if builds fail, 70 if builds pass without E2E proof, 100 if builds pass WITH E2E proof"
+}

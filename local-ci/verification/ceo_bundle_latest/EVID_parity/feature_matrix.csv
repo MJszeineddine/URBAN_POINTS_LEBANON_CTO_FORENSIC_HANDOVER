@@ -1,0 +1,10 @@
+id,title,surface,implemented,anchored,has_real_proof,score
+QTR-001,Subscription required for usage,backend,1,1,0,0.7
+QTR-002,QR redemption flow,backend,1,1,0,0.7
+QTR-003,Offer approval workflow,admin,1,1,0,0.7
+QTR-004,Points balance tracking,backend,1,1,0,0.7
+QTR-005,Mobile apps functional,customer,1,1,0,0.7
+QTR-006,Phone + OTP auth,backend,1,1,0,0.7
+QTR-007,Arabic + English,customer,1,1,0,0.7
+QTR-008,Location-based prioritization,customer,1,1,0,0.7
+QTR-009,Push notifications,backend,1,1,0,0.7

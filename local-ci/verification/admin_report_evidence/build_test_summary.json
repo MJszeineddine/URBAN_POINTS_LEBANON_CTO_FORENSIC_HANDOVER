@@ -1,0 +1,18 @@
+{
+  "exits": {
+    "cto_gate": 0,
+    "backend_build": 0,
+    "backend_test": 0,
+    "web_build": 0,
+    "web_test": 0,
+    "merchant_analyze": 0,
+    "merchant_test": 0,
+    "customer_analyze": 0,
+    "customer_test": 0,
+    "stub_scan": 0,
+    "critical_stub_hits": 0
+  },
+  "overall_pass": true,
+  "failing_components": [],
+  "critical_stub_hits_count": 0
+}

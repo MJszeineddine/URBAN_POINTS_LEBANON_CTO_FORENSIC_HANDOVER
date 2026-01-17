@@ -1,0 +1,163 @@
+{
+  "timestamp_utc": "2026-01-16T23:13:44.501829Z",
+  "git_commit": "2e0398c",
+  "baseline_path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/docs/QATAR_BASELINE_FEATURES.yaml",
+  "total_features": 9,
+  "clone_percent": 70.0,
+  "scores": [
+    {
+      "id": "QTR-001",
+      "title": "Subscription required for usage",
+      "surface": "backend",
+      "implemented": true,
+      "anchored": true,
+      "has_real_proof": false,
+      "score": 0.7,
+      "flows": [
+        "checkSubscriptionAccess gate active",
+        "Denied response for inactive subscriptions"
+      ],
+      "description": "Access to app features requires an active merchant subscription."
+    },
+    {
+      "id": "QTR-002",
+      "title": "QR redemption flow",
+      "surface": "backend",
+      "implemented": true,
+      "anchored": true,
+      "has_real_proof": false,
+      "score": 0.7,
+      "flows": [
+        "Generate QR \u2192 Redeem \u2192 Invalidate token",
+        "Redemption fails after 60s"
+      ],
+      "description": "Secure QR redemption with single-use and time-bound validity."
+    },
+    {
+      "id": "QTR-003",
+      "title": "Offer approval workflow",
+      "surface": "admin",
+      "implemented": true,
+      "anchored": true,
+      "has_real_proof": false,
+      "score": 0.7,
+      "flows": [
+        "Create offer (draft) \u2192 Submit (pending) \u2192 Admin approve (active)"
+      ],
+      "description": "Moderation workflow for offers including draft, pending, and active states."
+    },
+    {
+      "id": "QTR-004",
+      "title": "Points balance tracking",
+      "surface": "backend",
+      "implemented": true,
+      "anchored": true,
+      "has_real_proof": false,
+      "score": 0.7,
+      "flows": [
+        "Earn points \u2192 Firestore transaction \u2192 Balance updated",
+        "Redeem points \u2192 Firestore transaction \u2192 Audit entry"
+      ],
+      "description": "Points accrual and redemption tracked with transactional integrity and audit logs."
+    },
+    {
+      "id": "QTR-005",
+      "title": "Mobile apps functional",
+      "surface": "customer",
+      "implemented": true,
+      "anchored": true,
+      "has_real_proof": false,
+      "score": 0.7,
+      "flows": [
+        "Launch app \u2192 Navigate core flows \u2192 Backend methods invoked"
+      ],
+      "description": "Customer and merchant mobile applications operate with wired backend methods."
+    },
+    {
+      "id": "QTR-006",
+      "title": "Phone + OTP auth",
+      "surface": "backend",
+      "implemented": true,
+      "anchored": true,
+      "has_real_proof": false,
+      "score": 0.7,
+      "flows": [
+        "Enter phone \u2192 Receive OTP \u2192 Verify \u2192 Authenticated"
+      ],
+      "description": "Phone-based authentication using one-time passwords delivered via SMS."
+    },
+    {
+      "id": "QTR-007",
+      "title": "Arabic + English",
+      "surface": "customer",
+      "implemented": true,
+      "anchored": true,
+      "has_real_proof": false,
+      "score": 0.7,
+      "flows": [
+        "Switch language \u2192 UI renders correctly"
+      ],
+      "description": "Bilingual user interface supporting Arabic and English locales."
+    },
+    {
+      "id": "QTR-008",
+      "title": "Location-based prioritization",
+      "surface": "customer",
+      "implemented": true,
+      "anchored": true,
+      "has_real_proof": false,
+      "score": 0.7,
+      "flows": [
+        "Detect location \u2192 Sort offers by proximity"
+      ],
+      "description": "Offer listing prioritizes nearby offers rather than national-only browsing."
+    },
+    {
+      "id": "QTR-009",
+      "title": "Push notifications",
+      "surface": "backend",
+      "implemented": true,
+      "anchored": true,
+      "has_real_proof": false,
+      "score": 0.7,
+      "flows": [
+        "Create campaign \u2192 Send push \u2192 User receives notification"
+      ],
+      "description": "Push delivery for campaigns and events via FCM."
+    }
+  ],
+  "buckets": {
+    "cloned_proven": [],
+    "cloned_not_proven": [
+      "QTR-001",
+      "QTR-002",
+      "QTR-003",
+      "QTR-004",
+      "QTR-005",
+      "QTR-006",
+      "QTR-007",
+      "QTR-008",
+      "QTR-009"
+    ],
+    "gap_partial_missing": []
+  },
+  "evidence": {
+    "spec_ready": 82,
+    "spec_total": 82,
+    "reality_exits": {
+      "cto_gate": 0,
+      "backend_build": 0,
+      "backend_test": 0,
+      "web_build": 0,
+      "web_test": 0,
+      "merchant_analyze": 0,
+      "merchant_test": 0,
+      "customer_analyze": 0,
+      "customer_test": 0,
+      "stub_scan": 0,
+      "critical_stub_hits": 0
+    },
+    "e2e_artifacts_found_count": 7,
+    "e2e_artifacts_valid_count": 0
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "timestamp": "2026-01-16T14:56:55.930619",
+  "status": "FAIL",
+  "checks": {
+    "requirement_status": {
+      "passed": false,
+      "failures": [
+        "MERCH-OFFER-006: Status is MISSING, must be READY or BLOCKED",
+        "MERCH-PROFILE-001: Status is PARTIAL, must be READY or BLOCKED",
+        "MERCH-REDEEM-004: Status is PARTIAL, must be READY or BLOCKED",
+        "MERCH-REDEEM-005: Status is MISSING, must be READY or BLOCKED",
+        "MERCH-SUBSCRIPTION-001: Status is PARTIAL, must be READY or BLOCKED",
+        "MERCH-STAFF-001: Status is MISSING, must be READY or BLOCKED",
+        "ADMIN-POINTS-001: Status is MISSING, must be READY or BLOCKED",
+        "ADMIN-POINTS-002: Status is MISSING, must be READY or BLOCKED",
+        "ADMIN-POINTS-003: Status is MISSING, must be READY or BLOCKED",
+        "ADMIN-ANALYTICS-001: Status is PARTIAL, must be READY or BLOCKED",
+        "ADMIN-ANALYTICS-002: Status is PARTIAL, must be READY or BLOCKED",
+        "ADMIN-FRAUD-001: Status is MISSING, must be READY or BLOCKED",
+        "ADMIN-PAYMENT-004: Status is MISSING, must be READY or BLOCKED",
+        "ADMIN-CAMPAIGN-001: Status is MISSING, must be READY or BLOCKED",
+        "ADMIN-CAMPAIGN-002: Status is MISSING, must be READY or BLOCKED",
+        "ADMIN-CAMPAIGN-003: Status is MISSING, must be READY or BLOCKED",
+        "BACKEND-SECURITY-001: Status is MISSING, must be READY or BLOCKED",
+        "BACKEND-DATA-001: Status is MISSING, must be READY or BLOCKED",
+        "BACKEND-ORPHAN-001: Status is MISSING, must be READY or BLOCKED",
+        "TEST-MERCHANT-001: Status is MISSING, must be READY or BLOCKED",
+        "TEST-WEB-001: Status is MISSING, must be READY or BLOCKED",
+        "TEST-BACKEND-001: Status is MISSING, must be READY or BLOCKED"
+      ]
+    },
+    "requirement_anchors": {
+      "passed": true,
+      "failures": []
+    },
+    "anchor_files_exist": {
+      "passed": true,
+      "failures": []
+    },
+    "critical_modules_clean": {
+      "passed": true,
+      "failures": []
+    },
+    "test_logs_exist": {
+      "passed": true,
+      "failures": []
+    }
+  },
+  "summary": {
+    "total_checks": 5,
+    "passed_checks": 4,
+    "failed_checks": 1
+  }
+}

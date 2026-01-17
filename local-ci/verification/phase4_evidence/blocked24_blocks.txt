@@ -1,0 +1,288 @@
+- id: MERCH-OFFER-006
+  feature: Media Upload (Images/Videos)
+  status: READY
+  category: offer-management
+  surface: mobile-merchant
+  frontend_anchors:
+  - source/apps/mobile-merchant/lib/screens/offer_creation_screen.dart:OfferCreationScreen
+  - source/apps/mobile-merchant/lib/services/offer_service.dart:createOffer
+  backend_anchors:
+  - source/backend/firebase-functions/src/core/offers.ts:createOfferCallable
+  tests: []
+---
+- id: MERCH-PROFILE-001
+  feature: Store Profile Management
+  status: READY
+  category: store-profile
+  surface: mobile-merchant
+  frontend_anchors:
+  - source/apps/mobile-merchant/lib/screens/profile_edit_screen.dart:ProfileEditScreen
+  - source/apps/mobile-merchant/lib/services/merchant_service.dart:updateMerchantProfile
+  backend_anchors:
+  - source/backend/firebase-functions/src/core/merchants.ts:updateMerchantCallable
+  tests: []
+---
+- id: MERCH-REDEEM-004
+  feature: Redemption Logs/History
+  status: READY
+  category: redemption
+  surface: mobile-merchant
+  frontend_anchors:
+  - source/apps/mobile-merchant/lib/screens/redemption_history_screen.dart:RedemptionHistoryScreen
+  - source/apps/mobile-merchant/lib/services/redemption_service.dart:getRedemptionHistory
+  backend_anchors:
+  - source/backend/firebase-functions/src/core/redemptions.ts:getRedemptionHistoryCallable
+  tests: []
+---
+- id: MERCH-REDEEM-005
+  feature: Anti-Fraud Rate Limiting
+  status: READY
+  category: redemption
+  surface: mobile-merchant
+  frontend_anchors:
+  - source/apps/mobile-merchant/lib/screens/redemption_approval_screen.dart:RedemptionApprovalScreen
+  - source/apps/mobile-merchant/lib/services/redemption_service.dart:approveRedemption
+  backend_anchors:
+  - source/backend/firebase-functions/src/core/redemptions.ts:approveRedemptionCallable
+  tests: []
+---
+- id: MERCH-SUBSCRIPTION-001
+  feature: Subscription Status Display
+  status: READY
+  category: subscription
+  surface: mobile-merchant
+  frontend_anchors:
+  - source/apps/mobile-merchant/lib/screens/subscription_screen.dart:SubscriptionScreen
+  - source/apps/mobile-merchant/lib/services/subscription_service.dart:managePlan
+  backend_anchors:
+  - source/backend/firebase-functions/src/payments/stripe.ts:manageMerchantSubscriptionCallable
+  tests: []
+---
+- id: MERCH-STAFF-001
+  feature: Staff Account Management
+  status: READY
+  category: staff
+  surface: mobile-merchant
+  frontend_anchors:
+  - source/apps/mobile-merchant/lib/screens/staff_management_screen.dart:StaffManagementScreen
+  - source/apps/mobile-merchant/lib/services/staff_service.dart:manageStaff
+  backend_anchors:
+  - source/backend/firebase-functions/src/access/staffManagement.ts:manageStaffCallable
+  tests: []
+---
+- id: ADMIN-POINTS-001
+  feature: Manual Points Adjustment
+  status: READY
+  category: points-management
+  surface: web-admin
+  frontend_anchors:
+  - source/apps/web-admin/pages/admin/points.tsx:PointsAdjustPage
+  - source/apps/web-admin/components/PointsAdjustForm.tsx:PointsAdjustForm
+  backend_anchors:
+  - source/backend/firebase-functions/src/core/points.ts:adjustPointsCallable
+  tests: []
+---
+- id: ADMIN-POINTS-002
+  feature: Points Transfer (User-to-User)
+  status: READY
+  category: points-management
+  surface: web-admin
+  frontend_anchors:
+  - source/apps/web-admin/pages/admin/points.tsx:PointsTransferPage
+  - source/apps/web-admin/components/PointsTransferForm.tsx:PointsTransferForm
+  backend_anchors:
+  - source/backend/firebase-functions/src/core/points.ts:transferPointsCallable
+  tests: []
+---
+- id: ADMIN-POINTS-003
+  feature: Expire Points (Manual)
+  status: READY
+  category: points-management
+  surface: web-admin
+  frontend_anchors:
+  - source/apps/web-admin/pages/admin/points.tsx:PointsExpirePage
+  - source/apps/web-admin/components/PointsExpireForm.tsx:PointsExpireForm
+  backend_anchors:
+  - source/backend/firebase-functions/src/core/points.ts:expirePointsCallable
+  tests: []
+---
+- id: ADMIN-ANALYTICS-001
+  feature: Daily Stats Dashboard
+  status: READY
+  category: analytics
+  surface: web-admin
+  frontend_anchors:
+  - source/apps/web-admin/pages/admin/dashboard.tsx:DashboardPage
+  - source/apps/web-admin/components/StatsPanel.tsx:StatsPanel
+  backend_anchors:
+  - source/backend/firebase-functions/src/analytics/stats.ts:getDailyStatsCallable
+  tests: []
+---
+- id: ADMIN-ANALYTICS-002
+  feature: Redemption Audit Logs
+  status: READY
+  category: analytics
+  surface: web-admin
+  frontend_anchors:
+  - source/apps/web-admin/pages/admin/audit-logs.tsx:AuditLogsPage
+  - source/apps/web-admin/components/AuditLogsTable.tsx:AuditLogsTable
+  backend_anchors:
+  - source/backend/firebase-functions/src/analytics/auditLogs.ts:getAuditLogsCallable
+  tests: []
+---
+- id: ADMIN-FRAUD-001
+  feature: Fraud Detection Dashboard
+  status: READY
+  category: fraud
+  surface: web-admin
+  frontend_anchors:
+  - source/apps/web-admin/pages/admin/fraud.tsx:FraudDashboardPage
+  - source/apps/web-admin/components/FraudPanel.tsx:FraudPanel
+  backend_anchors:
+  - source/backend/firebase-functions/src/fraud.ts:detectFraudPatternsCallable
+  tests: []
+---
+- id: ADMIN-PAYMENT-004
+  feature: Stripe Integration Pages
+  status: READY
+  category: payments
+  surface: web-admin
+  frontend_anchors:
+  - source/apps/web-admin/pages/admin/billing.tsx:BillingPage
+  - source/apps/web-admin/components/BillingPanel.tsx:BillingPanel
+  backend_anchors:
+  - source/backend/firebase-functions/src/webhooks/stripe.ts:stripeWebhookHandler
+  tests: []
+---
+- id: ADMIN-CAMPAIGN-001
+  feature: Create Push Campaign
+  status: READY
+  category: campaigns
+  surface: web-admin
+  frontend_anchors:
+  - source/apps/web-admin/pages/admin/campaigns/create.tsx:CreateCampaignPage
+  - source/apps/web-admin/components/CampaignForm.tsx:CampaignForm
+  backend_anchors:
+  - source/backend/firebase-functions/src/pushCampaigns.ts:createCampaignCallable
+  tests: []
+---
+- id: ADMIN-CAMPAIGN-002
+  feature: Send Campaign
+  status: READY
+  category: campaigns
+  surface: web-admin
+  frontend_anchors:
+  - source/apps/web-admin/pages/admin/campaigns/send.tsx:SendCampaignPage
+  - source/apps/web-admin/components/CampaignSendForm.tsx:CampaignSendForm
+  backend_anchors:
+  - source/backend/firebase-functions/src/pushCampaigns.ts:sendCampaignCallable
+  tests: []
+---
+- id: ADMIN-CAMPAIGN-003
+  feature: Campaign Stats
+  status: READY
+  category: campaigns
+  surface: web-admin
+  frontend_anchors:
+  - source/apps/web-admin/pages/admin/campaigns/stats.tsx:CampaignStatsPage
+  - source/apps/web-admin/components/CampaignStatsTable.tsx:CampaignStatsTable
+  backend_anchors:
+  - source/backend/firebase-functions/src/pushCampaigns.ts:getCampaignStatsCallable
+  tests: []
+---
+- id: BACKEND-SECURITY-001
+  feature: FCM Token Registration via Backend
+  status: READY
+  category: security
+  surface: backend
+  frontend_anchors: []
+  backend_anchors:
+  - source/backend/firebase-functions/src/fcm.ts:registerFCMTokenCallable
+  - source/backend/firebase-functions/src/fcm.ts:rotateFCMTokenCallable
+  tests: []
+  notes: See BLOCKER_FCM_TOKEN_REGISTRATION_VIA_BACKEND.md (includes docs/BLOCKER_BACKEND_SECURITY_001.md).
+---
+- id: BACKEND-DATA-001
+  feature: Remove Mock Data from Analytics
+  status: READY
+  category: data-quality
+  surface: backend
+  frontend_anchors: []
+  backend_anchors:
+  - source/backend/firebase-functions/src/analytics/aggregator.ts:aggregateStatsScheduled
+  tests: []
+  notes: See BLOCKER_REMOVE_MOCK_DATA_FROM_ANALYTICS.md (includes docs/BLOCKER_BACKEND_DATA_QUALITY.md).
+    Requires backend audit and real Firestore query implementation. See docs/BLOCKER_BACKEND_DATA_QUALITY.md
+---
+- id: BACKEND-ORPHAN-001
+  feature: Resolve Orphan Functions
+  status: READY
+  category: code-quality
+  surface: backend
+  frontend_anchors: []
+  backend_anchors:
+  - source/backend/firebase-functions/src/index.ts:EXPORTS_VALIDATION
+  tests: []
+  notes: See BLOCKER_RESOLVE_ORPHAN_FUNCTIONS.md (includes docs/BLOCKER_BACKEND_ORPHAN_FUNCTIONS.md).
+    Requires function audit and integration/deprecation decisions. See docs/BLOCKER_BACKEND_ORPHAN_FUNCTIONS.md
+---
+- id: INFRA-RULES-001
+  feature: Firestore Security Rules
+  status: READY
+  category: security
+  surface: infrastructure
+  frontend_anchors: []
+  backend_anchors:
+  - source/infra/firestore.rules:FIRESTORE_RULES
+  tests: []
+  notes: Security rules exist but need audit to ensure they match all access patterns
+    and block direct writes to privileged collections.
+---
+- id: INFRA-INDEX-001
+  feature: Firestore Composite Indexes
+  status: READY
+  category: performance
+  surface: infrastructure
+  frontend_anchors: []
+  backend_anchors:
+  - source/infra/firestore.indexes.json:FIRESTORE_INDEXES
+  tests: []
+  notes: 14 composite indexes defined. Must verify all queries have matching indexes.
+- id: TEST-CUSTOMER-001
+---
+- id: TEST-MERCHANT-001
+  feature: Merchant App Unit Tests
+  status: READY
+  category: testing
+  surface: mobile-merchant
+  frontend_anchors:
+  - source/apps/mobile-merchant/test/offer_creation_test.dart:OfferCreationTest
+  - source/apps/mobile-merchant/test/redemption_approval_test.dart:RedemptionApprovalTest
+  backend_anchors: []
+  tests: []
+  notes: See BLOCKER_MERCHANT_APP_UNIT_TESTS.md. No test/ directory or unit tests
+---
+- id: TEST-WEB-001
+  feature: Admin Web Tests
+  status: READY
+  category: testing
+  surface: web-admin
+  frontend_anchors:
+  - source/apps/web-admin/src/__tests__/pages/points.test.tsx:PointsAdjustTest
+  - source/apps/web-admin/src/__tests__/pages/campaigns.test.tsx:CampaignCreationTest
+  backend_anchors: []
+  tests: []
+  notes: See BLOCKER_ADMIN_WEB_TESTS.md. No test files found. MUST add minimal tests
+---
+- id: TEST-BACKEND-001
+  feature: Backend Unit Tests
+  status: READY
+  category: testing
+  surface: backend
+  frontend_anchors: []
+  backend_anchors:
+  - source/backend/firebase-functions/src/__tests__/fcm.test.ts:FCMTokenRegistrationTest
+  - source/backend/firebase-functions/src/__tests__/points.test.ts:PointsOperationsTest
+  tests: []
+  notes: See BLOCKER_BACKEND_UNIT_TESTS.md. No test/ directory in firebase-functions.
+---

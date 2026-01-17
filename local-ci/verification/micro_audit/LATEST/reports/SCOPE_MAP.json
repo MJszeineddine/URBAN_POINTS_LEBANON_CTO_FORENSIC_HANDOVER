@@ -1,0 +1,103 @@
+{
+  "timestamp_utc": "2026-01-17T02:59:00Z",
+  "git_commit": "2e0398c",
+  "surfaces": [
+    {
+      "name": "Mobile Customer",
+      "path": "source/apps/mobile-customer",
+      "stack": "Flutter/Dart",
+      "firebase_integration": true,
+      "entry_points": [
+        "source/apps/mobile-customer/lib/main.dart"
+      ],
+      "test_entry": "source/apps/mobile-customer/integration_test/pain_test.dart"
+    },
+    {
+      "name": "Mobile Merchant",
+      "path": "source/apps/mobile-merchant",
+      "stack": "Flutter/Dart",
+      "firebase_integration": true,
+      "entry_points": [
+        "source/apps/mobile-merchant/lib/main.dart"
+      ],
+      "test_entry": "source/apps/mobile-merchant/integration_test/pain_test.dart"
+    },
+    {
+      "name": "Web Admin",
+      "path": "source/apps/web-admin",
+      "stack": "Next.js/TypeScript",
+      "firebase_integration": true,
+      "entry_points": [
+        "source/apps/web-admin/app/page.tsx"
+      ],
+      "playwright_config": "source/apps/web-admin/playwright.config.ts"
+    }
+  ],
+  "backend": [
+    {
+      "name": "Firebase Cloud Functions",
+      "path": "source/backend/firebase-functions",
+      "stack": "Node 20/TypeScript",
+      "entry_point": "source/backend/firebase-functions/src/index.ts",
+      "key_functions_detected": [
+        "onUserCreate",
+        "onPointsEarned",
+        "onRedemption",
+        "stripeWebhook"
+      ],
+      "external_services": [
+        "Stripe",
+        "Sentry",
+        "Winston Logging"
+      ]
+    },
+    {
+      "name": "REST API",
+      "path": "source/backend/rest-api",
+      "stack": "Express/TypeScript/PostgreSQL",
+      "entry_point": "source/backend/rest-api/src/server.ts",
+      "key_routes_detected": [
+        "/api/users",
+        "/api/offers",
+        "/api/merchants",
+        "/api/points"
+      ],
+      "security_middleware": [
+        "helmet",
+        "express-rate-limit",
+        "cors",
+        "JWT auth"
+      ]
+    }
+  ],
+  "shared_data_objects": [
+    "User",
+    "Merchant",
+    "Offer",
+    "PointsTransaction",
+    "Redemption",
+    "Campaign"
+  ],
+  "integration_points": {
+    "mobile_customer_to_functions": "Firebase SDK",
+    "mobile_merchant_to_functions": "Firebase SDK",
+    "web_admin_to_functions": "Firebase SDK + HTTP",
+    "mobile_to_rest_api": "HTTP/REST",
+    "functions_to_stripe": "Stripe SDK",
+    "functions_to_firestore": "Firebase Admin SDK",
+    "rest_api_to_postgresql": "pg driver"
+  },
+  "evidence": {
+    "firebase_config": ["./source/infra/firebase.json", "./source/firebase.json"],
+    "firestore_rules": ["source/infra/firestore.rules"],
+    "package_json_files": [
+      "source/backend/firebase-functions/package.json",
+      "source/backend/rest-api/package.json",
+      "source/apps/web-admin/package.json"
+    ],
+    "pubspec_yaml_files": [
+      "source/apps/mobile-customer/pubspec.yaml",
+      "source/apps/mobile-merchant/pubspec.yaml"
+    ]
+  }
+}

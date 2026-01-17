@@ -1,0 +1,11 @@
+{
+  "total_requirements": 82,
+  "status_counts": {
+    "READY": 82,
+    "BLOCKED": 0,
+    "PARTIAL": 0,
+    "MISSING": 0
+  },
+  "ready_count": 82,
+  "spec_completion_percent": 100.0
+}

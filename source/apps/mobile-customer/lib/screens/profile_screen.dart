@@ -30,7 +30,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     try {
       final doc = await FirebaseFirestore.instance
           .collection('customers')
-          .doc(_user!.uid)
+          .doc(_user.uid)
           .get();
 
       if (doc.exists) {
@@ -249,6 +249,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             email: _user!.email!,
                           );
                           if (mounted) {
+                            // ignore: use_build_context_synchronously
                             ScaffoldMessenger.of(context).showSnackBar(
                               const SnackBar(
                                 content: Text('Password reset email sent'),
@@ -257,6 +258,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           }
                         } catch (e) {
                           if (mounted) {
+                            // ignore: use_build_context_synchronously
                             ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(content: Text('Error: $e')),
                             );

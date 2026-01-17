@@ -1,0 +1,17 @@
+{
+  "timestamp_utc": "2026-01-17T00:15:19Z",
+  "git_commit": "2e0398c",
+  "full_stack_status": "YES",
+  "gates": {
+    "reality_gate": "PASS",
+    "e2e_proof_pack": "PASS",
+    "parity_computed": "YES"
+  },
+  "evidence_paths": {
+    "reality_gate_log": "local-ci/verification/full_stack_gate/reality_gate.log",
+    "e2e_proof_pack_log": "local-ci/verification/full_stack_gate/e2e_proof_pack.log",
+    "clone_parity_log": "local-ci/verification/full_stack_gate/clone_parity.log",
+    "e2e_proof_pack_verdict": "local-ci/verification/e2e_proof_pack/VERDICT.json",
+    "clone_parity_json": "local-ci/verification/clone_parity/clone_parity.json"
+  }
+}

@@ -1,8 +1,9 @@
 import 'package:geolocator/geolocator.dart';
+import 'dart:developer' as developer;
 import '../models/location.dart';
 
 class LocationService {
-  static const double DEFAULT_RADIUS_KM = 50.0;
+  static const double kDefaultRadiusKm = 50.0;
 
   /// Request location permission from user
   static Future<bool> requestLocationPermission() async {
@@ -22,7 +23,7 @@ class LocationService {
       
       return true;
     } catch (e) {
-      print('Error requesting location permission: $e');
+      developer.log('Error requesting location permission: $e', name: 'LocationService');
       return false;
     }
   }
@@ -34,7 +35,7 @@ class LocationService {
       final hasPermission = await requestLocationPermission();
       
       if (!hasPermission) {
-        print('Location permission denied - using national catalog fallback');
+        developer.log('Location permission denied - using national catalog fallback', name: 'LocationService');
         return null; // Fallback: national catalog
       }
 
@@ -49,7 +50,7 @@ class LocationService {
         capturedAt: DateTime.now(),
       );
     } catch (e) {
-      print('Error getting location: $e - using national catalog fallback');
+      developer.log('Error getting location: $e - using national catalog fallback', name: 'LocationService');
       return null; // Fallback: national catalog
     }
   }

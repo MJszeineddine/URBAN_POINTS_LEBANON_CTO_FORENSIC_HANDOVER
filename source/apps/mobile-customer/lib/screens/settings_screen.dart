@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_functions/cloud_functions.dart';
 
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({super.key});
@@ -74,12 +75,14 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 try {
                   await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
                   if (mounted) {
+                    // ignore: use_build_context_synchronously
                     ScaffoldMessenger.of(context).showSnackBar(
                       const SnackBar(content: Text('Password reset email sent')),
                     );
                   }
                 } catch (e) {
                   if (mounted) {
+                    // ignore: use_build_context_synchronously
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(content: Text('Error: $e')),
                     );
@@ -174,46 +177,18 @@ class _SettingsScreenState extends State<SettingsScreen> {
             },
           ),
           ListTile(
+            leading: const Icon(Icons.download),
+            title: const Text('Export My Data'),
+            subtitle: const Text('Download your data in JSON format'),
+            trailing: const Icon(Icons.chevron_right),
+            onTap: () => _exportData(context),
+          ),
+          ListTile(
             leading: const Icon(Icons.delete_forever),
             title: const Text('Delete Account'),
             subtitle: const Text('Permanently delete your account and data'),
             trailing: const Icon(Icons.chevron_right),
-            onTap: () {
-              showDialog(
-                context: context,
-                builder: (context) => AlertDialog(
-                  title: const Text('Delete Account'),
-                  content: const Text(
-                    'Are you sure you want to delete your account?\n\n'
-                    'This will permanently delete:\n'
-                    '• Your profile\n'
-                    '• All points\n'
-                    '• Transaction history\n\n'
-                    'This action cannot be undone.',
-                  ),
-                  actions: [
-                    TextButton(
-                      onPressed: () => Navigator.pop(context),
-                      child: const Text('Cancel'),
-                    ),
-                    FilledButton(
-                      style: FilledButton.styleFrom(
-                        backgroundColor: Theme.of(context).colorScheme.error,
-                      ),
-                      onPressed: () {
-                        Navigator.pop(context);
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
-                            content: Text('Contact support to delete your account'),
-                          ),
-                        );
-                      },
-                      child: const Text('Delete'),
-                    ),
-                  ],
-                ),
-              );
-            },
+            onTap: () => _deleteAccount(context),
           ),
           const Divider(),
 
@@ -251,6 +226,178 @@ class _SettingsScreenState extends State<SettingsScreen> {
             },
           ),
         ],
+      ),
+    );
+  }
+
+  Future<void> _exportData(BuildContext context) async {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text('Export Your Data'),
+        content: const Text(
+          'This will download all your Urban Points data including:\n\n'
+          '• Your profile\n'
+          '• Points and transaction history\n'
+          '• Redeemed offers\n\n'
+          'Proceed?',
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: const Text('Cancel'),
+          ),
+          FilledButton(
+            onPressed: () async {
+              Navigator.pop(context);
+              await _performDataExport(context);
+            },
+            child: const Text('Export'),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Future<void> _performDataExport(BuildContext context) async {
+    try {
+      _showLoadingDialog(context, 'Exporting your data...');
+
+      final callable = FirebaseFunctions.instance.httpsCallable('exportUserData');
+      final result = await callable.call();
+
+      if (mounted) {
+        // ignore: use_build_context_synchronously
+        Navigator.pop(context); // Close loading dialog
+      }
+
+      if (result.data['success'] == true) {
+        if (mounted) {
+          // ignore: use_build_context_synchronously
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text('Data exported: ${result.data['message']}'),
+              duration: const Duration(seconds: 5),
+            ),
+          );
+        }
+      }
+    } on FirebaseFunctionsException catch (e) {
+      if (mounted) {
+        // ignore: use_build_context_synchronously
+        Navigator.pop(context); // Close loading dialog
+        // ignore: use_build_context_synchronously
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Export failed: ${e.message}')),
+        );
+      }
+    } catch (e) {
+      if (mounted) {
+        // ignore: use_build_context_synchronously
+        Navigator.pop(context); // Close loading dialog
+        // ignore: use_build_context_synchronously
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Error: $e')),
+        );
+      }
+    }
+  }
+
+  Future<void> _deleteAccount(BuildContext context) async {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text('Delete Account'),
+        content: const Text(
+          'Are you sure you want to delete your account?\n\n'
+          'This will permanently delete:\n'
+          '• Your profile\n'
+          '• All points\n'
+          '• Transaction history\n\n'
+          'This action cannot be undone.\n\n'
+          'You will be signed out immediately.',
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: const Text('Cancel'),
+          ),
+          FilledButton(
+            style: FilledButton.styleFrom(
+              backgroundColor: Theme.of(context).colorScheme.error,
+            ),
+            onPressed: () async {
+              Navigator.pop(context);
+              await _performAccountDeletion(context);
+            },
+            child: const Text('Delete Permanently'),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Future<void> _performAccountDeletion(BuildContext context) async {
+    try {
+      _showLoadingDialog(context, 'Deleting your account...');
+
+      final callable = FirebaseFunctions.instance.httpsCallable('deleteUserData');
+      final result = await callable.call();
+
+      if (mounted) {
+        // ignore: use_build_context_synchronously
+        Navigator.pop(context); // Close loading dialog
+      }
+
+      if (result.data['success'] == true) {
+        // Sign out the user
+        await FirebaseAuth.instance.signOut();
+
+        if (mounted) {
+          // ignore: use_build_context_synchronously
+          Navigator.of(context).pushNamedAndRemoveUntil('/', (route) => false);
+          // ignore: use_build_context_synchronously
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text('Account deleted successfully'),
+            ),
+          );
+        }
+      }
+    } on FirebaseFunctionsException catch (e) {
+      if (mounted) {
+        // ignore: use_build_context_synchronously
+        Navigator.pop(context); // Close loading dialog
+        // ignore: use_build_context_synchronously
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Deletion failed: ${e.message}')),
+        );
+      }
+    } catch (e) {
+      if (mounted) {
+        // ignore: use_build_context_synchronously
+        Navigator.pop(context); // Close loading dialog
+        // ignore: use_build_context_synchronously
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Error: $e')),
+        );
+      }
+    }
+  }
+
+  void _showLoadingDialog(BuildContext context, String message) {
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (context) => AlertDialog(
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const CircularProgressIndicator(),
+            const SizedBox(height: 16),
+            Text(message),
+          ],
+        ),
       ),
     );
   }

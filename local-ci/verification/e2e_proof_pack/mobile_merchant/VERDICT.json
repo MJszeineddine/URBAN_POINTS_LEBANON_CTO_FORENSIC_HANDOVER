@@ -1,0 +1,10 @@
+{
+  "timestamp_utc": "2026-01-17T00:15:26Z",
+  "service": "mobile_merchant",
+  "verdict": "BLOCKED",
+  "reason": "Flutter emulator or integration tests not available",
+  "details": "No Flutter device/emulator connected. Run: flutter emulators --launch <emulator_id>",
+  "evidence_paths": [
+    "local-ci/verification/e2e_proof_pack/mobile_merchant/RUN.log"
+  ]
+}

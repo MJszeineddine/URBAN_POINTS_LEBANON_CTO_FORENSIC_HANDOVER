@@ -1,0 +1,13 @@
+{
+  "git_commit": "2e0398c",
+  "branch": "main",
+  "exit_normal": "1",
+  "exit_allow_blocked": "0",
+  "report_status": "PASS_WITH_BLOCKERS",
+  "requirement_counts": {
+    "ready": 58,
+    "blocked": 24,
+    "partial": 0,
+    "missing": 0
+  }
+}

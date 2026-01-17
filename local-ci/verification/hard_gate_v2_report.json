@@ -1,0 +1,10 @@
+{
+  "status": "PASS",
+  "failures": [],
+  "cust_ready_count": 28,
+  "cust_blocked_count": 0,
+  "analyze_exit": 0,
+  "test_exit": 0,
+  "banned_patterns_hits": [],
+  "widget_tests_found": []
+}

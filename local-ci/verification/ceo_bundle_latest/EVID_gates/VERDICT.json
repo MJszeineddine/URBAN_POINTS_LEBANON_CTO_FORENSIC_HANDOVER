@@ -1,0 +1,26 @@
+{
+  "timestamp_utc": "2026-01-16T21:31:34Z",
+  "git_commit": "2e0398c",
+  "verdict": "GO_BUILDS_ONLY",
+  "gates": {
+    "cto_gate_exit": 0,
+    "reality_gate_exit": 0
+  },
+  "reality_gate_exits_json": {
+  "cto_gate": 0,
+  "backend_build": 0,
+  "backend_test": 0,
+  "web_build": 0,
+  "web_test": 0,
+  "merchant_analyze": 0,
+  "merchant_test": 0,
+  "customer_analyze": 0,
+  "customer_test": 0,
+  "stub_scan": 0,
+  "critical_stub_hits": 0
+},
+  "e2e_artifacts_found_count": 7,
+  "e2e_artifacts_valid_count": 0,
+  "e2e_artifacts_sample": ["local-ci/verification/e2e_proof_pack/flow_proof_location_priority.md","local-ci/verification/e2e_proof_pack/flow_proof_push_delivery.md","local-ci/verification/e2e_proof_pack/flow_proof_customer_qr.md","local-ci/verification/e2e_proof_pack/flow_proof_merchant_approve.md","local-ci/verification/e2e_proof_pack/flow_proof_phone_code_login.md","local-ci/verification/e2e_proof_pack/flow_proof_bilingual.md","local-ci/verification/e2e_proof_pack/flow_proof_subscription_gate.md"],
+  "total_evidence_files": 58
+}

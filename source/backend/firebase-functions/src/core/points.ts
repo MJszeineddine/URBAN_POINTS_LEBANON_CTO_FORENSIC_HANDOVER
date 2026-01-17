@@ -180,7 +180,7 @@ export async function processPointsEarning(
       const customerDoc = await transaction.get(customerRef);
       
       if (!customerDoc.exists) {
-        throw new Error('Customer not found');
+        return Promise.reject(new Error('Customer not found'));
       }
 
       const currentBalance = customerDoc.data()?.points_balance || 0;
@@ -339,17 +339,17 @@ export async function processRedemption(
       const offerDoc = await transaction.get(offerRef);
       
       if (!offerDoc.exists) {
-        throw new Error('Offer not found');
+        return Promise.reject(new Error('Offer not found'));
       }
 
       const offer = offerDoc.data()!;
       if (offer.status !== 'active') {
-        throw new Error('Offer is not active');
+        return Promise.reject(new Error('Offer is not active'));
       }
 
       const pointsCost = offer.points_value || 0;
       if (pointsCost <= 0) {
-        throw new Error('Invalid offer points value');
+        return Promise.reject(new Error('Invalid offer points value'));
       }
 
       // 2. Verify customer and check balance
@@ -357,12 +357,12 @@ export async function processRedemption(
       const customerDoc = await transaction.get(customerRef);
       
       if (!customerDoc.exists) {
-        throw new Error('Customer not found');
+        return Promise.reject(new Error('Customer not found'));
       }
 
       const currentBalance = customerDoc.data()?.points_balance || 0;
       if (currentBalance < pointsCost) {
-        throw new Error(`Insufficient points. Required: ${pointsCost}, Available: ${currentBalance}`);
+        return Promise.reject(new Error(`Insufficient points. Required: ${pointsCost}, Available: ${currentBalance}`));
       }
 
       const newBalance = currentBalance - pointsCost;
@@ -372,16 +372,16 @@ export async function processRedemption(
       const qrTokenDoc = await transaction.get(qrTokenRef);
       
       if (!qrTokenDoc.exists) {
-        throw new Error('Invalid QR token');
+        return Promise.reject(new Error('Invalid QR token'));
       }
 
       const qrData = qrTokenDoc.data()!;
       if (qrData.used) {
-        throw new Error('QR token already used');
+        return Promise.reject(new Error('QR token already used'));
       }
 
       if (qrData.offer_id !== data.offerId) {
-        throw new Error('QR token does not match offer');
+        return Promise.reject(new Error('QR token does not match offer'));
       }
 
       // 4. Create redemption record
@@ -811,12 +811,12 @@ export async function transferPoints(
       const fromDoc = await t.get(fromRef);
       
       if (!fromDoc.exists) {
-        throw new Error('Source customer not found');
+        return Promise.reject(new Error('Source customer not found'));
       }
 
       const fromBalance = fromDoc.data()?.points_balance || 0;
       if (fromBalance < data.amount) {
-        throw new Error(`Insufficient points. Required: ${data.amount}, Available: ${fromBalance}`);
+        return Promise.reject(new Error(`Insufficient points. Required: ${data.amount}, Available: ${fromBalance}`));
       }
 
       // 2. Get destination customer
@@ -824,7 +824,7 @@ export async function transferPoints(
       const toDoc = await t.get(toRef);
       
       if (!toDoc.exists) {
-        throw new Error('Destination customer not found');
+        return Promise.reject(new Error('Destination customer not found'));
       }
 
       const toBalance = toDoc.data()?.points_balance || 0;

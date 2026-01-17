@@ -1,0 +1,65 @@
+{
+  "timestamp": "2026-01-16T17:12:05.210629Z",
+  "git_commit": "",
+  "spec_counts": {
+    "READY": 82,
+    "BLOCKED": 0,
+    "PARTIAL": 0,
+    "MISSING": 0
+  },
+  "total_requirements": 82,
+  "ready_requirements": 82,
+  "spec_completion_percent": 100.0,
+  "reality_completion_percent": 0.0,
+  "technically_proven_count": 0,
+  "not_proven_count": 82,
+  "surfaces": {
+    "backend": {
+      "build_exit": 0,
+      "test_exit": 0
+    },
+    "web_admin": {
+      "build_exit": 0,
+      "test_exit": 0
+    },
+    "mobile_merchant": {
+      "analyze_exit": 0,
+      "test_exit": 0
+    },
+    "mobile_customer": {
+      "analyze_exit": 0,
+      "test_exit": 0
+    }
+  },
+  "gates": {
+    "cto_gate_exit": 0,
+    "reality_gate_exit": 0
+  },
+  "verdict": "GO",
+  "reasons": [
+    "Zero requirements have technical proof (builds + anchors)"
+  ],
+  "not_proven_areas": [
+    "CUST-AUTH-001",
+    "CUST-AUTH-002",
+    "CUST-AUTH-003",
+    "CUST-ONBOARD-001",
+    "CUST-PERM-001",
+    "CUST-PERM-002",
+    "CUST-OFFER-001",
+    "CUST-OFFER-002",
+    "CUST-OFFER-003",
+    "CUST-OFFER-004",
+    "CUST-OFFER-005",
+    "CUST-WALLET-001",
+    "CUST-WALLET-002",
+    "CUST-WALLET-003",
+    "CUST-REDEEM-001",
+    "CUST-REDEEM-002",
+    "CUST-REDEEM-003",
+    "CUST-NOTIF-001",
+    "CUST-NOTIF-002",
+    "CUST-NOTIF-003"
+  ],
+  "e2e_proof_exists": false
+}

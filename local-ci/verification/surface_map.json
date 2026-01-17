@@ -1,0 +1,53 @@
+{
+  "scan_timestamp": "2026-01-14T00:00:00Z",
+  "surfaces_discovered": [
+    {
+      "surface": "mobile-customer",
+      "type": "flutter",
+      "path": "source/apps/mobile-customer",
+      "main": "lib/main.dart",
+      "config": "pubspec.yaml",
+      "status": "FOUND"
+    },
+    {
+      "surface": "mobile-merchant",
+      "type": "flutter",
+      "path": "source/apps/mobile-merchant",
+      "main": "lib/main.dart",
+      "config": "pubspec.yaml",
+      "status": "FOUND"
+    },
+    {
+      "surface": "mobile-admin",
+      "type": "flutter",
+      "path": "source/apps/mobile-admin",
+      "main": null,
+      "config": null,
+      "status": "NOT_FOUND"
+    },
+    {
+      "surface": "web-admin",
+      "type": "nextjs",
+      "path": "source/apps/web-admin",
+      "main": "pages/",
+      "config": "package.json",
+      "status": "FOUND"
+    },
+    {
+      "surface": "backend-functions",
+      "type": "firebase-functions",
+      "path": "source/backend/firebase-functions",
+      "main": "src/index.ts",
+      "config": "package.json",
+      "status": "FOUND"
+    },
+    {
+      "surface": "backend-rest",
+      "type": "express-api",
+      "path": "source/backend/rest-api",
+      "main": "src/server.ts",
+      "config": "package.json",
+      "status": "FOUND"
+    }
+  ]
+}

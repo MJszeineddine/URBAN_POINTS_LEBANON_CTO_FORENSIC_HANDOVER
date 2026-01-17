@@ -1,0 +1,10 @@
+{
+  "timestamp_utc": "2026-01-17T01:04:17Z",
+  "service": "backend_emulator",
+  "verdict": "BLOCKED",
+  "reason": "Firebase emulator not configured or not available",
+  "details": "firebase.json not found. Emulator cannot start.",
+  "evidence_paths": [
+    "local-ci/verification/e2e_proof_pack/backend_emulator/RUN.log"
+  ]
+}

@@ -1,0 +1,6 @@
+Timestamp: 2026-01-17T00:15:19.535784Z
+Workspace: /Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER
+/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/spec/requirements.yaml: EXISTS
+/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/docs/CTO_ADMIN_REALITY_REPORT.md: EXISTS
+/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/local-ci/verification/e2e_proof_pack/VERDICT.json: EXISTS
+/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/local-ci/verification/reality_gate/exits.json: EXISTS

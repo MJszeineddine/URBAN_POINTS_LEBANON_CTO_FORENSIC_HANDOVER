@@ -1,0 +1,11 @@
+id,area,severity,risk,impact,evidence,fix_recommendation
+RISK-001,Backend Emulator,P0,Firebase emulator not configured,Cannot test Functions/Firestore/Auth locally; blocks E2E,local-ci/verification/micro_audit/LATEST/build_test/BLOCKER_mobile_customer.md,Add firebase.json at repo root with emulator configs
+RISK-002,Mobile Apps,P0,Flutter SDK not available,Cannot build or test mobile apps; blocks mobile E2E,local-ci/verification/micro_audit/LATEST/build_test/BLOCKER_mobile_customer.md,Install Flutter SDK and configure PATH
+RISK-003,Web Admin,P1,Playwright environment not configured,Cannot run web-admin E2E tests,local-ci/verification/e2e_proof_pack/web_admin/VERDICT.json,Run npx playwright install
+RISK-004,Security,P1,50+ potential secrets/keys detected in code,Risk of credential exposure if not false positives,local-ci/verification/micro_audit/LATEST/security/scan_secrets.log,Audit scan_secrets.log; move real secrets to env vars
+RISK-005,Code Quality,P2,100+ TODO/FIXME/HACK markers,Technical debt and incomplete features,local-ci/verification/micro_audit/LATEST/static/scan_todos.log,Review and address or document planned work
+RISK-006,Debugging,P2,22296 debug statements (console.log/print),Production noise and potential info leak,local-ci/verification/micro_audit/LATEST/static/scan_debug.log,Remove or gate behind debug flags
+RISK-007,E2E Proof,P0,0 real journey packs with manifest.json,Cannot prove E2E flows work end-to-end,local-ci/verification/micro_audit/LATEST/e2e_proof/E2E_PROOF_AUDIT.md,Execute 5+ journeys with logs+UI+manifest
+RISK-008,Firestore Rules,P1,Firestore security rules present but not verified,Potential unauthorized data access,source/infra/firestore.rules,Load rules in emulator and test with E2E journeys
+RISK-009,REST API,P2,Build passes but no E2E proof exercising endpoints,API routes not proven under real load,local-ci/verification/micro_audit/LATEST/build_test/rest_api_test.log,Add API integration tests and journey packs
+RISK-010,Dependencies,P2,Multiple firebase.json files detected,Configuration ambiguity and drift risk,local-ci/verification/micro_audit/LATEST/security/firebase_json_files.log,Consolidate to single source of truth

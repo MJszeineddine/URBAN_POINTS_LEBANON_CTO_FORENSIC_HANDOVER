@@ -1,0 +1,62 @@
+# EVIDENCE INDEX
+
+**Audit Timestamp:** 2026-01-17T02:57:00Z  
+**Git Commit:** 2e0398c  
+**Total Files Tracked:** 962  
+**Total Files Scanned:** 41440 (including untracked)  
+
+## Input Artifacts
+- local-ci/verification/micro_audit/LATEST/inventory/git_commit.txt
+- local-ci/verification/micro_audit/LATEST/inventory/git_status.txt
+- local-ci/verification/micro_audit/LATEST/inventory/git_tracked_files.txt
+- local-ci/verification/micro_audit/LATEST/inventory/all_files.txt
+- source/apps/mobile-customer/pubspec.yaml
+- source/apps/mobile-merchant/pubspec.yaml
+- source/apps/web-admin/package.json
+- source/backend/firebase-functions/package.json
+- source/backend/rest-api/package.json
+- source/infra/firestore.rules
+- source/infra/firebase.json
+- source/firebase.json
+- local-ci/verification/e2e_proof_pack/VERDICT.json
+- local-ci/verification/full_stack_gate/VERDICT.json
+
+## Build/Test Logs
+- local-ci/verification/micro_audit/LATEST/build_test/firebase_functions_npm_ci.log
+- local-ci/verification/micro_audit/LATEST/build_test/firebase_functions_build.log
+- local-ci/verification/micro_audit/LATEST/build_test/firebase_functions_test.log
+- local-ci/verification/micro_audit/LATEST/build_test/rest_api_npm_ci.log
+- local-ci/verification/micro_audit/LATEST/build_test/rest_api_build.log
+- local-ci/verification/micro_audit/LATEST/build_test/rest_api_test.log
+- local-ci/verification/micro_audit/LATEST/build_test/web_admin_npm_ci.log
+- local-ci/verification/micro_audit/LATEST/build_test/BLOCKER_mobile_customer.md
+- local-ci/verification/micro_audit/LATEST/build_test/BLOCKER_mobile_merchant.md
+
+## Static Analysis
+- local-ci/verification/micro_audit/LATEST/static/scan_todos.log (100 entries)
+- local-ci/verification/micro_audit/LATEST/static/scan_debug.log (22296 entries)
+
+## Security Scans
+- local-ci/verification/micro_audit/LATEST/security/scan_secrets.log (50 entries)
+- local-ci/verification/micro_audit/LATEST/security/firestore_rules_files.log (5 files)
+- local-ci/verification/micro_audit/LATEST/security/firebase_json_files.log (3 files)
+
+## E2E Proof Artifacts
+- local-ci/verification/micro_audit/LATEST/e2e_proof/found_artifacts.log (30 entries)
+- local-ci/verification/micro_audit/LATEST/e2e_proof/journey_packs_dirs.log (0 journey packs)
+- local-ci/verification/micro_audit/LATEST/e2e_proof/E2E_PROOF_AUDIT.md
+
+## Output Reports
+- local-ci/verification/micro_audit/LATEST/reports/FILE_INVENTORY.csv (962 files)
+- local-ci/verification/micro_audit/LATEST/reports/STACK_DETECTED.json
+- local-ci/verification/micro_audit/LATEST/reports/SCOPE_MAP.json
+- local-ci/verification/micro_audit/LATEST/reports/RISK_REGISTER.csv (10 risks)
+- local-ci/verification/micro_audit/LATEST/reports/GAP_REGISTER.csv (16 gaps)
+- local-ci/verification/micro_audit/LATEST/reports/DEAD_OR_UNUSED_CANDIDATES.csv (12 entries)
+- local-ci/verification/micro_audit/LATEST/reports/COMMANDS_RUN.log
+- local-ci/verification/micro_audit/LATEST/reports/CEO_MICRO_AUDIT_SUMMARY.md (pending)
+- local-ci/verification/micro_audit/LATEST/reports/MICRO_AUDIT_FULL_REPORT.md (pending)
+- local-ci/verification/micro_audit/LATEST/reports/EVIDENCE_INDEX.txt (this file)
+
+## Git Status
+(See local-ci/verification/micro_audit/LATEST/inventory/git_status.txt for porcelain output)

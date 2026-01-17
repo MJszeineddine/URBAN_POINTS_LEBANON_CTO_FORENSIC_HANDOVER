@@ -1,0 +1,63 @@
+{
+  "timestamp": "2026-01-16T15:38:49.843939",
+  "status": "PASS_WITH_BLOCKERS",
+  "requirement_counts": {
+    "ready": 58,
+    "blocked": 24,
+    "partial": 0,
+    "missing": 0
+  },
+  "blocked_ids": [
+    "MERCH-OFFER-006",
+    "MERCH-PROFILE-001",
+    "MERCH-REDEEM-004",
+    "MERCH-REDEEM-005",
+    "MERCH-SUBSCRIPTION-001",
+    "MERCH-STAFF-001",
+    "ADMIN-POINTS-001",
+    "ADMIN-POINTS-002",
+    "ADMIN-POINTS-003",
+    "ADMIN-ANALYTICS-001",
+    "ADMIN-ANALYTICS-002",
+    "ADMIN-FRAUD-001",
+    "ADMIN-PAYMENT-004",
+    "ADMIN-CAMPAIGN-001",
+    "ADMIN-CAMPAIGN-002",
+    "ADMIN-CAMPAIGN-003",
+    "BACKEND-SECURITY-001",
+    "BACKEND-DATA-001",
+    "BACKEND-ORPHAN-001",
+    "INFRA-RULES-001",
+    "INFRA-INDEX-001",
+    "TEST-MERCHANT-001",
+    "TEST-WEB-001",
+    "TEST-BACKEND-001"
+  ],
+  "checks": {
+    "requirement_status": {
+      "passed": true,
+      "failures": []
+    },
+    "requirement_anchors": {
+      "passed": true,
+      "failures": []
+    },
+    "anchor_files_exist": {
+      "passed": true,
+      "failures": []
+    },
+    "critical_modules_clean": {
+      "passed": true,
+      "failures": []
+    },
+    "test_logs_exist": {
+      "passed": true,
+      "failures": []
+    }
+  },
+  "summary": {
+    "total_checks": 5,
+    "passed_checks": 5,
+    "failed_checks": 0
+  }
+}

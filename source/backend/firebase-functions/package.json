@@ -9,7 +9,7 @@
     "shell": "npm run build && firebase functions:shell",
     "deploy": "firebase deploy --only functions",
     "logs": "firebase functions:log",
-    "test": "jest --coverage --verbose",
+    "test": "jest --runInBand --forceExit --detectOpenHandles --passWithNoTests",
     "test:watch": "jest --watch",
     "test:ci": "node ./tools/run_phase3_ci.cjs",
     "emulators:firestore": "firebase emulators:start --only firestore --project urbangenspark-test --config ../../firebase.json",

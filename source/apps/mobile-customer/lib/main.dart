@@ -18,9 +18,12 @@ import 'screens/points_history_screen.dart';
 import 'screens/onboarding/onboarding_screen.dart';
 import 'screens/qr_generation_screen.dart';
 import 'screens/billing/billing_screen.dart';
+import 'screens/favorites_screen.dart';
+import 'screens/redemption/redemption_history_screen.dart';
 import 'services/auth_service.dart';
 import 'services/fcm_service.dart';
 import 'services/onboarding_service.dart';
+import 'services/deep_link_service.dart';
 import 'utils/role_validator.dart';
 
 void main() async {
@@ -63,7 +66,9 @@ class UrbanPointsCustomerApp extends StatelessWidget {
       ),
       routes: {
         '/points_history': (context) => const PointsHistoryScreen(),
-            '/billing': (context) => const BillingScreen(),
+        '/billing': (context) => const BillingScreen(),
+        '/favorites': (context) => const FavoritesScreen(),
+        '/redemption_history': (context) => const RedemptionHistoryScreen(),
       },
       home: FutureBuilder<bool>(
         future: OnboardingService.shouldShowOnboarding(),
@@ -256,6 +261,32 @@ class _CustomerHomePageState extends State<CustomerHomePage> {
     super.initState();
     _loadCustomerData();
     _initializeFCM();
+    _initializeDeepLinks();
+  }
+  
+  Future<void> _initializeDeepLinks() async {
+    // Handle initial deep link if app was launched from one
+    final initialLink = await FirebaseMessaging.instance.getInitialMessage();
+    if (initialLink != null) {
+      _handleRemoteMessage(initialLink);
+    }
+
+    // Listen for foreground deep links
+    FirebaseMessaging.onMessageOpenedApp.listen(_handleRemoteMessage);
+  }
+
+  void _handleRemoteMessage(RemoteMessage message) {
+    final data = message.data;
+    final deepLink = data['deepLink'] as String?;
+
+    if (deepLink != null && mounted) {
+      try {
+        final uri = Uri.parse(deepLink);
+        DeepLinkService.handleUri(uri, context);
+      } catch (e) {
+        debugPrint('Error handling deep link: $e');
+      }
+    }
   }
   
   Future<void> _initializeFCM() async {

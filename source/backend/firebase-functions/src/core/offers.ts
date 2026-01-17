@@ -1164,3 +1164,171 @@ export async function getOfferEditHistory(
     };
   }
 }
+
+// ============================================================================
+// SEARCH AND FILTER FUNCTIONS
+// ============================================================================
+
+export interface SearchOffersRequest {
+  query?: string;
+  category?: string;
+  location?: {
+    latitude: number;
+    longitude: number;
+    radiusKm?: number;
+  };
+  minPoints?: number;
+  maxPoints?: number;
+  limit?: number;
+}
+
+export interface SearchOffersResponse {
+  success: boolean;
+  offers?: any[];
+  error?: string;
+}
+
+/**
+ * Search offers by query (title, description)
+ * @param data - Search request
+ * @param context - Auth context
+ * @param deps - Dependencies (db)
+ * @returns Matching offers
+ */
+export async function searchOffers(
+  data: SearchOffersRequest,
+  context: OffersContext,
+  deps: OffersDeps
+): Promise<SearchOffersResponse> {
+  try {
+    const query = (data.query || '').toLowerCase().trim();
+    const limit = Math.min(data.limit || 20, 100);
+
+    if (!query) {
+      return { success: true, offers: [] };
+    }
+
+    // Simple text search using startsWith on normalized fields
+    // For production, consider Algolia or Firestore full-text search
+    let ref: FirebaseFirestore.Query = deps.db
+      .collection('offers')
+      .where('status', '==', 'active')
+      .where('title_lower', '>=', query)
+      .where('title_lower', '<=', query + '\uf8ff')
+      .limit(limit);
+
+    const snapshot = await ref.get();
+    const offers = snapshot.docs.map((doc) => ({
+      id: doc.id,
+      ...doc.data(),
+    }));
+
+    return { success: true, offers };
+  } catch (error) {
+    console.error('Error searching offers:', error);
+    return {
+      success: false,
+      error: error instanceof Error ? error.message : 'Search failed',
+    };
+  }
+}
+
+export interface GetFilteredOffersRequest {
+  category?: string;
+  location?: {
+    latitude: number;
+    longitude: number;
+    radiusKm?: number;
+  };
+  minPoints?: number;
+  maxPoints?: number;
+  query?: string;
+  limit?: number;
+}
+
+export interface GetFilteredOffersResponse {
+  success: boolean;
+  offers?: any[];
+  error?: string;
+}
+
+/**
+ * Get offers filtered by category, location, and points range
+ * @param data - Filter request
+ * @param context - Auth context
+ * @param deps - Dependencies (db)
+ * @returns Filtered offers
+ */
+export async function getFilteredOffers(
+  data: GetFilteredOffersRequest,
+  context: OffersContext,
+  deps: OffersDeps
+): Promise<GetFilteredOffersResponse> {
+  try {
+    const limit = Math.min(data.limit || 20, 100);
+
+    let ref: FirebaseFirestore.Query = deps.db
+      .collection('offers')
+      .where('status', '==', 'active');
+
+    // Apply category filter
+    if (data.category) {
+      ref = ref.where('category', '==', data.category);
+    }
+
+    // Apply points range filter
+    if (data.minPoints !== undefined) {
+      ref = ref.where('points_value', '>=', data.minPoints);
+    }
+
+    if (data.maxPoints !== undefined) {
+      ref = ref.where('points_value', '<=', data.maxPoints);
+    }
+
+    ref = ref.limit(limit);
+
+    const snapshot = await ref.get();
+    let offers = snapshot.docs.map((doc) => ({
+      id: doc.id,
+      ...doc.data(),
+    }));
+
+    // Apply query filter (client-side)
+    if (data.query) {
+      const queryLower = data.query.toLowerCase();
+      offers = offers.filter(
+        (offer) => {
+          const o = offer as any;
+          return (
+            o.title?.toLowerCase().includes(queryLower) ||
+            o.description?.toLowerCase().includes(queryLower)
+          );
+        }
+      );
+    }
+
+    // Apply location filter (client-side using simple distance)
+    if (data.location) {
+      const radiusKm = data.location.radiusKm || 5;
+      offers = offers.filter((offer) => {
+        const merchantLocation = (offer as any).merchant_location || (offer as any).location;
+        if (!merchantLocation) return true;
+        const distance = calculateDistance(
+          data.location!.latitude,
+          data.location!.longitude,
+          merchantLocation.latitude || merchantLocation.lat || 0,
+          merchantLocation.longitude || merchantLocation.lng || 0
+        );
+        return distance <= radiusKm;
+      });
+    }
+
+    return { success: true, offers };
+  } catch (error) {
+    console.error('Error filtering offers:', error);
+    return {
+      success: false,
+      error: error instanceof Error ? error.message : 'Filter failed',
+    };
+  }
+}

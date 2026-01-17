@@ -1,0 +1,57 @@
+=== REALITY_GATE_EXIT.TXT ===
+0
+
+
+=== EXITS.JSON ===
+{
+  "cto_gate": 0,
+  "backend_build": 0,
+  "backend_test": 0,
+  "web_build": 0,
+  "web_test": 0,
+  "merchant_analyze": 0,
+  "merchant_test": 0,
+  "customer_analyze": 0,
+  "customer_test": 0,
+  "stub_scan": 0,
+  "critical_stub_hits": 0
+}
+
+
+=== REALITY_GATE_RUN.LOG (last 200 lines) ===
+[2026-01-16T16:54:04Z] === CTO gate (normal mode) ===
+[2026-01-16T16:54:04Z] RUN cto_gate_normal: bash -lc cd '/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER' && python3 tools/gates/cto_verify.py
+[2026-01-16T16:54:04Z] DONE cto_gate_normal exit=0
+[2026-01-16T16:54:04Z] === Backend build/test ===
+[2026-01-16T16:54:04Z] RUN backend_build: bash -lc cd '/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions' && npm run build
+[2026-01-16T16:54:06Z] DONE backend_build exit=0
+[2026-01-16T16:54:06Z] RUN backend_test: bash -lc cd '/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions' && npm test
+[2026-01-16T16:54:07Z] DONE backend_test exit=0
+[2026-01-16T16:54:07Z] === Web-admin build/test ===
+[2026-01-16T16:54:07Z] RUN web_build: bash -lc cd '/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/web-admin' && npm run build
+[2026-01-16T16:54:10Z] DONE web_build exit=0
+[2026-01-16T16:54:10Z] RUN web_test: bash -lc cd '/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/web-admin' && npm test
+[2026-01-16T16:54:10Z] DONE web_test exit=0
+[2026-01-16T16:54:10Z] === Mobile-merchant analyze/test ===
+[2026-01-16T16:54:10Z] RUN merchant_analyze: bash -lc cd '/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant' && flutter analyze
+[2026-01-16T16:54:14Z] DONE merchant_analyze exit=0
+[2026-01-16T16:54:14Z] RUN merchant_test: bash -lc cd '/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant' && flutter test
+[2026-01-16T16:54:17Z] DONE merchant_test exit=0
+[2026-01-16T16:54:17Z] === Mobile-customer analyze/test ===
+[2026-01-16T16:54:17Z] RUN customer_analyze: bash -lc cd '/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer' && flutter analyze
+[2026-01-16T16:54:20Z] DONE customer_analyze exit=0
+[2026-01-16T16:54:20Z] RUN customer_test: bash -lc cd '/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer' && flutter test
+[2026-01-16T16:54:23Z] DONE customer_test exit=0
+[2026-01-16T16:54:23Z] === Stub scan ===
+[2026-01-16T16:54:23Z] RUN stub_scan: bash -lc cd '/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER' && grep -R -n -E 'TODO|FIXME|NOT_IMPLEMENTED|throw new Error|placeholder|mock' source tools --exclude-dir=node_modules --exclude-dir=.dart_tool --exclude-dir=build --exclude-dir=dist --exclude-dir=.next || true
+[2026-01-16T16:54:24Z] DONE stub_scan exit=0
+[2026-01-16T16:54:24Z] === Analyzing stub scan results ===
+[2026-01-16T16:54:24Z] Stub scan critical files: 0
+[2026-01-16T16:54:24Z] === Git diffs ===
+[2026-01-16T16:54:24Z] === Build exits.json ===
+[2026-01-16T16:54:24Z] === Determining final verdict ===
+[2026-01-16T16:54:24Z] FINAL_EXIT=0
+
+
+=== FINAL_EXIT GREP ===
+32:[2026-01-16T16:54:24Z] FINAL_EXIT=0

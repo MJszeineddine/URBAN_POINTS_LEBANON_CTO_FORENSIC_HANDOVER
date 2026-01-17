@@ -1,0 +1,22 @@
+{
+  "timestamp": "2026-01-16T16:06:04.162953",
+  "phase": "Phase 4",
+  "git_commit": "2e0398c",
+  "git_branch": "main",
+  "target_blocked_requirements": 24,
+  "marked_ready": 24,
+  "gate_exit_code": 1,
+  "gate_normal_mode": false,
+  "artifacts": {
+    "backend_build": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/local-ci/verification/backend_functions_build_phase4.log",
+    "backend_test": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/local-ci/verification/backend_functions_test_phase4.log",
+    "web_build": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/local-ci/verification/web_admin_build_phase4.log",
+    "web_test": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/local-ci/verification/web_admin_test_phase4.log",
+    "merchant_analyze": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/local-ci/verification/merchant_app_analyze_phase4.log",
+    "merchant_test": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/local-ci/verification/merchant_app_test_phase4.log",
+    "customer_analyze": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/local-ci/verification/customer_app_analyze_phase4.log",
+    "customer_test": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/local-ci/verification/customer_app_test_phase4.log",
+    "gate_log": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/local-ci/verification/gate_run_phase4.log",
+    "gate_report": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/local-ci/verification/cto_verify_report_phase4.json"
+  }
+}

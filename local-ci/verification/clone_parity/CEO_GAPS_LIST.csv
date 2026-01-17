@@ -1,0 +1,10 @@
+baseline_id,baseline_feature,current_status,why_not_100,what_to_do_next,evidence_path
+QTR-001,Subscription required for usage,NOT_PROVEN,No end-to-end proof captured,Record subscription access journey and store under local-ci/verification/e2e_proof_pack/,NONE
+QTR-002,QR redemption flow,NOT_PROVEN,No end-to-end proof captured,Record customer redemption journey and store under local-ci/verification/e2e_proof_pack/,NONE
+QTR-003,Offer approval workflow,NOT_PROVEN,No end-to-end proof captured,Record merchant approval journey and store under local-ci/verification/e2e_proof_pack/,NONE
+QTR-004,Points balance tracking,NOT_PROVEN,No end-to-end proof captured,Record points earn/redeem journey and store under local-ci/verification/e2e_proof_pack/,NONE
+QTR-005,Mobile apps functional,NOT_PROVEN,No end-to-end proof captured,Record customer and merchant core journeys and store under local-ci/verification/e2e_proof_pack/,NONE
+QTR-006,Phone + OTP auth,NOT_PROVEN,No end-to-end proof captured,Record phone sign-in with code delivery and store under local-ci/verification/e2e_proof_pack/,NONE
+QTR-007,Arabic + English,NOT_PROVEN,No end-to-end proof captured,Record Arabic and English screens and store under local-ci/verification/e2e_proof_pack/,NONE
+QTR-008,Location-based prioritization,NOT_PROVEN,No end-to-end proof captured,Record nearby-first offer ordering and store under local-ci/verification/e2e_proof_pack/,NONE
+QTR-009,Push notifications,NOT_PROVEN,No end-to-end proof captured,Record a delivered push message and store under local-ci/verification/e2e_proof_pack/,NONE

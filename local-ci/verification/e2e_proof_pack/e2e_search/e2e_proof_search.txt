@@ -1,0 +1,10 @@
+local-ci/verification/full_stack_gate/e2e_proof_pack.log
+local-ci/verification/roadmap_evidence/e2e_proof_pack_run.log
+local-ci/verification/e2e_proof_pack/flow_proof_location_priority.md
+local-ci/verification/e2e_proof_pack/flow_proof_push_delivery.md
+local-ci/verification/e2e_proof_pack/flow_proof_customer_qr.md
+local-ci/verification/e2e_proof_pack/flow_proof_merchant_approve.md
+local-ci/verification/e2e_proof_pack/flow_proof_phone_code_login.md
+local-ci/verification/e2e_proof_pack/flow_proof_bilingual.md
+local-ci/verification/e2e_proof_pack/flow_proof_subscription_gate.md
+local-ci/verification/e2e_proof_pack/web_admin/playwright.log

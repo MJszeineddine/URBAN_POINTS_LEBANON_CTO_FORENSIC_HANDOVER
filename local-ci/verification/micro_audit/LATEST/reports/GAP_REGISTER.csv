@@ -1,0 +1,17 @@
+id,surface,category,status,evidence,done_criteria,next_action
+GAP-001,Backend,Firebase Emulator,BLOCKED,local-ci/verification/e2e_proof_pack/backend_emulator/VERDICT.json,backend_emulator VERDICT=PASS,Add firebase.json with emulator config and re-run
+GAP-002,Web Admin,Playwright E2E,BLOCKED,local-ci/verification/e2e_proof_pack/web_admin/VERDICT.json,web_admin VERDICT=PASS,Install Playwright browsers: npx playwright install
+GAP-003,Mobile Customer,Integration Test,BLOCKED,local-ci/verification/micro_audit/LATEST/build_test/BLOCKER_mobile_customer.md,mobile_customer VERDICT=PASS,Install Flutter SDK and configure device/emulator
+GAP-004,Mobile Merchant,Integration Test,BLOCKED,local-ci/verification/micro_audit/LATEST/build_test/BLOCKER_mobile_merchant.md,mobile_merchant VERDICT=PASS,Install Flutter SDK and configure device/emulator
+GAP-005,E2E Journeys,Journey Pack #1,MISSING,local-ci/verification/micro_audit/LATEST/e2e_proof/E2E_PROOF_AUDIT.md,"RUN.log, UI evidence, manifest.json, verdict.json",Execute customer sign-in journey and capture artifacts
+GAP-006,E2E Journeys,Journey Pack #2,MISSING,local-ci/verification/micro_audit/LATEST/e2e_proof/E2E_PROOF_AUDIT.md,"RUN.log, UI evidence, manifest.json, verdict.json",Execute earn-points journey and capture artifacts
+GAP-007,E2E Journeys,Journey Pack #3,MISSING,local-ci/verification/micro_audit/LATEST/e2e_proof/E2E_PROOF_AUDIT.md,"RUN.log, UI evidence, manifest.json, verdict.json",Execute redeem-points journey and capture artifacts
+GAP-008,E2E Journeys,Journey Pack #4,MISSING,local-ci/verification/micro_audit/LATEST/e2e_proof/E2E_PROOF_AUDIT.md,"RUN.log, UI evidence, manifest.json, verdict.json",Execute admin-create-campaign journey and capture artifacts
+GAP-009,E2E Journeys,Journey Pack #5,MISSING,local-ci/verification/micro_audit/LATEST/e2e_proof/E2E_PROOF_AUDIT.md,"RUN.log, UI evidence, manifest.json, verdict.json",Execute rate-limit/fraud journey and capture artifacts
+GAP-010,Backend,Unit Test Coverage,PARTIAL,local-ci/verification/micro_audit/LATEST/build_test/firebase_functions_test.log,Jest coverage >80% with real assertions,Add meaningful unit tests for cloud functions
+GAP-011,Web Admin,Unit Tests,MISSING,local-ci/verification/micro_audit/LATEST/build_test/web_admin_test.log,Web-admin test script passes,Add Jest/React Testing Library tests
+GAP-012,REST API,Integration Tests,PARTIAL,local-ci/verification/micro_audit/LATEST/build_test/rest_api_test.log,API routes tested with real HTTP calls,Add supertest integration tests
+GAP-013,Security,Secrets Audit,NOT_PROVEN,local-ci/verification/micro_audit/LATEST/security/scan_secrets.log,All 50 matches reviewed and false positives documented,Audit scan_secrets.log line-by-line
+GAP-014,Code Quality,TODO Resolution,PARTIAL,local-ci/verification/micro_audit/LATEST/static/scan_todos.log,<10 TODO/FIXME in production code,Address or document 100+ markers
+GAP-015,Firestore Rules,Security Rules Test,NOT_PROVEN,source/infra/firestore.rules,Rules tested in emulator with E2E journeys,Test rules with authenticated and unauthenticated requests
+GAP-016,Full-Stack,Full-Stack Gate,NOT_PROVEN,local-ci/verification/full_stack_gate/VERDICT.json,full_stack_status=YES with CTO rule satisfied,Complete GAP-001 to GAP-009 then re-run gate

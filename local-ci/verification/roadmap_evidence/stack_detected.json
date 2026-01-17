@@ -1,0 +1,104 @@
+{
+  "timestamp_utc": "2026-01-17T00:00:00Z",
+  "git_commit": "unknown",
+  "surfaces": {
+    "mobile_customer": {
+      "path": "source/apps/mobile-customer",
+      "anchors": [
+        "source/apps/mobile-customer/pubspec.yaml#L1-L20",
+        "source/apps/mobile-customer/integration_test/pain_test.dart#L1-L50",
+        "HARD_GATE_V2_FINAL_VERDICT.md#L57-L61"
+      ],
+      "language": "Dart",
+      "framework": "Flutter",
+      "sdk_version": "unknown (derive from pubspec.yaml)",
+      "firebase_packages_present": [
+        "firebase_core",
+        "cloud_firestore",
+        "firebase_auth",
+        "cloud_functions",
+        "firebase_messaging",
+        "firebase_crashlytics"
+      ],
+      "testing": {
+        "unit": "flutter test (present)",
+        "integration": "integration_test present (pain_test.dart)"
+      }
+    },
+    "mobile_merchant": {
+      "path": "source/apps/mobile-merchant",
+      "anchors": [
+        "source/apps/mobile-merchant/pubspec.yaml#L1-L20",
+        "source/apps/mobile-merchant/integration_test/pain_test.dart#L1-L50",
+        "HARD_GATE_V2_FINAL_VERDICT.md#L57-L61"
+      ],
+      "language": "Dart",
+      "framework": "Flutter",
+      "sdk_version": "unknown (derive from pubspec.yaml)",
+      "firebase_packages_present": [
+        "firebase_core",
+        "cloud_firestore",
+        "firebase_auth",
+        "cloud_functions",
+        "firebase_messaging",
+        "firebase_crashlytics"
+      ],
+      "testing": {
+        "unit": "flutter test (present)",
+        "integration": "integration_test present (pain_test.dart)"
+      }
+    },
+    "web_admin": {
+      "path": "source/apps/web-admin",
+      "anchors": [
+        "source/apps/web-admin/package.json#L1-L40",
+        "source/apps/web-admin/playwright.config.ts#L1-L200"
+      ],
+      "language": "TypeScript",
+      "framework": "Next.js",
+      "next_version": "unknown (derive from package.json)",
+      "testing": {
+        "playwright": "@playwright/test ^1.40.0",
+        "scripts": {
+          "dev": "next dev -p 3001",
+          "build": "next build",
+          "start": "next start -p 3001",
+          "test": "no tests (echo skipping)"
+        }
+      }
+    }
+  },
+  "backend": {
+    "firebase_functions": {
+      "path": "source/backend/firebase-functions",
+      "anchors": [
+        "source/backend/firebase-functions/package.json#L1-L80",
+        "PROJECT_CONTROL.md#L211-L217"
+      ],
+      "node_version": "unknown (engine field, expected ~20)",
+      "dependencies_present": [
+        "firebase-admin",
+        "firebase-functions",
+        "stripe",
+        "zod"
+      ],
+      "tools_present": [
+        "typescript",
+        "jest",
+        "firebase-tools"
+      ]
+    },
+    "rest_api": {
+      "path": "source/backend/rest-api",
+      "anchors": [
+        "source/backend/rest-api/package.json#L1-L80"
+      ],
+      "language": "TypeScript",
+      "framework": "Express",
+      "database": "PostgreSQL",
+      "engines": {
+        "node": "unknown (>=18 expected from package.json)"
+      }
+    }
+  }
+}
