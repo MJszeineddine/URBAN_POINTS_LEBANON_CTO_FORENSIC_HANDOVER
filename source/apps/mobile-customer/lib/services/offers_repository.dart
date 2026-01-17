@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cloud_functions/cloud_functions.dart';
+import 'dart:developer' as developer;
 import '../models/offer.dart';
 import '../models/location.dart';
 
@@ -36,7 +37,7 @@ class OffersRepository {
           .map((o) => Offer.fromMap(o as Map<String, dynamic>))
           .toList();
     } catch (e) {
-      print('Error fetching offers by location: $e');
+      developer.log('Error fetching offers by location: $e', name: 'OffersRepository');
       // Fallback to national catalog from Firestore
       return _getNationalCatalog();
     }
@@ -54,7 +55,7 @@ class OffersRepository {
           .map((doc) => Offer.fromMap({...doc.data(), 'id': doc.id}))
           .toList();
     } catch (e) {
-      print('Error fetching national catalog: $e');
+      developer.log('Error fetching national catalog: $e', name: 'OffersRepository');
       return [];
     }
   }
@@ -68,7 +69,7 @@ class OffersRepository {
       }
       return null;
     } catch (e) {
-      print('Error fetching offer: $e');
+      developer.log('Error fetching offer: $e', name: 'OffersRepository');
       return null;
     }
   }
@@ -85,7 +86,7 @@ class OffersRepository {
 
       return snapshot.docs.map((doc) => {...doc.data(), 'id': doc.id}).toList();
     } catch (e) {
-      print('Error fetching redemption history: $e');
+      developer.log('Error fetching redemption history: $e', name: 'OffersRepository');
       return [];
     }
   }
@@ -99,7 +100,7 @@ class OffersRepository {
       final data = doc.data()!;
       return data['subscription_status'] == 'active';
     } catch (e) {
-      print('Error checking subscription: $e');
+      developer.log('Error checking subscription: $e', name: 'OffersRepository');
       return false;
     }
   }

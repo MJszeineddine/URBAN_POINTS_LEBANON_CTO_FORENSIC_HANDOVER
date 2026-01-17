@@ -23,6 +23,48 @@
   "dynamicRoutes": [],
   "staticRoutes": [
     {
+      "page": "/admin/analytics",
+      "regex": "^/admin/analytics(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/admin/analytics(?:/)?$"
+    },
+    {
+      "page": "/admin/audit-logs",
+      "regex": "^/admin/audit\\-logs(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/admin/audit\\-logs(?:/)?$"
+    },
+    {
+      "page": "/admin/billing",
+      "regex": "^/admin/billing(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/admin/billing(?:/)?$"
+    },
+    {
+      "page": "/admin/campaigns/create",
+      "regex": "^/admin/campaigns/create(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/admin/campaigns/create(?:/)?$"
+    },
+    {
+      "page": "/admin/campaigns/send",
+      "regex": "^/admin/campaigns/send(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/admin/campaigns/send(?:/)?$"
+    },
+    {
+      "page": "/admin/campaigns/stats",
+      "regex": "^/admin/campaigns/stats(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/admin/campaigns/stats(?:/)?$"
+    },
+    {
+      "page": "/admin/compliance",
+      "regex": "^/admin/compliance(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/admin/compliance(?:/)?$"
+    },
+    {
       "page": "/admin/dashboard",
       "regex": "^/admin/dashboard(?:/)?$",
       "routeKeys": {},
@@ -33,6 +75,12 @@
       "regex": "^/admin/diagnostics(?:/)?$",
       "routeKeys": {},
       "namedRegex": "^/admin/diagnostics(?:/)?$"
+    },
+    {
+      "page": "/admin/fraud",
+      "regex": "^/admin/fraud(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/admin/fraud(?:/)?$"
     },
     {
       "page": "/admin/login",
@@ -51,6 +99,18 @@
       "regex": "^/admin/offers(?:/)?$",
       "routeKeys": {},
       "namedRegex": "^/admin/offers(?:/)?$"
+    },
+    {
+      "page": "/admin/payments",
+      "regex": "^/admin/payments(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/admin/payments(?:/)?$"
+    },
+    {
+      "page": "/admin/points",
+      "regex": "^/admin/points(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/admin/points(?:/)?$"
     },
     {
       "page": "/admin/users",

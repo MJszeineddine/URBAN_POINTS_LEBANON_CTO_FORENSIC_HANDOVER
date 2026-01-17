@@ -1,0 +1,108 @@
+qatar_app:
+  version: "unknown"
+extracted_from:
+  - FINAL_COMPLETION_REPORT.md
+  - BRUTAL_REALITY_MAP.md
+features:
+  - id: QTR-001
+    title: "Subscription required for usage"
+    description: "Access to app features requires an active merchant subscription."
+    acceptance_criteria:
+      - "Backend enforces subscription gate via checkSubscriptionAccess"
+      - "Requests from non-subscribed merchants are denied"
+    flows:
+      - "checkSubscriptionAccess gate active"
+      - "Denied response for inactive subscriptions"
+    surface: backend
+    sources:
+      - docs/QATAR_BASELINE_SOURCES.md#QTR-001
+  - id: QTR-002
+    title: "QR redemption flow"
+    description: "Secure QR redemption with single-use and time-bound validity."
+    acceptance_criteria:
+      - "Single-use redemption tokens cannot be reused"
+      - "60-second expiry enforced server-side"
+    flows:
+      - "Generate QR → Redeem → Invalidate token"
+      - "Redemption fails after 60s"
+    surface: backend
+    sources:
+      - docs/QATAR_BASELINE_SOURCES.md#QTR-002
+  - id: QTR-003
+    title: "Offer approval workflow"
+    description: "Moderation workflow for offers including draft, pending, and active states."
+    acceptance_criteria:
+      - "Offer states include draft→pending→active"
+      - "Admin action approveOffer required to activate"
+    flows:
+      - "Create offer (draft) → Submit (pending) → Admin approve (active)"
+    surface: admin
+    sources:
+      - docs/QATAR_BASELINE_SOURCES.md#QTR-003
+  - id: QTR-004
+    title: "Points balance tracking"
+    description: "Points accrual and redemption tracked with transactional integrity and audit logs."
+    acceptance_criteria:
+      - "Firestore transactions record points changes"
+      - "Audit logs exist for points operations"
+    flows:
+      - "Earn points → Firestore transaction → Balance updated"
+      - "Redeem points → Firestore transaction → Audit entry"
+    surface: backend
+    sources:
+      - docs/QATAR_BASELINE_SOURCES.md#QTR-004
+  - id: QTR-005
+    title: "Mobile apps functional"
+    description: "Customer and merchant mobile applications operate with wired backend methods."
+    acceptance_criteria:
+      - "UI screens exist for core flows"
+      - "AuthService/backend methods integrated into screens"
+    flows:
+      - "Launch app → Navigate core flows → Backend methods invoked"
+    surface: customer
+    sources:
+      - docs/QATAR_BASELINE_SOURCES.md#QTR-005
+  - id: QTR-006
+    title: "Phone + OTP auth"
+    description: "Phone-based authentication using one-time passwords delivered via SMS."
+    acceptance_criteria:
+      - "Login via phone number and OTP supported"
+      - "SMS provider configured to deliver OTPs"
+    flows:
+      - "Enter phone → Receive OTP → Verify → Authenticated"
+    surface: backend
+    sources:
+      - docs/QATAR_BASELINE_SOURCES.md#QTR-006
+  - id: QTR-007
+    title: "Arabic + English"
+    description: "Bilingual user interface supporting Arabic and English locales."
+    acceptance_criteria:
+      - "UI renders in Arabic"
+      - "UI renders in English"
+    flows:
+      - "Switch language → UI renders correctly"
+    surface: customer
+    sources:
+      - docs/QATAR_BASELINE_SOURCES.md#QTR-007
+  - id: QTR-008
+    title: "Location-based prioritization"
+    description: "Offer listing prioritizes nearby offers rather than national-only browsing."
+    acceptance_criteria:
+      - "Offers prioritized by proximity"
+      - "Geographic browsing extends beyond national-only"
+    flows:
+      - "Detect location → Sort offers by proximity"
+    surface: customer
+    sources:
+      - docs/QATAR_BASELINE_SOURCES.md#QTR-008
+  - id: QTR-009
+    title: "Push notifications"
+    description: "Push delivery for campaigns and events via FCM."
+    acceptance_criteria:
+      - "FCM service sends notifications to users"
+      - "Campaign-triggered notifications delivered"
+    flows:
+      - "Create campaign → Send push → User receives notification"
+    surface: backend
+    sources:
+      - docs/QATAR_BASELINE_SOURCES.md#QTR-009

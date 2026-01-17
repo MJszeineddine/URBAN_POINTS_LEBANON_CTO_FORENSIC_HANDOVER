@@ -180,7 +180,7 @@ interface QRTokenResponse {
 import { coreGenerateSecureQRToken, coreValidatePIN, revokeQRToken, getQRHistory, detectFraudPatterns } from './core/qr';
 import { coreCalculateDailyStats, coreApproveOffer, coreRejectOffer, coreGetMerchantComplianceStatus } from './core/admin';
 import { coreAwardPoints, processPointsEarning, processRedemption, getPointsBalance } from './core/points';
-import { createOffer, updateOfferStatus, handleOfferExpiration, aggregateOfferStats, getOffersByLocation, editOffer, cancelOffer, getOfferEditHistory } from './core/offers';
+import { createOffer, updateOfferStatus, handleOfferExpiration, aggregateOfferStats, getOffersByLocation, editOffer, cancelOffer, getOfferEditHistory, searchOffers, getFilteredOffers } from './core/offers';
 import { coreValidateRedemption } from './core/indexCore';
 
 export const generateSecureQRToken = functions
@@ -907,6 +907,36 @@ export const getOfferEditHistoryCallable = functions
     }
 
     return getOfferEditHistory(validationResult, context, { db });
+  }));
+
+/**
+ * searchOffersCallable - Search offers by query
+ */
+export const searchOffersCallable = functions
+  .region('us-central1')
+  .runWith({
+    memory: '256MB',
+    timeoutSeconds: 10,
+    minInstances: 0,
+    maxInstances: 20
+  })
+  .https.onCall(monitorFunction('searchOffersCallable', async (data, context) => {
+    return searchOffers(data, context, { db });
+  }));
+
+/**
+ * getFilteredOffersCallable - Get offers filtered by criteria
+ */
+export const getFilteredOffersCallable = functions
+  .region('us-central1')
+  .runWith({
+    memory: '256MB',
+    timeoutSeconds: 10,
+    minInstances: 0,
+    maxInstances: 20
+  })
+  .https.onCall(monitorFunction('getFilteredOffersCallable', async (data, context) => {
+    return getFilteredOffers(data, context, { db });
   }));
 
 // ============================================================================

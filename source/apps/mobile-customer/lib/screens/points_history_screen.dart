@@ -15,6 +15,7 @@ class PointsHistoryScreen extends StatefulWidget {
 }
 
 class _PointsHistoryScreenState extends State<PointsHistoryScreen> {
+  // ignore: unused_field
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   final FirebaseAuth _auth = FirebaseAuth.instance;
     final FirebaseFunctions _functions = FirebaseFunctions.instance;
@@ -59,10 +60,10 @@ class _PointsHistoryScreenState extends State<PointsHistoryScreen> {
 
       _totalPointsEarned = _transactions
           .where((t) => (t['points'] as int) > 0)
-          .fold(0, (sum, t) => sum + (t['points'] as int));
+          .fold(0, (total, t) => total + (t['points'] as int));
       _totalPointsRedeemed = _transactions
           .where((t) => (t['points'] as int) < 0)
-          .fold(0, (sum, t) => sum + (t['points'] as int).abs());
+          .fold(0, (total, t) => total + (t['points'] as int).abs());
 
       setState(() => _isLoading = false);
     } catch (e) {

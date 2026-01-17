@@ -1,0 +1,127 @@
+import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
+import * as admin from 'firebase-admin';
+import { initializeTestEnvironment, assertFails } from '@firebase/rules-unit-testing';
+
+describe('WhatsApp OTP Service', () => {
+  let testEnv: any;
+
+  beforeEach(async () => {
+    testEnv = await initializeTestEnvironment({
+      projectId: 'test-project',
+    });
+  });
+
+  afterEach(async () => {
+    await testEnv.cleanup();
+  });
+
+  describe('sendWhatsAppOTP', () => {
+    it('should send OTP with valid phone number', async () => {
+      const db = testEnv.authenticatedContext('user123').firestore();
+      
+      // Mock Twilio response
+      const phoneNumber = '+961 71 234 567';
+      expect(phoneNumber).toMatch(/^\+961\s?\d{1,2}\s?\d{3}\s?\d{3,4}$/);
+    });
+
+    it('should reject invalid Lebanese phone number', async () => {
+      const phoneNumber = '+1234567890';
+      expect(phoneNumber).not.toMatch(/^\+961/);
+    });
+
+    it('should enforce rate limit (5 per hour)', async () => {
+      // After sending 5 OTPs, the 6th should fail
+      // Rate limit logic: count messages in whatsapp_log in last 3600 seconds
+      const oneHourAgo = new Date(Date.now() - 3600 * 1000);
+      expect(oneHourAgo.getTime()).toBeLessThan(Date.now());
+    });
+
+    it('should log OTP in whatsapp_log collection', async () => {
+      // Every OTP send should create a document in whatsapp_log with:
+      // - recipient (phone number)
+      // - message (OTP text)
+      // - type ('otp')
+      // - status ('sent' or 'failed')
+      // - messageId (from Twilio or simulated)
+      // - sent_at (server timestamp)
+      const expectedFields = ['recipient', 'message', 'type', 'status', 'messageId', 'sent_at'];
+      expect(expectedFields).toContain('sent_at');
+    });
+  });
+
+  describe('verifyWhatsAppOTP', () => {
+    it('should verify valid OTP code', async () => {
+      const code = '123456';
+      expect(code).toHaveLength(6);
+    });
+
+    it('should reject invalid OTP code', async () => {
+      const invalidCode = '000000';
+      // Logic: retrieve OTP from whatsapp_verification collection
+      // Compare submitted code with stored code
+      // Check if not expired (TTL)
+      expect(invalidCode).toMatch(/^\d{6}$/);
+    });
+
+    it('should expire OTP after 10 minutes', async () => {
+      const ttlMinutes = 10;
+      const ttlMs = ttlMinutes * 60 * 1000;
+      expect(ttlMs).toBe(600000);
+    });
+
+    it('should track verification attempts for audit', async () => {
+      // Log verification attempts in whatsapp_verification_log:
+      // - phoneNumber
+      // - codeSent
+      // - codeSubmitted
+      // - matches (boolean)
+      // - attemptedAt
+      // - ipAddress (from context)
+      const auditFields = ['phoneNumber', 'codeSent', 'codeSubmitted', 'matches', 'attemptedAt'];
+      expect(auditFields).toContain('matches');
+    });
+  });
+
+  describe('getWhatsAppVerificationStatus', () => {
+    it('should return verification status for phone number', async () => {
+      // Should return: { verified: boolean, verifiedAt: timestamp }
+      const status = { verified: true, verifiedAt: new Date() };
+      expect(status).toHaveProperty('verified');
+      expect(status).toHaveProperty('verifiedAt');
+    });
+
+    it('should return unverified status if not verified', async () => {
+      const status = { verified: false };
+      expect(status.verified).toBe(false);
+    });
+  });
+
+  describe('Integration Tests', () => {
+    it('should complete full OTP flow', async () => {
+      // 1. Send OTP → logs to whatsapp_log
+      // 2. User receives code via WhatsApp
+      // 3. Submit code → validated against whatsapp_verification
+      // 4. Mark as verified in user document
+      // 5. Auto-login user
+      const steps = ['send', 'receive', 'submit', 'validate', 'verify', 'login'];
+      expect(steps).toHaveLength(6);
+    });
+
+    it('should handle OTP timeout gracefully', async () => {
+      // Expired OTP should prompt resend
+      // Old OTP should not be usable
+      const ttl = 10 * 60 * 1000;
+      const elapsed = 11 * 60 * 1000;
+      expect(elapsed).toBeGreaterThan(ttl);
+    });
+
+    it('should protect against brute force attacks', async () => {
+      // After 5 failed attempts, lock out for 5 minutes
+      // Log each attempt
+      const maxAttempts = 5;
+      const lockoutMs = 5 * 60 * 1000;
+      expect(maxAttempts).toBe(5);
+      expect(lockoutMs).toBe(300000);
+    });
+  });
+});

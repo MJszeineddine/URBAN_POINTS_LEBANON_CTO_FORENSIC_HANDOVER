@@ -13,16 +13,20 @@ class OffersListScreen extends StatefulWidget {
 }
 
 class _OffersListScreenState extends State<OffersListScreen> {
-  String _sortBy = 'proximity';
   String _searchQuery = '';
+  String? _selectedCategory;
+  double? _minPoints;
+  double? _maxPoints;
   final TextEditingController _searchController = TextEditingController();
   bool _isSearching = false;
 
   final CustomerService _customerService = CustomerService();
   final FirebaseFunctions _functions = FirebaseFunctions.instance;
+  // ignore: unused_field
   final FirebaseAuth _auth = FirebaseAuth.instance;
   bool _isLoading = false;
   double _balance = 0;
+  bool _showFilters = false;
 
   @override
   void initState() {
@@ -101,10 +105,74 @@ class _OffersListScreenState extends State<OffersListScreen> {
               });
             },
           ),
+          IconButton(
+            icon: const Icon(Icons.filter_list),
+            onPressed: () {
+              setState(() => _showFilters = !_showFilters);
+            },
+          ),
         ],
       ),
       body: Column(
         children: [
+          if (_showFilters)
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text('Filters', style: TextStyle(fontWeight: FontWeight.bold)),
+                  const SizedBox(height: 8),
+                  TextField(
+                    decoration: const InputDecoration(
+                      labelText: 'Category',
+                      hintText: 'e.g., Food, Entertainment',
+                      isDense: true,
+                    ),
+                    onChanged: (value) {
+                      setState(() => _selectedCategory = value.isEmpty ? null : value);
+                    },
+                  ),
+                  const SizedBox(height: 8),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: TextField(
+                          decoration: const InputDecoration(
+                            labelText: 'Min Points',
+                            isDense: true,
+                          ),
+                          keyboardType: TextInputType.number,
+                          onChanged: (value) {
+                            setState(() => _minPoints = double.tryParse(value));
+                          },
+                        ),
+                      ),
+                      const SizedBox(width: 8),
+                      Expanded(
+                        child: TextField(
+                          decoration: const InputDecoration(
+                            labelText: 'Max Points',
+                            isDense: true,
+                          ),
+                          keyboardType: TextInputType.number,
+                          onChanged: (value) {
+                            setState(() => _maxPoints = double.tryParse(value));
+                          },
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 12),
+                  ElevatedButton(
+                    onPressed: () {
+                      setState(() => _showFilters = false);
+                    },
+                    child: const Text('Apply Filters'),
+                  ),
+                ],
+              ),
+            ),
           Expanded(child: _buildOffersList()),
         ],
       ),
@@ -112,11 +180,41 @@ class _OffersListScreenState extends State<OffersListScreen> {
   }
 
   Widget _buildOffersList() {
-    return FutureBuilder<Map<String, dynamic>>(
-      future: _functions
+    // Determine which backend callable to use based on filters
+    late Future<Map<String, dynamic>> offersFuture;
+
+    if (_searchQuery.isNotEmpty) {
+      // Use search callable
+      offersFuture = _functions
+          .httpsCallable('searchOffers')
+          .call({
+            'query': _searchQuery,
+            'limit': 50,
+          })
+          .then((r) => r.data as Map<String, dynamic>);
+    } else if (_selectedCategory != null ||
+        _minPoints != null ||
+        _maxPoints != null) {
+      // Use filter callable
+      offersFuture = _functions
+          .httpsCallable('getFilteredOffers')
+          .call({
+            'category': _selectedCategory,
+            'minPoints': _minPoints,
+            'maxPoints': _maxPoints,
+            'limit': 50,
+          })
+          .then((r) => r.data as Map<String, dynamic>);
+    } else {
+      // Use default callable for all offers
+      offersFuture = _functions
           .httpsCallable('getAvailableOffers')
           .call()
-          .then((r) => r.data as Map<String, dynamic>),
+          .then((r) => r.data as Map<String, dynamic>);
+    }
+
+    return FutureBuilder<Map<String, dynamic>>(
+      future: offersFuture,
       builder: (context, snapshot) {
         if (snapshot.hasError) {
           return Center(
@@ -142,12 +240,8 @@ class _OffersListScreenState extends State<OffersListScreen> {
 
         final data = snapshot.data!;
         final offersList = (data['offers'] as List?)?.cast<Map<String, dynamic>>() ?? [];
-        
-        var offers = offersList.map((o) => Offer.fromMap(o)).toList();
 
-        if (_searchQuery.isNotEmpty) {
-          offers = offers.where((o) => o.title.toLowerCase().contains(_searchQuery)).toList();
-        }
+        var offers = offersList.map((o) => Offer.fromMap(o)).toList();
 
         if (offers.isEmpty) {
           return const Center(child: Text('No offers found'));

@@ -65,7 +65,7 @@ class _QRGenerationScreenState extends State<QRGenerationScreen> {
         'generateSecureQRToken',
       );
 
-      final idToken = await currentUser.getIdToken();
+      final idToken = await currentUser.getIdToken(); // ignore: unused_local_variable
       final result = await callable.call(
         {
           'userId': currentUser.uid,

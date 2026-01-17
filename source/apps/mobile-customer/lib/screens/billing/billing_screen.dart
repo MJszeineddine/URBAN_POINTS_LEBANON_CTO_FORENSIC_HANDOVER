@@ -93,7 +93,6 @@ class _BillingScreenState extends State<BillingScreen> {
       case BillingStatus.free:
         return 'Free';
       case BillingStatus.unknown:
-      default:
         return 'Unknown';
     }
   }

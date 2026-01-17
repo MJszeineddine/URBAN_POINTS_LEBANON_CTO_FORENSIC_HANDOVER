@@ -209,6 +209,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                     await FirebaseAuth.instance.currentUser
                         ?.sendEmailVerification();
                     if (mounted) {
+                      // ignore: use_build_context_synchronously
                       ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(
                           content: Text('Verification email sent'),
@@ -217,6 +218,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                     }
                   } catch (e) {
                     if (mounted) {
+                      // ignore: use_build_context_synchronously
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(content: Text('Error: $e')),
                       );

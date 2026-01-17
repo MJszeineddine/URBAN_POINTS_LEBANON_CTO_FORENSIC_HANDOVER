@@ -130,12 +130,12 @@ export async function coreApproveOffer(
 ): Promise<ApproveOfferResponse> {
   try {
     if (!context.auth) {
-      throw new Error('unauthenticated:Authentication required');
+      return Promise.reject(new Error('unauthenticated:Authentication required'));
     }
 
     const adminDoc = await deps.db.collection('admins').doc(context.auth.uid).get();
     if (!adminDoc.exists) {
-      throw new Error('permission-denied:Admin access required');
+      return Promise.reject(new Error('permission-denied:Admin access required'));
     }
 
     const offerRef = deps.db.collection('offers').doc(data.offerId);
@@ -182,12 +182,12 @@ export async function coreRejectOffer(
 ): Promise<ApproveOfferResponse> {
   try {
     if (!context.auth) {
-      throw new Error('unauthenticated:Authentication required');
+      return Promise.reject(new Error('unauthenticated:Authentication required'));
     }
 
     const adminDoc = await deps.db.collection('admins').doc(context.auth.uid).get();
     if (!adminDoc.exists) {
-      throw new Error('permission-denied:Admin access required');
+      return Promise.reject(new Error('permission-denied:Admin access required'));
     }
 
     const offerRef = deps.db.collection('offers').doc(data.offerId);
