@@ -4,6 +4,16 @@ build/
 dist/
 *.log
 **/docs/evidence/**
+# Generated build artifacts
+.next/
+coverage/
+.turbo/
+.swc/
+out/
+lcov-report/
+*.map
+__pycache__/
+.pytest_cache/
 # Environment Variables and Secrets
 .env
 .env.local
