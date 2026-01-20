@@ -15,6 +15,25 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+// Fail-closed guard: required secrets/config must exist
+function ensureRequiredEnv() {
+  const missing: string[] = [];
+  if (!process.env.JWT_SECRET || process.env.JWT_SECRET.trim().length === 0) {
+    missing.push('JWT_SECRET');
+  }
+  if (!process.env.DATABASE_URL || process.env.DATABASE_URL.trim().length === 0) {
+    missing.push('DATABASE_URL');
+  }
+  if (missing.length > 0) {
+    // Log and exit non-zero to prevent insecure startup
+    // Minimal safe behavior per security fix plan
+    console.error(`❌ Missing required environment variables: ${missing.join(', ')}`);
+    process.exit(1);
+  }
+}
+
+ensureRequiredEnv();
+
 // Database connection
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,

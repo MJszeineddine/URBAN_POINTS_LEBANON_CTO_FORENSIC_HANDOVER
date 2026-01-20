@@ -638,26 +638,56 @@
                     const merchantDoc = await db.collection('merchants').doc(offer.merchant_id).get();
                     const merchantName = merchantDoc.exists ? merchantDoc.data().name : 'Unknown';
                     
-                    const row = `
-                        <tr>
-                            <td>${offer.title}</td>
-                            <td>${merchantName}</td>
-                            <td>${offer.points_cost} pts</td>
-                            <td>${formatDate(offer.created_at)}</td>
-                            <td><span class="badge pending">Pending</span></td>
-                            <td>
-                                <button class="btn-sm btn-success" onclick="approveOffer('${doc.id}', '${offer.title}')">Approve</button>
-                                <button class="btn-sm btn-danger" onclick="openRejectModal('${doc.id}')">Reject</button>
-                            </td>
-                        </tr>
-                    `;
-                    tbody.innerHTML += row;
+                    const row = document.createElement('tr');
+                    
+                    const tdTitle = document.createElement('td');
+                    tdTitle.textContent = offer.title;
+                    row.appendChild(tdTitle);
+                    
+                    const tdMerchant = document.createElement('td');
+                    tdMerchant.textContent = merchantName;
+                    row.appendChild(tdMerchant);
+                    
+                    const tdPoints = document.createElement('td');
+                    tdPoints.textContent = offer.points_cost + ' pts';
+                    row.appendChild(tdPoints);
+                    
+                    const tdDate = document.createElement('td');
+                    tdDate.textContent = formatDate(offer.created_at);
+                    row.appendChild(tdDate);
+                    
+                    const tdStatus = document.createElement('td');
+                    const badge = document.createElement('span');
+                    badge.className = 'badge pending';
+                    badge.textContent = 'Pending';
+                    tdStatus.appendChild(badge);
+                    row.appendChild(tdStatus);
+                    
+                    const tdActions = document.createElement('td');
+                    const btnApprove = document.createElement('button');
+                    btnApprove.className = 'btn-sm btn-success';
+                    btnApprove.textContent = 'Approve';
+                    btnApprove.onclick = () => approveOffer(doc.id, offer.title);
+                    tdActions.appendChild(btnApprove);
+                    
+                    const btnReject = document.createElement('button');
+                    btnReject.className = 'btn-sm btn-danger';
+                    btnReject.textContent = 'Reject';
+                    btnReject.onclick = () => openRejectModal(doc.id);
+                    tdActions.appendChild(btnReject);
+                    
+                    row.appendChild(tdActions);
+                    tbody.appendChild(row);
                 }
                 
                 table.style.display = 'block';
             } catch (error) {
                 console.error('Error loading pending offers:', error);
-                loading.innerHTML = `<p style="color:#e74c3c;">Error: ${error.message}</p>`;
+                loading.innerHTML = '';
+                const errorP = document.createElement('p');
+                errorP.style.color = '#e74c3c';
+                errorP.textContent = 'Error: ' + error.message;
+                loading.appendChild(errorP);
             }
         }
         
@@ -754,21 +784,36 @@
                     const complianceStatus = merchant.compliance_status || 'unknown';
                     const lastCheck = merchant.last_compliance_check;
                     
-                    const row = `
-                        <tr>
-                            <td>${merchant.name}</td>
-                            <td>${offersCount} / 5</td>
-                            <td><span class="badge ${complianceStatus}">${complianceStatus}</span></td>
-                            <td>${lastCheck ? formatDate(lastCheck) : 'Never'}</td>
-                        </tr>
-                    `;
-                    tbody.innerHTML += row;
+                    const row = document.createElement('tr');
+                    
+                    const tdName = document.createElement('td');
+                    tdName.textContent = merchant.name;
+                    row.appendChild(tdName);
+                    
+                    const tdOffers = document.createElement('td');
+                    tdOffers.textContent = offersCount + ' / 5';
+                    row.appendChild(tdOffers);
+                    
+                    const tdStatus = document.createElement('td');
+                    tdStatus.textContent = complianceStatus;
+                    row.appendChild(tdStatus);
+                    
+                    const tdCheck = document.createElement('td');
+                    tdCheck.textContent = lastCheck ? formatDate(lastCheck) : 'Never';
+                    row.appendChild(tdCheck);
+                    
+                    row.appendChild(row);
+                    tbody.appendChild(row);
                 });
                 
                 table.style.display = 'block';
             } catch (error) {
                 console.error('Error loading merchant compliance:', error);
-                loading.innerHTML = `<p style="color:#e74c3c;">Error: ${error.message}</p>`;
+                loading.innerHTML = '';
+                const errorP = document.createElement('p');
+                errorP.style.color = '#e74c3c';
+                errorP.textContent = 'Error: ' + error.message;
+                loading.appendChild(errorP);
             }
         }
         
@@ -799,7 +844,11 @@
                 loading.style.display = 'none';
             } catch (error) {
                 console.error('Error loading system stats:', error);
-                loading.innerHTML = `<p style="color:#e74c3c;">Error: ${error.message}</p>`;
+                loading.innerHTML = '';
+                const errorP = document.createElement('p');
+                errorP.style.color = '#e74c3c';
+                errorP.textContent = 'Error: ' + error.message;
+                loading.appendChild(errorP);
             }
         }
         

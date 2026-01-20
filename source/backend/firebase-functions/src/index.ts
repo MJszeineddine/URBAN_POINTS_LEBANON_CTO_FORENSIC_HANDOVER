@@ -58,7 +58,17 @@ Logger.info('Urban Points Lebanon Functions starting', {
 // Secret Manager integration: Secrets are read from environment variables or Firebase config
 // QR_TOKEN_SECRET is required in production for secure QR code generation
 if (!process.env.FUNCTIONS_EMULATOR && !process.env.QR_TOKEN_SECRET && !functions.config().secrets?.qr_token_secret) {
-  Logger.warn('QR_TOKEN_SECRET not configured. QR codes will use default fallback (not recommended for production)');
+  throw new Error('CRITICAL: QR_TOKEN_SECRET environment variable is not set. Deployment blocked for security.');
+}
+
+function getQrTokenSecret(): string {
+  const fromEnv = process.env.QR_TOKEN_SECRET;
+  const fromConfig = functions.config().secrets?.qr_token_secret as string | undefined;
+  const secret = fromEnv || fromConfig || '';
+  if (!process.env.FUNCTIONS_EMULATOR && !secret) {
+    throw new Error('CRITICAL: QR_TOKEN_SECRET environment variable is not set.');
+  }
+  return secret;
 }
 
 // ============================================================================
@@ -299,7 +309,7 @@ export const revokeQRTokenCallable = functions
       throw new functions.https.HttpsError('invalid-argument', validationResult.error);
     }
 
-    const secret = process.env.QR_TOKEN_SECRET || 'urban-points-lebanon-secret-key';
+    const secret = getQrTokenSecret();
     return revokeQRToken(validationResult, context, { db, secret });
   }));
 
@@ -327,7 +337,7 @@ export const getQRHistoryCallable = functions
       throw new functions.https.HttpsError('invalid-argument', validationResult.error);
     }
 
-    const secret = process.env.QR_TOKEN_SECRET || 'urban-points-lebanon-secret-key';
+    const secret = getQrTokenSecret();
     return getQRHistory(validationResult, context, { db, secret });
   }));
 
@@ -355,7 +365,7 @@ export const detectFraudPatternsCallable = functions
       throw new functions.https.HttpsError('invalid-argument', validationResult.error);
     }
 
-    const secret = process.env.QR_TOKEN_SECRET || 'urban-points-lebanon-secret-key';
+    const secret = getQrTokenSecret();
     return detectFraudPatterns(validationResult, context, { db, secret });
   }));
 
@@ -400,7 +410,7 @@ export const validateRedemption = functions
     maxInstances: 10
   })
   .https.onCall(monitorFunction('validateRedemption', async (data: RedemptionRequest, context): Promise<RedemptionResponse> => {
-    const secret = process.env.QR_TOKEN_SECRET || 'urban-points-lebanon-secret-key';
+    const secret = getQrTokenSecret();
     return coreValidateRedemption({ data, context, deps: { db, secret } });
   }));
 

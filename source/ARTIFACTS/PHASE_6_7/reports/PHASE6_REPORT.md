@@ -118,8 +118,8 @@ QR_TOKEN_SECRET=13959d551679eb7b8ba6549cb5351ae3e1a3d10a2d457eeb1bd2f303b9cd779a
 **File:** `src/index.ts`  
 **Lines:** 47, 53, 60  
 **Critical:** YES  
-**Default:** `'urban-points-lebanon-secret-key'` (with warning)  
-**Production Requirement:** MUST be set, app will warn if missing
+**Default:** None (no fallback; fail-closed if missing)  
+**Production Requirement:** MUST be set; function throws error if missing in production
 
 ---
 
