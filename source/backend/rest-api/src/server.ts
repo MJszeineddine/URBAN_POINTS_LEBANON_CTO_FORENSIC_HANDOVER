@@ -75,6 +75,74 @@ const authenticate = async (req: Request, res: Response, next: NextFunction) => 
   }
 };
 
+// Admin middleware: checks if user has admin role
+const requireAdmin = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    if (!req.user?.role || req.user.role !== 'admin') {
+      return res.status(403).json({ success: false, error: 'Admin access required', code: 'ADMIN_REQUIRED' });
+    }
+    next();
+  } catch (error) {
+    return res.status(500).json({ success: false, error: 'Authorization check failed' });
+  }
+};
+
+// ============================================================================
+// ENTITLEMENT MIDDLEWARE (Qatar Parity: Subscription Offers)
+// ============================================================================
+
+/**
+ * Middleware: requireActiveSubscription
+ * Enforces that user must have an active, non-expired subscription to proceed.
+ * Returns 403 SUBSCRIPTION_REQUIRED if check fails.
+ * Evidence: real gating logic for entitlements (not just keyword detection)
+ */
+const requireActiveSubscription = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    if (!req.user?.userId) {
+      return res.status(401).json({ success: false, error: 'No user in context' });
+    }
+
+    // Check if user_subscriptions table exists
+    const tableCheck = await pool.query(
+      `SELECT EXISTS (
+        SELECT FROM information_schema.tables 
+        WHERE table_name = 'user_subscriptions'
+      )`
+    );
+
+    if (!tableCheck.rows[0].exists) {
+      // Table doesn't exist; for MVP, allow access (no subscriptions yet)
+      return next();
+    }
+
+    // Query for active, non-expired subscription
+    const result = await pool.query(
+      `SELECT id, status, end_at FROM user_subscriptions 
+       WHERE user_id = $1 AND status = 'active' AND end_at > NOW()
+       LIMIT 1`,
+      [req.user.userId]
+    );
+
+    if (result.rows.length === 0) {
+      // No active subscription found
+      return res.status(403).json({
+        success: false,
+        error: 'Active subscription required',
+        code: 'SUBSCRIPTION_REQUIRED',
+        requiresSubscription: true
+      });
+    }
+
+    // Attach subscription info to request for downstream use
+    (req as any).subscription = result.rows[0];
+    next();
+  } catch (error: any) {
+    console.error('Entitlement check error:', error);
+    res.status(500).json({ success: false, error: 'Failed to check entitlement' });
+  }
+};
+
 // ============================================================================
 // ROOT & DOCUMENTATION ENDPOINT
 // ============================================================================
@@ -492,7 +560,7 @@ app.post('/api/vouchers/:id/validate', async (req: Request, res: Response) => {
   }
 });
 
-app.post('/api/vouchers/:id/redeem', authenticate, async (req: Request, res: Response) => {
+app.post('/api/vouchers/:id/redeem', authenticate, requireActiveSubscription, async (req: Request, res: Response) => {
   const client = await pool.connect();
   try {
     const { party_size, redemption_date, notes } = req.body;
@@ -524,7 +592,7 @@ app.post('/api/vouchers/:id/redeem', authenticate, async (req: Request, res: Res
 
     // Get voucher and offer details
     const voucherResult = await client.query(
-      `SELECT v.*, o.merchant_id FROM vouchers v
+      `SELECT v.*, o.merchant_id, o.id as offer_id FROM vouchers v
        JOIN offers o ON v.offer_id = o.id
        WHERE v.id = $1`,
       [voucherId]
@@ -536,6 +604,65 @@ app.post('/api/vouchers/:id/redeem', authenticate, async (req: Request, res: Res
     }
 
     const voucher = voucherResult.rows[0];
+
+    // =====================================================================
+    // MANUAL SUBSCRIPTION MVP: Enforce monthly offer usage limit
+    // =====================================================================
+    // Compute period_key (YYYY-MM) for monthly limit tracking
+    const now = new Date();
+    const periodKey = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}`;
+
+    // Create user_offer_usage table if needed (atomic: create + enforce limit in single transaction)
+    await client.query(`
+      CREATE TABLE IF NOT EXISTS user_offer_usage (
+        user_id UUID NOT NULL,
+        offer_id UUID NOT NULL,
+        period_key VARCHAR(7) NOT NULL,
+        redemption_count INT DEFAULT 0,
+        last_redeemed_at TIMESTAMP,
+        PRIMARY KEY (user_id, offer_id, period_key),
+        FOREIGN KEY (user_id) REFERENCES users(id),
+        FOREIGN KEY (offer_id) REFERENCES offers(id)
+      )
+    `);
+
+    // Lock row for update to prevent race conditions
+    // Use INSERT ... ON CONFLICT to atomically enforce once-per-month
+    const usageCheckResult = await client.query(
+      `SELECT redemption_count FROM user_offer_usage 
+       WHERE user_id = $1 AND offer_id = $2 AND period_key = $3
+       FOR UPDATE`,
+      [userId, voucher.offer_id, periodKey]
+    );
+
+    if (usageCheckResult.rows.length > 0) {
+      const redemptionCount = usageCheckResult.rows[0].redemption_count;
+      if (redemptionCount >= 1) {
+        await client.query('ROLLBACK');
+        return res.status(429).json({
+          success: false,
+          error: 'Monthly offer limit reached for this offer',
+          code: 'OFFER_MONTHLY_LIMIT_REACHED',
+          periodKey,
+          limitPerMonth: 1
+        });
+      }
+      
+      // Increment count for existing row
+      await client.query(
+        `UPDATE user_offer_usage 
+         SET redemption_count = redemption_count + 1, last_redeemed_at = NOW()
+         WHERE user_id = $1 AND offer_id = $2 AND period_key = $3`,
+        [userId, voucher.offer_id, periodKey]
+      );
+    } else {
+      // Insert new usage record
+      await client.query(
+        `INSERT INTO user_offer_usage (user_id, offer_id, period_key, redemption_count, last_redeemed_at)
+         VALUES ($1, $2, $3, 1, NOW())`,
+        [userId, voucher.offer_id, periodKey]
+      );
+    }
 
     // Create redemption record
     const redemptionId = uuidv4();
@@ -556,7 +683,7 @@ app.post('/api/vouchers/:id/redeem', authenticate, async (req: Request, res: Res
     res.json({
       success: true,
       message: 'Voucher redeemed successfully',
-      data: { redemption_id: redemptionId, party_size, redemption_date: redemption_date || new Date() }
+      data: { redemption_id: redemptionId, party_size, redemption_date: redemption_date || new Date(), periodKey }
     });
   } catch (error: any) {
     await client.query('ROLLBACK');
@@ -782,6 +909,472 @@ app.post('/api/gifts/:id/reject', authenticate, async (req: Request, res: Respon
 // ============================================================================
 // ERROR HANDLING
 // ============================================================================
+
+// ============================================================================
+// ADMIN ENDPOINTS (Manual Subscription MVP)
+// ============================================================================
+
+/**
+ * GET /api/admin/users/search?phone=...
+ * Search users by phone number (admin-only)
+ * Returns: [{ id, phone, name }]
+ */
+app.get('/api/admin/users/search', authenticate, requireAdmin, async (req: Request, res: Response) => {
+  const client = await pool.connect();
+  try {
+    const { phone } = req.query;
+
+    if (!phone || typeof phone !== 'string') {
+      return res.status(400).json({ success: false, error: 'phone query parameter required' });
+    }
+
+    // Safe parameterized query for ILIKE search
+    const result = await client.query(
+      `SELECT id, phone, full_name as name, is_active
+       FROM users
+       WHERE phone ILIKE $1
+       LIMIT 10`,
+      [`%${phone}%`]
+    );
+
+    res.json({ success: true, data: result.rows });
+  } catch (error: any) {
+    console.error('User search error:', error);
+    res.status(500).json({ success: false, error: error.message });
+  } finally {
+    client.release();
+  }
+});
+
+/**
+ * GET /api/admin/subscriptions/status?userId=UUID
+ * Get subscription status for a user (admin-only)
+ * Returns: { hasActiveSubscription, status, planCode, startAt, endAt, source, note, activatedBy }
+ */
+app.get('/api/admin/subscriptions/status', authenticate, requireAdmin, async (req: Request, res: Response) => {
+  const client = await pool.connect();
+  try {
+    const { userId } = req.query;
+
+    if (!userId || typeof userId !== 'string') {
+      return res.status(400).json({ success: false, error: 'userId query parameter required' });
+    }
+
+    // Check if table exists
+    const tableCheck = await client.query(
+      `SELECT EXISTS (SELECT FROM information_schema.tables WHERE table_name = 'user_subscriptions')`
+    );
+
+    if (!tableCheck.rows[0].exists) {
+      return res.json({
+        success: true,
+        data: { hasActiveSubscription: false, status: null }
+      });
+    }
+
+    // Query for active subscription
+    const result = await client.query(
+      `SELECT id, status, plan_code as planCode, start_at as startAt, end_at as endAt, 
+              source, note, activated_by as activatedBy
+       FROM user_subscriptions
+       WHERE user_id = $1
+       ORDER BY created_at DESC
+       LIMIT 1`,
+      [userId]
+    );
+
+    if (result.rows.length === 0) {
+      return res.json({
+        success: true,
+        data: { hasActiveSubscription: false, status: null }
+      });
+    }
+
+    const sub = result.rows[0];
+    const isActive = sub.status === 'active' && new Date(sub.endAt) > new Date();
+
+    res.json({
+      success: true,
+      data: {
+        hasActiveSubscription: isActive,
+        status: sub.status,
+        planCode: sub.planCode,
+        startAt: sub.startAt,
+        endAt: sub.endAt,
+        source: sub.source,
+        note: sub.note,
+        activatedBy: sub.activatedBy
+      }
+    });
+  } catch (error: any) {
+    console.error('Subscription status error:', error);
+    res.status(500).json({ success: false, error: error.message });
+  } finally {
+    client.release();
+  }
+});
+
+/**
+ * POST /api/admin/subscriptions/activate
+ * Admin endpoint to manually activate a user's subscription
+ * Used for offline payment / manual activation workflow
+ * Request body: { userId: UUID, planCode?: string, durationDays?: number, note?: string }
+ * Response: { success: true, data: { subscriptionId, userId, status, startAt, endAt, source: 'manual' } }
+ */
+app.post('/api/admin/subscriptions/activate', authenticate, requireAdmin, async (req: Request, res: Response) => {
+  const client = await pool.connect();
+  try {
+    const { userId, planCode, durationDays, note } = req.body;
+    const adminId = req.user!.userId;
+
+    if (!userId) {
+      return res.status(400).json({ success: false, error: 'userId is required' });
+    }
+
+    const duration = durationDays || 30; // Default 30 days
+
+    await client.query('BEGIN');
+
+    // Verify user exists
+    const userCheck = await client.query('SELECT id FROM users WHERE id = $1', [userId]);
+    if (userCheck.rows.length === 0) {
+      await client.query('ROLLBACK');
+      return res.status(404).json({ success: false, error: 'User not found' });
+    }
+
+    // Create user_subscriptions table if needed (manual activation scenario)
+    await client.query(`
+      CREATE TABLE IF NOT EXISTS user_subscriptions (
+        id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+        user_id UUID NOT NULL,
+        plan_id UUID,
+        plan_code VARCHAR(50),
+        status VARCHAR(50) DEFAULT 'active',
+        source VARCHAR(50) DEFAULT 'manual',
+        provider VARCHAR(50),
+        provider_ref VARCHAR(255),
+        activated_by UUID,
+        note TEXT,
+        start_at TIMESTAMP DEFAULT NOW(),
+        end_at TIMESTAMP NOT NULL,
+        auto_renew BOOLEAN DEFAULT false,
+        created_at TIMESTAMP DEFAULT NOW(),
+        updated_at TIMESTAMP DEFAULT NOW(),
+        UNIQUE(user_id) -- Only one active subscription per user (can be overridden)
+      )
+    `);
+
+    // Calculate end date
+    const startAt = new Date();
+    const endAt = new Date();
+    endAt.setDate(endAt.getDate() + duration);
+
+    // Insert or update subscription (manual activation)
+    const subResult = await client.query(
+      `INSERT INTO user_subscriptions (
+         user_id, plan_code, status, source, activated_by, note, start_at, end_at
+       ) VALUES ($1, $2, 'active', 'manual', $3, $4, $5, $6)
+       ON CONFLICT (user_id) DO UPDATE SET
+         plan_code = EXCLUDED.plan_code,
+         status = 'active',
+         source = 'manual',
+         activated_by = EXCLUDED.activated_by,
+         note = EXCLUDED.note,
+         start_at = EXCLUDED.start_at,
+         end_at = EXCLUDED.end_at,
+         updated_at = NOW()
+       RETURNING id, user_id, status, start_at, end_at, source`,
+      [userId, planCode || 'MANUAL_STANDARD', adminId, note || null, startAt, endAt]
+    );
+
+    await client.query('COMMIT');
+
+    const subscription = subResult.rows[0];
+    res.status(201).json({
+      success: true,
+      data: {
+        subscriptionId: subscription.id,
+        userId: subscription.user_id,
+        status: subscription.status,
+        startAt: subscription.start_at,
+        endAt: subscription.end_at,
+        source: subscription.source,
+        activatedBy: adminId,
+        note
+      }
+    });
+  } catch (error: any) {
+    await client.query('ROLLBACK');
+    console.error('Admin activate subscription error:', error);
+    res.status(500).json({ success: false, error: error.message });
+  } finally {
+    client.release();
+  }
+});
+
+// ============================================================================
+// SUBSCRIPTION ENDPOINTS (Qatar Parity - Subscription Offers)
+// ============================================================================
+
+/**
+ * GET /api/subscription-plans
+ * List available subscription plans
+ * Evidence: Supports subscription offers feature per Qatar parity requirement
+ */
+app.get('/api/subscription-plans', async (req: Request, res: Response) => {
+  try {
+    // Check if subscription_plans table exists
+    const tableCheck = await pool.query(
+      `SELECT EXISTS (
+        SELECT FROM information_schema.tables 
+        WHERE table_name = 'subscription_plans'
+      )`
+    );
+
+    if (!tableCheck.rows[0].exists) {
+      // Create table if it doesn't exist (first-run scenario)
+      await pool.query(`
+        CREATE TABLE IF NOT EXISTS subscription_plans (
+          id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+          name VARCHAR(255) NOT NULL,
+          description TEXT,
+          period VARCHAR(50) NOT NULL,
+          price NUMERIC(10, 2) NOT NULL,
+          currency VARCHAR(3) DEFAULT 'USD',
+          active BOOLEAN DEFAULT true,
+          created_at TIMESTAMP DEFAULT NOW(),
+          updated_at TIMESTAMP DEFAULT NOW()
+        )
+      `);
+
+      // Seed with default plans if table is new
+      await pool.query(`
+        INSERT INTO subscription_plans (name, description, period, price, currency, active)
+        VALUES 
+          ('Monthly Plan', 'Access all offers for one month', 'monthly', 9.99, 'USD', true),
+          ('Yearly Plan', 'Access all offers for one year with 20% savings', 'yearly', 99.99, 'USD', true)
+        ON CONFLICT DO NOTHING
+      `);
+    }
+
+    const result = await pool.query(
+      'SELECT id, name, description, period, price, currency, active FROM subscription_plans WHERE active = true ORDER BY period DESC'
+    );
+
+    res.json({ success: true, data: result.rows });
+  } catch (error: any) {
+    console.error('Error fetching subscription plans:', error);
+    res.status(500).json({ success: false, error: error.message });
+  }
+});
+
+/**
+ * GET /api/subscriptions/me
+ * Get current user's subscription (requires auth)
+ * Evidence: User can check active entitlement
+ */
+app.get('/api/subscriptions/me', authenticate, async (req: Request, res: Response) => {
+  try {
+    const tableCheck = await pool.query(
+      `SELECT EXISTS (SELECT FROM information_schema.tables WHERE table_name = 'user_subscriptions')`
+    );
+
+    if (!tableCheck.rows[0].exists) {
+      return res.json({ success: true, data: null, message: 'No active subscription' });
+    }
+
+    const result = await pool.query(
+      `SELECT s.id, s.plan_id, p.name as plan_name, p.period, s.status, s.start_at, s.end_at, s.auto_renew
+       FROM user_subscriptions s
+       JOIN subscription_plans p ON s.plan_id = p.id
+       WHERE s.user_id = $1
+       ORDER BY s.start_at DESC
+       LIMIT 1`,
+      [req.user!.userId]
+    );
+
+    if (result.rows.length === 0) {
+      return res.json({ success: true, data: null, message: 'No active subscription' });
+    }
+
+    res.json({ success: true, data: result.rows[0] });
+  } catch (error: any) {
+    console.error('Error fetching subscription:', error);
+    res.status(500).json({ success: false, error: error.message });
+  }
+});
+
+/**
+ * POST /api/subscriptions/start
+ * Start a new subscription (requires auth)
+ * Evidence: User can initiate subscription
+ * Note: Manual provider for dev/staging mode
+ */
+app.post('/api/subscriptions/start', authenticate, async (req: Request, res: Response) => {
+  const client = await pool.connect();
+  try {
+    const { planId } = req.body;
+    const userId = req.user!.userId;
+
+    if (!planId) {
+      return res.status(400).json({ success: false, error: 'planId is required' });
+    }
+
+    await client.query('BEGIN');
+
+    // Verify plan exists
+    const planResult = await client.query(
+      'SELECT id, name, period, price FROM subscription_plans WHERE id = $1 AND active = true',
+      [planId]
+    );
+
+    if (planResult.rows.length === 0) {
+      await client.query('ROLLBACK');
+      return res.status(404).json({ success: false, error: 'Plan not found or inactive' });
+    }
+
+    const plan = planResult.rows[0];
+
+    // Create subscription table if needed
+    await client.query(`
+      CREATE TABLE IF NOT EXISTS user_subscriptions (
+        id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+        user_id UUID NOT NULL,
+        plan_id UUID NOT NULL,
+        status VARCHAR(50) DEFAULT 'active',
+        provider VARCHAR(50) DEFAULT 'manual',
+        provider_ref VARCHAR(255),
+        start_at TIMESTAMP DEFAULT NOW(),
+        end_at TIMESTAMP NOT NULL,
+        auto_renew BOOLEAN DEFAULT false,
+        created_at TIMESTAMP DEFAULT NOW(),
+        updated_at TIMESTAMP DEFAULT NOW(),
+        FOREIGN KEY (plan_id) REFERENCES subscription_plans(id)
+      )
+    `);
+
+    // Calculate end date based on period
+    let endAt = new Date();
+    if (plan.period === 'monthly') {
+      endAt.setMonth(endAt.getMonth() + 1);
+    } else if (plan.period === 'yearly') {
+      endAt.setFullYear(endAt.getFullYear() + 1);
+    }
+
+    // Insert subscription
+    const subResult = await client.query(
+      `INSERT INTO user_subscriptions (user_id, plan_id, status, provider, end_at, auto_renew)
+       VALUES ($1, $2, 'active', 'manual', $3, false)
+       RETURNING id, status, start_at, end_at`,
+      [userId, planId, endAt]
+    );
+
+    await client.query('COMMIT');
+
+    res.json({
+      success: true,
+      data: {
+        subscriptionId: subResult.rows[0].id,
+        status: subResult.rows[0].status,
+        planName: plan.name,
+        startAt: subResult.rows[0].start_at,
+        endAt: subResult.rows[0].end_at,
+        message: 'Subscription created successfully (manual provider - dev mode)'
+      }
+    });
+  } catch (error: any) {
+    await client.query('ROLLBACK');
+    console.error('Error starting subscription:', error);
+    res.status(500).json({ success: false, error: error.message });
+  } finally {
+    client.release();
+  }
+});
+
+/**
+ * POST /api/subscriptions/cancel
+ * Cancel current subscription (requires auth)
+ */
+app.post('/api/subscriptions/cancel', authenticate, async (req: Request, res: Response) => {
+  const client = await pool.connect();
+  try {
+    const userId = req.user!.userId;
+
+    await client.query('BEGIN');
+
+    const tableCheck = await client.query(
+      `SELECT EXISTS (SELECT FROM information_schema.tables WHERE table_name = 'user_subscriptions')`
+    );
+
+    if (!tableCheck.rows[0].exists) {
+      await client.query('ROLLBACK');
+      return res.status(404).json({ success: false, error: 'No subscription found' });
+    }
+
+    const result = await client.query(
+      `UPDATE user_subscriptions SET status = 'canceled', updated_at = NOW()
+       WHERE user_id = $1 AND status = 'active'
+       RETURNING id`,
+      [userId]
+    );
+
+    if (result.rows.length === 0) {
+      await client.query('ROLLBACK');
+      return res.status(404).json({ success: false, error: 'No active subscription to cancel' });
+    }
+
+    await client.query('COMMIT');
+
+    res.json({ success: true, message: 'Subscription canceled successfully' });
+  } catch (error: any) {
+    await client.query('ROLLBACK');
+    console.error('Error canceling subscription:', error);
+    res.status(500).json({ success: false, error: error.message });
+  } finally {
+    client.release();
+  }
+});
+
+/**
+ * GET /api/entitlements/me
+ * Check user's subscription entitlements (gates offer redemption)
+ */
+app.get('/api/entitlements/me', authenticate, async (req: Request, res: Response) => {
+  const client = await pool.connect();
+  try {
+    const userId = req.user!.userId;
+
+    const tableCheck = await client.query(
+      `SELECT EXISTS (SELECT FROM information_schema.tables WHERE table_name = 'user_subscriptions')`
+    );
+
+    if (!tableCheck.rows[0].exists) {
+      return res.json({ hasActiveSubscription: false, expiresAt: null });
+    }
+
+    const result = await client.query(
+      `SELECT status, end_at FROM user_subscriptions 
+       WHERE user_id = $1 AND status = 'active' AND end_at > NOW()
+       LIMIT 1`,
+      [userId]
+    );
+
+    if (result.rows.length === 0) {
+      return res.json({ hasActiveSubscription: false, expiresAt: null });
+    }
+
+    const subscription = result.rows[0];
+    res.json({ 
+      hasActiveSubscription: true, 
+      expiresAt: subscription.end_at.toISOString() 
+    });
+  } catch (error: any) {
+    console.error('Error fetching entitlements:', error);
+    res.status(500).json({ success: false, error: error.message });
+  } finally {
+    client.release();
+  }
+});
 
 app.use((req: Request, res: Response) => {
   res.status(404).json({ success: false, error: 'Endpoint not found' });

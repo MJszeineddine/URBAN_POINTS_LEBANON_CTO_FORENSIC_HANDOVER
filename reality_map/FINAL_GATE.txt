@@ -1,0 +1,7 @@
+PASS
+Timestamp: 2026-01-23T23:09:50.267459
+Files read: 363
+Total lines: 81,570
+Read errors: 0
+Junk code hits: 315
+Dead code candidates: 169

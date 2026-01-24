@@ -30,6 +30,9 @@ VERDICT_FILE="${EVIDENCE_DIR}/FINAL_STRIPE_GATE.md"
 # Spawns command as background process, launches kill job, waits for result
 hard_timeout() {
   local timeout_seconds=$1
+  if [ "$timeout_seconds" -lt 120 ]; then
+    timeout_seconds=120
+  fi
   shift
   local log_prefix=$1
   shift

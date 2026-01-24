@@ -1,0 +1,847 @@
+[
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/pubspec.yaml",
+    "size": 4287,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/analysis_options.yaml",
+    "size": 402,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/integration_test/pain_test.dart",
+    "size": 1306,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/macos/RunnerTests/RunnerTests.swift",
+    "size": 290,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/macos/Runner/MainFlutterWindow.swift",
+    "size": 388,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/macos/Runner/AppDelegate.swift",
+    "size": 311,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/macos/Flutter/GeneratedPluginRegistrant.swift",
+    "size": 1265,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/macos/Flutter/ephemeral/flutter_export_environment.sh",
+    "size": 518,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/test/redemption_approval_test.dart",
+    "size": 116,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/test/widget_test.dart",
+    "size": 2234,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/test/offer_creation_test.dart",
+    "size": 116,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/web/firebase-messaging-sw.js",
+    "size": 2235,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/web/manifest.json",
+    "size": 995,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/ios/RunnerTests/RunnerTests.swift",
+    "size": 285,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/ios/Runner/Runner-Bridging-Header.h",
+    "size": 38,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/ios/Runner/AppDelegate.swift",
+    "size": 391,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/ios/Runner/GeneratedPluginRegistrant.m",
+    "size": 2637,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/ios/Runner/Assets.xcassets/LaunchImage.imageset/Contents.json",
+    "size": 391,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/ios/Flutter/flutter_export_environment.sh",
+    "size": 556,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/ios/Flutter/ephemeral/flutter_lldb_helper.py",
+    "size": 1276,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/linux/runner/my_application.h",
+    "size": 388,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/linux/flutter/generated_plugin_registrant.h",
+    "size": 303,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/android/app/src/profile/AndroidManifest.xml",
+    "size": 378,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/android/app/src/main/AndroidManifest.xml",
+    "size": 2209,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/android/app/src/main/res/drawable/launch_background.xml",
+    "size": 434,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/android/app/src/main/res/values-night/styles.xml",
+    "size": 995,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/android/app/src/main/res/values/styles.xml",
+    "size": 996,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/android/app/src/main/res/drawable-v21/launch_background.xml",
+    "size": 438,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/android/app/src/main/java/io/flutter/plugins/GeneratedPluginRegistrant.java",
+    "size": 3048,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/android/app/src/main/kotlin/lb/urbanpoints/urban_points_merchant/MainActivity.kt",
+    "size": 138,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/android/app/src/debug/AndroidManifest.xml",
+    "size": 378,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/lib/screens/profile_edit_screen.dart",
+    "size": 482,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/lib/screens/redemption_history_screen.dart",
+    "size": 523,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/lib/screens/merchant_analytics_screen.dart",
+    "size": 11366,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/lib/screens/offer_creation_screen.dart",
+    "size": 496,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/lib/screens/my_offers_screen.dart",
+    "size": 11530,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/lib/screens/subscription_screen.dart",
+    "size": 479,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/lib/screens/qr_scanner_screen.dart",
+    "size": 7920,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/lib/screens/staff_management_screen.dart",
+    "size": 505,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/lib/screens/redemption_approval_screen.dart",
+    "size": 533,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/lib/screens/auth/whatsapp_phone_screen.dart",
+    "size": 2812,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/lib/screens/debug/crash_test_screen.dart",
+    "size": 4965,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/lib/services/staff_service.dart",
+    "size": 108,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/lib/services/billing_state.dart",
+    "size": 3168,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/lib/services/offer_service.dart",
+    "size": 133,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/lib/services/redemption_service.dart",
+    "size": 163,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/lib/services/merchant_service.dart",
+    "size": 119,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/lib/services/subscription_service.dart",
+    "size": 104,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/lib/widgets/empty_states/merchant_offers_empty_state.dart",
+    "size": 1350,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/lib/widgets/empty_states/merchant_redemptions_empty_state.dart",
+    "size": 1163,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/windows/runner/flutter_window.cpp",
+    "size": 2122,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/windows/runner/utils.h",
+    "size": 672,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/windows/runner/utils.cpp",
+    "size": 1797,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/windows/runner/win32_window.h",
+    "size": 3522,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/windows/runner/win32_window.cpp",
+    "size": 8534,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/windows/runner/resource.h",
+    "size": 432,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/windows/runner/flutter_window.h",
+    "size": 928,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/windows/flutter/generated_plugin_registrant.h",
+    "size": 302,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/tool/auth_sanity.dart",
+    "size": 5901,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/.idea/workspace.xml",
+    "size": 1517,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/.idea/modules.xml",
+    "size": 440,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/.idea/runConfigurations/main_dart.xml",
+    "size": 271,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/.idea/libraries/Dart_SDK.xml",
+    "size": 930,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/.idea/libraries/KotlinJavaRuntime.xml",
+    "size": 599,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/src/__tests__/merchant.test.ts",
+    "size": 3909,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/pubspec.yaml",
+    "size": 4397,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/analysis_options.yaml",
+    "size": 8284,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/integration_test/pain_test.dart",
+    "size": 3204,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/macos/RunnerTests/RunnerTests.swift",
+    "size": 290,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/macos/Runner/MainFlutterWindow.swift",
+    "size": 388,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/macos/Runner/AppDelegate.swift",
+    "size": 311,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/macos/Flutter/GeneratedPluginRegistrant.swift",
+    "size": 1261,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/macos/Flutter/ephemeral/flutter_export_environment.sh",
+    "size": 518,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/test/widget_test.dart",
+    "size": 886,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/test/screens/settings_gdpr_test.dart",
+    "size": 941,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/test/screens/favorites_screen_test.dart",
+    "size": 853,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/test/screens/redemption_history_screen_test.dart",
+    "size": 1049,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/test/screens/redemption_confirmation_screen_test.dart",
+    "size": 817,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/test/services/customer_service_test.dart",
+    "size": 1987,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/test/services/deep_link_service_test.dart",
+    "size": 1801,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/test/services/auth_service_test.dart",
+    "size": 1797,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/test/services/qr_service_test.dart",
+    "size": 1875,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/web/firebase-messaging-sw.js",
+    "size": 2235,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/web/manifest.json",
+    "size": 1006,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/ios/RunnerTests/RunnerTests.swift",
+    "size": 285,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/ios/Runner/Runner-Bridging-Header.h",
+    "size": 38,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/ios/Runner/AppDelegate.swift",
+    "size": 391,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/ios/Runner/GeneratedPluginRegistrant.m",
+    "size": 3096,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/ios/Runner/Assets.xcassets/LaunchImage.imageset/Contents.json",
+    "size": 391,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/ios/Flutter/flutter_export_environment.sh",
+    "size": 556,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/ios/Flutter/ephemeral/flutter_lldb_helper.py",
+    "size": 1276,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/linux/runner/my_application.h",
+    "size": 388,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/linux/flutter/generated_plugin_registrant.h",
+    "size": 303,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/android/app/src/profile/AndroidManifest.xml",
+    "size": 378,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/android/app/src/main/AndroidManifest.xml",
+    "size": 2536,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/android/app/src/main/res/drawable/launch_background.xml",
+    "size": 434,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/android/app/src/main/res/values-night/styles.xml",
+    "size": 995,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/android/app/src/main/res/values/styles.xml",
+    "size": 996,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/android/app/src/main/res/drawable-v21/launch_background.xml",
+    "size": 438,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/android/app/src/main/java/io/flutter/plugins/GeneratedPluginRegistrant.java",
+    "size": 3527,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/android/app/src/main/kotlin/lb/urbanpoints/urban_points_customer/MainActivity.kt",
+    "size": 138,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/android/app/src/debug/AndroidManifest.xml",
+    "size": 378,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/lib/models/location.dart",
+    "size": 629,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/lib/screens/notifications_screen.dart",
+    "size": 14739,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/lib/screens/profile_screen.dart",
+    "size": 13128,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/lib/screens/offers_list_screen.dart",
+    "size": 8932,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/lib/screens/auth/whatsapp_phone_screen.dart",
+    "size": 3723,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/lib/screens/debug/crash_test_screen.dart",
+    "size": 4711,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/lib/services/customer_service.dart",
+    "size": 4543,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/lib/services/location_service.dart",
+    "size": 2354,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/lib/services/billing_state.dart",
+    "size": 3168,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/lib/services/offers_repository.dart",
+    "size": 3539,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/lib/widgets/reconciled/reconciled_animated_counter.dart",
+    "size": 2354,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/lib/widgets/reconciled/reconciled_skeleton_loader.dart",
+    "size": 2037,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/lib/widgets/reconciled/reconciled_offline_banner.dart",
+    "size": 1767,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/lib/widgets/empty_states/history_empty_state.dart",
+    "size": 1068,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/lib/widgets/empty_states/offers_empty_state.dart",
+    "size": 1089,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/lib/widgets/empty_states/search_empty_state.dart",
+    "size": 1070,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/windows/runner/flutter_window.cpp",
+    "size": 2122,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/windows/runner/utils.h",
+    "size": 672,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/windows/runner/utils.cpp",
+    "size": 1797,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/windows/runner/win32_window.h",
+    "size": 3522,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/windows/runner/win32_window.cpp",
+    "size": 8534,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/windows/runner/resource.h",
+    "size": 432,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/windows/runner/flutter_window.h",
+    "size": 928,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/windows/flutter/generated_plugin_registrant.h",
+    "size": 302,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/tool/auth_sanity.dart",
+    "size": 5929,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/.idea/workspace.xml",
+    "size": 1517,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/.idea/modules.xml",
+    "size": 440,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/.idea/runConfigurations/main_dart.xml",
+    "size": 271,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/.idea/libraries/Dart_SDK.xml",
+    "size": 930,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/.idea/libraries/KotlinJavaRuntime.xml",
+    "size": 599,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/web-admin/vercel.json",
+    "size": 1266,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/web-admin/next-env.d.ts",
+    "size": 249,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/web-admin/package-lock.json",
+    "size": 129256,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/web-admin/package.json",
+    "size": 831,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/web-admin/tsconfig.json",
+    "size": 653,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/web-admin/playwright.config.ts",
+    "size": 330,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/web-admin/tools/web_admin_claims_gate.sh",
+    "size": 4493,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/web-admin/tools/web_admin_claims_gate_runner.sh",
+    "size": 1451,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/web-admin/tools/run_web_admin_diagnostics_smoke.sh",
+    "size": 1677,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/web-admin/tools/web_admin_gate.sh",
+    "size": 5484,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/web-admin/tools/web_admin_gate_runner.sh",
+    "size": 1441,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/web-admin/tools/web_admin_diagnostics_smoke.sh",
+    "size": 5817,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/web-admin/tests/e2e/smoke.spec.ts",
+    "size": 663,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/web-admin/components/AuditLogsTable.tsx",
+    "size": 93,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/web-admin/components/AdminGuard.tsx",
+    "size": 1305,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/web-admin/components/PointsTransferForm.tsx",
+    "size": 104,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/web-admin/components/CampaignForm.tsx",
+    "size": 84,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/web-admin/components/StatsPanel.tsx",
+    "size": 75,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/web-admin/components/PointsAdjustForm.tsx",
+    "size": 98,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/web-admin/components/CampaignStatsTable.tsx",
+    "size": 96,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/web-admin/components/AdminLayout.tsx",
+    "size": 2171,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/web-admin/components/FraudPanel.tsx",
+    "size": 75,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/web-admin/components/PointsExpireForm.tsx",
+    "size": 98,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/web-admin/components/CampaignSendForm.tsx",
+    "size": 89,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/web-admin/components/BillingPanel.tsx",
+    "size": 81,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/web-admin/lib/claims.ts",
+    "size": 420,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/web-admin/lib/firebaseClient.ts",
+    "size": 787,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/web-admin/src/__tests__/auth.test.ts",
+    "size": 3904,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/rest-api/test_api.sh",
+    "size": 4302,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/rest-api/temp_fix.sh",
+    "size": 239,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/rest-api/package-lock.json",
+    "size": 296116,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/rest-api/package.json",
+    "size": 1778,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/rest-api/tsconfig.json",
+    "size": 651,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/rest-api/ecosystem.config.js",
+    "size": 520,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/rest-api/pm2-production-manager.sh",
+    "size": 6902,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/rest-api/src/server.ts",
+    "size": 28230,
+    "reason": "unreferenced_in_imports"
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/rest-api/src/config/database.ts",
+    "size": 1784,
+    "reason": "unreferenced_in_imports"
+  }
+]

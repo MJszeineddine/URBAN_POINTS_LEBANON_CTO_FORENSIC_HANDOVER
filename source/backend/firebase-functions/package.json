@@ -4,7 +4,7 @@
   "description": "Firebase Cloud Functions for Urban Points Lebanon",
   "main": "lib/index.js",
   "scripts": {
-    "build": "tsc -p tsconfig.build.json",
+    "build": "node load-env.js && tsc -p tsconfig.build.json",
     "serve": "npm run build && firebase emulators:start --only functions",
     "shell": "npm run build && firebase functions:shell",
     "deploy": "firebase deploy --only functions",

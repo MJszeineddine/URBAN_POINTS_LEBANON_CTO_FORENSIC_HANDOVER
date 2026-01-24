@@ -26,18 +26,14 @@ const LOCAL_URL = 'http://localhost:5001/urbangenspark/us-central1/stripeWebhook
 
 // Parse command line arguments
 const args = process.argv.slice(2);
-const eventFile = args[0];
+const DEFAULT_EVENT = 'tools/fixtures/stripe/events/checkout.session.completed.json';
+const eventFile = args[0] || DEFAULT_EVENT;
+if (!args[0]) {
+  console.log(`ℹ️  No event file passed, defaulting to ${DEFAULT_EVENT}`);
+}
 const targetMode = args.find(arg => arg === '--local' || arg === '--production') || '--local';
 const skipSignature = args.includes('--skip-signature');
-
-if (!eventFile) {
-  console.error('Usage: node stripe_webhook_replay.js <event_file> [--local|--production] [--skip-signature]');
-  console.error('');
-  console.error('Examples:');
-  console.error('  node stripe_webhook_replay.js stripe_samples/checkout_session_completed.json --local');
-  console.error('  node stripe_webhook_replay.js stripe_samples/invoice_payment_succeeded.json --production');
-  process.exit(1);
-}
+const resolvedEventFile = require('path').resolve(eventFile);
 
 // ============================================================================
 // LOAD EVENT PAYLOAD
@@ -45,9 +41,9 @@ if (!eventFile) {
 
 let eventPayload;
 try {
-  const rawData = fs.readFileSync(eventFile, 'utf8');
+  const rawData = fs.readFileSync(resolvedEventFile, 'utf8');
   eventPayload = JSON.parse(rawData);
-  console.log(`✅ Loaded event: ${eventPayload.type}`);
+  console.log(`✅ Loaded event: ${eventPayload.type} (${resolvedEventFile})`);
 } catch (error) {
   console.error(`❌ Error loading event file: ${error.message}`);
   process.exit(1);

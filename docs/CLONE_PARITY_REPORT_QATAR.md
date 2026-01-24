@@ -1,8 +1,8 @@
 # Clone Parity Report – Urban Points Qatar
 
-**Generated:** 2026-01-17 00:15:19 UTC  
+**Generated:** 2026-01-20 20:38:10 UTC  
 **Baseline:** /Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/docs/QATAR_BASELINE_FEATURES.yaml  
-**Clone %:** 70.0% (sum(scores)/9 features × 100)
+**Clone %:** 30.0% (sum(scores)/9 features × 100)
 
 ---
 
@@ -16,9 +16,9 @@ This report measures how closely our app clones the Qatar baseline. The score is
 
 1) Cloned & Proven (1.0): []
 
-2) Cloned but Not Proven (0.7): ['QTR-001', 'QTR-002', 'QTR-003', 'QTR-004', 'QTR-005', 'QTR-006', 'QTR-007', 'QTR-008', 'QTR-009']
+2) Cloned but Not Proven (0.7): []
 
-3) Gap / Partial / Missing (≤0.3): []
+3) Gap / Partial / Missing (≤0.3): ['QTR-001', 'QTR-002', 'QTR-003', 'QTR-004', 'QTR-005', 'QTR-006', 'QTR-007', 'QTR-008', 'QTR-009']
 
 ---
 

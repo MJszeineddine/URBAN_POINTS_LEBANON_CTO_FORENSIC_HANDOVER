@@ -20,6 +20,7 @@ import 'screens/qr_generation_screen.dart';
 import 'screens/billing/billing_screen.dart';
 import 'screens/favorites_screen.dart';
 import 'screens/redemption/redemption_history_screen.dart';
+import 'screens/subscription_screen.dart';
 import 'services/auth_service.dart';
 import 'services/fcm_service.dart';
 import 'services/onboarding_service.dart';
@@ -69,6 +70,7 @@ class UrbanPointsCustomerApp extends StatelessWidget {
         '/billing': (context) => const BillingScreen(),
         '/favorites': (context) => const FavoritesScreen(),
         '/redemption_history': (context) => const RedemptionHistoryScreen(),
+        '/subscription': (context) => SubscriptionScreen(),
       },
       home: FutureBuilder<bool>(
         future: OnboardingService.shouldShowOnboarding(),

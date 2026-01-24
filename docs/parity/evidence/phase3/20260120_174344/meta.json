@@ -1,0 +1,13 @@
+{
+  "timestamp": "2026-01-20T17:44:04+02:00",
+  "pwd": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER",
+  "git_sha": "42c7b9f7a9e47bc5f0942f1b14676005df2bcca6",
+  "node": "v20.19.5",
+  "npm": "10.8.2",
+  "java": "openjdk version "17.0.16" 2025-07-15",
+  "env_exit": 0,
+  "gate_exit": 1,
+  "tests_exit": 1,
+  "deploy_exit": 97,
+  "deploy_mode": "NORMAL"
+}

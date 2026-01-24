@@ -71,4 +71,5 @@ coverage/
 .nyc_output/
 
 # OS
-*.zip
+*.ziplocal-ci/verification/push_proof/
+INNERHTML_INVENTORY.md

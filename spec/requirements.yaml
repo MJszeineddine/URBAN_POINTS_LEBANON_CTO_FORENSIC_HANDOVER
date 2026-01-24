@@ -427,7 +427,8 @@ requirements:
   - source/apps/mobile-merchant/lib/screens/my_offers_screen.dart
   backend_anchors: []
   tests: []
-  notes: Firestore query to offers collection filtered by merchantId. Displays list
+  notes: Firestore query to of
+ers collection filtered by merchantId. Displays list
     with status badges.
 - id: MERCH-OFFER-006
   feature: Media Upload (Images/Videos)
