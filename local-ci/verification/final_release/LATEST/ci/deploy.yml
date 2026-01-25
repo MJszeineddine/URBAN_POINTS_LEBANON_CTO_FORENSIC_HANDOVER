@@ -1,0 +1,384 @@
+name: Deploy Urban Points Lebanon
+
+on:
+  push:
+    branches:
+      - main
+      - staging
+  pull_request:
+    branches:
+      - main
+      - staging
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Environment to deploy to'
+        required: true
+        default: 'staging'
+        type: choice
+        options:
+          - staging
+          - production
+
+env:
+  NODE_VERSION: '20'
+  FLUTTER_VERSION: '3.24.0'
+
+jobs:
+  # ============================================================================
+  # BACKEND TESTS & LINT
+  # ============================================================================
+  backend-test:
+    name: Backend Tests & Lint
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: source/backend/firebase-functions
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+          cache-dependency-path: source/backend/firebase-functions/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Lint code
+        run: npm run lint
+
+      - name: Run tests
+        run: npm test
+        env:
+          FIRESTORE_EMULATOR_HOST: localhost:8080
+          FUNCTIONS_EMULATOR: true
+
+      - name: Build TypeScript
+        run: npm run build
+
+  rest-api-test:
+    name: REST API Tests & Lint
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: source/backend/rest-api
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+          cache-dependency-path: source/backend/rest-api/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Lint code
+        run: npm run lint
+
+      - name: Run tests
+        run: npm test --passWithNoTests
+        env:
+          NODE_ENV: test
+          JWT_SECRET: test-secret
+          DATABASE_URL: postgres://postgres:postgres@localhost:5432/postgres
+
+      - name: Build
+        run: npm run build
+
+  # ============================================================================
+  # MOBILE CUSTOMER APP
+  # ============================================================================
+  mobile-customer-test:
+    name: Mobile Customer App - Test & Analyze
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: source/apps/mobile-customer
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+          channel: 'stable'
+
+      - name: Get dependencies
+        run: flutter pub get
+
+      - name: Analyze code
+        run: flutter analyze
+
+      - name: Run tests
+        run: flutter test
+
+      - name: Check formatting
+        run: flutter format --set-exit-if-changed lib/ test/
+
+  # ============================================================================
+  # MOBILE MERCHANT APP
+  # ============================================================================
+  mobile-merchant-test:
+    name: Mobile Merchant App - Test & Analyze
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: source/apps/mobile-merchant
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+          channel: 'stable'
+
+      - name: Get dependencies
+        run: flutter pub get
+
+      - name: Analyze code
+        run: flutter analyze
+
+      - name: Run tests
+        run: flutter test
+
+      - name: Check formatting
+        run: flutter format --set-exit-if-changed lib/ test/
+
+  # ============================================================================
+  # DEPLOY TO STAGING
+  # ============================================================================
+  deploy-staging:
+    name: Deploy to Staging
+    runs-on: ubuntu-latest
+    needs: [backend-test, rest-api-test, mobile-customer-test, mobile-merchant-test]
+    if: github.ref == 'refs/heads/staging' || (github.event_name == 'workflow_dispatch' && github.event.inputs.environment == 'staging')
+    environment:
+      name: staging
+      url: https://staging.urbanpoints.lb
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Install Firebase CLI
+        run: npm install -g firebase-tools@latest
+
+      - name: Deploy Firebase Functions
+        run: |
+          cd source/backend/firebase-functions
+          npm ci
+          firebase deploy --only functions --project staging-urbanpoints --token "${{ secrets.FIREBASE_TOKEN }}"
+
+      - name: Deploy Firestore Rules
+        run: |
+          cd source
+          firebase deploy --only firestore:rules --project staging-urbanpoints --token "${{ secrets.FIREBASE_TOKEN }}"
+
+      - name: Deploy Firestore Indexes
+        run: |
+          cd source
+          firebase deploy --only firestore:indexes --project staging-urbanpoints --token "${{ secrets.FIREBASE_TOKEN }}"
+
+      - name: Deploy Storage Rules
+        run: |
+          cd source
+          firebase deploy --only storage --project staging-urbanpoints --token "${{ secrets.FIREBASE_TOKEN }}"
+
+  # ============================================================================
+  # BUILD MOBILE APPS (STAGING)
+  # ============================================================================
+  build-mobile-staging:
+    name: Build Mobile Apps (Staging)
+    runs-on: ubuntu-latest
+    needs: [mobile-customer-test, mobile-merchant-test]
+    if: github.ref == 'refs/heads/staging' || (github.event_name == 'workflow_dispatch' && github.event.inputs.environment == 'staging')
+
+    strategy:
+      matrix:
+        app: [mobile-customer, mobile-merchant]
+        platform: [android, ios]
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+          channel: 'stable'
+
+      - name: Setup Java (for Android)
+        if: matrix.platform == 'android'
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Get dependencies
+        run: |
+          cd source/apps/${{ matrix.app }}
+          flutter pub get
+
+      - name: Build Android APK
+        if: matrix.platform == 'android'
+        run: |
+          cd source/apps/${{ matrix.app }}
+          flutter build apk --release --flavor staging
+
+      - name: Build iOS
+        if: matrix.platform == 'ios'
+        run: |
+          cd source/apps/${{ matrix.app }}
+          flutter build ios --release --no-codesign
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.app }}-${{ matrix.platform }}-staging
+          path: |
+            source/apps/${{ matrix.app }}/build/app/outputs/flutter-apk/*.apk
+            source/apps/${{ matrix.app }}/build/ios/iphoneos/*.app
+          retention-days: 30
+
+  # ============================================================================
+  # DEPLOY TO PRODUCTION (MANUAL APPROVAL REQUIRED)
+  # ============================================================================
+  deploy-production:
+    name: Deploy to Production
+    runs-on: ubuntu-latest
+    needs: [backend-test, mobile-customer-test, mobile-merchant-test]
+    if: github.ref == 'refs/heads/main' || (github.event_name == 'workflow_dispatch' && github.event.inputs.environment == 'production')
+    environment:
+      name: production
+      url: https://urbanpoints.lb
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Install Firebase CLI
+        run: npm install -g firebase-tools@latest
+
+      - name: Deploy Firebase Functions
+        run: |
+          cd source/backend/firebase-functions
+          npm ci
+          firebase deploy --only functions --project prod-urbanpoints --token "${{ secrets.FIREBASE_TOKEN }}"
+
+      - name: Deploy Firestore Rules
+        run: |
+          cd source
+          firebase deploy --only firestore:rules --project prod-urbanpoints --token "${{ secrets.FIREBASE_TOKEN }}"
+
+      - name: Deploy Firestore Indexes
+        run: |
+          cd source
+          firebase deploy --only firestore:indexes --project prod-urbanpoints --token "${{ secrets.FIREBASE_TOKEN }}"
+
+      - name: Deploy Storage Rules
+        run: |
+          cd source
+          firebase deploy --only storage --project prod-urbanpoints --token "${{ secrets.FIREBASE_TOKEN }}"
+
+      - name: Notify deployment success
+        if: success()
+        run: |
+          echo "✅ Production deployment completed successfully!"
+          # Add Slack notification here if needed
+
+      - name: Notify deployment failure
+        if: failure()
+        run: |
+          echo "❌ Production deployment failed!"
+          # Add Slack notification here if needed
+
+  # ============================================================================
+  # BUILD & PUBLISH MOBILE APPS (PRODUCTION)
+  # ============================================================================
+  build-mobile-production:
+    name: Build Mobile Apps (Production)
+    runs-on: macos-latest
+    needs: [deploy-production]
+    if: github.ref == 'refs/heads/main' || (github.event_name == 'workflow_dispatch' && github.event.inputs.environment == 'production')
+
+    strategy:
+      matrix:
+        app: [mobile-customer, mobile-merchant]
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+          channel: 'stable'
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Get dependencies
+        run: |
+          cd source/apps/${{ matrix.app }}
+          flutter pub get
+
+      - name: Build Android App Bundle
+        run: |
+          cd source/apps/${{ matrix.app }}
+          flutter build appbundle --release
+
+      - name: Build iOS App
+        run: |
+          cd source/apps/${{ matrix.app }}
+          flutter build ios --release
+
+      - name: Upload to Google Play (Internal Testing)
+        if: matrix.app == 'mobile-customer' || matrix.app == 'mobile-merchant'
+        run: |
+          # fastlane supply --aab source/apps/${{ matrix.app }}/build/app/outputs/bundle/release/*.aab --track internal
+          echo "Upload to Google Play would happen here"
+
+      - name: Upload to App Store (TestFlight)
+        if: matrix.app == 'mobile-customer' || matrix.app == 'mobile-merchant'
+        run: |
+          # fastlane pilot upload --ipa source/apps/${{ matrix.app }}/build/ios/iphoneos/*.ipa
+          echo "Upload to TestFlight would happen here"
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.app }}-production
+          path: |
+            source/apps/${{ matrix.app }}/build/app/outputs/bundle/release/*.aab
+            source/apps/${{ matrix.app }}/build/ios/iphoneos/*.ipa
+          retention-days: 90
