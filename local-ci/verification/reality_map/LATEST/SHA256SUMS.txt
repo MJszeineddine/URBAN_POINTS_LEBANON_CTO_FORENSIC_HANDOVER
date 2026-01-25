@@ -1,6 +1,0 @@
-ab4850e29cf01022053bb760c6de2e38218a7718803cffaadaa63e7df2c32d31  ./REALITY_MAP.md
-e4a57064c1a9b2376fcf0781130d4d06b8243490bc817662a3888957eb32dbbd  ./PROOF_INDEX.md
-18adaec1791ef36d00a3529e6ae5f6313ff3213e7d3611dd0e598b51e73ad292  ./inventory/run_timestamp.txt
-9060618c7ba2f60a86599d7acd2a4e6be6cae657c30bff65d41073f06f5fcfa4  ./inventory/git_commit.txt
-859e9d1d9d69abd7d4b76783dc4a49895a2494a24a81d9f0f82be8181d4c8d3e  ./extract/evidence.json
-5bbf89d844b78ba72aec60e3bba2810760c8c15bc3290c881077039cce5716a5  ./extract/components.json

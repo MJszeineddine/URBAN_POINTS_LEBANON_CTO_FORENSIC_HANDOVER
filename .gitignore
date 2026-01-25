@@ -110,6 +110,7 @@ ios/Runner/GeneratedPluginRegistrant.java
 # Documentation
 # =============================================================================
 **/docs/evidence/**
+local-ci/verification/
 local-ci/verification/push_proof/
 local-ci/verification/push_fix/
 local-ci/verification/letter_by_letter/
@@ -119,3 +120,9 @@ local-ci/verification/reality_map_one_shot/
 # Local-only generated/evidence (do not commit)
 INNERHTML_INVENTORY.md
 local-ci/verification/company_audit/
+
+# OS junk / runtime artifacts (ensure covered)
+.DS_Store
+*.pid
+*.out
+*.err
