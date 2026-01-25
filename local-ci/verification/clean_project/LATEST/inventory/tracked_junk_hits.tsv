@@ -1,0 +1,15 @@
+bytes	size_mb	path
+16388	0.02	.DS_Store
+12292	0.01	docs/.DS_Store
+10244	0.01	source/.DS_Store
+462	0.00	.zero_human_pain_gate.out
+153	0.00	.internal_beta_gate.err
+6	0.00	.firebase_emulator.pid
+0	0.00	source/apps/web-admin/.web_admin_gate_runner.out
+0	0.00	source/apps/web-admin/.web_admin_gate_runner.err
+0	0.00	source/apps/web-admin/.web_admin_diagnostics_smoke.out
+0	0.00	source/apps/web-admin/.web_admin_diagnostics_smoke.err
+0	0.00	source/apps/web-admin/.web_admin_claims_gate_runner.out
+0	0.00	source/apps/web-admin/.web_admin_claims_gate_runner.err
+0	0.00	.zero_human_pain_gate.err
+0	0.00	.internal_beta_gate.out

@@ -1,0 +1,22 @@
+D  .DS_Store
+D  .firebase_emulator.pid
+ M .gitignore
+D  .internal_beta_gate.err
+D  .internal_beta_gate.out
+D  .zero_human_pain_gate.err
+D  .zero_human_pain_gate.out
+D  docs/.DS_Store
+D  source/.DS_Store
+D  source/apps/web-admin/.web_admin_claims_gate_runner.err
+D  source/apps/web-admin/.web_admin_claims_gate_runner.out
+D  source/apps/web-admin/.web_admin_diagnostics_smoke.err
+D  source/apps/web-admin/.web_admin_diagnostics_smoke.out
+D  source/apps/web-admin/.web_admin_gate_runner.err
+D  source/apps/web-admin/.web_admin_gate_runner.out
+D  source/backend/firebase-functions/.env.deployment
+D  source/backend/rest-api/.env
+?? INNERHTML_INVENTORY.md
+?? clean_inventory.py
+?? find_sensitive.py
+?? local-ci/
+?? scan_secrets.py

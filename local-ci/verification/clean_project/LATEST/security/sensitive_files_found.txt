@@ -1,0 +1,15 @@
+=== TRACKED SENSITIVE FILES ===
+TRACKED: source/backend/firebase-functions/.env.deployment
+TRACKED: source/backend/firebase-functions/.env.example
+TRACKED: source/backend/rest-api/.env
+TRACKED: source/backend/rest-api/.env.example
+
+=== UNTRACKED SENSITIVE FILES ===
+UNTRACKED: ./.venv/lib/python3.13/site-packages/pip/_vendor/certifi/cacert.pem
+UNTRACKED: ./source/backend/firebase-functions/.env
+UNTRACKED: ./source/backend/firebase-functions/.env.deployment
+UNTRACKED: ./source/backend/firebase-functions/.env.example
+UNTRACKED: ./source/backend/firebase-functions/.env.local
+UNTRACKED: ./source/backend/rest-api/.env
+UNTRACKED: ./source/backend/rest-api/.env.example
+UNTRACKED: ./source/backend/rest-api/.env.local
