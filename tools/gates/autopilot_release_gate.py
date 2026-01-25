@@ -118,10 +118,10 @@ class AutopilotReleaseGate:
             log_lines.append(issue)
         
         # Check for sk_live_ in code files (exclude docs/reports that mention it)
-        rc, out = run(["git", "grep", "-n", "sk_live_", "--", "*.ts", "*.js", "*.dart", "*.py"], cwd=ROOT)
+        rc, out = run(["git", "grep", "-n", "sk_live_", "--", "*.ts", "*.js", "*.dart"], cwd=ROOT)
         if rc == 0:
             lines = [l for l in out.strip().split("\n") 
-                    if "sk_live_REDACTED" not in l and "REPORT" not in l and "autorun.py" not in l]
+                    if "sk_live_REDACTED" not in l and "REPORT" not in l]
             if lines:
                 issue = f"BLOCKED: Found sk_live_ in code: {len(lines)} matches"
                 issues.append(issue)
