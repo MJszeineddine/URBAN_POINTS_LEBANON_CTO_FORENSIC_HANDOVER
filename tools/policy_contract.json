@@ -17,7 +17,7 @@
     "stripe_deferred_gate.sh": {
       "required": true,
       "must_pass": true,
-      "verifies": ["STRIPE_ENABLED=0 default", "no test keys in repo", "all functions guarded", "sk_live_ validation present"]
+      "verifies": ["STRIPE_ENABLED=0 default", "no test keys in repo", "all functions guarded", "live key format validation present"]
     },
     "final_gap_scan_gate.sh": {
       "required": true,

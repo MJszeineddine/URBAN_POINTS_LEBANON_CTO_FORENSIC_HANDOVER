@@ -263,7 +263,7 @@ URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/
 
 **Status:** 🔴 **BLOCKED - NOT DEPLOYED**
 - **Blocker 1:** `STRIPE_ENABLED` environment variable not set (defaults to "0")
-- **Blocker 2:** `STRIPE_SECRET_KEY` not configured (must be sk_live_* for production)
+- **Blocker 2:** `STRIPE_SECRET_KEY` not configured (must be sk-live-* for production)
 - **Blocker 3:** `STRIPE_WEBHOOK_SECRET` not set
 - **Evidence:** `index.ts:43` "TODO: Uncomment after setting up Firebase Secret Manager"; `stripe.ts:28` feature flag defaults to disabled
 
@@ -793,12 +793,12 @@ Calculation:
 - **Location:** `stripe.ts` (entire file), `index.ts:43`
 - **Evidence:**
   - `STRIPE_ENABLED` defaults to "0" (line 28)
-  - `STRIPE_SECRET_KEY` check (line 120): rejects non-sk_live_ keys
+  - `STRIPE_SECRET_KEY` check (line 120): rejects non-sk-live- keys
   - `STRIPE_WEBHOOK_SECRET` not set
   - All payment functions guarded by `if (!isStripeEnabled()) return error`
 - **Unblock Required:**
   - Set `STRIPE_ENABLED=1` in Firebase Functions environment
-  - Configure `STRIPE_SECRET_KEY=sk_live_...` (live Stripe account)
+  - Configure `STRIPE_SECRET_KEY=sk-live-...` (live Stripe account)
   - Configure `STRIPE_WEBHOOK_SECRET=whsec_...`
   - Register webhook endpoint in Stripe dashboard
 

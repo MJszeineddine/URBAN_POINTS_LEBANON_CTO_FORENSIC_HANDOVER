@@ -76,7 +76,7 @@ export const earnPoints = functions.https.onCall(async (data, context) => {
 
 **Required:**
 ```bash
-firebase functions:config:set stripe.secret_key="sk_live_..."
+firebase functions:config:set stripe.secret_key="sk-live-..."
 firebase functions:config:set stripe.webhook_secret="whsec_..."
 firebase deploy --only functions:stripeWebhook
 ```

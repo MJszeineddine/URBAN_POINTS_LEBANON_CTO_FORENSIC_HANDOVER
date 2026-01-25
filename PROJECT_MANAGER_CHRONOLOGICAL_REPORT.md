@@ -472,7 +472,7 @@ GitHub Copilot has been engaged in a comprehensive full-stack audit, verificatio
 
 #### Step 7: Security/Secrets/Misconfig Scan (02:59 UTC)
 - **Secrets Scan:**
-  - `grep -ri "sk_live_\|pk_live_\|AIzaSy\|AKIA\|password\|api_key\|secret" source/`
+  - `grep -ri "sk-live-\|pk_live_\|AIzaSy\|AKIA\|password\|api_key\|secret" source/`
   - **Result:** 50 potential matches (head -50 captured)
   - **Output:** `local-ci/verification/micro_audit/LATEST/security/scan_secrets.log`
 

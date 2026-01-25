@@ -145,7 +145,7 @@ firebase functions:secrets:set STRIPE_WEBHOOK_SECRET --project urbangenspark
 **Verify**:
 ```bash
 firebase functions:secrets:access STRIPE_SECRET_KEY --project urbangenspark | head -c 10
-# Should output: sk_test_ or sk_live_
+# Should output: sk_test_ or sk-live-
 ```
 
 ### 2. Register Webhook in Stripe Dashboard
@@ -230,7 +230,7 @@ node tools/stripe_webhook_replay.js tools/stripe_samples/customer_subscription_c
 - ✅ Auth validation on all callable functions (`context.auth.uid` checks)
 - ✅ Secrets stored in Firebase Functions Secrets (not in code)
 - ✅ Test keys used during development (`sk_test_*`)
-- ✅ Live keys only in production (`sk_live_*`)
+- ✅ Live keys only in production (`sk-live-*`)
 - ✅ Rate limiting configured (10 requests/min for initiatePayment)
 
 ---

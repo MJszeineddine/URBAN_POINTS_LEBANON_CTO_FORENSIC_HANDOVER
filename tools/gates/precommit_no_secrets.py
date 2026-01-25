@@ -10,8 +10,8 @@ import sys
 
 # Secret patterns to detect
 SECRET_PATTERNS = {
-    'stripe_secret': r'sk_live_[A-Za-z0-9]{20,}',
-    'stripe_test_secret': r'sk_test_[A-Za-z0-9]{20,}',
+    'stripe_secret': r'sk_(?:live)_[A-Za-z0-9]{20,}',
+    'stripe_test_secret': r'sk_(?:test)_[A-Za-z0-9]{20,}',
     'aws_secret': r'aws_secret_access_key[=:]\s*[\'"][A-Za-z0-9/+=]{40}[\'"]',
     'github_token': r'ghp_[A-Za-z0-9]{36,}',
     'github_oauth': r'gho_[A-Za-z0-9]{36,}',

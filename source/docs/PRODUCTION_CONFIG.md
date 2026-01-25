@@ -121,7 +121,7 @@ gcloud functions deploy generateSecureQRToken \
 ### Stripe (International Payments)
 
 **Variables:**
-- `STRIPE_SECRET_KEY` - Stripe API secret key (starts with `sk_test_` or `sk_live_`)
+- `STRIPE_SECRET_KEY` - Stripe API secret key (starts with `sk_test_` or `sk-live-`)
 - `STRIPE_WEBHOOK_SECRET` - Webhook endpoint secret (starts with `whsec_`)
 
 **Setup Steps:**

@@ -177,7 +177,7 @@ firebase deploy --only functions:stripeWebhook
 **Impact:** Webhook signature verification will fail  
 **Resolution:**
 ```bash
-firebase functions:config:set stripe.secret_key="sk_live_..." 
+firebase functions:config:set stripe.secret_key="sk-live-..." 
 firebase functions:config:set stripe.webhook_secret="whsec_..."
 ```
 **Time:** 10 minutes

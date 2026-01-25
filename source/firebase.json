@@ -3,10 +3,14 @@
     "rules": "infra/firestore.rules",
     "indexes": "infra/firestore.indexes.json"
   },
+  "storage": {
+    "rules": "infra/storage.rules"
+  },
   "functions": [
     {
       "source": "backend/firebase-functions",
       "codebase": "default",
+      "runtime": "nodejs20",
       "ignore": [
         "node_modules",
         ".git",

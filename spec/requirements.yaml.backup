@@ -174,10 +174,10 @@ requirements:
     anchors:
       - file: source/backend/firebase-functions/src/index.ts
         symbol: stripeWebhook
-        note: HTTPS endpoint verifies Stripe signature but returns 500 if STRIPE_ENABLED != "1" or key not sk_live_
+        note: HTTPS endpoint verifies Stripe signature but returns 500 if STRIPE_ENABLED != "1" or key not sk-live-
       - file: source/backend/firebase-functions/src/index.ts
         symbol: initiatePaymentCallable
-        note: Callable validates with zod then calls initiatePayment guarded by STRIPE_ENABLED and sk_live_ key requirement
+        note: Callable validates with zod then calls initiatePayment guarded by STRIPE_ENABLED and sk-live- key requirement
       - file: source/backend/firebase-functions/src/index.ts
         symbol: createCheckoutSession
         note: Callable requires auth merchant, creates checkout session with Stripe keys
@@ -185,7 +185,7 @@ requirements:
         symbol: createBillingPortalSession
         note: Callable requires existing stripe_customer_id and returnUrl
     acceptance_criteria:
-      - STRIPE_ENABLED="1" and sk_live_* credentials required or functions return configuration errors
+      - STRIPE_ENABLED="1" and sk-live-* credentials required or functions return configuration errors
       - initiatePaymentCallable enforces merchant auth and plan existence before creating subscription
       - stripeWebhook rejects non-POST and verifies webhook secret before processing events
       - Checkout and billing portal sessions are created only for authenticated merchants with Stripe customer IDs

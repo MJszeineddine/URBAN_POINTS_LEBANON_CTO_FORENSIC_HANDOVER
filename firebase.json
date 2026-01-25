@@ -1,0 +1,12 @@
+{
+  "functions": {
+    "source": "source/backend/firebase-functions",
+    "runtime": "nodejs20"
+  },
+  "firestore": {
+    "rules": "firestore.rules"
+  },
+  "storage": {
+    "rules": "storage.rules"
+  }
+}

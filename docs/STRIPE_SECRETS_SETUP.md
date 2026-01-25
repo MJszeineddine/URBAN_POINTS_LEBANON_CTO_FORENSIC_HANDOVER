@@ -12,7 +12,7 @@
 
 **Format**:
 - Test mode: `sk_test_XXXXXXXXXXXXXXXXXXX`
-- Live mode: `sk_live_XXXXXXXXXXXXXXXXXXX`
+- Live mode: `sk-live-XXXXXXXXXXXXXXXXXXX`
 
 **Where to get it**: [Stripe Dashboard](https://dashboard.stripe.com/apikeys)
 
@@ -54,7 +54,7 @@ echo "whsec_XXXXXXXXXXXXXXXXXXXXX" | firebase functions:secrets:set STRIPE_WEBHO
 **Verification**:
 ```bash
 firebase functions:secrets:access STRIPE_SECRET_KEY --project urbangenspark
-# Should output: sk_test_* or sk_live_*
+# Should output: sk_test_* or sk-live-*
 
 firebase functions:secrets:access STRIPE_WEBHOOK_SECRET --project urbangenspark
 # Should output: whsec_*
@@ -128,7 +128,7 @@ firebase deploy \
 
 ```bash
 firebase functions:secrets:access STRIPE_SECRET_KEY --project urbangenspark | head -c 10
-# Should output: sk_test_ or sk_live_
+# Should output: sk_test_ or sk-live-
 
 firebase functions:secrets:access STRIPE_WEBHOOK_SECRET --project urbangenspark | head -c 10
 # Should output: whsec_
@@ -170,7 +170,7 @@ If error: `"Invalid signature"` → STRIPE_WEBHOOK_SECRET mismatch
 ## Security Checklist
 
 - ✅ Use **test mode keys** (`sk_test_*`) during development
-- ✅ Use **live mode keys** (`sk_live_*`) only in production
+- ✅ Use **live mode keys** (`sk-live-*`) only in production
 - ✅ Never commit secrets to git (`.env` in `.gitignore`)
 - ✅ Rotate keys if compromised (generate new keys in Stripe Dashboard)
 - ✅ Restrict API key permissions in Stripe Dashboard (uncheck unnecessary permissions)

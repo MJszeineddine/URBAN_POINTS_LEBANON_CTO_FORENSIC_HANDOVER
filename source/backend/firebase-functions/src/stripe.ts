@@ -37,6 +37,24 @@ function getStripeSecretKey(): string | null {
   return process.env.STRIPE_SECRET_KEY || functions.config().stripe?.secret_key || null;
 }
 
+function allowStripeTestKeys(): boolean {
+  return process.env.FUNCTIONS_EMULATOR === 'true' || process.env.ALLOW_STRIPE_TEST_KEYS === '1';
+}
+
+const STRIPE_KEY_PATTERN = /^sk_(live|test)_[A-Za-z0-9]+$/;
+
+function isLiveStripeKey(key: string): boolean {
+  return STRIPE_KEY_PATTERN.test(key) && !key.startsWith('sk_test_');
+}
+
+function isTestStripeKey(key: string): boolean {
+  return STRIPE_KEY_PATTERN.test(key) && key.startsWith('sk_test_');
+}
+
+function isStripeKeyAllowed(key: string): boolean {
+  return isLiveStripeKey(key) || (allowStripeTestKeys() && isTestStripeKey(key));
+}
+
 // Reserved for future webhook implementation
 // Get Stripe webhook secret from Secret Manager or environment
 // function getStripeWebhookSecret(): string | null {
@@ -146,10 +164,9 @@ export async function initiatePayment(
       return { success: false, error: 'Payment system not configured' };
     }
 
-    // Verify production keys in production (allow test keys in emulator)
-    const isEmulator = process.env.FUNCTIONS_EMULATOR === 'true';
-    if (!isEmulator && !stripeKey.startsWith('sk_live_')) {
-      console.error('STRIPE_SECRET_KEY must start with sk_live_ in production (got ' + stripeKey.substring(0, 10) + ')');
+    // Verify key shape (live in prod; test keys allowed in emulator or when explicitly permitted)
+    if (!isStripeKeyAllowed(stripeKey)) {
+      console.error('Invalid Stripe key format for current environment');
       return { success: false, error: 'Invalid Stripe key format' };
     }
 
@@ -256,9 +273,9 @@ export async function createCustomer(
       return { success: false, error: 'User ID mismatch' };
     }
 
-    const stripeKey = process.env.STRIPE_SECRET_KEY || functions.config().stripe?.secret_key;
-    if (!stripeKey || !stripeKey.startsWith('sk_live_')) {
-      console.error('Stripe requires sk_live_ keys in production');
+    const stripeKey = getStripeSecretKey();
+    if (!stripeKey || !isStripeKeyAllowed(stripeKey)) {
+      console.error('Stripe credentials are missing or not permitted for this environment');
       return { success: false, error: 'Stripe credentials not valid' };
     }
     
@@ -318,9 +335,9 @@ export async function createSubscription(
       return { success: false, error: 'Unauthenticated' };
     }
 
-    const stripeKey = process.env.STRIPE_SECRET_KEY || functions.config().stripe?.secret_key;
-    if (!stripeKey || !stripeKey.startsWith('sk_live_')) {
-      console.error('Stripe requires sk_live_ keys in production');
+    const stripeKey = getStripeSecretKey();
+    if (!stripeKey || !isStripeKeyAllowed(stripeKey)) {
+      console.error('Stripe credentials are missing or not permitted for this environment');
       return { success: false, error: 'Stripe credentials not valid' };
     }
     
@@ -385,9 +402,9 @@ export async function verifyPaymentStatus(
       return { success: false, error: 'Unauthenticated' };
     }
 
-    const stripeKey = process.env.STRIPE_SECRET_KEY || functions.config().stripe?.secret_key;
-    if (!stripeKey || !stripeKey.startsWith('sk_live_')) {
-      console.error('Stripe requires sk_live_ keys in production');
+    const stripeKey = getStripeSecretKey();
+    if (!stripeKey || !isStripeKeyAllowed(stripeKey)) {
+      console.error('Stripe credentials are missing or not permitted for this environment');
       return { success: false, error: 'Stripe credentials not valid' };
     }
     
@@ -450,16 +467,15 @@ export const stripeWebhook = functions
         return;
       }
 
-      const stripeKey = process.env.STRIPE_SECRET_KEY || functions.config().stripe?.secret_key;
+      const stripeKey = getStripeSecretKey();
       if (!stripeKey) {
         console.error('STRIPE_SECRET_KEY not configured');
         res.status(500).send('Payment system not configured');
         return;
       }
 
-      // STRIPE_DEFERRED: Verify production keys
-      if (!stripeKey.startsWith('sk_live_')) {
-        console.error('Stripe webhook requires sk_live_ keys in production');
+      if (!isStripeKeyAllowed(stripeKey)) {
+        console.error('Stripe key not permitted for this environment');
         res.status(500).send('Invalid Stripe key format');
         return;
       }

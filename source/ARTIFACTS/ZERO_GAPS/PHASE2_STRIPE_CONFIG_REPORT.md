@@ -39,7 +39,7 @@ Since Firebase Secrets Manager requires production deployment permissions, we ca
 #### **1. STRIPE_SECRET_KEY**
 ```bash
 # Production Stripe secret key
-# Format: sk_live_xxxxxxxxxxxxxxxxxxxx
+# Format: sk-live-xxxxxxxxxxxxxxxxxxxx
 # OR for testing: sk_test_xxxxxxxxxxxxxxxxxxxx
 
 # Set via Firebase Console or CLI:
@@ -63,7 +63,7 @@ firebase functions:secrets:set STRIPE_WEBHOOK_SECRET
 1. Go to: https://dashboard.stripe.com/
 2. Navigate to: **Developers** → **API keys**
 3. Copy:
-   - **Secret key** (starts with `sk_test_` or `sk_live_`)
+   - **Secret key** (starts with `sk_test_` or `sk-live-`)
    - **Publishable key** (starts with `pk_test_` or `pk_live_`)
 
 ### **Step 2: Configure Webhook**
@@ -86,7 +86,7 @@ firebase functions:secrets:set STRIPE_WEBHOOK_SECRET
 1. Go to: https://console.firebase.google.com/project/urbangenspark/functions
 2. Navigate to: **Functions** → **Configuration**
 3. Add secrets:
-   - Key: `STRIPE_SECRET_KEY`, Value: `sk_test_...` or `sk_live_...`
+   - Key: `STRIPE_SECRET_KEY`, Value: `sk_test_...` or `sk-live-...`
    - Key: `STRIPE_WEBHOOK_SECRET`, Value: `whsec_...`
 
 **Option B: Firebase CLI (requires permissions)**

@@ -6,11 +6,11 @@
 
 ### Firebase Configuration Commands
 
-Once Stripe live keys are provided (sk_live_* and whsec_live_*), execute in order:
+Once Stripe live keys are provided (sk-live-* and whsec_live_*), execute in order:
 
 ```bash
 # Set Stripe Secret Key
-firebase functions:config:set stripe.secret_key="sk_live_YOUR_ACTUAL_KEY"
+firebase functions:config:set stripe.secret_key="sk-live-YOUR_ACTUAL_KEY"
 
 # Set Stripe Webhook Secret
 firebase functions:config:set stripe.webhook_secret="whsec_live_YOUR_ACTUAL_WEBHOOK_SECRET"

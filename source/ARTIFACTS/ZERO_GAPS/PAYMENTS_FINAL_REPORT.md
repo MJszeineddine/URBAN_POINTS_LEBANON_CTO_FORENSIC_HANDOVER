@@ -52,18 +52,18 @@ const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET || functions.config().st
 **Required Configuration:**
 ```bash
 # Option 1: Firebase Functions Config (Recommended)
-firebase functions:config:set stripe.secret_key="sk_live_..."
+firebase functions:config:set stripe.secret_key="sk-live-..."
 firebase functions:config:set stripe.webhook_secret="whsec_..."
 
 # Option 2: Environment Variables (if using secrets manager)
-STRIPE_SECRET_KEY=sk_live_...
+STRIPE_SECRET_KEY=sk-live-...
 STRIPE_WEBHOOK_SECRET=whsec_...
 ```
 
 **How to Get Values:**
 1. Go to Stripe Dashboard: https://dashboard.stripe.com/
 2. Navigate to Developers > API keys
-3. Copy "Secret key" (starts with `sk_live_` or `sk_test_`)
+3. Copy "Secret key" (starts with `sk-live-` or `sk_test_`)
 4. Navigate to Developers > Webhooks
 5. Create endpoint: `https://us-central1-urbangenspark.cloudfunctions.net/stripeWebhook`
 6. Copy "Signing secret" (starts with `whsec_`)

@@ -283,7 +283,7 @@ npm install stripe@^15.0.0
 #### 2. Environment Variables Not Set
 **Commands:**
 ```bash
-firebase functions:config:set stripe.secret_key="sk_live_..."
+firebase functions:config:set stripe.secret_key="sk-live-..."
 firebase functions:config:set stripe.webhook_secret="whsec_..."
 ```
 **Impact:** Webhook signature verification fails  

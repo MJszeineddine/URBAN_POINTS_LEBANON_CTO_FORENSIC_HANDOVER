@@ -12,7 +12,7 @@ Firebase Functions include Stripe subscription checkout, billing portal, and web
 ## Blocker Details
 
 ### Missing Environment Variables
-- `STRIPE_SECRET_KEY`: Must be `sk_live_*` format for production; test key `sk_test_*` not accepted by runtime guards
+- `STRIPE_SECRET_KEY`: Must be `sk-live-*` format for production; test key `sk_test_*` not accepted by runtime guards
 - `STRIPE_WEBHOOK_SECRET`: Required by `stripeWebhook` HTTPS function to verify incoming webhook signatures
 - `STRIPE_ENABLED`: Feature flag environment variable; must be set to `"1"` to enable all Stripe endpoints
 
@@ -22,7 +22,7 @@ Firebase Functions include Stripe subscription checkout, billing portal, and web
 
 ### Acceptance Criteria (Blocked)
 - ❌ `STRIPE_ENABLED="1"` deployed to Firebase Functions environment
-- ❌ `STRIPE_SECRET_KEY=sk_live_...` set with valid live Stripe account secret
+- ❌ `STRIPE_SECRET_KEY=sk-live-...` set with valid live Stripe account secret
 - ❌ `STRIPE_WEBHOOK_SECRET=whsec_...` configured and matched to Stripe webhook endpoint
 - ❌ Webhook endpoint URL registered in Stripe dashboard with events: `checkout.session.completed`, `customer.subscription.updated`, `customer.subscription.deleted`, `invoice.payment_succeeded`, `invoice.payment_failed`
 - ❌ End-to-end subscription flow tested: checkout session → payment → webhook processing → subscription status update in Firestore
@@ -39,7 +39,7 @@ Firebase Functions include Stripe subscription checkout, billing portal, and web
    ```bash
    firebase functions:config:set \
      stripe.enabled="1" \
-     stripe.secret_key="sk_live_..." \
+     stripe.secret_key="sk-live-..." \
      stripe.webhook_secret="whsec_..."
    # OR set via .env.production for newer runtimes
    ```

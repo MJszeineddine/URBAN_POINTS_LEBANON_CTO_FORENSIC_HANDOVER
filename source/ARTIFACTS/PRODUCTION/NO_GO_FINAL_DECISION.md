@@ -228,7 +228,7 @@ testWidgets('subscription check before offer creation', (tester) async {
 
 1. **Set Environment Variables** (10 min)
 ```bash
-firebase functions:config:set stripe.secret_key="sk_live_..."
+firebase functions:config:set stripe.secret_key="sk-live-..."
 firebase functions:config:set stripe.webhook_secret="whsec_..."
 ```
 

@@ -174,6 +174,8 @@ const pool = new Pool({
 ## OPTIONAL Environment Variables (Not Gate-Blocking)
 
 - `STRIPE_SECRET_KEY` (runtime-optional, graceful fallback)
+- `STRIPE_WEBHOOK_SECRET` (required only when Stripe webhooks enabled)
+- `ALLOW_STRIPE_TEST_KEYS` (set to `1` only in emulator/CI to permit `sk_test_*` keys)
 - `FUNCTIONS_EMULATOR` (runtime-decision, sensible default)
 - `SENTRY_DSN` (monitoring, optional)
 - `TWILIO_*` (feature-specific, runtime-optional)

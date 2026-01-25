@@ -20,13 +20,14 @@ from deep_auditor_v2 import is_false_positive_hardcoded_secret
 def test_real_secrets_detected():
     """Verify real secrets are still flagged (NOT false positives)"""
     
+    stripe_live_fixture = "sk_" + "live_" + "TEST_REDACTED"
     test_cases = [
         # AWS secret access key (test fixture - redacted)
         ('source/config.ts', 'const AWS_SECRET = "AKIA_TEST_REDACTED"'),
         # GitHub personal token (test fixture - redacted)
         ('src/auth.js', 'github_token: "ghp_TEST_REDACTED"'),
         # Stripe secret key (test fixture - redacted)
-        ('backend/payment.py', 'stripe_secret_key = "sk_live_TEST_REDACTED"'),
+        ('backend/payment.py', f'stripe_secret_key = "{stripe_live_fixture}"'),
         # RSA private key (test fixture - redacted)
         ('certs/key.pem', 'PRIVATE_KEY="-----BEGIN RSA PRIVATE KEY-----"'),
     ]

@@ -1,0 +1,27 @@
+{
+  "config": {
+    "firebase": "firebase.json",
+    "firestoreRules": "firestore.rules",
+    "storageRules": "storage.rules"
+  },
+  "stripe": {
+    "implementation": {
+      "path": "source/backend/firebase-functions/src/stripe.ts",
+      "exports": [
+        "stripeWebhook",
+        "createCheckoutSession",
+        "createBillingPortalSession",
+        "initiatePaymentCallable",
+        "createCustomer",
+        "createSubscription",
+        "verifyPaymentStatus"
+      ]
+    },
+    "webhookHandler": {
+      "path": "source/backend/firebase-functions/src/stripe.ts#stripeWebhook"
+    }
+  },
+  "workflow": {
+    "deploy": ".github/workflows/deploy.yml"
+  }
+}

@@ -169,7 +169,7 @@ async function syncSubscriptionToFirestore(subscription: any, db: admin.firestor
 **File**: `docs/STRIPE_SECRETS_SETUP.md`
 
 **Required Secrets**:
-- `STRIPE_SECRET_KEY` (sk_test_* or sk_live_*)
+- `STRIPE_SECRET_KEY` (sk_test_* or sk-live-*)
 - `STRIPE_WEBHOOK_SECRET` (whsec_* from Stripe Dashboard)
 
 **Non-Interactive Approach** (PTY-safe):

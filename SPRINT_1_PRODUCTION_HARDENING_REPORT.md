@@ -39,7 +39,7 @@
 
 1. **Production Stripe Keys**
    ```bash
-   firebase functions:config:set stripe.secret_key="sk_live_..." \
+   firebase functions:config:set stripe.secret_key="sk-live-..." \
      stripe.webhook_secret="whsec_live_..."
    ```
 
@@ -57,7 +57,7 @@
 ❌ **CANNOT PROCEED** without production Stripe API keys.
 
 **Action Required:** Finance/Business team must provide:
-- `STRIPE_SECRET_KEY` (sk_live_...)
+- `STRIPE_SECRET_KEY` (sk-live-...)
 - `STRIPE_WEBHOOK_SECRET` (whsec_live_...)
 
 **Blockers If Not Done:**
@@ -470,7 +470,7 @@ flutter build apk --release
 
 | Item | Blocker | Impact | Effort |
 |------|---------|--------|--------|
-| Stripe production keys | Finance team provides sk_live_* | Revenue impossible | 30 min |
+| Stripe production keys | Finance team provides sk-live-* | Revenue impossible | 30 min |
 | Stripe webhook verification | Must configure in Stripe dashboard | Subscriptions fail silently | 1 hour |
 | Sentry DSN | Must create sentry.io project | Backend errors blind | 1 hour |
 | Android signing keystore | Must generate keytool certificate | Cannot release to Play Store | 30 min |
@@ -601,7 +601,7 @@ TOTAL: 3.5 hours
    - Document pass/fail
 
 4. **TOMORROW - Get Stripe Keys from Finance**
-   - Request production keys (sk_live_*, whsec_live_*)
+   - Request production keys (sk-live-*, whsec_live_*)
    - Do NOT commit to git (secrets only in Firebase Console)
 
 5. **Day 3 - Integrate Sentry**

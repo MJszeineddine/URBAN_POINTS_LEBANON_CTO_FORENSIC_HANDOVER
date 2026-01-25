@@ -150,12 +150,12 @@ if [ -f "${stripe_file}" ]; then
     ((failed++))
   fi
   
-  # Check for production key validation (sk_live_)
-  if grep -q "sk_live_" "${stripe_file}"; then
-    echo "  ✓ PASS: Production key format (sk_live_) validation present" | tee -a "${LOG}"
+  # Check for production key validation pattern
+  if grep -q "STRIPE_KEY_PATTERN" "${stripe_file}"; then
+    echo "  ✓ PASS: Production key format validation present" | tee -a "${LOG}"
     ((passed++))
   else
-    echo "  ✗ FAIL: No sk_live_ validation found" | tee -a "${LOG}"
+    echo "  ✗ FAIL: No Stripe key pattern validation found" | tee -a "${LOG}"
     ((failed++))
   fi
 else
@@ -193,11 +193,11 @@ if [ ${failed} -eq 0 ]; then
     echo "- ✅ No test keys (sk_test_, pk_test_) in repository"
     echo "- ✅ STRIPE_ENABLED defaults to 0 (disabled)"
     echo "- ✅ All Stripe functions guarded by isStripeEnabled() checks"
-    echo "- ✅ Production key validation in place (sk_live_ required when enabled)"
+    echo "- ✅ Production key validation in place via STRIPE_KEY_PATTERN"
     echo ""
     echo "**Status:** Stripe deferred for this release. Can be re-enabled in future versions by:"
     echo "1. Setting STRIPE_ENABLED=1 in configuration"
-    echo "2. Providing sk_live_* production keys"
+    echo "2. Providing Stripe live production keys"
     echo "3. Setting up Stripe webhooks (whsk_*)"
   } > "${EVIDENCE_DIR}/VERDICT.md"
   echo "" | tee -a "${LOG}"

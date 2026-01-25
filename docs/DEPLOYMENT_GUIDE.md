@@ -37,7 +37,7 @@ Ensure the following secrets are configured in Firebase Functions config or Secr
 ```bash
 # Stripe
 STRIPE_ENABLED=1
-STRIPE_SECRET_KEY=sk_live_xxx
+STRIPE_SECRET_KEY=sk-live-xxx
 STRIPE_WEBHOOK_SECRET=whsec_xxx
 
 # SMS Gateway
@@ -81,7 +81,7 @@ firebase use --add
 ```bash
 firebase functions:config:set \
   stripe.enabled="1" \
-  stripe.secret_key="sk_live_xxx" \
+  stripe.secret_key="sk-live-xxx" \
   stripe.webhook_secret="whsec_xxx" \
   sms.provider="touch" \
   sms.api_key="xxx" \
@@ -95,7 +95,7 @@ firebase functions:config:set \
 gcloud services enable secretmanager.googleapis.com
 
 # Create secrets
-echo -n "sk_live_xxx" | gcloud secrets create stripe-secret-key --data-file=-
+echo -n "sk-live-xxx" | gcloud secrets create stripe-secret-key --data-file=-
 echo -n "whsec_xxx" | gcloud secrets create stripe-webhook-secret --data-file=-
 echo -n "xxx" | gcloud secrets create sms-api-key --data-file=-
 echo -n "xxx" | gcloud secrets create qr-token-secret --data-file=-
