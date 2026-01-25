@@ -362,21 +362,7 @@ class FinalGateRunner:
         print("→ Building Mobile Customer...")
         customer = ROOT / "source/apps/mobile-customer"
         if customer.exists() and (customer / "pubspec.yaml").exists():
-            # Note: uni_links dependency issue - skip build, just verify pub get and analyze
-            gate = GateResult("mobile-customer")
-            start = datetime.datetime.now()
-            get_log = LOGS / "mobile-customer_flutter_pub_get.log"
-            rc_get, _ = run(["flutter", "pub", "get"], cwd=customer, log_path=get_log, timeout=180)
-            analyze_log = LOGS / "mobile-customer_flutter_analyze.log"
-            rc_analyze, _ = run(["flutter", "analyze"], cwd=customer, log_path=analyze_log, timeout=180)
-            gate.exit_code = rc_analyze
-            gate.log_path = str(analyze_log.relative_to(ROOT))
-            gate.passed = (rc_get == 0)  # Pass if dependencies resolve
-            gate.duration = (datetime.datetime.now() - start).total_seconds()
-            if rc_get != 0:
-                gate.error = f"flutter pub get failed (see {get_log.relative_to(ROOT)})"
-            else:
-                gate.error = f"Dependencies OK (build skipped due to uni_links namespace issue)"
+            gate = self.run_flutter_build_gate("mobile-customer", customer)
             self.add_gate(gate)
             print(f"  {gate}")
         else:
