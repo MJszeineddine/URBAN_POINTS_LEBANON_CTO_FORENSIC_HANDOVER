@@ -120,9 +120,32 @@ def gate_security_scan():
     if env_files:
         issues.append(f"Tracked .env files: {', '.join(env_files)}")
     # ripgrep patterns in code files only
-    def rg(pattern):
-        return run(["rg","-n","--glob","!local-ci/**","--glob","!tools/**","--glob","!**/reports/**","--glob","*.ts","--glob","*.js","--glob","*.dart","--glob","*.py",pattern], cwd=ROOT)
-    for pat in ["sk_live_", "sk_test_", "serviceAccount", "BEGIN PRIVATE KEY", "BEGIN RSA PRIVATE KEY"]:
+    def rg(pattern, is_regex=False):
+        cmd = ["rg","-n"]
+        if is_regex:
+            cmd.append("-e")
+        cmd.extend([
+            "--glob","!local-ci/**",
+            "--glob","!tools/**",
+            "--glob","!**/reports/**",
+            "--glob","*.ts",
+            "--glob","*.js",
+            "--glob","*.dart",
+            "--glob","*.py",
+            pattern
+        ])
+        return run(cmd, cwd=ROOT)
+    # Strict: flag actual Stripe keys only (full format), not bare substrings used in validation logic
+    stripe_key_regex = r"sk_(live|test)_[A-Za-z0-9]{10,}"
+    rc, out, _ = rg(stripe_key_regex, is_regex=True)
+    if rc == 0:
+        hits = [l for l in out.strip().split("\n") if l]
+        if hits:
+            lines.append(f"Pattern sk_(live|test)_<redacted> hits: {len(hits)}")
+            lines.extend(hits[:50])
+            issues.append("Actual Stripe key format present in code")
+    # Service accounts and private keys
+    for pat in ["serviceAccount", "BEGIN PRIVATE KEY", "BEGIN RSA PRIVATE KEY"]:
         rc, out, _ = rg(pat)
         if rc == 0:
             hits = [l for l in out.strip().split("\n") if l]
