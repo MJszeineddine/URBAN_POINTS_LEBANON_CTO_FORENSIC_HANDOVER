@@ -14,6 +14,7 @@ Where proof is
 - Evidence bundle (artifact from CI): finish-today-evidence (GitHub Actions artifact pointing to `local-ci/verification/finish_today/LATEST/**`).
 
 Last run verdict + commit
-- Last commit: 2cdf189
+- Last commit: 8f03314
 - Run status: PASS (exit 0) - all gates passed
-- Timestamp: 2026-01-26 (Asia/Beirut)
+- Timestamp: 2026-01-26T15:59:35 (Asia/Beirut)
+- Gates summary: 7 gates executed, all exit_code=0 (required-files, security-scan, rest-api-tests, firebase-functions-tests, web-admin-build-test, mobile-customer-build, mobile-merchant-build)
