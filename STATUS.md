@@ -14,5 +14,6 @@ Where proof is
 - Evidence bundle (artifact from CI): finish-today-evidence (GitHub Actions artifact pointing to `local-ci/verification/finish_today/LATEST/**`).
 
 Last run verdict + commit
-- Last commit: $(git rev-parse --short HEAD 2>/dev/null || echo 'no-git')
-- Run status: not yet executed in this branch for the new autopilot
+- Last commit: 2cdf189
+- Run status: PASS (exit 0) - all gates passed
+- Timestamp: 2026-01-26 (Asia/Beirut)

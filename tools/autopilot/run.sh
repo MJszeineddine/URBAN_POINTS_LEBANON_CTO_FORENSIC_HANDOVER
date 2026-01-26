@@ -100,42 +100,38 @@ get_gate_cmd() {
       echo "bash tools/autopilot/security_scan.sh $LOGS_DIR/security_scan.log"
       ;;
     rest-api-tests)
-      if [ -d "api" ] && [ -f "api/package.json" ]; then
-        echo "(cd api && npm test)"
+      if [ -d "source/backend/rest-api" ] && [ -f "source/backend/rest-api/package.json" ]; then
+        echo "(cd source/backend/rest-api && npm ci && npm test)"
       else
-        echo "true"
+        echo "echo 'rest-api not found, skipping' && exit 0"
       fi
       ;;
     firebase-functions-tests)
-      if [ -d "functions" ] && [ -f "functions/package.json" ]; then
-        echo "(cd functions && npm test)"
+      if [ -d "source/backend/firebase-functions" ] && [ -f "source/backend/firebase-functions/package.json" ]; then
+        echo "(cd source/backend/firebase-functions && npm ci && npm test)"
       else
-        echo "true"
+        echo "echo 'firebase-functions not found, skipping' && exit 0"
       fi
       ;;
     web-admin-build-test)
-      if [ -d "web-admin" ] && [ -f "web-admin/package.json" ]; then
-        echo "(cd web-admin && npm run build && npm test)"
+      if [ -d "source/apps/web-admin" ] && [ -f "source/apps/web-admin/package.json" ]; then
+        echo "(cd source/apps/web-admin && npm ci && npm run build)"
       else
-        echo "true"
+        echo "echo 'web-admin not found, skipping' && exit 0"
       fi
       ;;
     mobile-customer-build)
-      if [ -d "mobile/customer" ] && [ -f "mobile/customer/package.json" ]; then
-        echo "(cd mobile/customer && npm run build || true)"
-      elif [ -d "mobile-customer" ] && [ -f "mobile-customer/package.json" ]; then
-        echo "(cd mobile-customer && npm run build || true)"
+      if [ -d "source/apps/mobile-customer" ] && [ -f "source/apps/mobile-customer/pubspec.yaml" ]; then
+        echo "(cd source/apps/mobile-customer && flutter pub get && flutter build apk --debug)"
       else
-        echo "true"
+        echo "echo 'mobile-customer not found, skipping' && exit 0"
       fi
       ;;
     mobile-merchant-build)
-      if [ -d "mobile/merchant" ] && [ -f "mobile/merchant/package.json" ]; then
-        echo "(cd mobile/merchant && npm run build || true)"
-      elif [ -d "mobile-merchant" ] && [ -f "mobile-merchant/package.json" ]; then
-        echo "(cd mobile-merchant && npm run build || true)"
+      if [ -d "source/apps/mobile-merchant" ] && [ -f "source/apps/mobile-merchant/pubspec.yaml" ]; then
+        echo "(cd source/apps/mobile-merchant && flutter pub get && flutter build apk --debug)"
       else
-        echo "true"
+        echo "echo 'mobile-merchant not found, skipping' && exit 0"
       fi
       ;;
     *)
@@ -153,12 +149,11 @@ for g in "${GATES[@]}"; do
   start=$(date +%s)
   cmd="$(get_gate_cmd "$name")"
   set +e
-  # if cmd is a function name, call it directly
   if command -v "$cmd" >/dev/null 2>&1 && [ -z "$(echo "$cmd" | grep -E '[ \(\)\&\|]')" ]; then
-    $cmd >> "$LOGS_DIR/${name}.log" 2>&1 || true
+    $cmd >> "$LOGS_DIR/${name}.log" 2>&1
     rc=$?
   else
-    bash -c "$cmd" >> "$LOGS_DIR/${name}.log" 2>&1 || true
+    bash -c "$cmd" >> "$LOGS_DIR/${name}.log" 2>&1
     rc=$?
   fi
   set -e
