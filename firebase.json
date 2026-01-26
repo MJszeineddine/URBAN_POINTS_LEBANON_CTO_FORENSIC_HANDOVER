@@ -1,4 +1,10 @@
 {
+  "hosting": {
+    "public": "public",
+    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"]
+  }
+}
+{
   "functions": {
     "source": "source/backend/firebase-functions",
     "runtime": "nodejs20"

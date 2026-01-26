@@ -1,3 +1,15 @@
+# Required Environment Variables / Secrets
+
+Set these secrets in your CI environment (GitHub Actions secrets) and for local deploys via `firebase functions:config:set` or your secret manager.
+
+- **STRIPE_SECRET_KEY**: Full Stripe secret key (sk_live_... or sk_test_...). Required for payment processing.
+- **STRIPE_WEBHOOK_SECRET**: Webhook signing secret for Stripe.
+- **FIREBASE_SERVICE_ACCOUNT**: Service account JSON (used only in secure CI; do not commit to repo).
+- **FIREBASE_PROJECT**: Firebase project id used for deploy commands.
+- **QR_TOKEN_SECRET**: Secret used for QR token signing.
+- **API_JWT_SECRET**: JWT signing secret for REST API.
+
+If a gate requires a secret and it is not present, the autopilot will report which secret is missing and fail the run. Do NOT store secrets in repository files.
 # Environment Variables (names only)
 This file lists required environment variable NAMES. Do not commit values.
 

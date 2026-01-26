@@ -1,0 +1,25 @@
+name: Autopilot Release
+
+on:
+  workflow_dispatch: {}
+  push:
+    branches: [ main ]
+
+jobs:
+  run-autopilot:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+      - name: Run autopilot
+        run: |
+          bash tools/autopilot/run.sh
+      - name: Upload evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: finish-today-evidence
+          path: local-ci/verification/finish_today/LATEST/**
