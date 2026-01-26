@@ -111,6 +111,7 @@ ios/Runner/GeneratedPluginRegistrant.java
 # =============================================================================
 **/docs/evidence/**
 local-ci/verification/
+local-ci/audit_snapshot/
 local-ci/verification/push_proof/
 local-ci/verification/push_fix/
 local-ci/verification/letter_by_letter/

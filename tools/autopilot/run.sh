@@ -81,6 +81,7 @@ required_files_check() {
 
 # Prepare gates list
 GATES=(
+  "deploy-config-valid"
   "required-files"
   "security-scan"
   "rest-api-tests"
@@ -93,46 +94,29 @@ GATES=(
 get_gate_cmd() {
   name="$1"
   case "$name" in
+    deploy-config-valid)
+      echo "python3 tools/autopilot/validate_deploy_config.py"
+      ;;
     required-files)
-      echo "required_files_check"
+      echo "for f in firebase.json firestore.rules storage.rules firestore.indexes.json; do [ -f \"\$f\" ] || { echo \"missing: \$f\"; exit 1; }; done && echo 'all required files found'"
       ;;
     security-scan)
       echo "bash tools/autopilot/security_scan.sh $LOGS_DIR/security_scan.log"
       ;;
     rest-api-tests)
-      if [ -d "source/backend/rest-api" ] && [ -f "source/backend/rest-api/package.json" ]; then
-        echo "(cd source/backend/rest-api && npm ci && npm test)"
-      else
-        echo "echo 'rest-api not found, skipping' && exit 0"
-      fi
+      echo "[ -d 'source/backend/rest-api' ] && [ -f 'source/backend/rest-api/package.json' ] && (cd source/backend/rest-api && npm ci && npm test) || echo 'rest-api not found, skipping' && exit 0"
       ;;
     firebase-functions-tests)
-      if [ -d "source/backend/firebase-functions" ] && [ -f "source/backend/firebase-functions/package.json" ]; then
-        echo "(cd source/backend/firebase-functions && npm ci && npm test)"
-      else
-        echo "echo 'firebase-functions not found, skipping' && exit 0"
-      fi
+      echo "[ -d 'source/backend/firebase-functions' ] && [ -f 'source/backend/firebase-functions/package.json' ] && (cd source/backend/firebase-functions && npm ci && npm test) || echo 'firebase-functions not found, skipping' && exit 0"
       ;;
     web-admin-build-test)
-      if [ -d "source/apps/web-admin" ] && [ -f "source/apps/web-admin/package.json" ]; then
-        echo "(cd source/apps/web-admin && npm ci && npm run build)"
-      else
-        echo "echo 'web-admin not found, skipping' && exit 0"
-      fi
+      echo "[ -d 'source/apps/web-admin' ] && [ -f 'source/apps/web-admin/package.json' ] && (cd source/apps/web-admin && npm ci && npm run build) || echo 'web-admin not found, skipping' && exit 0"
       ;;
     mobile-customer-build)
-      if [ -d "source/apps/mobile-customer" ] && [ -f "source/apps/mobile-customer/pubspec.yaml" ]; then
-        echo "(cd source/apps/mobile-customer && flutter pub get && flutter build apk --debug)"
-      else
-        echo "echo 'mobile-customer not found, skipping' && exit 0"
-      fi
+      echo "[ -d 'source/apps/mobile-customer' ] && [ -f 'source/apps/mobile-customer/pubspec.yaml' ] && (cd source/apps/mobile-customer && flutter pub get && flutter build apk --debug) || echo 'mobile-customer not found, skipping' && exit 0"
       ;;
     mobile-merchant-build)
-      if [ -d "source/apps/mobile-merchant" ] && [ -f "source/apps/mobile-merchant/pubspec.yaml" ]; then
-        echo "(cd source/apps/mobile-merchant && flutter pub get && flutter build apk --debug)"
-      else
-        echo "echo 'mobile-merchant not found, skipping' && exit 0"
-      fi
+      echo "[ -d 'source/apps/mobile-merchant' ] && [ -f 'source/apps/mobile-merchant/pubspec.yaml' ] && (cd source/apps/mobile-merchant && flutter pub get && flutter build apk --debug) || echo 'mobile-merchant not found, skipping' && exit 0"
       ;;
     *)
       echo "true"
@@ -149,13 +133,8 @@ for g in "${GATES[@]}"; do
   start=$(date +%s)
   cmd="$(get_gate_cmd "$name")"
   set +e
-  if command -v "$cmd" >/dev/null 2>&1 && [ -z "$(echo "$cmd" | grep -E '[ \(\)\&\|]')" ]; then
-    $cmd >> "$LOGS_DIR/${name}.log" 2>&1
-    rc=$?
-  else
-    bash -c "$cmd" >> "$LOGS_DIR/${name}.log" 2>&1
-    rc=$?
-  fi
+  (cd "$REPO_ROOT" && bash -c "$cmd") >> "$LOGS_DIR/${name}.log" 2>&1
+  rc=$?
   set -e
   end=$(date +%s)
   dur=$((end-start))

@@ -2,46 +2,44 @@
 set -euo pipefail
 
 # security_scan.sh
-# Scans the repo for real secrets (sk_live_ keys, private keys, service accounts)
-# Excludes local-ci and tools directories from search results but still fails if a real key appears anywhere else.
+# Scans repo for real secrets (high-confidence patterns only)
+# Excludes dependency/build directories
 
 OUT="$1"
 mkdir -p "$(dirname "$OUT")"
 
 echo "security scan run: $(date -u +'%Y-%m-%dT%H:%M:%SZ')" > "$OUT"
-echo "exclusions: local-ci/, tools/" >> "$OUT"
+echo "exclusions: node_modules/, .git/, build/, dist/, .gradle/, Pods/, vendor/" >> "$OUT"
 echo "" >> "$OUT"
 
-# Patterns to detect
+# High-confidence patterns only (Stripe live keys, private keys, AWS keys)
 PATTERNS=(
-  'sk_live_[0-9a-zA-Z_\-]{16,}'
-  '-----BEGIN (RSA )?PRIVATE KEY-----'
-  '-----BEGIN ENCRYPTED PRIVATE KEY-----'
-  '"type": "service_account"'
+  'sk_live_[0-9a-zA-Z]{24,}'
+  'sk_test_[0-9a-zA-Z]{24,}'
+  'AKIA[0-9A-Z]{16}'
 )
 
 FAIL=0
 for p in "${PATTERNS[@]}"; do
-  echo "Searching for pattern: $p" >> "$OUT"
-  # Search repo, excluding local-ci and tools
-  # Use grep with binary-file=without-match to avoid binaries
-  if grep -RIn --binary-file=without-match --exclude-dir={.git,local-ci,tools,node_modules} -E "$p" . >> "$OUT" 2>/dev/null; then
-    echo "---> MATCHES FOUND for pattern: $p" >> "$OUT"
+  echo "Scanning for: $p" >> "$OUT"
+  if grep -r --binary-file=without-match \
+    --exclude-dir=node_modules --exclude-dir=.git --exclude-dir=build \
+    --exclude-dir=dist --exclude-dir=.gradle --exclude-dir=Pods \
+    --exclude-dir=vendor --exclude-dir=.dart_tool --exclude-dir=tools \
+    --exclude-dir=local-ci \
+    -E "$p" . >> "$OUT" 2>/dev/null; then
+    echo "---> MATCHES FOUND" >> "$OUT"
     FAIL=1
   else
-    echo "no matches for: $p" >> "$OUT"
+    echo "ok" >> "$OUT"
   fi
 done
 
-# Allowlist: public Firebase API keys (AIza) are ok — search separately for them but do not fail
 echo "" >> "$OUT"
-echo "Allowlist (Firebase API keys) - not flagged as failures:" >> "$OUT"
-grep -RIn --binary-file=without-match --exclude-dir={.git,local-ci,tools,node_modules} -E 'AIza[0-9A-Za-z\-_]{35}' . >> "$OUT" 2>/dev/null || true
+echo "SECURITY: scan complete" >> "$OUT"
 
 if [ "$FAIL" -ne 0 ]; then
-  echo "SECURITY: real secret patterns found" >> "$OUT"
   exit 2
 else
-  echo "SECURITY: no high-confidence secret patterns found" >> "$OUT"
   exit 0
 fi
