@@ -154,6 +154,22 @@ export {
 export { obsTestHook } from './obsTestHook';
 
 // ============================================================================
+// CALLABLE WRAPPERS - Maps client-expected names to implementations
+// Fixes all callable name mismatches (createOffer, getFilteredOffers, etc.)
+// ============================================================================
+export {
+  createOffer,
+  getFilteredOffers,
+  getMyOffers,
+  getAvailableOffers,
+  generateQRToken,
+  redeemOffer,
+  getPointsHistory,
+  searchOffers,
+  checkSubscriptionAccess,
+} from './callableWrappers';
+
+// ============================================================================
 // FUNCTION 1: Generate Secure QR Token
 // ============================================================================
 
