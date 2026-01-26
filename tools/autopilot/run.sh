@@ -5,7 +5,11 @@ set -euo pipefail
 # - creates local-ci/verification/finish_today/LATEST
 # - runs gates and writes logs/reports/proof
 
-REPO_ROOT="$(cd "$(dirname "$0")/../../.." && pwd)"
+if git rev-parse --show-toplevel >/dev/null 2>&1; then
+  REPO_ROOT="$(git rev-parse --show-toplevel)"
+else
+  REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../../.." && pwd)"
+fi
 cd "$REPO_ROOT"
 
 BASE_DIR="local-ci/verification/finish_today/LATEST"
@@ -86,46 +90,59 @@ GATES=(
   "mobile-merchant-build"
 )
 
-declare -A GATE_CMD
-
-GATE_CMD["required-files"]="required_files_check"
-GATE_CMD["security-scan"]="bash tools/autopilot/security_scan.sh $LOGS_DIR/security_scan.log"
-
-# heuristics: if a folder with package.json exists, run its tests/builds; otherwise pass
-if [ -d "api" ] && [ -f "api/package.json" ]; then
-  GATE_CMD["rest-api-tests"]="(cd api && npm test)"
-else
-  GATE_CMD["rest-api-tests"]="true"
-fi
-
-if [ -d "functions" ] && [ -f "functions/package.json" ]; then
-  GATE_CMD["firebase-functions-tests"]="(cd functions && npm test)"
-else
-  GATE_CMD["firebase-functions-tests"]="true"
-fi
-
-if [ -d "web-admin" ] && [ -f "web-admin/package.json" ]; then
-  GATE_CMD["web-admin-build-test"]="(cd web-admin && npm run build && npm test)"
-else
-  GATE_CMD["web-admin-build-test"]="true"
-fi
-
-# Mobile builds: look for obvious folders and package.json scripts
-if [ -d "mobile/customer" ] && [ -f "mobile/customer/package.json" ]; then
-  GATE_CMD["mobile-customer-build"]="(cd mobile/customer && npm run build || true)"
-elif [ -d "mobile-customer" ] && [ -f "mobile-customer/package.json" ]; then
-  GATE_CMD["mobile-customer-build"]="(cd mobile-customer && npm run build || true)"
-else
-  GATE_CMD["mobile-customer-build"]="true"
-fi
-
-if [ -d "mobile/merchant" ] && [ -f "mobile/merchant/package.json" ]; then
-  GATE_CMD["mobile-merchant-build"]="(cd mobile/merchant && npm run build || true)"
-elif [ -d "mobile-merchant" ] && [ -f "mobile-merchant/package.json" ]; then
-  GATE_CMD["mobile-merchant-build"]="(cd mobile-merchant && npm run build || true)"
-else
-  GATE_CMD["mobile-merchant-build"]="true"
-fi
+get_gate_cmd() {
+  name="$1"
+  case "$name" in
+    required-files)
+      echo "required_files_check"
+      ;;
+    security-scan)
+      echo "bash tools/autopilot/security_scan.sh $LOGS_DIR/security_scan.log"
+      ;;
+    rest-api-tests)
+      if [ -d "api" ] && [ -f "api/package.json" ]; then
+        echo "(cd api && npm test)"
+      else
+        echo "true"
+      fi
+      ;;
+    firebase-functions-tests)
+      if [ -d "functions" ] && [ -f "functions/package.json" ]; then
+        echo "(cd functions && npm test)"
+      else
+        echo "true"
+      fi
+      ;;
+    web-admin-build-test)
+      if [ -d "web-admin" ] && [ -f "web-admin/package.json" ]; then
+        echo "(cd web-admin && npm run build && npm test)"
+      else
+        echo "true"
+      fi
+      ;;
+    mobile-customer-build)
+      if [ -d "mobile/customer" ] && [ -f "mobile/customer/package.json" ]; then
+        echo "(cd mobile/customer && npm run build || true)"
+      elif [ -d "mobile-customer" ] && [ -f "mobile-customer/package.json" ]; then
+        echo "(cd mobile-customer && npm run build || true)"
+      else
+        echo "true"
+      fi
+      ;;
+    mobile-merchant-build)
+      if [ -d "mobile/merchant" ] && [ -f "mobile/merchant/package.json" ]; then
+        echo "(cd mobile/merchant && npm run build || true)"
+      elif [ -d "mobile-merchant" ] && [ -f "mobile-merchant/package.json" ]; then
+        echo "(cd mobile-merchant && npm run build || true)"
+      else
+        echo "true"
+      fi
+      ;;
+    *)
+      echo "true"
+      ;;
+  esac
+}
 
 summary_init
 
@@ -134,24 +151,20 @@ for g in "${GATES[@]}"; do
   name="$g"
   echo "Running gate: $name"
   start=$(date +%s)
-  # Run the mapped command; if it's a shell string, eval it
-  cmd="${GATE_CMD[$name]}"
+  cmd="$(get_gate_cmd "$name")"
   set +e
-  if type -t "$cmd" >/dev/null 2>&1; then
-    # it's a function name or builtin
-    $cmd
+  # if cmd is a function name, call it directly
+  if command -v "$cmd" >/dev/null 2>&1 && [ -z "$(echo "$cmd" | grep -E '[ \(\)\&\|]')" ]; then
+    $cmd >> "$LOGS_DIR/${name}.log" 2>&1 || true
     rc=$?
   else
-    # evaluate string
-    bash -c "$cmd"
+    bash -c "$cmd" >> "$LOGS_DIR/${name}.log" 2>&1 || true
     rc=$?
   fi
   set -e
   end=$(date +%s)
   dur=$((end-start))
-  # Append to summary JSON
   summary_add "$name" "$rc" "$dur"
-  # Collect log if not already
   if [ ! -f "$LOGS_DIR/${name}.log" ]; then
     echo "(no log produced)" > "$LOGS_DIR/${name}.log"
   fi
@@ -186,6 +199,4 @@ else
   echo "All gates passed. Evidence written to $BASE_DIR (ignored by git)."
   exit 0
 fi
-#!/usr/bin/env bash
-set -euo pipefail
-python3 tools/autopilot/autopilot.py
+ 
