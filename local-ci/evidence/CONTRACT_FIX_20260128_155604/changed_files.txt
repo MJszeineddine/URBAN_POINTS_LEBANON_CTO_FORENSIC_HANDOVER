@@ -1,2 +1,0 @@
-source/backend/firebase-functions/src/callableWrappers.ts
-source/backend/firebase-functions/src/index.ts

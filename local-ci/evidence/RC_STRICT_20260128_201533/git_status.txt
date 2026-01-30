@@ -1,6 +1,0 @@
- M tools/smoke/mvp_smoke.mjs
-?? local-ci/evidence/RC_STRICT_20260128_201252/
-?? local-ci/evidence/RC_STRICT_20260128_201533/
-?? local-ci/spec/
-?? tools/gates/run_rc_strict_gate.sh
-?? tools/validate/

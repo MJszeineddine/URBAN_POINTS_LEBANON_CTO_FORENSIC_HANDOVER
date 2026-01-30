@@ -1,6 +1,0 @@
-?? local-ci/evidence/DOD_LOCKED/
-?? local-ci/evidence/DOD_ONE_SHOT/20260127T004944Z/COPILOT_FINAL_MESSAGE.txt
-?? spec/DEFINITION_OF_DONE_LOCKED.md
-?? tools/_callable_ast_scan.mjs
-?? tools/dod_gate_runner_locked.py
-?? tools/verify_evidence_locked.py

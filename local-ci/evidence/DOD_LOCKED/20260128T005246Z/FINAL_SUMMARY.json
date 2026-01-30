@@ -1,9 +1,0 @@
-{
-  "repo_verdict": "NO-GO",
-  "internal_blockers": [
-    "One or more build gates failed"
-  ],
-  "external_blockers": [],
-  "gates_passed": 8,
-  "gates_total": 10
-}

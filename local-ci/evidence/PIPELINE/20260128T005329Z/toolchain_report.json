@@ -1,8 +1,0 @@
-{
-  "node": "v20.19.5",
-  "npm": "10.8.2",
-  "flutter": "Flutter 3.35.7 \u2022 channel stable \u2022 https://github.com/flutter/flutter.git\nFramework \u2022 revision adc9010625 (3 months ago) \u2022 2025-10-21 14:16:03 -0400\nEngine \u2022 hash 6b24e1b529bc46df7ff397667502719a2a8b6b72 (revision 035316565a) (3 months ago) \u2022 2025-10-21 14:28:01.000Z\nTools \u2022 Dart 3.9.2 \u2022 DevTools 2.48.0",
-  "firebase": "",
-  "python": "Python 3.13.5",
-  "git": "git version 2.51.0"
-}
