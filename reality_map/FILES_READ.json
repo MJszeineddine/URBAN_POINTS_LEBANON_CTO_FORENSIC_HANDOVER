@@ -1,0 +1,2180 @@
+[
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/pubspec.yaml",
+    "bytes": 4287,
+    "sha256": "86e36944a42af48303c9718abfe056d7f1c134c9102dbbce945c66dedffbb359",
+    "line_count": 109
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/analysis_options.yaml",
+    "bytes": 402,
+    "sha256": "d16179150bfd1cabf436b3f6078b47fbc70b7653d08da6e309791214efd57527",
+    "line_count": 19
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/integration_test/pain_test.dart",
+    "bytes": 1306,
+    "sha256": "3e51facee4f08f931ed30738f82c7c063f793e28df005c3b44ce637bc0505ed0",
+    "line_count": 48
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/macos/RunnerTests/RunnerTests.swift",
+    "bytes": 290,
+    "sha256": "6bc180bc77c7def7a21d197233e25dff42cc493ab9d294632edafc18fdf0ac44",
+    "line_count": 12
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/macos/Runner/MainFlutterWindow.swift",
+    "bytes": 388,
+    "sha256": "65c9613c11bcedfa51416b16c975d8ba6ff12b405fc19d60db8755d92e86d9fe",
+    "line_count": 15
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/macos/Runner/AppDelegate.swift",
+    "bytes": 311,
+    "sha256": "ce9dbe45a57c59e85519da50a26c471615b9c8cdd85a8f4a39d2e480e62a4af4",
+    "line_count": 13
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/macos/Flutter/GeneratedPluginRegistrant.swift",
+    "bytes": 1265,
+    "sha256": "6953e2da61cffc6e4c8186cc20084c58cb77fb19f6f249319b42695514a21896",
+    "line_count": 28
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/macos/Flutter/ephemeral/flutter_export_environment.sh",
+    "bytes": 518,
+    "sha256": "4984ae4be999808a72cb5fa5968cce320708da3cb84580592f54d571cd76efc4",
+    "line_count": 12
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/test/redemption_approval_test.dart",
+    "bytes": 116,
+    "sha256": "d9d79b833ebeb629dd592b839cc5c8d231c7e4bfa18d7d833e3e9015018bcab0",
+    "line_count": 6
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/test/widget_test.dart",
+    "bytes": 2234,
+    "sha256": "94bf97432843fcb8efa4effed45ec730acace0692f0e9f5138893535ddebda99",
+    "line_count": 78
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/test/offer_creation_test.dart",
+    "bytes": 116,
+    "sha256": "efd2f65199da6ad55d2d6a60fbf4a8fe2724623c463c6b2ae052e394eebafa43",
+    "line_count": 6
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/web/index.html",
+    "bytes": 1240,
+    "sha256": "472122729e25fff0f8e166ff40693c772b1914ddd2c3bb8b7e8d3b3e5d6e826a",
+    "line_count": 38
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/web/firebase-messaging-sw.js",
+    "bytes": 2235,
+    "sha256": "3a7d10d8e834f6d6c7cf628bcd15decb20c56e74674a5270df38ee35eff11448",
+    "line_count": 70
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/web/manifest.json",
+    "bytes": 995,
+    "sha256": "c02295287ebebf732e1359b17194d7ce577596c13c691505476de34fbda6f8b8",
+    "line_count": 36
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/ios/RunnerTests/RunnerTests.swift",
+    "bytes": 285,
+    "sha256": "5e8f4908dacea6f29b2a790e4d38bf5fded69096063f9a27a2f21584d62b30c0",
+    "line_count": 12
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/ios/Runner/Runner-Bridging-Header.h",
+    "bytes": 38,
+    "sha256": "1a8d11d01d1cc92c650c9c9ed35299240052d4683a15a719a2315ef44185e074",
+    "line_count": 1
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/ios/Runner/GeneratedPluginRegistrant.h",
+    "bytes": 378,
+    "sha256": "a5f88cc6415d2e639d2cb549348b84e02a7fdd0261603b0063abef6fa11f075a",
+    "line_count": 19
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/ios/Runner/AppDelegate.swift",
+    "bytes": 391,
+    "sha256": "9418c676adebac7e3f04daa80a7db62066e77f9766c804fd3e5e264124a31f80",
+    "line_count": 13
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/ios/Runner/GeneratedPluginRegistrant.m",
+    "bytes": 2637,
+    "sha256": "60a2a4c169f3d061eff5e17ae8db30a4e0eba4e618b7631b387a06df30d12fc8",
+    "line_count": 77
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/ios/Runner/Assets.xcassets/LaunchImage.imageset/Contents.json",
+    "bytes": 391,
+    "sha256": "ccc7950fd5f5b82067c85f667940a9d59189151460761ece8098ca78daa19469",
+    "line_count": 23
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/ios/Flutter/flutter_export_environment.sh",
+    "bytes": 556,
+    "sha256": "8018fb949bf57f59aed0048d985f1babf8dab367a8172cc3bf0b430e7f823a61",
+    "line_count": 13
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/ios/Flutter/ephemeral/flutter_lldb_helper.py",
+    "bytes": 1276,
+    "sha256": "05cfe3977fdee593efad2049a4f62d374e55c69cedc8aabeee5566b37acb8384",
+    "line_count": 32
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/linux/runner/my_application.h",
+    "bytes": 388,
+    "sha256": "a044da4b485c93d0e1a79c62356b22c8856dd2bab537ffb6a9446fc905131316",
+    "line_count": 18
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/linux/flutter/generated_plugin_registrant.h",
+    "bytes": 303,
+    "sha256": "00f93bb5b1faefdede8f6065df327522900fb0b8efee86bacf424fd947ed14bb",
+    "line_count": 15
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/android/app/src/profile/AndroidManifest.xml",
+    "bytes": 378,
+    "sha256": "30b0832ed8b92dfbd6ae2abfa939ccf26333d37600056b1572bd4a397a18a74b",
+    "line_count": 7
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/android/app/src/main/AndroidManifest.xml",
+    "bytes": 2209,
+    "sha256": "96acfb90ee7fa3e77974690b5f88ca365e1c08932361c848828725155a0c23b4",
+    "line_count": 45
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/android/app/src/main/res/drawable/launch_background.xml",
+    "bytes": 434,
+    "sha256": "94433756fe10005ddd6fc55cc5c0b1e9f3c10b66a08ceac795ece6713d34e28a",
+    "line_count": 12
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/android/app/src/main/res/values-night/styles.xml",
+    "bytes": 995,
+    "sha256": "8c5bad5152f217e837519f9c15211d19f39bd45f5f67faf6dd81cb4b299e518f",
+    "line_count": 18
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/android/app/src/main/res/values/styles.xml",
+    "bytes": 996,
+    "sha256": "937d7c82f539c72eb94fd3a3773f29b3d3fef1997213c92cb632298cedf4bda9",
+    "line_count": 18
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/android/app/src/main/res/drawable-v21/launch_background.xml",
+    "bytes": 438,
+    "sha256": "7ca6d5cec2169c5a98661a119db23a6f3399c8fef2256ff04f3a642831282478",
+    "line_count": 12
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/android/app/src/main/java/io/flutter/plugins/GeneratedPluginRegistrant.java",
+    "bytes": 3048,
+    "sha256": "fba2160468072c64fc150b370d98ff78490a422f6cf5a7dd0c2ddc3fd8dc2c6c",
+    "line_count": 64
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/android/app/src/main/kotlin/lb/urbanpoints/urban_points_merchant/MainActivity.kt",
+    "bytes": 138,
+    "sha256": "ce69ef63279686c5b286a15c865c5a1ffeda20e60ebeb856883a2934b5361288",
+    "line_count": 5
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/android/app/src/debug/AndroidManifest.xml",
+    "bytes": 378,
+    "sha256": "30b0832ed8b92dfbd6ae2abfa939ccf26333d37600056b1572bd4a397a18a74b",
+    "line_count": 7
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/lib/firebase_options.dart",
+    "bytes": 3095,
+    "sha256": "07e7ae45af8d9170d2f0a192b504905df5291f482609259cda86013898131bee",
+    "line_count": 89
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/lib/main.dart",
+    "bytes": 36940,
+    "sha256": "eb77f77226586e8bb9c8aea4aed6a19245a756d7945c8ea7dae4be9e907c190e",
+    "line_count": 1200
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/lib/utils/role_validator.dart",
+    "bytes": 2422,
+    "sha256": "a479d2db04a1ed881df30fea5d4489175951a197ccf7b98366b0d4af4994e008",
+    "line_count": 96
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/lib/models/customer.dart",
+    "bytes": 1623,
+    "sha256": "53aecd58c85112760bf71069696bac499fc48cdf5ba4691bbb80b49d16c59c3b",
+    "line_count": 56
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/lib/models/offer.dart",
+    "bytes": 3667,
+    "sha256": "c78b9ae699c6dbef1cd7c5b9a82f66a5a26ff6373992bc0a00e93f6724ee608b",
+    "line_count": 110
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/lib/models/merchant.dart",
+    "bytes": 1443,
+    "sha256": "af754a611b7502b3e6eebd99f41c85442d818ac761be79efa8520d40ad0435a9",
+    "line_count": 48
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/lib/screens/profile_edit_screen.dart",
+    "bytes": 482,
+    "sha256": "46c8ae476fe99c14871d1fc00fec1d3a5fe71820d5a9b7bfabc70c67f20ed217",
+    "line_count": 17
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/lib/screens/edit_offer_screen.dart",
+    "bytes": 15868,
+    "sha256": "8234a7dd983e5cb8730a8e6adee318e575e3f6ec7d9ae9ba08776bc507140802",
+    "line_count": 474
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/lib/screens/redemption_history_screen.dart",
+    "bytes": 523,
+    "sha256": "a3f5347bc6542844eaac3005a6351e78e058d7d26f753537a8e742c83ad4c8c2",
+    "line_count": 17
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/lib/screens/create_offer_screen.dart",
+    "bytes": 16456,
+    "sha256": "45c30afddff51601628c5ead81a3c3b3acc71af8d6918138445759c68168b586",
+    "line_count": 459
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/lib/screens/validate_redemption_screen.dart",
+    "bytes": 14619,
+    "sha256": "11483edeff1c099562dfadd19f247915dfde2ea6c53623e01a1b33beb281acf4",
+    "line_count": 460
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/lib/screens/merchant_analytics_screen.dart",
+    "bytes": 11366,
+    "sha256": "29a55c1925cfcc74f5050124fc7996daab0f371c6b885fd50b74a844702843f5",
+    "line_count": 347
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/lib/screens/offer_creation_screen.dart",
+    "bytes": 496,
+    "sha256": "56bf58be42708f7a9113467bc8a7ff115296f841b68951b1a423b905e82073d4",
+    "line_count": 17
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/lib/screens/my_offers_screen.dart",
+    "bytes": 11530,
+    "sha256": "cef0f87a330a45de406d1b6eff0d058b747181c3229a8424bd897722180f5e6f",
+    "line_count": 365
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/lib/screens/subscription_screen.dart",
+    "bytes": 479,
+    "sha256": "b658e79a7bc5421dadfdba672aee6da7d82c03b3471d90a230858bb5d3dff1f1",
+    "line_count": 17
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/lib/screens/qr_scanner_screen.dart",
+    "bytes": 7920,
+    "sha256": "417f834d409629436eb323780054af8c53940571283146ed5b715945f8449d4e",
+    "line_count": 282
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/lib/screens/staff_management_screen.dart",
+    "bytes": 505,
+    "sha256": "5aaf2ee6bee2a9238303b968564368bf861858b5f9ebbde281f74e3f134c51f4",
+    "line_count": 17
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/lib/screens/redemption_approval_screen.dart",
+    "bytes": 533,
+    "sha256": "efe99686df37e732c644e23c25c2c7fdaeed17ee18bb26df2dc5de3920411a1c",
+    "line_count": 17
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/lib/screens/auth/signup_screen.dart",
+    "bytes": 11129,
+    "sha256": "7aef606ce887272fac2ce9ae13e535f6eacbfc1e2b2a0fcff0f90a4b699ad4ed",
+    "line_count": 301
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/lib/screens/auth/whatsapp_otp_screen.dart",
+    "bytes": 5555,
+    "sha256": "e3e5139569066c6cbcd19a0a9f65883ba218bb6e77f331cb7833c0721a7c58fb",
+    "line_count": 202
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/lib/screens/auth/whatsapp_phone_screen.dart",
+    "bytes": 2812,
+    "sha256": "7958f7d74ed48c552489ccbdf707ba728b57b2665d945aa5a4188859bb89a29e",
+    "line_count": 99
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/lib/screens/auth/login_screen.dart",
+    "bytes": 10661,
+    "sha256": "de7c03005f68e7db79635ff3ec51e0e54d7a98278bef9c643ceff89669e5ddfd",
+    "line_count": 311
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/lib/screens/auth/role_blocked_screen.dart",
+    "bytes": 3378,
+    "sha256": "63ba082123a7d39aba36c9386b55daee6b7161c01d1d62b5fb1bcad1726a86a7",
+    "line_count": 102
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/lib/screens/billing/billing_screen.dart",
+    "bytes": 7374,
+    "sha256": "ddf56c682bb03bbf10f076bfc0b314b199c84eb01e5d09ca56a9e24434907206",
+    "line_count": 227
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/lib/screens/onboarding/onboarding_screen.dart",
+    "bytes": 1050,
+    "sha256": "17cd1fa29c46c00dc0e349968d74b4eb38973b9697843738eb22d80e8ddc6e4c",
+    "line_count": 43
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/lib/screens/onboarding/how_it_works_screen.dart",
+    "bytes": 3036,
+    "sha256": "888458d69955214bb0bf32952bab1c4d59c977818d5a2e39fd3e118e84488bb3",
+    "line_count": 100
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/lib/screens/onboarding/welcome_screen.dart",
+    "bytes": 1710,
+    "sha256": "6ec947cebaf0bdb8bcad8d8a9ff8b006120b40ba7f61f1e1ba9a946b032beaab",
+    "line_count": 55
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/lib/screens/onboarding/notification_priming_screen.dart",
+    "bytes": 1952,
+    "sha256": "5ce73b54cd203e5b0649cf86e5b6c2c3c4201642f69095e22c9fa42171ac8ca9",
+    "line_count": 60
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/lib/screens/debug/crash_test_screen.dart",
+    "bytes": 4965,
+    "sha256": "ef5d753115fc9257a5a2550e97045c50f93233bdbfa190491cf848c645562f18",
+    "line_count": 127
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/lib/services/staff_service.dart",
+    "bytes": 108,
+    "sha256": "72bea202e4eccfae1b9c76f2125e38bf9e4c90a96ba20e1d2481ff47930c31a0",
+    "line_count": 4
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/lib/services/billing_state.dart",
+    "bytes": 3168,
+    "sha256": "f50412334887c8be932e1623ee48124273ac22df46069455acd57fe908b0a760",
+    "line_count": 112
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/lib/services/auth_service.dart",
+    "bytes": 15923,
+    "sha256": "877b0aaf0c9ac35e6050e17824d66b6e673b8538da44b8b37d58e817ed58a0f2",
+    "line_count": 540
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/lib/services/offer_service.dart",
+    "bytes": 133,
+    "sha256": "bf9e462b17349f2ea73a21a4ab97de0ccf8f1d1afa9c35efc55cd40d725ca050",
+    "line_count": 6
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/lib/services/redemption_service.dart",
+    "bytes": 163,
+    "sha256": "00e412a2f962ff837305baafcd4f0cff61e1dead4d32860b27762abba6058a55",
+    "line_count": 5
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/lib/services/fcm_service.dart",
+    "bytes": 6567,
+    "sha256": "580e68691aea4e1d7fe02ea603e39acaf81e7c7a9fe5a12c2078d6a44a518e80",
+    "line_count": 228
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/lib/services/merchant_service.dart",
+    "bytes": 119,
+    "sha256": "8eb3075fb1af7e0413206dc2649851194c131190aedacf8d8373209ee9a3cfca",
+    "line_count": 4
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/lib/services/subscription_service.dart",
+    "bytes": 104,
+    "sha256": "dc8a69205bc1be60746fe63060652cad9b832059bc7b07c5b0147c955ac60e08",
+    "line_count": 4
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/lib/services/stripe_client.dart",
+    "bytes": 2458,
+    "sha256": "501a9023e93e2f3f7353bf6c83e1cbc4fa28b217e01da7ed0d76f8372d9a93f7",
+    "line_count": 82
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/lib/services/onboarding_service.dart",
+    "bytes": 491,
+    "sha256": "1d29dcefca5c0e462d4e0232729f9d8c866169fc785c93fed8521f947338134e",
+    "line_count": 15
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/lib/widgets/empty_states/merchant_offers_empty_state.dart",
+    "bytes": 1350,
+    "sha256": "e1aad675a6b50c5fbd4488bbc2480a3ad9b60bd9da881822273618ed6f60118a",
+    "line_count": 50
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/lib/widgets/empty_states/merchant_redemptions_empty_state.dart",
+    "bytes": 1163,
+    "sha256": "2e15ed35d167615d8c614c0dc83d612f1a38dd0edf6ab3336e52f9b4bacbf98c",
+    "line_count": 41
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/windows/runner/flutter_window.cpp",
+    "bytes": 2122,
+    "sha256": "dd185884c0b5301d400b58f12ebb36b1c8b326531597e531b40e44a6eeb0e943",
+    "line_count": 71
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/windows/runner/utils.h",
+    "bytes": 672,
+    "sha256": "95a7f7dddb832997cefa937a96f89472332277e75734a5de553610760b744b03",
+    "line_count": 19
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/windows/runner/utils.cpp",
+    "bytes": 1797,
+    "sha256": "dc2ee94d43116f959a4abd42557f71d07acc631abbffe03b11489dbeed35bedb",
+    "line_count": 65
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/windows/runner/win32_window.h",
+    "bytes": 3522,
+    "sha256": "7dd03746b19dcf3542829b2f6e8ed40a2714ce5f2cb3b0e23f0118a2fcf62d62",
+    "line_count": 102
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/windows/runner/win32_window.cpp",
+    "bytes": 8534,
+    "sha256": "9065f31ccf746cf8b390121f958f9e959033af864aed779597066625ed56bc36",
+    "line_count": 288
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/windows/runner/resource.h",
+    "bytes": 432,
+    "sha256": "1fa98588b04561590ba1cf0521ab86a9db4a878312f21c9d5861d965ddd8d1ae",
+    "line_count": 16
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/windows/runner/main.cpp",
+    "bytes": 1274,
+    "sha256": "bce6c5d3ef0f63176bb23250a8d65c4523b824a16b5ea4fa2690622684c3ba1a",
+    "line_count": 43
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/windows/runner/flutter_window.h",
+    "bytes": 928,
+    "sha256": "38e0fcd3a0b83895852ec295cb70d90179c0dcd40d58f065eb5232a4ecd84898",
+    "line_count": 33
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/windows/flutter/generated_plugin_registrant.h",
+    "bytes": 302,
+    "sha256": "dbc11635d7b1ba1887adf40df5b83d634e9c3ab0bee34510c71528bb4d73602a",
+    "line_count": 15
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/tool/auth_sanity.dart",
+    "bytes": 5901,
+    "sha256": "2092db870d72833df461583f6649f78dcc295842f49277c79bf3c80c52312b15",
+    "line_count": 164
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/.idea/workspace.xml",
+    "bytes": 1517,
+    "sha256": "1f4bdf93fa0c89b32a2f788bcbd55363a23cd0db9b4c05a905247ac270c7061b",
+    "line_count": 36
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/.idea/modules.xml",
+    "bytes": 440,
+    "sha256": "9a9fdf239b09735856cab7f35c7d58c884217de1ca4ebcb61f23b365b291b80b",
+    "line_count": 9
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/.idea/runConfigurations/main_dart.xml",
+    "bytes": 271,
+    "sha256": "0b2227c29b468c49f41b8b3138433e0de33d83dbe13b4002c069800e1d9b9322",
+    "line_count": 6
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/.idea/libraries/Dart_SDK.xml",
+    "bytes": 930,
+    "sha256": "45e2a6e7cfb2e72776a67106e5fb75b232027524e998c6f8d2a348dda46e07ed",
+    "line_count": 19
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/.idea/libraries/KotlinJavaRuntime.xml",
+    "bytes": 599,
+    "sha256": "82dff6dd065164518cd13ff2b677527601ef22bd9fd7cc4e607c38a2412e6cf9",
+    "line_count": 15
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/src/__tests__/merchant.test.ts",
+    "bytes": 3909,
+    "sha256": "72d643338a5176d7befaca7746a4c12d52116443cbfdba4605db3177b8b69c04",
+    "line_count": 130
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/pubspec.yaml",
+    "bytes": 4397,
+    "sha256": "0711c7b522374d1a5b715b39b0eeda0780623907685d52ca4b19e0be894c9adc",
+    "line_count": 116
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/analysis_options.yaml",
+    "bytes": 8284,
+    "sha256": "159dc97a503a1f90726d4050f14fa6e57ba7402494b0de50766768130d8ea4b9",
+    "line_count": 218
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/integration_test/pain_test.dart",
+    "bytes": 3204,
+    "sha256": "bdd4b5818c0cbbbf27a542379aff2261494e88382449b065855bf9dbdb5eb8c5",
+    "line_count": 101
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/macos/RunnerTests/RunnerTests.swift",
+    "bytes": 290,
+    "sha256": "6bc180bc77c7def7a21d197233e25dff42cc493ab9d294632edafc18fdf0ac44",
+    "line_count": 12
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/macos/Runner/MainFlutterWindow.swift",
+    "bytes": 388,
+    "sha256": "65c9613c11bcedfa51416b16c975d8ba6ff12b405fc19d60db8755d92e86d9fe",
+    "line_count": 15
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/macos/Runner/AppDelegate.swift",
+    "bytes": 311,
+    "sha256": "ce9dbe45a57c59e85519da50a26c471615b9c8cdd85a8f4a39d2e480e62a4af4",
+    "line_count": 13
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/macos/Flutter/GeneratedPluginRegistrant.swift",
+    "bytes": 1261,
+    "sha256": "3de824ceed7614d96de5b30b7e314e1eb9176095d75b22d8a0a1715bca4e2736",
+    "line_count": 28
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/macos/Flutter/ephemeral/flutter_export_environment.sh",
+    "bytes": 518,
+    "sha256": "b001015329025dea5a056dcafa9c38894f1ba7e1e06cb7e979972537082dbe2c",
+    "line_count": 12
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/test/widget_test.dart",
+    "bytes": 886,
+    "sha256": "d5d0daf9e51413cf5db59a12a48d809668225dcecf7f1826e3b4db599d3613e2",
+    "line_count": 26
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/test/screens/settings_gdpr_test.dart",
+    "bytes": 941,
+    "sha256": "acb89559ae31d995c0d52e5c5a55fdbcb23ca6846f865a23ca1cbcab6c0888cd",
+    "line_count": 27
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/test/screens/favorites_screen_test.dart",
+    "bytes": 853,
+    "sha256": "966e6bad175e571a290b40a3c490090f3f0c5b4ece93a7c848dda25c279217f7",
+    "line_count": 27
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/test/screens/redemption_history_screen_test.dart",
+    "bytes": 1049,
+    "sha256": "0735a86d415143f29f932784fb08fd6ae368a7eb25627890954a2f4548b4cf66",
+    "line_count": 34
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/test/screens/redemption_confirmation_screen_test.dart",
+    "bytes": 817,
+    "sha256": "b22f46c9b99a6c601b43f47e89271fad7e18c31943d6f71b5739ab5cceba4d21",
+    "line_count": 29
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/test/services/customer_service_test.dart",
+    "bytes": 1987,
+    "sha256": "63502404d86d04c1343a2ff4364d44cfc685993c000cef5be30cc617fe652e75",
+    "line_count": 66
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/test/services/deep_link_service_test.dart",
+    "bytes": 1801,
+    "sha256": "75bea90e5d0b37f04855b4c8994bb18beb122da7f1c09338d022160a7a387600",
+    "line_count": 54
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/test/services/auth_service_test.dart",
+    "bytes": 1797,
+    "sha256": "17ff03f2300f7d6aa0fba177ca0db03f05dbd1d044d3bc075743375cdc4f5b6a",
+    "line_count": 58
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/test/services/qr_service_test.dart",
+    "bytes": 1875,
+    "sha256": "fcdd0d5b765472b533c77e678dd07ee5771bf352070f75b41c47838051275cb7",
+    "line_count": 63
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/web/index.html",
+    "bytes": 1240,
+    "sha256": "bc547903001fa9fe4ffa19cd7a51767044c088dba2160aaac4b65a83a5c81b1b",
+    "line_count": 38
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/web/firebase-messaging-sw.js",
+    "bytes": 2235,
+    "sha256": "3a7d10d8e834f6d6c7cf628bcd15decb20c56e74674a5270df38ee35eff11448",
+    "line_count": 70
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/web/manifest.json",
+    "bytes": 1006,
+    "sha256": "1f44b86ed05a2b776857e24a9e570b94ceebd86cdc0c823588ef847295864f01",
+    "line_count": 36
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/ios/RunnerTests/RunnerTests.swift",
+    "bytes": 285,
+    "sha256": "5e8f4908dacea6f29b2a790e4d38bf5fded69096063f9a27a2f21584d62b30c0",
+    "line_count": 12
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/ios/Runner/Runner-Bridging-Header.h",
+    "bytes": 38,
+    "sha256": "1a8d11d01d1cc92c650c9c9ed35299240052d4683a15a719a2315ef44185e074",
+    "line_count": 1
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/ios/Runner/GeneratedPluginRegistrant.h",
+    "bytes": 378,
+    "sha256": "a5f88cc6415d2e639d2cb549348b84e02a7fdd0261603b0063abef6fa11f075a",
+    "line_count": 19
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/ios/Runner/AppDelegate.swift",
+    "bytes": 391,
+    "sha256": "9418c676adebac7e3f04daa80a7db62066e77f9766c804fd3e5e264124a31f80",
+    "line_count": 13
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/ios/Runner/GeneratedPluginRegistrant.m",
+    "bytes": 3096,
+    "sha256": "54a92f651662992bf0570f88b12b9eae597d1c82b8dde13f9300518e939ba7ac",
+    "line_count": 91
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/ios/Runner/Assets.xcassets/LaunchImage.imageset/Contents.json",
+    "bytes": 391,
+    "sha256": "ccc7950fd5f5b82067c85f667940a9d59189151460761ece8098ca78daa19469",
+    "line_count": 23
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/ios/Flutter/flutter_export_environment.sh",
+    "bytes": 556,
+    "sha256": "36fd434c4988ef374401a03b56f7634b5aa7f0bdf361bdf75753c620f099ccec",
+    "line_count": 13
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/ios/Flutter/ephemeral/flutter_lldb_helper.py",
+    "bytes": 1276,
+    "sha256": "05cfe3977fdee593efad2049a4f62d374e55c69cedc8aabeee5566b37acb8384",
+    "line_count": 32
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/linux/runner/my_application.h",
+    "bytes": 388,
+    "sha256": "a044da4b485c93d0e1a79c62356b22c8856dd2bab537ffb6a9446fc905131316",
+    "line_count": 18
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/linux/flutter/generated_plugin_registrant.h",
+    "bytes": 303,
+    "sha256": "00f93bb5b1faefdede8f6065df327522900fb0b8efee86bacf424fd947ed14bb",
+    "line_count": 15
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/android/app/src/profile/AndroidManifest.xml",
+    "bytes": 378,
+    "sha256": "30b0832ed8b92dfbd6ae2abfa939ccf26333d37600056b1572bd4a397a18a74b",
+    "line_count": 7
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/android/app/src/main/AndroidManifest.xml",
+    "bytes": 2536,
+    "sha256": "a4c8764ab093a34301ae3b3fa11830497665c57edaabab1aa05fc63abee654e7",
+    "line_count": 51
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/android/app/src/main/res/drawable/launch_background.xml",
+    "bytes": 434,
+    "sha256": "94433756fe10005ddd6fc55cc5c0b1e9f3c10b66a08ceac795ece6713d34e28a",
+    "line_count": 12
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/android/app/src/main/res/values-night/styles.xml",
+    "bytes": 995,
+    "sha256": "8c5bad5152f217e837519f9c15211d19f39bd45f5f67faf6dd81cb4b299e518f",
+    "line_count": 18
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/android/app/src/main/res/values/styles.xml",
+    "bytes": 996,
+    "sha256": "937d7c82f539c72eb94fd3a3773f29b3d3fef1997213c92cb632298cedf4bda9",
+    "line_count": 18
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/android/app/src/main/res/drawable-v21/launch_background.xml",
+    "bytes": 438,
+    "sha256": "7ca6d5cec2169c5a98661a119db23a6f3399c8fef2256ff04f3a642831282478",
+    "line_count": 12
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/android/app/src/main/java/io/flutter/plugins/GeneratedPluginRegistrant.java",
+    "bytes": 3527,
+    "sha256": "40660a5e63a233687e13d92b88cbcddc28141e4b5a6c7ab64f5c80dfcd9ab736",
+    "line_count": 74
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/android/app/src/main/kotlin/lb/urbanpoints/urban_points_customer/MainActivity.kt",
+    "bytes": 138,
+    "sha256": "cb31acc2b2de0dcd6346462c54ef66d9ef9578801c58e166c8c997daf501f9e9",
+    "line_count": 5
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/android/app/src/debug/AndroidManifest.xml",
+    "bytes": 378,
+    "sha256": "30b0832ed8b92dfbd6ae2abfa939ccf26333d37600056b1572bd4a397a18a74b",
+    "line_count": 7
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/lib/firebase_options.dart",
+    "bytes": 3095,
+    "sha256": "07e7ae45af8d9170d2f0a192b504905df5291f482609259cda86013898131bee",
+    "line_count": 89
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/lib/main.dart",
+    "bytes": 39014,
+    "sha256": "09d905cf23746e69fb14a3062f0f02b7ac7efc90ad71d0fd511273a06c85c1fd",
+    "line_count": 1157
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/lib/utils/role_validator.dart",
+    "bytes": 2458,
+    "sha256": "9145392ca2667fb73ddb473ae35929f425605dba353db78c4f4f5e24689c3f0d",
+    "line_count": 96
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/lib/models/customer.dart",
+    "bytes": 1774,
+    "sha256": "d2c5eb75af80ee79577d74536aa94257d643011fb32aa465bf3f8aae09e62664",
+    "line_count": 59
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/lib/models/offer.dart",
+    "bytes": 3064,
+    "sha256": "2a98c7df66df4b7802f65a61b4765f86a23ad5ded7967fd27a1ae3846bba010a",
+    "line_count": 90
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/lib/models/location.dart",
+    "bytes": 629,
+    "sha256": "3f85b169e8b6244b0b016c15f41a04012d24f53c3053689dabf8c8674fb953e9",
+    "line_count": 27
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/lib/models/merchant.dart",
+    "bytes": 1443,
+    "sha256": "af754a611b7502b3e6eebd99f41c85442d818ac761be79efa8520d40ad0435a9",
+    "line_count": 48
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/lib/screens/favorites_screen.dart",
+    "bytes": 4673,
+    "sha256": "8afeadb611c49e0227dc261ebeb981d2251b17a8566e0640b56c1c455a101c27",
+    "line_count": 154
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/lib/screens/settings_screen.dart",
+    "bytes": 14838,
+    "sha256": "b82a63a69c7939e7161ddff2e7f735353aaec5a372a27d1aafb70b5497a52f33",
+    "line_count": 424
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/lib/screens/points_history_screen.dart",
+    "bytes": 13204,
+    "sha256": "c99963090ede005d7a81f004a0a4cd35b1d55239523829d6cf34e836a64d49a5",
+    "line_count": 388
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/lib/screens/qr_generation_screen.dart",
+    "bytes": 12314,
+    "sha256": "c994a5882b238616fcca9dc799e91c37ebedc8a7220e92c39f84aa9c9892bc2f",
+    "line_count": 406
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/lib/screens/notifications_screen.dart",
+    "bytes": 14739,
+    "sha256": "e54488aa3c2ec7f516de217d0c9730650da4415acc25d6bc73e4b24ef8f82128",
+    "line_count": 483
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/lib/screens/profile_screen.dart",
+    "bytes": 13128,
+    "sha256": "ef5ee11d998f0fb020a5660bc49801e17056261cbf3e90067fe862c4e2d25361",
+    "line_count": 398
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/lib/screens/offers_list_screen.dart",
+    "bytes": 8932,
+    "sha256": "33cc0e71c3e30122a9b88a17701c46338652bc38c3b6615828dd8fddda4420d9",
+    "line_count": 277
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/lib/screens/offer_detail_screen.dart",
+    "bytes": 18161,
+    "sha256": "b9d2423354aa5d54e47108a128e950c60046529e2a8fa63b2b7b8100c1cd3df5",
+    "line_count": 509
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/lib/screens/edit_profile_screen.dart",
+    "bytes": 8061,
+    "sha256": "d7f83cc1bd4abf5f17aa659ad7fa4823a407888a5d9a5525161aab557498c585",
+    "line_count": 244
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/lib/screens/auth/signup_screen.dart",
+    "bytes": 11129,
+    "sha256": "7aef606ce887272fac2ce9ae13e535f6eacbfc1e2b2a0fcff0f90a4b699ad4ed",
+    "line_count": 301
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/lib/screens/auth/whatsapp_otp_screen.dart",
+    "bytes": 6177,
+    "sha256": "bf0eeb89d019eb2aa2ff8b4b0d0d976b0b861f16c34e236fc13ad955440fc106",
+    "line_count": 216
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/lib/screens/auth/whatsapp_phone_screen.dart",
+    "bytes": 3723,
+    "sha256": "812cff1bfd62d1df63b2837488abe0a6395f3fb7c93c519bb86d90762c7e10f7",
+    "line_count": 122
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/lib/screens/auth/login_screen.dart",
+    "bytes": 10661,
+    "sha256": "de7c03005f68e7db79635ff3ec51e0e54d7a98278bef9c643ceff89669e5ddfd",
+    "line_count": 311
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/lib/screens/auth/role_blocked_screen.dart",
+    "bytes": 3378,
+    "sha256": "63ba082123a7d39aba36c9386b55daee6b7161c01d1d62b5fb1bcad1726a86a7",
+    "line_count": 102
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/lib/screens/redemption/redemption_history_screen.dart",
+    "bytes": 5810,
+    "sha256": "e6a7a3df7dcdda622b02703731eb02afe9e9578606fbe26533e199c2535853c0",
+    "line_count": 175
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/lib/screens/redemption/redemption_confirmation_screen.dart",
+    "bytes": 6318,
+    "sha256": "edeeb77969a8c379dd1b8529e4318e60f4deb7f8f4c581036240ed5815783504",
+    "line_count": 202
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/lib/screens/billing/billing_screen.dart",
+    "bytes": 7359,
+    "sha256": "e5d6ef848af2a8c4e9d12db501ac86b76f2b97185b37efe7106f768cadeaff42",
+    "line_count": 226
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/lib/screens/onboarding/onboarding_screen.dart",
+    "bytes": 1400,
+    "sha256": "5ad6735cea7d6a0a07649439c32829c65ef34e78e1ff70354094f865f4a63b18",
+    "line_count": 57
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/lib/screens/onboarding/how_it_works_screen.dart",
+    "bytes": 1696,
+    "sha256": "31a194ebed0ceb8de1678fbe5c40e39a7df2a32ced5446b2834b4d5497e43c9d",
+    "line_count": 67
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/lib/screens/onboarding/welcome_screen.dart",
+    "bytes": 1420,
+    "sha256": "f58c8c11d8d80509bdf5a63a279a2bbc06963b807c2a756803dd4e9973261729",
+    "line_count": 48
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/lib/screens/onboarding/notification_priming_screen.dart",
+    "bytes": 1983,
+    "sha256": "bf73598d1e8fe162448a73a4ecd2a829be664def5070b6492dfd156e6516cc4b",
+    "line_count": 65
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/lib/screens/debug/crash_test_screen.dart",
+    "bytes": 4711,
+    "sha256": "0096c2b70afdf8680dd9f2b1ab75a1eb885f1cb2044a1c19f64191fc8b3478a3",
+    "line_count": 125
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/lib/services/customer_service.dart",
+    "bytes": 4543,
+    "sha256": "ce91d1fdb6515f53d149cb5db4ec8476dd836086110bbfcc6ef5a4f3af0e3b84",
+    "line_count": 148
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/lib/services/location_service.dart",
+    "bytes": 2354,
+    "sha256": "0bbffa92930b8e02e3d5b6223e480c9944dc6a7f758c715004eb3130966b1ae5",
+    "line_count": 73
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/lib/services/billing_state.dart",
+    "bytes": 3168,
+    "sha256": "f50412334887c8be932e1623ee48124273ac22df46069455acd57fe908b0a760",
+    "line_count": 112
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/lib/services/deep_link_service.dart",
+    "bytes": 2172,
+    "sha256": "02fc188248708da1cedf9270576c500b8f7953071ce865b18009aff26c4d42b1",
+    "line_count": 80
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/lib/services/auth_service.dart",
+    "bytes": 15610,
+    "sha256": "24046c96bb55401487158f57cdf94dfe26f354cef19cab084917ec6231028777",
+    "line_count": 528
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/lib/services/fcm_service.dart",
+    "bytes": 6567,
+    "sha256": "e4c6d709c1fffec37225ece4af8f01bbbeac79f17c861b47ba46ef1c882ac71b",
+    "line_count": 228
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/lib/services/stripe_client.dart",
+    "bytes": 2535,
+    "sha256": "0940851a9cf10b4f70ca100c09e43510c1634325610f0fd9df12f8e47093632a",
+    "line_count": 83
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/lib/services/offers_repository.dart",
+    "bytes": 3539,
+    "sha256": "5c40a48327b6ce7babb96012785f6fbdf5cdba786f4f358279d6d1f66699a219",
+    "line_count": 107
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/lib/services/onboarding_service.dart",
+    "bytes": 470,
+    "sha256": "fc5839be4b5fed4f94c75287ebca2501af91187a8f249689efd6bfe4ece5d4d7",
+    "line_count": 15
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/lib/widgets/reconciled/reconciled_animated_counter.dart",
+    "bytes": 2354,
+    "sha256": "6ec539b6cec28d659c836649b2d60dac1ff09b71ce85632d91f38e29fa68bb0e",
+    "line_count": 83
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/lib/widgets/reconciled/reconciled_skeleton_loader.dart",
+    "bytes": 2037,
+    "sha256": "bd35417d3f7724d871c21ccf3e15936247b9962e0d38c3ff87b8cffa5260612a",
+    "line_count": 72
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/lib/widgets/reconciled/reconciled_offline_banner.dart",
+    "bytes": 1767,
+    "sha256": "b391909f0bf6fa7c53425910448a142cb59fd979273301af9411e503f57a3646",
+    "line_count": 60
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/lib/widgets/empty_states/history_empty_state.dart",
+    "bytes": 1068,
+    "sha256": "0a662dc08c17d15a8c19e11d509f10bddb3aef2669acc212c42dfa65fbce61a4",
+    "line_count": 38
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/lib/widgets/empty_states/offers_empty_state.dart",
+    "bytes": 1089,
+    "sha256": "e788f99264f4af9f477aab520893b7cf9f243d91de604fde1788eb2a804fd089",
+    "line_count": 38
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/lib/widgets/empty_states/search_empty_state.dart",
+    "bytes": 1070,
+    "sha256": "e92fc99c52cc7b5752551ae23bdb0459ad93b9f318dc7c033606f6e82ca1564d",
+    "line_count": 38
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/windows/runner/flutter_window.cpp",
+    "bytes": 2122,
+    "sha256": "dd185884c0b5301d400b58f12ebb36b1c8b326531597e531b40e44a6eeb0e943",
+    "line_count": 71
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/windows/runner/utils.h",
+    "bytes": 672,
+    "sha256": "95a7f7dddb832997cefa937a96f89472332277e75734a5de553610760b744b03",
+    "line_count": 19
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/windows/runner/utils.cpp",
+    "bytes": 1797,
+    "sha256": "dc2ee94d43116f959a4abd42557f71d07acc631abbffe03b11489dbeed35bedb",
+    "line_count": 65
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/windows/runner/win32_window.h",
+    "bytes": 3522,
+    "sha256": "7dd03746b19dcf3542829b2f6e8ed40a2714ce5f2cb3b0e23f0118a2fcf62d62",
+    "line_count": 102
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/windows/runner/win32_window.cpp",
+    "bytes": 8534,
+    "sha256": "9065f31ccf746cf8b390121f958f9e959033af864aed779597066625ed56bc36",
+    "line_count": 288
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/windows/runner/resource.h",
+    "bytes": 432,
+    "sha256": "1fa98588b04561590ba1cf0521ab86a9db4a878312f21c9d5861d965ddd8d1ae",
+    "line_count": 16
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/windows/runner/main.cpp",
+    "bytes": 1274,
+    "sha256": "a4a89b6323300fa2065b28835d8e3a61816753bc65d4542dcd6d2dbdf8b0401d",
+    "line_count": 43
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/windows/runner/flutter_window.h",
+    "bytes": 928,
+    "sha256": "38e0fcd3a0b83895852ec295cb70d90179c0dcd40d58f065eb5232a4ecd84898",
+    "line_count": 33
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/windows/flutter/generated_plugin_registrant.h",
+    "bytes": 302,
+    "sha256": "dbc11635d7b1ba1887adf40df5b83d634e9c3ab0bee34510c71528bb4d73602a",
+    "line_count": 15
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/tool/auth_sanity.dart",
+    "bytes": 5929,
+    "sha256": "da4331c00344358c90bff025aa7d5d4c7498f327ad85786e1627e7211b01fc3a",
+    "line_count": 164
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/.idea/workspace.xml",
+    "bytes": 1517,
+    "sha256": "1f4bdf93fa0c89b32a2f788bcbd55363a23cd0db9b4c05a905247ac270c7061b",
+    "line_count": 36
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/.idea/modules.xml",
+    "bytes": 440,
+    "sha256": "f39fd54a0815601f102a2317846b2185af07ad98d804b22dc657581cef7ed0f5",
+    "line_count": 9
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/.idea/runConfigurations/main_dart.xml",
+    "bytes": 271,
+    "sha256": "0b2227c29b468c49f41b8b3138433e0de33d83dbe13b4002c069800e1d9b9322",
+    "line_count": 6
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/.idea/libraries/Dart_SDK.xml",
+    "bytes": 930,
+    "sha256": "45e2a6e7cfb2e72776a67106e5fb75b232027524e998c6f8d2a348dda46e07ed",
+    "line_count": 19
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/.idea/libraries/KotlinJavaRuntime.xml",
+    "bytes": 599,
+    "sha256": "82dff6dd065164518cd13ff2b677527601ef22bd9fd7cc4e607c38a2412e6cf9",
+    "line_count": 15
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/web-admin/index.html",
+    "bytes": 29578,
+    "sha256": "546930aa531cb6a3baab7ca044848d2a608cf63830c2d1c420db36610b98c68e",
+    "line_count": 863
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/web-admin/vercel.json",
+    "bytes": 1266,
+    "sha256": "3f9a2608b5d2d7328a9fa6eae20209fb289f547cf9e0a49d7ee5c8c4f8706003",
+    "line_count": 37
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/web-admin/next-env.d.ts",
+    "bytes": 249,
+    "sha256": "6270cb0e77bf8b6add74edb5e90994381850fabaf82f3480e6dd0721eacbd40b",
+    "line_count": 6
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/web-admin/package-lock.json",
+    "bytes": 129256,
+    "sha256": "2230a2fb3127685c5fd735250c80b5a6d6f2a8699bbe3a65b0e72428402dd7fa",
+    "line_count": 3584
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/web-admin/package.json",
+    "bytes": 831,
+    "sha256": "be46ce3f06d85157e58325fbbb79aa8e29ea17cca3be2dfc890ebbb44aac98e3",
+    "line_count": 32
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/web-admin/tsconfig.json",
+    "bytes": 653,
+    "sha256": "2483d8a6ce74e9a4cbd06084d1f6e870512ed3fe5e28bf7262f3ee7cffa3a2a6",
+    "line_count": 37
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/web-admin/playwright.config.ts",
+    "bytes": 330,
+    "sha256": "7b892a9268606f9ed6c122ed732d1d6866ebf2f5d8bcaa02818a1095c30bec02",
+    "line_count": 15
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/web-admin/tools/web_admin_claims_gate.sh",
+    "bytes": 4493,
+    "sha256": "5a32b7fda3c625ab81e19209b891114626ce3869e728c367a1663f43fe748e06",
+    "line_count": 129
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/web-admin/tools/web_admin_claims_gate_runner.sh",
+    "bytes": 1451,
+    "sha256": "9c4beccb2bbc4e44c794e5401b7535f99d7d4ea71fc6359ca6eecd0bcaa63e16",
+    "line_count": 55
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/web-admin/tools/run_web_admin_diagnostics_smoke.sh",
+    "bytes": 1677,
+    "sha256": "256ad7c0e3d55181b4a6193787f09e4079f4c9ef0bd4b5da0eefda3235c1e78c",
+    "line_count": 56
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/web-admin/tools/web_admin_gate.sh",
+    "bytes": 5484,
+    "sha256": "348fc1381458ac62ff00befe2fa78bf6ccd285329df53e3ac90594139e2234a6",
+    "line_count": 179
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/web-admin/tools/web_admin_gate_runner.sh",
+    "bytes": 1441,
+    "sha256": "6fc6b9ac835f2ea239324361ae4839c6f017d491338fed9e210126d0df790484",
+    "line_count": 57
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/web-admin/tools/web_admin_diagnostics_smoke.sh",
+    "bytes": 5817,
+    "sha256": "81ce54dcf50ce3577a75c9faf787889c727c3efdf59e1415bf8b26d88e5c131a",
+    "line_count": 166
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/web-admin/tests/e2e/smoke.spec.ts",
+    "bytes": 663,
+    "sha256": "e7ef41d4fd8abb74dcbf13c140f2359e77203b8e9216a9909d7d03fef69e4653",
+    "line_count": 23
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/web-admin/components/AuditLogsTable.tsx",
+    "bytes": 93,
+    "sha256": "e9d2ae1a1e8adc687dfd7297fb86194b12cf0d470e69d650d82d518f6aba6b67",
+    "line_count": 4
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/web-admin/components/AdminGuard.tsx",
+    "bytes": 1305,
+    "sha256": "d7ef1e1fbe9433df35d945b3c822297022ba7a3e2852aa2ab6443333bbef7628",
+    "line_count": 51
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/web-admin/components/PointsTransferForm.tsx",
+    "bytes": 104,
+    "sha256": "2a6f567451731bd21f6d940136b3f45d0e67c7d68e5f53b50fc7d724424109a6",
+    "line_count": 4
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/web-admin/components/CampaignForm.tsx",
+    "bytes": 84,
+    "sha256": "1a0e751f98f2aa7428546051e21532545ceef1189441796d83af79f6d43056b2",
+    "line_count": 4
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/web-admin/components/StatsPanel.tsx",
+    "bytes": 75,
+    "sha256": "04efda1b9c278c516dec1a824fecf09f315267a8650bdf91dd41b38812376414",
+    "line_count": 4
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/web-admin/components/PointsAdjustForm.tsx",
+    "bytes": 98,
+    "sha256": "e656bfa86006f72b27477f36e6b78d868a93e715d8fe3c4188b791e44eb2a5bc",
+    "line_count": 4
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/web-admin/components/CampaignStatsTable.tsx",
+    "bytes": 96,
+    "sha256": "ce2e41e86c99c894a08692dfb3e700efe6d9ca85b24683620a1370286795b335",
+    "line_count": 4
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/web-admin/components/AdminLayout.tsx",
+    "bytes": 2171,
+    "sha256": "bba1dfd322ff2d6a610d4df429a81dc98f09f43ce1b1ef5af0ff8a0d4b2d9f25",
+    "line_count": 69
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/web-admin/components/FraudPanel.tsx",
+    "bytes": 75,
+    "sha256": "7899d1e886a8562270b00a83c9695cbabe13129fba693c89adc1603be30ad117",
+    "line_count": 4
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/web-admin/components/PointsExpireForm.tsx",
+    "bytes": 98,
+    "sha256": "0b8ac5eddc8112b8f15f4033e9aa20237d0ad6825d29153cf72516130319e96e",
+    "line_count": 4
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/web-admin/components/CampaignSendForm.tsx",
+    "bytes": 89,
+    "sha256": "5ad7f5a8be7d93d68b0965ad6fd22ccdcd5aeb4c50555541758ca6606677db57",
+    "line_count": 4
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/web-admin/components/BillingPanel.tsx",
+    "bytes": 81,
+    "sha256": "4c9b6fc0406de4c654ac57d754bc1c060c4b1d22fc99d0e51f4e78d40b9dfcce",
+    "line_count": 4
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/web-admin/lib/claims.ts",
+    "bytes": 420,
+    "sha256": "61805ded52ed88b62bf8ac3bf5024b107d1c4a1e20fdc7880c2d5f0331d6f88b",
+    "line_count": 12
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/web-admin/lib/firebaseClient.ts",
+    "bytes": 787,
+    "sha256": "4426e6b76acf391e0f5aa7ecba848575b58f906fe388d9bff6137ee669bcf483",
+    "line_count": 20
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/web-admin/pages/_app.tsx",
+    "bytes": 150,
+    "sha256": "f3a2c118f8f87158cfdbf0e58a4693837fa5e5e256d641f6e259066134c8b627",
+    "line_count": 5
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/web-admin/pages/admin/audit-logs.tsx",
+    "bytes": 95,
+    "sha256": "8231d07ee1df2c7ce64da9d06fb07f8c3e1a43c1344f68fae44f224d7916d3ba",
+    "line_count": 4
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/web-admin/pages/admin/login.tsx",
+    "bytes": 3204,
+    "sha256": "ffa3cf9a7b361356c63f19cc923ba74d3f63e4ea54058b30af3a3725922c900e",
+    "line_count": 98
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/web-admin/pages/admin/dashboard.tsx",
+    "bytes": 642,
+    "sha256": "f7fdf57049e7fccb33e925c7e66ceebfb59015634d156063a72fcc42dc7ceaa2",
+    "line_count": 17
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/web-admin/pages/admin/compliance.tsx",
+    "bytes": 12936,
+    "sha256": "3ab3dd3f5389c48796e8d80c6ef845a9acd9d0ab21520edc28be6792dd1e92b9",
+    "line_count": 300
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/web-admin/pages/admin/merchants.tsx",
+    "bytes": 10215,
+    "sha256": "7831c87fcbf54ca3f766db3e6604af157b5e757f5de7d27386896fc28f1c6ae7",
+    "line_count": 242
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/web-admin/pages/admin/payments.tsx",
+    "bytes": 14437,
+    "sha256": "536544a79d595808b6eb59251b1b9e0815b318d2d25d182d15de747a4a624a1c",
+    "line_count": 358
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/web-admin/pages/admin/points.tsx",
+    "bytes": 106,
+    "sha256": "e668fafcb42a4ffc60685ee483a6fc839ba3ad09f98f0988927d79666b6528fc",
+    "line_count": 4
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/web-admin/pages/admin/analytics.tsx",
+    "bytes": 12347,
+    "sha256": "10bb9ef5d9a883129b87ad65ae10bf71a5dc868d10edfe8e377de575a82dacab",
+    "line_count": 305
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/web-admin/pages/admin/diagnostics.tsx",
+    "bytes": 3390,
+    "sha256": "bcbfb794878f6e4fcfda48fc8cf5537a79c7d3e61d388ae0cdca04903d463bb2",
+    "line_count": 89
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/web-admin/pages/admin/users.tsx",
+    "bytes": 10305,
+    "sha256": "3216a0cccca682c1df78a0e80b988dd55e3017092fadfd485c7ccc7a57b907eb",
+    "line_count": 253
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/web-admin/pages/admin/fraud.tsx",
+    "bytes": 101,
+    "sha256": "459cc090ac6d70b720b0d70fd1ec811d482e0e4b44f164a839de89d75cd0aaba",
+    "line_count": 4
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/web-admin/pages/admin/billing.tsx",
+    "bytes": 87,
+    "sha256": "a4fcbd38be4537848cc629ba2f97c1d980837d063bc52e0f577959c250999022",
+    "line_count": 4
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/web-admin/pages/admin/offers.tsx",
+    "bytes": 9892,
+    "sha256": "57c0cbf8d80de93ce2cb2344c4a3edf58ffc1d28f87249abd8ecc02b6681590c",
+    "line_count": 242
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/web-admin/pages/admin/campaigns/create.tsx",
+    "bytes": 110,
+    "sha256": "51424a22d68f8fac637878194151a93b0bd0526fbe22b0b996535b509948864c",
+    "line_count": 4
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/web-admin/pages/admin/campaigns/stats.tsx",
+    "bytes": 107,
+    "sha256": "4f49070c5e3ed4bed39d39106c862337f490b1cdc2a360ddb6bb20420596f7b0",
+    "line_count": 4
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/web-admin/pages/admin/campaigns/send.tsx",
+    "bytes": 104,
+    "sha256": "48981171d8e029390fbd450536eb60d60580479361c2ddb7849af7eb7afdc4a2",
+    "line_count": 4
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/web-admin/src/__tests__/auth.test.ts",
+    "bytes": 3904,
+    "sha256": "ba1c176b52e284ec2ee18c5563d04d5896b5451b657228b5e3434de5dab09658",
+    "line_count": 128
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/web-admin/src/__tests__/pages/campaigns.test.tsx",
+    "bytes": 114,
+    "sha256": "583272b3d10393c8d1882ee8bcd62131d3459a2697cd0d069e2861ee6083d225",
+    "line_count": 6
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/web-admin/src/__tests__/pages/points.test.tsx",
+    "bytes": 108,
+    "sha256": "c44830b29cd86b58f7d574fa325fada979052e13b4eccdac1e809a5462b22384",
+    "line_count": 6
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/load_test.js",
+    "bytes": 4394,
+    "sha256": "ac4e4f02d3919f72bcd6e2e537e15afde8947a7df20fd10b5ef352391181d448",
+    "line_count": 159
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/uat_test.js",
+    "bytes": 5622,
+    "sha256": "0301b0899808809d2acd1d164dbc3dff2a9259dae56ef49f872edccc72c80fd6",
+    "line_count": 170
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/jest.setup.js",
+    "bytes": 873,
+    "sha256": "483d1c88ce5a56548d39a2bbfb10975702758a6a570b744e046ca04ad7f2ca62",
+    "line_count": 25
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/jest.config.js",
+    "bytes": 915,
+    "sha256": "6a09aa79cc571b5607a42dd565e7de98b26758a36a2a3ed9a67ec74f1e8848d3",
+    "line_count": 29
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/k6_smoke.js",
+    "bytes": 1005,
+    "sha256": "c4567b8882924c8210e182c753f70c2827b00f83bc0198d3fe4b5a325f51f799",
+    "line_count": 38
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/tsconfig.test.json",
+    "bytes": 124,
+    "sha256": "b6ed6d58f0f374a330bce70bcb9f093700e22681fd7da137e741b68244829460",
+    "line_count": 7
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/package-lock.json",
+    "bytes": 544722,
+    "sha256": "87f73575969975c0c045f4ea8d7f71cc4b6b0b6a952731b0d76362ec1d405a4e",
+    "line_count": 15097
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/package.json",
+    "bytes": 2096,
+    "sha256": "48800b10873abd05e4468dc7ed5b22b4b28a165d35a0cea624734c4e5ab7d8e7",
+    "line_count": 57
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/tsconfig.build.json",
+    "bytes": 376,
+    "sha256": "9ca208360974a69a359407f3e9e6a261ababac796487d0e599bf93a868760f3e",
+    "line_count": 21
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/load_test_firestore.js",
+    "bytes": 6234,
+    "sha256": "37ee22c78e921cd380c0afcc07538a4a2229a6490c944f23226cc91180d097fb",
+    "line_count": 218
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/.eslintrc.js",
+    "bytes": 861,
+    "sha256": "6269100a79c0349c63e4088a78aaf9cdb0ed6eba34866b1b781cc1556ca3432e",
+    "line_count": 33
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/tsconfig.json",
+    "bytes": 325,
+    "sha256": "0cf243f1246b5fd441aed848fa763f434b8c6b555a898f92e805d86172e96d00",
+    "line_count": 18
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/tools/loop.sh",
+    "bytes": 1204,
+    "sha256": "eba5120f9e355a530067c66b6fd5a2531921b82876ac3133ac5f01f843277ed9",
+    "line_count": 40
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/tools/loop_backend_coverage.sh",
+    "bytes": 3299,
+    "sha256": "a69a285aaef5850e97ae46475a28fead800bef201ad42d9dd93b24e66f6f682b",
+    "line_count": 91
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/test/helpers/emulator.js",
+    "bytes": 8063,
+    "sha256": "71569af5e86f8009a917ef8c582498c7dc94b48b9694d86fcb725474d8a84a67",
+    "line_count": 241
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/test/helpers/emulator.ts",
+    "bytes": 6665,
+    "sha256": "1518aa9bb81799794a886edf562ca5fdc6e0bc63eb7cf021f4dcded03e510c55",
+    "line_count": 269
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/lib/obsTestHook.js",
+    "bytes": 6517,
+    "sha256": "c55c65bbec491382001fa54e0493cf2b2c685ddbbbe4abfee65b015a3f56d926",
+    "line_count": 157
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/lib/subscriptionAutomation.js",
+    "bytes": 21059,
+    "sha256": "470abb18935379822dd980a5924497df836fab79e7c861c310160ac16189df9a",
+    "line_count": 459
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/lib/monitoring.js",
+    "bytes": 8308,
+    "sha256": "f0b8f741cdb3e5a08283d2b30a60dda8194b157ab2b2f24b853c8388c2f5368d",
+    "line_count": 236
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/lib/fraud.js",
+    "bytes": 1992,
+    "sha256": "ce5792689237b73275b9599e7a6ac3f3ac54c65532c53f91272f1475c6c3527c",
+    "line_count": 48
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/lib/logger.js",
+    "bytes": 5219,
+    "sha256": "159bf32dcd639b988b365b2b9c47009efc75b6b1a1ae34e9b71004bd14b58e77",
+    "line_count": 147
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/lib/phase3Scheduler.js",
+    "bytes": 18184,
+    "sha256": "5cb1906164730b79387608e62aa0c825358219820e655466ca5d0e7812bbbc0e",
+    "line_count": 431
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/lib/auth.js",
+    "bytes": 9362,
+    "sha256": "1c6d65cdb04301fea20b8fb57ff9459da791ad35d93cb6e424bb284959af0128",
+    "line_count": 234
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/lib/index.js",
+    "bytes": 41468,
+    "sha256": "94b04db9096e108364dd172316f6fe7980569d289a9a0c3a545e76204fce587b",
+    "line_count": 865
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/lib/whatsapp.js",
+    "bytes": 15338,
+    "sha256": "47e80caae41cc8b615568b07f4b3127dd1919d550d211070b160eb05e7ecd9f8",
+    "line_count": 409
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/lib/stripe.js",
+    "bytes": 29814,
+    "sha256": "0fe2152280afafe30a166dd03b040edd2393aeefb882e3f38e62b5f9cd6de458",
+    "line_count": 756
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/lib/pushCampaigns.js",
+    "bytes": 15394,
+    "sha256": "2aaec021e6c2a0ae8572890c0259e03c5dfa3e9680d4357fb7aa6409b25526b5",
+    "line_count": 403
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/lib/fcm.js",
+    "bytes": 454,
+    "sha256": "f0ce22693d77d42d2dc66c964e03d25848bf5b0cb0a7626228b7e0eac16dbdc0",
+    "line_count": 9
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/lib/phase3Notifications.js",
+    "bytes": 14256,
+    "sha256": "3a625a00138fc772413f58fe69b192823ff1980a924d977f4f74cc34ff464f7e",
+    "line_count": 366
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/lib/privacy.js",
+    "bytes": 10372,
+    "sha256": "ea8f9b380f9b6c94ef590003167f05dab05f052f5011897c567fb0e1787883ba",
+    "line_count": 272
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/lib/sms.js",
+    "bytes": 11612,
+    "sha256": "a323f72b09fdbe32b702d469202a4642e634809cd2969a1edd53170f0401666b",
+    "line_count": 301
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/lib/scheduled_disabled.js",
+    "bytes": 1823,
+    "sha256": "ceb1a5cc8b324714579dc73d0fb9e19c4a70ac72c476e82217e90c36192c4a04",
+    "line_count": 26
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/lib/adminModeration.js",
+    "bytes": 7206,
+    "sha256": "c1cff5fcc5b6129da741efba533c1ad7016d9fe8f5929a2d692d2774b348837e",
+    "line_count": 165
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/lib/paymentWebhooks.js",
+    "bytes": 14923,
+    "sha256": "6f98ea6daf38baf3e85aed5aef15ab2218ee7fbc19be44c312ca9fac6d75aa2d",
+    "line_count": 392
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/lib/manualPayments.js",
+    "bytes": 16101,
+    "sha256": "99374214200b1a8f1b51adfb6797677fe97fdd37340fca8413537178afd017a0",
+    "line_count": 434
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/lib/middleware/validation.js",
+    "bytes": 1801,
+    "sha256": "62cdb682f57b5ebd90033f035b69d7f7b2cd58797304805828c8d1c9e58cd542",
+    "line_count": 58
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/lib/payments/stripe.js",
+    "bytes": 347,
+    "sha256": "74db6fe3f2e48c6920ee39727b6c48656053601e5819932104a917064ae2cf06",
+    "line_count": 7
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/lib/core/offers.js",
+    "bytes": 38589,
+    "sha256": "c6b6912be3ea6b4d216a715207c88d5e4ee2d18a7680a606c7e1ac7135ba8a12",
+    "line_count": 986
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/lib/core/indexCore.js",
+    "bytes": 10343,
+    "sha256": "d4ab71a7122fa99c751280b58e7b918c16ddb719260f549913c62fcbfbfabb66",
+    "line_count": 238
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/lib/core/points.js",
+    "bytes": 31925,
+    "sha256": "ab0b3e440454fc72f3351341a4ccc219ed8ebedc0c6c66998f2cae0fff015816",
+    "line_count": 745
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/lib/core/fcm.js",
+    "bytes": 19239,
+    "sha256": "76cb8c6173e9306dd26a67d12141246814f0fa03f93b0c5d35f6e104d541ed6c",
+    "line_count": 471
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/lib/core/merchants.js",
+    "bytes": 302,
+    "sha256": "fdfc122be1c077050dec070ed00490af15338ee7949e4b0741dcb78431fd463a",
+    "line_count": 7
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/lib/core/redemptions.js",
+    "bytes": 483,
+    "sha256": "9963d071f512f0d07b48413ddb839774d6855c8c9109521d9f1a90450ebad0a2",
+    "line_count": 9
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/lib/core/admin.js",
+    "bytes": 9447,
+    "sha256": "650c40c3b60d1fac38e0f79fd1c172935123f880d408e1b18ec72631f60630a9",
+    "line_count": 226
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/lib/core/qr.js",
+    "bytes": 26335,
+    "sha256": "aa36428c4c810ca2425b77859bd2cbc0e565d64e2335a465c6dfdfc6d679ed7e",
+    "line_count": 646
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/lib/access/staffManagement.js",
+    "bytes": 294,
+    "sha256": "1d53710e376b6b1208e90a9838b43292f1978e78bcb4d1843cce409ab3fff9b1",
+    "line_count": 7
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/lib/utils/rateLimiter.js",
+    "bytes": 5338,
+    "sha256": "8c4362d16fbce1585c8ed064b8819b958565e164f1d6b329f419d73b66d5deaf",
+    "line_count": 132
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/lib/adapters/messaging.js",
+    "bytes": 3107,
+    "sha256": "a138f6080bb089019656b51763f6758fa55f0fd9b8f443021dbac7d8337a2203",
+    "line_count": 86
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/lib/webhooks/stripe.js",
+    "bytes": 2599,
+    "sha256": "318572c4d21f51a1eb689a859401eaf019d7daea56949395b71d55255fc2f3d5",
+    "line_count": 65
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/lib/validation/schemas.js",
+    "bytes": 10448,
+    "sha256": "cfef9d55fc908f34e2607b9efbab1adb818c7186f18d0b78322dfc03bd622cbb",
+    "line_count": 185
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/lib/analytics/aggregator.js",
+    "bytes": 298,
+    "sha256": "1a188aebf72fc0a22bbdef08cda883d168d250ec135fdc7a1c0c91d2d2adb7f8",
+    "line_count": 7
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/lib/analytics/auditLogs.js",
+    "bytes": 271,
+    "sha256": "05502c4b4312ddd5f749cc8635a5c95da008513da7224c49e144f0f7dab2d680",
+    "line_count": 7
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/lib/analytics/stats.js",
+    "bytes": 289,
+    "sha256": "2f62c4a99bc7089b65b3b04d6adf6f893bf7cb80f4998ad3d8b4d9be78ae44bf",
+    "line_count": 7
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/src/phase3Notifications.ts",
+    "bytes": 13060,
+    "sha256": "7318c6e13a5d723f1ebacebd0d1f1cd3ddbc46cb0d31f7fef8587a77b63afaf9",
+    "line_count": 419
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/src/privacy.ts",
+    "bytes": 9602,
+    "sha256": "ad6ebae5970671910e810b739d2440966993380f906242357088614b1a078b9b",
+    "line_count": 314
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/src/sms.ts",
+    "bytes": 9427,
+    "sha256": "47d4d21552a4ff18d101d98870ccc7679f4cca29206491003d843e78d18816c7",
+    "line_count": 307
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/src/stripe.ts",
+    "bytes": 27432,
+    "sha256": "5a2929728bdc14a1641e660f4ae9bb3c42d25ac258dee17f1d154c570ddc584e",
+    "line_count": 900
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/src/pushCampaigns.ts",
+    "bytes": 13291,
+    "sha256": "628ace8fcf78437061b6eaf507811d7a776ca0446583631866895df4204969c6",
+    "line_count": 462
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/src/fcm.ts",
+    "bytes": 172,
+    "sha256": "bcdab2ed6a4a0b00d6be8b15f8f9db80e128ef00a7c90cb51929d3eafe67d3a0",
+    "line_count": 3
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/src/scheduled_disabled.ts",
+    "bytes": 809,
+    "sha256": "fa18fc929000c315881f91fe0ee33039931fb294f9c619cee5a7b4a9cac5a629",
+    "line_count": 26
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/src/adminModeration.ts",
+    "bytes": 5111,
+    "sha256": "da6f42eb7269953a50e5bf76c696c09a40d0f5dfcbf00b8f34592d94ca83315e",
+    "line_count": 137
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/src/paymentWebhooks.ts",
+    "bytes": 12436,
+    "sha256": "c26e0073deb6792d8eabda58ddce7ffcbe419332d8a97d8dd8754fd4045d1647",
+    "line_count": 414
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/src/manualPayments.ts",
+    "bytes": 14792,
+    "sha256": "529350d7303dbfa5b23ab2b60460bc64e3c7291aa27c2847080c97ceda3470b6",
+    "line_count": 493
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/src/fraud.ts",
+    "bytes": 377,
+    "sha256": "ca3a6480fe895f81ccc98c4225fede41a39eaf37eaa8c019f2dd6891118a9744",
+    "line_count": 12
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/src/logger.ts",
+    "bytes": 3964,
+    "sha256": "99a933d12d9ba06f0e645c0efde8f9a3d8019849a578e4805226a11b1e736c18",
+    "line_count": 157
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/src/phase3Scheduler.ts",
+    "bytes": 15474,
+    "sha256": "97bb7d62178ed064e1cceafc25a2e54aa10a64e576306408813e770ef1ea0722",
+    "line_count": 473
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/src/subscriptionAutomation.ts",
+    "bytes": 17226,
+    "sha256": "e82bab389c09e827352a14f54f03f4a7a370b6fc5ce36549608025bc57add466",
+    "line_count": 487
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/src/obsTestHook.ts",
+    "bytes": 4950,
+    "sha256": "1d74089d0ed510ccf714d88592ece8af625badd61094e635048dbf3748c6b297",
+    "line_count": 170
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/src/monitoring.ts",
+    "bytes": 6147,
+    "sha256": "72b4c5634110709aaa2fbd700ba059d407363e1316065886f1ca5d1c18b742c3",
+    "line_count": 233
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/src/whatsapp.ts",
+    "bytes": 13380,
+    "sha256": "9188941095d984aad7cbf216d233c41410f46b44fbfbaa7e5ad5c38103a288ff",
+    "line_count": 456
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/src/index.ts",
+    "bytes": 36142,
+    "sha256": "312b9baeceba95da2a263264652e08298104860358eb7a2b2ac7bd3383af9951",
+    "line_count": 1202
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/src/auth.ts",
+    "bytes": 6895,
+    "sha256": "1938cc0b0a80a89d17de3cf18395e6dc3d125f4d9ef6da90512b430c421c3b10",
+    "line_count": 252
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/src/middleware/validation.ts",
+    "bytes": 1837,
+    "sha256": "ec506faa7c1c20613e295639a44bc002f0f54491743914b305936da36fd67b79",
+    "line_count": 76
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/src/payments/stripe.ts",
+    "bytes": 112,
+    "sha256": "0b69a46fba91b7d87e88bb0b231ddc63b357e944922797025c93eb46bcbb3467",
+    "line_count": 2
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/src/core/merchants.ts",
+    "bytes": 100,
+    "sha256": "30edd23c682f92d08cffe4ac402e0de8567e837c954cb5a10918724ce018563b",
+    "line_count": 2
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/src/core/fcm.ts",
+    "bytes": 17664,
+    "sha256": "96c52df4cebdc34fed4aa2ded62ce8eb7a4d9fcdfb96baefe4d3c5199cc72717",
+    "line_count": 606
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/src/core/redemptions.ts",
+    "bytes": 174,
+    "sha256": "e16f9c3b1759658afcbaf020dbd7c9b33962d54f0a64083be3982fdae2c03578",
+    "line_count": 3
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/src/core/admin.ts",
+    "bytes": 7965,
+    "sha256": "927edf6adb523a300a5511edf8b6d838b9b9e539b262b3f47ffcb17a070c256e",
+    "line_count": 274
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/src/core/qr.ts",
+    "bytes": 24146,
+    "sha256": "b42f769db0dc9f879af97c2663d8943f91ca85812deadf0c12a4813c1b0ebecc",
+    "line_count": 814
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/src/core/offers.ts",
+    "bytes": 38317,
+    "sha256": "75efe759bbe23c9f1d7f250ac810100165f535baad8bfe095939ffb54d415a22",
+    "line_count": 1334
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/src/core/indexCore.ts",
+    "bytes": 7536,
+    "sha256": "6b555cbc09a3d38fd98d8ff386780bdc48a8e6b388aa8c7d345afdeaa53afdd1",
+    "line_count": 239
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/src/core/points.ts",
+    "bytes": 28765,
+    "sha256": "f164cd7857e5b08e202fab42d8d17e61ef1caa605543d9dce8cd76533bbe27ac",
+    "line_count": 915
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/src/access/staffManagement.ts",
+    "bytes": 95,
+    "sha256": "d100ab48b0fe98e92446e2c56e76134a4ec17ad7c30f67e75961cf051217b3a2",
+    "line_count": 2
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/src/tests/firestore_rules.test.ts",
+    "bytes": 509,
+    "sha256": "aa43a1f39dfd4caa5b85f12ee042a2d09023c7331e797002dfb88e77e0ed910f",
+    "line_count": 20
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/src/tests/phase3_smoke.test.ts",
+    "bytes": 1740,
+    "sha256": "ad2227468d47827547afbe864b93c0eeb7d5c43b8e35b995549c5049e8f1b584",
+    "line_count": 55
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/src/utils/rateLimiter.ts",
+    "bytes": 3770,
+    "sha256": "3a7511268b24d62096ed3e96224920ed395ffcf27461716c4a7c39fbb365a3cf",
+    "line_count": 120
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/src/adapters/messaging.ts",
+    "bytes": 1776,
+    "sha256": "86e3977e7206d0f5ff7369aef8a6e02aa9f055ef19296f28b5f6c4a5ae3aaaaa",
+    "line_count": 65
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/src/__tests__/points.critical.test.ts",
+    "bytes": 5532,
+    "sha256": "38c2314a922547ac6d3e58c8319178744542c18f4454bd44ee0e4951b721ffaf",
+    "line_count": 200
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/src/__tests__/fcm.test.ts",
+    "bytes": 113,
+    "sha256": "c180192c870daa550e2935422051a8c689fe048d8b13078c2adbe50f51f96f33",
+    "line_count": 6
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/src/__tests__/subscriptionAutomation.test.ts",
+    "bytes": 16361,
+    "sha256": "58002a23d3d5b0f5fe45a6859c27dd1c87a7f6a35e8561f08edfb5e041def09b",
+    "line_count": 536
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/src/__tests__/core-points.test.ts",
+    "bytes": 2617,
+    "sha256": "4846d9226e81a6a298eb57be79b2e5b791d19886afc3330a0dcea62b2ec338c2",
+    "line_count": 94
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/src/__tests__/phase3_guard.ts",
+    "bytes": 168,
+    "sha256": "376e2e80ae8653def8c832b414531f012fd5c1da63aded242be53c531482f05a",
+    "line_count": 4
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/src/__tests__/alert-functions.test.ts",
+    "bytes": 4213,
+    "sha256": "f3d9eb51359fb794fafded0aa9f48c8735d2daf6b188c988dcc2d7f03e511175",
+    "line_count": 147
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/src/__tests__/points.branches.test.ts",
+    "bytes": 2829,
+    "sha256": "14fef1cc93800e2f058f873a57927cf715345890fc33fede4c5906ebea27d5fb",
+    "line_count": 104
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/src/__tests__/authz_enforcement.test.ts",
+    "bytes": 3945,
+    "sha256": "1b057736d5fb97b702fb5fedee19ee9356d53a61653e9598ae3d14ad85dec5de",
+    "line_count": 129
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/src/__tests__/jest-wrapper-experiment.ts",
+    "bytes": 849,
+    "sha256": "f2d600bfa09d9587cb22d5ba5d2198817cb7181364c7f5179186c9ed300c3f9c",
+    "line_count": 29
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/src/__tests__/pin-system-qa.test.ts",
+    "bytes": 9860,
+    "sha256": "67c63bde43f5b50aafbfe005e7d9172ad523b25ca6f30c5390c8778dad4cd897",
+    "line_count": 312
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/src/__tests__/admin.branches.test.ts",
+    "bytes": 5426,
+    "sha256": "78d08f8baaeb3aa492872bce47a8d069d65af1b9c4d2dc8119b47055c7b0a647",
+    "line_count": 166
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/src/__tests__/privacy-functions.test.ts",
+    "bytes": 11386,
+    "sha256": "bb90382ef1e2a86dbfb4582b790a5243463a484a48719bfb3726a02f39035188",
+    "line_count": 370
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/src/__tests__/phase3.test.ts",
+    "bytes": 20974,
+    "sha256": "d5dfa56867f9a2d33bc928f6767b7f520bb2aa19b46f631218be3552e21d5256",
+    "line_count": 612
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/src/__tests__/core-admin.test.ts",
+    "bytes": 4592,
+    "sha256": "dd65721d3f132867204249030aecc9010b5dad2d2324f3c5d1bed8a5b8147818",
+    "line_count": 149
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/src/__tests__/testEnv.ts",
+    "bytes": 2511,
+    "sha256": "41fe36f431e6e99ad1992c57e9b0b2d2d764727c46fe4fc60b45dcea970bf41b",
+    "line_count": 94
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/src/__tests__/paymentWebhooks.test.ts",
+    "bytes": 19605,
+    "sha256": "8f6e574599430c8be02b103c406c910a6f9b7b32e4ea381348f39335eb843285",
+    "line_count": 685
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/src/__tests__/indexCore.test.ts",
+    "bytes": 10803,
+    "sha256": "1ac2c992744666c55a1f0761de8e4b2c68eb59675536717c50dc3e10e881b9c8",
+    "line_count": 369
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/src/__tests__/points.test.ts",
+    "bytes": 111,
+    "sha256": "03474c8fc3583d557db318fc9136f0eab2173c4037ee648b28efef7c58baf6ac",
+    "line_count": 6
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/src/__tests__/sms.test.ts",
+    "bytes": 16465,
+    "sha256": "2c7527ecec60e6e51baa9cd1f3ea8c1256bde75eaa64d54a097eede7b4382c3e",
+    "line_count": 596
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/src/__tests__/qr.validation.test.ts",
+    "bytes": 6583,
+    "sha256": "25dbe4b655517c3f93bee7acb06508ba4add81d07348f5e29fcce5bee7781fb0",
+    "line_count": 246
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/src/__tests__/integration.test.ts",
+    "bytes": 7524,
+    "sha256": "be9ace246703b730c4401dcf7270010a25ada1518402723be58f4cb13cbb499d",
+    "line_count": 219
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/src/__tests__/core-qr.test.ts",
+    "bytes": 4151,
+    "sha256": "bc9ff21eba9bab1aad930db1c135ba70f04bbc1c1d699a8ee6df80d922ccba72",
+    "line_count": 177
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/src/__tests__/pushCampaigns.test.ts",
+    "bytes": 23682,
+    "sha256": "1fcdfc4d2a0c9d2cb893007692d62b8606284b58c431d340edbab3bd15ff6261",
+    "line_count": 756
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/src/__tests__/obsTestHook.test.ts",
+    "bytes": 1331,
+    "sha256": "460a9f93b23fb4c74e439e587bd1a50b5fb84d5a8e27672e5df87a7c6df45332",
+    "line_count": 43
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/src/__tests__/pin-system.test.ts",
+    "bytes": 12816,
+    "sha256": "32b10523fd72af989c2f1226ff82601bbb74d665b90d59868b1e0b24300356f0",
+    "line_count": 402
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/src/webhooks/stripe.ts",
+    "bytes": 833,
+    "sha256": "39e5f724bb128cf5dc7ef9e28801926861eacd59fc6a60cc3be1b9040f62eca8",
+    "line_count": 32
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/src/validation/schemas.ts",
+    "bytes": 8828,
+    "sha256": "88a37023ccd6f6cefdb78b724aae9fdf45b304d2f6e81a4a036f1e70e1494856",
+    "line_count": 217
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/src/analytics/stats.ts",
+    "bytes": 94,
+    "sha256": "e6e3d36a253fbabcb85e9af3f35eaf36586bba682a7f9949ce6b20ebf498b9e2",
+    "line_count": 2
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/src/analytics/auditLogs.ts",
+    "bytes": 77,
+    "sha256": "a3f6e4f752913ae4734126f18fb2ccc11117eb97367a93e4d4d80e404b3f61a2",
+    "line_count": 2
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/src/analytics/aggregator.ts",
+    "bytes": 87,
+    "sha256": "4be7420102033c71fbe6d6592861b9ba3c84b7fea816016de26027f736d82478",
+    "line_count": 2
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/rest-api/test_api.sh",
+    "bytes": 4302,
+    "sha256": "74087f3163b3ad57322473065d7915f7440a51605e602bd096a263937881374e",
+    "line_count": 101
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/rest-api/temp_fix.sh",
+    "bytes": 239,
+    "sha256": "e2fde08638c2f86d694199d47f5eacb5781a644e23eea261bf429bc0e5e61bf9",
+    "line_count": 8
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/rest-api/package-lock.json",
+    "bytes": 296116,
+    "sha256": "b1467253fe665ad03a28bb0ff18aae3ad3c20b89a63394ebd805d977ed104a9c",
+    "line_count": 8101
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/rest-api/package.json",
+    "bytes": 1778,
+    "sha256": "77c5228fae467893655972ede8afb3270af8528610e3b3b505b167900b60094f",
+    "line_count": 62
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/rest-api/tsconfig.json",
+    "bytes": 651,
+    "sha256": "285a4eedd0866842f1b6aeb1ca431cfc016dc767d3c62d6c456dc3ef49e253b6",
+    "line_count": 25
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/rest-api/ecosystem.config.js",
+    "bytes": 520,
+    "sha256": "5f32a17cf10621f1edbd6792f8bd4b60a92d764c0964a5e6df10c3d086cbf618",
+    "line_count": 23
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/rest-api/pm2-production-manager.sh",
+    "bytes": 6902,
+    "sha256": "3ee9294ef923b4d69b86f9d7578d65bec5aa4b1115c438da5bbed8b560d6dff2",
+    "line_count": 263
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/rest-api/src/server.ts",
+    "bytes": 28230,
+    "sha256": "fc718425fcf2f2358bdd126f36d8296ae6eaa255a89d4466818181259c6b5f4a",
+    "line_count": 841
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/rest-api/src/types/index.ts",
+    "bytes": 4057,
+    "sha256": "7d437955e044f9acd865275fa735bc9d9b02b78b9ba189df8fe5c8cde53fd7fb",
+    "line_count": 222
+  },
+  {
+    "path": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/rest-api/src/config/database.ts",
+    "bytes": 1784,
+    "sha256": "5cd9af87d94412dc042a3e71c47e1d85b766ce1fd42607e9c40d8cf9f4258352",
+    "line_count": 62
+  }
+]

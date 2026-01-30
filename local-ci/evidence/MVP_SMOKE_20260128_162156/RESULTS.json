@@ -1,0 +1,11 @@
+{
+  "calls": [],
+  "timings": {},
+  "errors": [
+    {
+      "message": "Function DocumentReference.set() called with invalid data. Unsupported field value: a custom Timestamp object (found in field subscription_expiry in document customers/test-customer-uid)",
+      "stack": "FirebaseError: Function DocumentReference.set() called with invalid data. Unsupported field value: a custom Timestamp object (found in field subscription_expiry in document customers/test-customer-uid)",
+      "code": "invalid-argument"
+    }
+  ]
+}

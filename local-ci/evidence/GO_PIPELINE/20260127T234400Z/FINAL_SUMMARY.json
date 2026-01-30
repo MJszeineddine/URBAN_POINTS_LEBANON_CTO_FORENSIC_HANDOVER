@@ -1,0 +1,11 @@
+{
+  "verdict": "GO_RUN",
+  "evidence_dir": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/local-ci/evidence/GO_PIPELINE/20260127T234400Z",
+  "timestamp": "20260127T234400Z",
+  "attempts": 1,
+  "gates_passed": 11,
+  "gates_failed": 0,
+  "gates_total": 11,
+  "internal_blockers": [],
+  "external_blockers": []
+}

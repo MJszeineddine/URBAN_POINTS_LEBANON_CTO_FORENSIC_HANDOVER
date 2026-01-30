@@ -1,0 +1,14 @@
+ M firebase.json
+ M source/backend/firebase-functions/src/index.ts
+ M tools/smoke/package-lock.json
+ M tools/smoke/package.json
+?? local-ci/evidence/MVP_SMOKE_20260128_161407/
+?? local-ci/evidence/MVP_SMOKE_20260128_161506/
+?? local-ci/evidence/MVP_SMOKE_20260128_161606/
+?? local-ci/evidence/MVP_SMOKE_20260128_161739/
+?? local-ci/evidence/MVP_SMOKE_20260128_161821/
+?? local-ci/evidence/MVP_SMOKE_20260128_161913/
+?? local-ci/evidence/MVP_SMOKE_20260128_162014/
+?? tools/gates/run_mvp_smoke_gate.ps1
+?? tools/gates/run_mvp_smoke_gate.sh
+?? tools/smoke/mvp_smoke.mjs

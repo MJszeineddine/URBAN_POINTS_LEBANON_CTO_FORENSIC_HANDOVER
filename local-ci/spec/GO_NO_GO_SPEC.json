@@ -1,0 +1,29 @@
+{
+  "name": "URBAN_POINTS_GO_NO_GO",
+  "version": 1,
+  "required_evidence_files": [
+    "SUMMARY.json",
+    "VALIDATION.json"
+  ],
+  "required_log_globs": [
+    "logs/**/*.log",
+    "SMOKE_LOG.txt",
+    "RESULTS.json"
+  ],
+  "forbidden_patterns": [
+    "unimplemented",
+    "TODO:",
+    "FIXME",
+    "accepted as valid",
+    "SKIP",
+    "not starting the auth emulator",
+    "TypeError:",
+    "ReferenceError:",
+    "UnhandledPromiseRejection",
+    "ECONNREFUSED"
+  ],
+  "min_tests": 1,
+  "require_zero_failed": true,
+  "require_zero_skipped": true,
+  "max_cycles": 5
+}

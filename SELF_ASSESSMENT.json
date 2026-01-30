@@ -1,0 +1,48 @@
+{
+  "understands_project": false,
+  "what_is_the_project_one_sentence": "Urban Points is a loyalty/rewards system with separate Flutter mobile apps for customers and merchants, a Next.js web dashboard, Firebase backend, targeting the Lebanon market—but I haven't verified the actual business logic, user workflows, or data models from code.",
+  "can_continue_deploying_on_its_own": false,
+  "why_not_if_false": [
+    "Haven't read the main entry points (backend/index.ts, main.dart files) to understand business logic",
+    "Don't know the actual user workflows (customer earning/redemption, merchant reconciliation, admin functions)",
+    "Haven't verified data models, API contracts, or integration points (Stripe, Firebase Firestore schema)",
+    "Don't know which features are complete vs incomplete beyond surface-level dead code detection",
+    "Haven't verified the deployment process, environment setup, or post-deploy validation steps",
+    "Can't explain why architectural decisions were made (Firebase vs custom backend, monorepo structure, etc.)",
+    "Don't know the critical path items or business priorities from code alone"
+  ],
+  "exact_entrypoints_you_will_read_first": [
+    "source/backend/package.json (to identify entry point file)",
+    "source/backend/index.ts or source/backend/server.ts (backend startup)",
+    "source/backend/routes/ (if exists) or API definitions",
+    "source/backend/models/ or source/backend/services/ (data models and business logic)",
+    "source/apps/mobile-customer/lib/main.dart (customer app startup)",
+    "source/apps/mobile-customer/lib/screens/ (customer user flows)",
+    "source/apps/mobile-merchant/lib/main.dart (merchant app startup)",
+    "source/apps/mobile-merchant/lib/screens/ (merchant user flows)",
+    "Firebase configuration files (firebase.json, .firebaserc, or environment configs)",
+    "source/backend/config/ or source/backend/env.example (integration points like Stripe, Firebase)"
+  ],
+  "deploy_plan_steps": [
+    "Read all entry point files to map business logic and user workflows",
+    "Document the complete customer and merchant user journeys from code",
+    "Verify all external integrations (Firebase, Stripe, any third-party APIs)",
+    "Trace the data flow for critical operations (earning points, redeeming, reconciliation)",
+    "Review authentication and authorization logic to ensure role-based access control works",
+    "Identify and verify all environment-specific configurations (dev, staging, production)",
+    "Run security audit on API endpoints and data validation logic",
+    "Execute smoke tests on all user workflows to verify nothing is broken",
+    "Review CI/CD pipeline (local-ci/) to understand automated deployment process",
+    "Create deployment runbook documenting pre-deploy checks, deployment steps, and post-deploy verification"
+  ],
+  "proof_artifacts_you_will_output": [
+    "ARCHITECTURE_DIAGRAM.md - Detailed system architecture with all components and integrations",
+    "USER_FLOWS_DOCUMENTED.md - Step-by-step customer and merchant workflows with code references",
+    "DATA_MODELS_SCHEMA.md - Database schema (Firestore) and API data models",
+    "INTEGRATION_VERIFICATION.md - Checklist of all external integrations verified (Stripe, Firebase, etc.)",
+    "DEPLOYMENT_RUNBOOK.md - Step-by-step deployment instructions with pre/post checks",
+    "MISSING_FEATURES_LOG.md - What's complete vs incomplete vs stubbed out",
+    "SECURITY_AUDIT_RESULTS.md - Security review of auth, API, data validation",
+    "DEPLOY_TEST_RESULTS.md - Smoke test results showing all user workflows work end-to-end"
+  ]
+}

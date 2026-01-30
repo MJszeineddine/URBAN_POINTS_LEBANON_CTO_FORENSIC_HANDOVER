@@ -1,0 +1,22 @@
+{
+  "Firebase Functions (build)": {
+    "cmd": "npm run build",
+    "exit_code": 2,
+    "log_file": "local-ci/evidence/DOD_ONE_SHOT/20260126T223256Z/logs/firebase_functions_(build).log"
+  },
+  "Web Admin (build)": {
+    "cmd": "npm run build",
+    "exit_code": 0,
+    "log_file": "local-ci/evidence/DOD_ONE_SHOT/20260126T223256Z/logs/web_admin_(build).log"
+  },
+  "Mobile Customer (analyze)": {
+    "cmd": "flutter analyze",
+    "exit_code": 1,
+    "log_file": "local-ci/evidence/DOD_ONE_SHOT/20260126T223256Z/logs/mobile_customer_(analyze).log"
+  },
+  "Mobile Merchant (analyze)": {
+    "cmd": "flutter analyze",
+    "exit_code": 0,
+    "log_file": "local-ci/evidence/DOD_ONE_SHOT/20260126T223256Z/logs/mobile_merchant_(analyze).log"
+  }
+}

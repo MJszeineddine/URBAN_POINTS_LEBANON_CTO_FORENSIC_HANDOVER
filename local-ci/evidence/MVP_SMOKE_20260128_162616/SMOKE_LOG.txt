@@ -1,0 +1,46 @@
+[2026-01-28T14:26:55.862Z] Starting MVP Smoke Gate
+[2026-01-28T14:26:55.864Z] Project: demo-mvp
+[2026-01-28T14:26:55.864Z] Evidence: ../../local-ci/evidence/MVP_SMOKE_20260128_162616
+[2026-01-28T14:26:55.864Z] Emulator ports: Firestore=8080, Auth=9099, Functions=5001
+[2026-01-28T14:26:55.864Z] FIREBASE_AUTH_EMULATOR_HOST: 127.0.0.1:9099
+[2026-01-28T14:26:55.864Z] FIRESTORE_EMULATOR_HOST: 127.0.0.1:8080
+[2026-01-28T14:26:55.864Z] [1/9] Initializing test environment...
+[2026-01-28T14:26:55.889Z] ✓ Test environment initialized
+[2026-01-28T14:26:55.889Z] [2/9] Seeding Firestore data...
+[2026-01-28T14:26:56.145Z]   Seeded: merchants, offers, users, subscriptions, points_transactions, points_balance
+[2026-01-28T14:26:56.145Z] ✓ Firestore data seeded
+[2026-01-28T14:26:56.145Z] [3/9] Initializing Admin SDK...
+[2026-01-28T14:26:56.145Z] Using auth emulator: 127.0.0.1:9099
+[2026-01-28T14:26:57.269Z] ✓ Admin SDK initialized
+[2026-01-28T14:26:57.269Z] [4/9] Creating auth users...
+[2026-01-28T14:26:57.347Z] ✓ Customer created: test-customer-uid
+[2026-01-28T14:26:57.368Z] ✓ Merchant created: test-merchant-uid
+[2026-01-28T14:26:57.369Z] ✓ Auth users created
+[2026-01-28T14:26:57.734Z]   Updated seed data with UIDs: customer=test-customer-uid, merchant=test-merchant-uid
+[2026-01-28T14:26:57.734Z] [5/9] Initializing Firebase Client SDK...
+[2026-01-28T14:26:57.764Z] ✓ Client SDK initialized and authenticated
+[2026-01-28T14:26:57.764Z] [6/9] Testing getAvailableOffers...
+[2026-01-28T14:26:59.363Z]   Validated: 1 offers, first offer has required DTO fields
+[2026-01-28T14:26:59.363Z] ✓ getAvailableOffers PASS (1593ms)
+[2026-01-28T14:26:59.363Z] [7/9] Testing getOffersByLocationFunc...
+[2026-01-28T14:27:00.155Z]   Warning: No offers returned (acceptable if empty)
+[2026-01-28T14:27:00.155Z] ✓ getOffersByLocationFunc PASS (792ms)
+[2026-01-28T14:27:00.155Z] [8/9] Testing generateQRToken...
+[2026-01-28T14:27:01.307Z]   Validated: qr_token exists (404 chars)
+[2026-01-28T14:27:01.307Z] ✓ generateQRToken PASS (1151ms) - token: eyJ1c2VySWQiOiJ0ZXN0...
+[2026-01-28T14:27:01.307Z] [9/9] Testing validateQRToken...
+[2026-01-28T14:27:01.307Z]   Skipping validateQRToken (requires complex setup)
+[2026-01-28T14:27:01.307Z] ✓ validateQRToken SKIP (0ms) - requires full redemption setup
+[2026-01-28T14:27:01.307Z] [9/9a] Testing getBalance...
+[2026-01-28T14:27:02.203Z]   Validated: balance=100
+[2026-01-28T14:27:02.203Z] ✓ getBalance PASS (886ms)
+[2026-01-28T14:27:02.203Z] [9/9b] Testing getPointsHistory...
+[2026-01-28T14:27:02.990Z]   Validated: 1 transactions with correct structure
+[2026-01-28T14:27:02.990Z] ✓ getPointsHistory PASS (787ms)
+[2026-01-28T14:27:02.991Z] 
+[2026-01-28T14:27:02.991Z] ═══════════════════════════════════════════════════════════
+[2026-01-28T14:27:02.991Z] MVP SMOKE GATE: PASS ✅
+[2026-01-28T14:27:02.991Z] Total time: 7126ms
+[2026-01-28T14:27:02.991Z] Region: us-central1
+[2026-01-28T14:27:02.991Z] Evidence: ../../local-ci/evidence/MVP_SMOKE_20260128_162616
+[2026-01-28T14:27:02.991Z] ═══════════════════════════════════════════════════════════

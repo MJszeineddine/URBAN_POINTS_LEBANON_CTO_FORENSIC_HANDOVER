@@ -1,0 +1,5 @@
+?? local-ci/
+?? spec/DEFINITION_OF_DONE_STRICT.md
+?? tools/ARTIFACTS/
+?? tools/audit_snapshot/
+?? tools/dod_strict_gate_runner.py

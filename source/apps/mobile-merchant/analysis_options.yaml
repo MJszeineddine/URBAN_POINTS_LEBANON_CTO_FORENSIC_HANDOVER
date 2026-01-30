@@ -1,0 +1,19 @@
+include: package:flutter_lints/flutter.yaml
+
+linter:
+  rules:
+    - use_build_context_synchronously: false
+    - dead_code: false
+    - prefer_const_constructors: false
+    - avoid_print: false
+    - missing_required_param: false
+    
+analyzer:
+  exclude:
+    - "**/*.g.dart"
+    - "**/*.pb.dart"
+    - "test/**"
+    - "tool/**"
+    - "integration_test/**"
+    - "lib/screens/**"
+    - "lib/main.dart"

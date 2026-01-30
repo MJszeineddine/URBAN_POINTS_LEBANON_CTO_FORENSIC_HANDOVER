@@ -1,0 +1,51 @@
+[2026-01-28T18:18:44.619Z] Starting MVP Smoke Gate
+[2026-01-28T18:18:44.621Z] Project: demo-mvp
+[2026-01-28T18:18:44.621Z] Evidence: ../../local-ci/evidence/RC_STRICT_20260128_201802
+[2026-01-28T18:18:44.621Z] Emulator ports: Firestore=8080, Auth=9099, Functions=5001
+[2026-01-28T18:18:44.621Z] FIREBASE_AUTH_EMULATOR_HOST: 127.0.0.1:9099
+[2026-01-28T18:18:44.621Z] FIRESTORE_EMULATOR_HOST: 127.0.0.1:8080
+[2026-01-28T18:18:44.621Z] [1/9] Initializing test environment...
+[2026-01-28T18:18:44.643Z] ✓ Test environment initialized
+[2026-01-28T18:18:44.643Z] [2/9] Seeding Firestore data...
+[2026-01-28T18:18:44.829Z]   Seeded: merchants, offers, users, subscriptions, points_transactions, points_balance
+[2026-01-28T18:18:44.829Z] ✓ Firestore data seeded
+[2026-01-28T18:18:44.829Z] [3/9] Initializing Admin SDK...
+[2026-01-28T18:18:44.829Z] Using auth emulator: 127.0.0.1:9099
+[2026-01-28T18:18:45.897Z] ✓ Admin SDK initialized
+[2026-01-28T18:18:45.897Z] [4/9] Creating auth users...
+[2026-01-28T18:18:45.914Z] ✓ Customer created: test-customer-uid
+[2026-01-28T18:18:45.920Z] ✓ Merchant created: test-merchant-uid
+[2026-01-28T18:18:45.920Z] ✓ Auth users created
+[2026-01-28T18:18:45.958Z]   Updated seed data with UIDs: customer=test-customer-uid, merchant=test-merchant-uid
+[2026-01-28T18:18:45.958Z] [5/9] Initializing Firebase Client SDK...
+[2026-01-28T18:18:45.975Z] ✓ Client SDK initialized and authenticated
+[2026-01-28T18:18:45.975Z] [6/9] Testing getAvailableOffers...
+[2026-01-28T18:18:47.210Z]   Validated: 1 offers, first offer has required DTO fields
+[2026-01-28T18:18:47.210Z] ✓ getAvailableOffers PASS (1231ms)
+[2026-01-28T18:18:47.211Z] [7/9] Testing getOffersByLocationFunc...
+[2026-01-28T18:18:47.883Z]   Warning: No offers returned (acceptable if empty)
+[2026-01-28T18:18:47.883Z] ✓ getOffersByLocationFunc PASS (672ms)
+[2026-01-28T18:18:47.884Z] [8/9] Testing generateQRToken...
+[2026-01-28T18:18:48.691Z]   Validated: qr_token exists (404 chars)
+[2026-01-28T18:18:48.691Z] ✓ generateQRToken PASS (807ms) - token: eyJ1c2VySWQiOiJ0ZXN0...
+[2026-01-28T18:18:48.692Z]   Token nonce: faacbb785291429e4c4ffbff64043f7b
+[2026-01-28T18:18:48.692Z] [9/9] Testing validateQRToken with PIN flow...
+[2026-01-28T18:18:49.381Z]   PIN verification required - querying Firestore for displayCode and PIN...
+[2026-01-28T18:18:49.414Z]   Display code: 107262, PIN: 549571
+[2026-01-28T18:18:50.437Z]   ✓ PIN verified (1023ms)
+[2026-01-28T18:18:51.262Z]   Redemption completed after PIN: 7ImzdRjT4Ufi3iW3XfQN
+[2026-01-28T18:18:51.263Z]   Validated: Redemption record created (ID: 7ImzdRjT4Ufi3iW3XfQN)
+[2026-01-28T18:18:51.263Z] ✓ validateQRToken PASS (2567ms)
+[2026-01-28T18:18:51.263Z] [9/9a] Testing getBalance...
+[2026-01-28T18:18:52.158Z]   Validated: balance=90
+[2026-01-28T18:18:52.158Z] ✓ getBalance PASS (889ms)
+[2026-01-28T18:18:52.158Z] [9/9b] Testing getPointsHistory...
+[2026-01-28T18:18:52.830Z]   Validated: 1 transactions with correct structure
+[2026-01-28T18:18:52.830Z] ✓ getPointsHistory PASS (672ms)
+[2026-01-28T18:18:52.831Z] 
+[2026-01-28T18:18:52.831Z] ═══════════════════════════════════════════════════════════
+[2026-01-28T18:18:52.831Z] MVP SMOKE GATE: PASS ✅
+[2026-01-28T18:18:52.831Z] Total time: 8209ms
+[2026-01-28T18:18:52.831Z] Region: us-central1
+[2026-01-28T18:18:52.831Z] Evidence: ../../local-ci/evidence/RC_STRICT_20260128_201802
+[2026-01-28T18:18:52.831Z] ═══════════════════════════════════════════════════════════

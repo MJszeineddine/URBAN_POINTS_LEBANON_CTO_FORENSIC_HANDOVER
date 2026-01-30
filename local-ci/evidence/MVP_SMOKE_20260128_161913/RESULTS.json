@@ -1,0 +1,11 @@
+{
+  "calls": [],
+  "timings": {},
+  "errors": [
+    {
+      "message": "Error while making request: connect ECONNREFUSED 127.0.0.1:9099. Error code: ECONNREFUSED",
+      "stack": "Error: Error while making request: connect ECONNREFUSED 127.0.0.1:9099. Error code: ECONNREFUSED\n    at /Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/tools/smoke/node_modules/firebase-admin/lib/utils/api-request.js:265:19\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at async main (file:///Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/tools/smoke/mvp_smoke.mjs:118:28)",
+      "code": "app/network-error"
+    }
+  ]
+}

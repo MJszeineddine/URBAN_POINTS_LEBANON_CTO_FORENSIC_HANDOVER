@@ -1,0 +1,109 @@
+# RC_STRICT Gate Specification
+# Zero-tolerance Release Candidate acceptance criteria
+# Machine-verifiable GO/NO-GO verdict
+
+version: "1.0"
+gate_name: "RC_STRICT"
+enforcement_level: "ZERO_TOLERANCE"
+
+# A) Zero Skips Requirement
+zero_skips:
+  enabled: true
+  description: "All tests must execute and PASS. No SKIP status allowed."
+  checks:
+    - SUMMARY.json must exist
+    - All tests in SUMMARY.json must have status=PASS
+    - No test can have status=SKIP or status=SKIPPED
+    - SMOKE_LOG.txt must NOT contain "SKIP" pattern
+
+# B) Merchant Validation Requirements (REAL validation, not acceptance of errors)
+merchant_validation:
+  enabled: true
+  description: "Merchant validation must complete full flow with redemption record"
+  checks:
+    - validateQRToken OR validateRedemption must return success=true (NOT error acceptance)
+    - PIN flow must be completed if required (validatePIN callable)
+    - Redemption record must exist in redemptions collection
+    - Offer must show used=true for that customer/month after redemption
+  forbidden_patterns:
+    - "PIN verification required" # Unless followed by PIN flow completion
+    - "accepted as valid"
+    - "callable reachable (PIN verification flow active)"
+  required_evidence:
+    - Redemption document ID in RESULTS.json or SMOKE_LOG.txt
+    - used=true verification logged
+
+# C) getBalance Contract Safety
+get_balance_contract:
+  enabled: true
+  description: "getBalance must work with empty payload using context.auth.uid"
+  checks:
+    - SMOKE_LOG.txt must show getBalance called with {} or empty payload
+    - getBalance test must return success with balance value
+    - No "customerId required" or similar error
+
+# D) Evidence Bundle Completeness
+evidence_bundle:
+  enabled: true
+  description: "Complete evidence artifacts must be present"
+  required_files:
+    - SUMMARY.json
+    - RESULTS.json
+    - SMOKE_LOG.txt
+    - commit_hash.txt
+    - git_status.txt
+    - branch.txt
+    - logs/emulators/EMULATORS_EXEC.log
+  required_structure:
+    base_path: "local-ci/evidence/RC_STRICT_*"
+    subdirs:
+      - logs
+      - logs/backend
+      - logs/emulators
+      - logs/smoke
+
+# E) Forbidden Patterns (anywhere in evidence)
+forbidden_patterns:
+  enabled: true
+  description: "Patterns that indicate incomplete implementation"
+  patterns:
+    - "SKIP"
+    - "TODO"
+    - "unimplemented"
+    - "not implemented"
+    - "PIN verification required" # Unless PIN flow completed
+    - "accepted as valid"
+    - "callable reachable (PIN" # Substring of error acceptance
+  exclude_files: []
+
+# Test Requirements
+test_requirements:
+  minimum_tests: 6
+  required_tests:
+    - getAvailableOffers
+    - getOffersByLocationFunc
+    - generateQRToken
+    - validateQRToken # Or validateRedemption with full flow
+    - getBalance
+    - getPointsHistory
+  all_must_pass: true
+
+# Validation Output
+validation_output:
+  format: "json"
+  file: "VALIDATION.json"
+  fields:
+    - gate_name
+    - verdict # PASS or FAIL
+    - timestamp
+    - criteria_checks # Array of {criterion, status, details}
+    - errors # Array of specific failures
+    - warnings # Array of non-blocking issues
+    - evidence_path
+
+# Exit Codes
+exit_codes:
+  pass: 0
+  fail: 1
+  evidence_missing: 2
+  validation_error: 3

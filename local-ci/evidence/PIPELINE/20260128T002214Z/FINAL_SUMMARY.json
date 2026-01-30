@@ -1,0 +1,13 @@
+{
+  "timestamp": "20260128T002214Z",
+  "verdict": "GO",
+  "level_achieved": "GO_RUN",
+  "internal_blockers": [],
+  "external_blockers": [
+    "Firebase CLI error"
+  ],
+  "gates_total": 11,
+  "gates_passed": 11,
+  "gates_failed": 0,
+  "evidence_dir": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/local-ci/evidence/PIPELINE/20260128T002214Z"
+}

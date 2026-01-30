@@ -1,0 +1,272 @@
+#!/usr/bin/env bash
+# ZERO_HUMAN_PAIN_GATE - Internal Beta Runner
+# Starts Firebase Emulator, runs production gate, produces real evidence.
+# Exit codes: 0 (GO), 1 (NO_GO/preflight fail), 2 (timeout)
+
+set -euo pipefail
+
+REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")"/.. && pwd)"
+TS="$(date -u +"%Y%m%dT%H%M%SZ")"
+EVIDENCE_ROOT="$REPO_ROOT/docs/evidence/zero_human_pain_gate"
+EVIDENCE_DIR="$EVIDENCE_ROOT/$TS"
+
+mkdir -p "$EVIDENCE_DIR"
+
+EMULATOR_LOG="$EVIDENCE_DIR/firebase_emulator.log"
+WRAPPER_LOG="$EVIDENCE_DIR/internal_beta_wrapper_output.log"
+EMULATOR_PID_FILE="$REPO_ROOT/.firebase_emulator.pid"
+
+# Cleanup function
+cleanup() {
+  echo ""
+  echo "▶ Cleanup: Stopping Firebase Emulator..."
+  if [ -f "$EMULATOR_PID_FILE" ]; then
+    EMULATOR_PID=$(cat "$EMULATOR_PID_FILE")
+    if kill -0 "$EMULATOR_PID" 2>/dev/null; then
+      kill "$EMULATOR_PID" 2>/dev/null || true
+      sleep 2
+      kill -9 "$EMULATOR_PID" 2>/dev/null || true
+    fi
+    rm -f "$EMULATOR_PID_FILE"
+  fi
+  # Also kill any firebase emulators
+  pkill -f "firebase emulators:start" 2>/dev/null || true
+}
+
+trap cleanup EXIT
+
+echo "╔═══════════════════════════════════════════════════════════════════════════════╗"
+echo "║                                                                               ║"
+echo "║           ZERO_HUMAN_PAIN_GATE - INTERNAL BETA (Firebase Emulator)           ║"
+echo "║                                                                               ║"
+echo "╚═══════════════════════════════════════════════════════════════════════════════╝"
+echo ""
+echo "Timestamp: $TS"
+echo "Evidence: $EVIDENCE_DIR"
+echo ""
+
+# ============================================================================
+# PREFLIGHT: Check Firebase CLI
+# ============================================================================
+
+echo "▶ PREFLIGHT: Checking Firebase CLI..."
+
+if ! command -v firebase &> /dev/null; then
+  echo "❌ Firebase CLI not found"
+  echo ""
+  {
+    echo "# ZERO_HUMAN_PAIN_GATE Internal Beta - NO_GO"
+    echo ""
+    echo "**VERDICT: NO_GO ❌**"
+    echo ""
+    echo "## Reason: Firebase CLI Not Installed"
+    echo ""
+    echo "The Firebase CLI is required to run the emulator."
+    echo ""
+    echo "**To install:**"
+    echo "\`\`\`bash"
+    echo "npm install -g firebase-tools"
+    echo "# Or:"
+    echo "curl -sL https://firebase.tools | bash"
+    echo "\`\`\`"
+    echo ""
+    echo "**Then retry:**"
+    echo "\`\`\`bash"
+    echo "bash tools/run_zero_human_pain_gate_internal_beta.sh"
+    echo "\`\`\`"
+  } > "$EVIDENCE_DIR/NO_GO_FIREBASE_CLI_MISSING.md"
+  
+  echo "Evidence: $EVIDENCE_DIR"
+  echo "Verdict: NO_GO_FIREBASE_CLI_MISSING.md"
+  exit 1
+fi
+
+FIREBASE_VERSION=$(firebase --version 2>/dev/null || echo "unknown")
+echo "✅ Firebase CLI found: $FIREBASE_VERSION"
+echo ""
+
+# ============================================================================
+# START FIREBASE EMULATOR
+# ============================================================================
+
+echo "▶ Starting Firebase Emulator..."
+echo "   Project: demo-zero-human-pain"
+echo "   Services: firestore, functions, auth"
+echo "   Log: $EMULATOR_LOG"
+echo ""
+
+cd "$REPO_ROOT"
+
+# Start emulator in background
+firebase emulators:start \
+  --only firestore,functions,auth \
+  --project demo-zero-human-pain \
+  > "$EMULATOR_LOG" 2>&1 &
+
+EMULATOR_PID=$!
+echo "$EMULATOR_PID" > "$EMULATOR_PID_FILE"
+
+echo "   PID: $EMULATOR_PID"
+echo ""
+
+# ============================================================================
+# WAIT FOR EMULATOR PORTS
+# ============================================================================
+
+echo "▶ Waiting for emulator to be ready..."
+
+# Wait for "All emulators ready" message in log
+TIMEOUT=90
+ELAPSED=0
+emulator_ready=false
+
+while [ $ELAPSED -lt $TIMEOUT ]; do
+  # Check if emulator log contains "All emulators ready"
+  if grep -q "All emulators ready" "$EMULATOR_LOG" 2>/dev/null; then
+    emulator_ready=true
+    echo "✅ Emulator ready (detected from log)"
+    
+    # Extract ports from log
+    echo ""
+    grep -A 10 "Emulator.*Host:Port" "$EMULATOR_LOG" 2>/dev/null | grep -E "(Firestore|Auth|Functions|Hub)" || true
+    echo ""
+    break
+  fi
+  
+  # Also check if process died
+  if ! kill -0 "$EMULATOR_PID" 2>/dev/null; then
+    echo "❌ Emulator process died"
+    break
+  fi
+  
+  sleep 2
+  ELAPSED=$((ELAPSED + 2))
+  
+  # Show progress every 10 seconds
+  if [ $((ELAPSED % 10)) -eq 0 ]; then
+    echo "   Waiting... ($ELAPSED/$TIMEOUT seconds)"
+  fi
+done
+
+if [ "$emulator_ready" = false ]; then
+  echo "❌ Emulator not ready after ${TIMEOUT}s timeout"
+  echo ""
+  
+  {
+    echo "# ZERO_HUMAN_PAIN_GATE Internal Beta - NO_GO"
+    echo ""
+    echo "**VERDICT: NO_GO ❌**"
+    echo ""
+    echo "## Reason: Firebase Emulator Start Timeout"
+    echo ""
+    echo "The Firebase Emulator did not become ready within ${TIMEOUT} seconds."
+    echo ""
+    echo "**Emulator log (last 50 lines):**"
+    echo "\`\`\`"
+    tail -50 "$EMULATOR_LOG" 2>/dev/null || echo "(no log available)"
+    echo "\`\`\`"
+    echo ""
+    echo "**To diagnose:**"
+    echo "\`\`\`bash"
+    echo "cat $EMULATOR_LOG"
+    echo "\`\`\`"
+    echo ""
+    echo "**Common issues:**"
+    echo "- Java not installed (required for Firestore emulator)"
+    echo "- Ports already in use (kill existing firebase processes)"
+    echo "- firebase.json configuration issues"
+    echo "- Missing functions source directory"
+  } > "$EVIDENCE_DIR/NO_GO_EMULATOR_START_TIMEOUT.md"
+  
+  echo "Evidence: $EVIDENCE_DIR"
+  echo "Verdict: NO_GO_EMULATOR_START_TIMEOUT.md"
+  exit 1
+fi
+
+# ============================================================================
+# RUN PRODUCTION GATE
+# ============================================================================
+
+echo "▶ Running Production Gate (wrapper)..."
+echo "   Command: bash tools/run_zero_human_pain_gate_wrapper.sh"
+echo ""
+
+# Give emulator a moment to stabilize
+sleep 3
+
+cd "$REPO_ROOT"
+
+# Run wrapper and capture output + exit code
+GATE_EXIT_CODE=0
+bash tools/run_zero_human_pain_gate_wrapper.sh > "$WRAPPER_LOG" 2>&1 || GATE_EXIT_CODE=$?
+
+echo "   Gate finished with exit code: $GATE_EXIT_CODE"
+echo ""
+
+# ============================================================================
+# COLLECT RESULTS
+# ============================================================================
+
+echo "▶ Collecting Results..."
+echo ""
+
+# Find the most recent evidence folder (the gate creates its own timestamp)
+LATEST_GATE_EVIDENCE=$(find "$EVIDENCE_ROOT" -maxdepth 1 -type d -name "202*" 2>/dev/null | sort | tail -n 1)
+
+if [ -z "$LATEST_GATE_EVIDENCE" ]; then
+  echo "❌ No evidence folder found from gate execution"
+  echo "   Wrapper log: $WRAPPER_LOG"
+  echo ""
+  cat "$WRAPPER_LOG"
+  exit 2
+fi
+
+echo "Evidence Folder: $LATEST_GATE_EVIDENCE"
+echo ""
+
+echo "Files:"
+ls -lah "$LATEST_GATE_EVIDENCE/"
+echo ""
+
+# Find verdict file
+VERDICT_FILE=""
+if [ -f "$LATEST_GATE_EVIDENCE/VERDICT.md" ]; then
+  VERDICT_FILE="$LATEST_GATE_EVIDENCE/VERDICT.md"
+elif [ -f "$LATEST_GATE_EVIDENCE/NO_GO_EMULATOR_NOT_RUNNING.md" ]; then
+  VERDICT_FILE="$LATEST_GATE_EVIDENCE/NO_GO_EMULATOR_NOT_RUNNING.md"
+else
+  # Find any NO_GO file
+  VERDICT_FILE=$(find "$LATEST_GATE_EVIDENCE" -name "NO_GO_*.md" 2>/dev/null | head -1)
+  if [ -z "$VERDICT_FILE" ]; then
+    VERDICT_FILE=$(find "$LATEST_GATE_EVIDENCE" -name "VERDICT*.md" 2>/dev/null | head -1)
+  fi
+fi
+
+if [ -n "$VERDICT_FILE" ]; then
+  echo "═══════════════════════════════════════════════════════════════════════════════"
+  echo "VERDICT FILE: $(basename "$VERDICT_FILE")"
+  echo "═══════════════════════════════════════════════════════════════════════════════"
+  echo ""
+  cat "$VERDICT_FILE"
+  echo ""
+  echo "═══════════════════════════════════════════════════════════════════════════════"
+else
+  echo "⚠️  No verdict file found"
+fi
+
+echo ""
+echo "Wrapper Output:"
+echo "───────────────────────────────────────────────────────────────────────────────"
+cat "$WRAPPER_LOG"
+echo "───────────────────────────────────────────────────────────────────────────────"
+echo ""
+
+echo "╔═══════════════════════════════════════════════════════════════════════════════╗"
+echo "║                            INTERNAL BETA COMPLETE                             ║"
+echo "╚═══════════════════════════════════════════════════════════════════════════════╝"
+echo ""
+echo "Evidence Folder: $LATEST_GATE_EVIDENCE"
+echo "Exit Code: $GATE_EXIT_CODE"
+echo ""
+
+exit "$GATE_EXIT_CODE"

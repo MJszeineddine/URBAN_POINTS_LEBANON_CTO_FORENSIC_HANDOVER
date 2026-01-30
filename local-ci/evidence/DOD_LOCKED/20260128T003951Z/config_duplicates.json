@@ -1,0 +1,60 @@
+{
+  "canonical_root": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER",
+  "files": {
+    "firebase.json": [
+      "firebase.json",
+      "source/firebase.json",
+      "local-ci/audit_snapshot/LATEST/snapshot/firebase.json",
+      "local-ci/audit_snapshot/LATEST/snapshot/source/firebase.json",
+      "local-ci/audit_snapshot/LATEST/snapshot/source/infra/firebase.json",
+      "source/infra/firebase.json"
+    ],
+    "firestore.rules": [
+      "firestore.rules",
+      "local-ci/audit_snapshot/LATEST/snapshot/firestore.rules",
+      "local-ci/audit_snapshot/LATEST/snapshot/source/infra/firestore.rules",
+      "local-ci/audit_snapshot/LATEST/snapshot/source/backend/firebase-functions/src/__tests__/firestore.rules",
+      "source/infra/firestore.rules",
+      "source/backend/firebase-functions/src/__tests__/firestore.rules"
+    ],
+    "storage.rules": [
+      "storage.rules",
+      "local-ci/audit_snapshot/LATEST/snapshot/storage.rules",
+      "local-ci/audit_snapshot/LATEST/snapshot/source/infra/storage.rules",
+      "source/infra/storage.rules"
+    ],
+    "firestore.indexes.json": [
+      "firestore.indexes.json",
+      "local-ci/audit_snapshot/LATEST/snapshot/firestore.indexes.json",
+      "local-ci/audit_snapshot/LATEST/snapshot/source/infra/firestore.indexes.json",
+      "source/infra/firestore.indexes.json"
+    ]
+  },
+  "duplicates": {
+    "firebase.json": [
+      "source/firebase.json",
+      "local-ci/audit_snapshot/LATEST/snapshot/firebase.json",
+      "local-ci/audit_snapshot/LATEST/snapshot/source/firebase.json",
+      "local-ci/audit_snapshot/LATEST/snapshot/source/infra/firebase.json",
+      "source/infra/firebase.json"
+    ],
+    "firestore.rules": [
+      "local-ci/audit_snapshot/LATEST/snapshot/firestore.rules",
+      "local-ci/audit_snapshot/LATEST/snapshot/source/infra/firestore.rules",
+      "local-ci/audit_snapshot/LATEST/snapshot/source/backend/firebase-functions/src/__tests__/firestore.rules",
+      "source/infra/firestore.rules",
+      "source/backend/firebase-functions/src/__tests__/firestore.rules"
+    ],
+    "storage.rules": [
+      "local-ci/audit_snapshot/LATEST/snapshot/storage.rules",
+      "local-ci/audit_snapshot/LATEST/snapshot/source/infra/storage.rules",
+      "source/infra/storage.rules"
+    ],
+    "firestore.indexes.json": [
+      "local-ci/audit_snapshot/LATEST/snapshot/firestore.indexes.json",
+      "local-ci/audit_snapshot/LATEST/snapshot/source/infra/firestore.indexes.json",
+      "source/infra/firestore.indexes.json"
+    ]
+  },
+  "warnings": []
+}

@@ -1,0 +1,5 @@
+ M tools/smoke/package.json
+?? local-ci/evidence/MVP_SMOKE_20260128_161407/
+?? tools/gates/run_mvp_smoke_gate.ps1
+?? tools/gates/run_mvp_smoke_gate.sh
+?? tools/smoke/mvp_smoke.mjs

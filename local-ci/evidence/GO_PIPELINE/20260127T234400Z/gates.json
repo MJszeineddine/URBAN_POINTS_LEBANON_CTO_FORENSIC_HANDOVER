@@ -1,0 +1,159 @@
+{
+  "functions_install": {
+    "id": "functions_install",
+    "cwd": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions",
+    "cmd": [
+      "npm",
+      "ci",
+      "--no-audit",
+      "--no-fund",
+      "--legacy-peer-deps"
+    ],
+    "rc": 0,
+    "seconds": 180,
+    "stdout_path": "logs/functions_install_stdout.log",
+    "stderr_path": "logs/functions_install_stderr.log",
+    "timeout_seconds": 180,
+    "started_utc": "2026-01-27T23:44:00.130080Z",
+    "finished_utc": "2026-01-27T23:44:11.631686Z",
+    "passed": true
+  },
+  "functions_build": {
+    "id": "functions_build",
+    "cwd": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions",
+    "cmd": [
+      "npm",
+      "run",
+      "build"
+    ],
+    "rc": 0,
+    "seconds": 900,
+    "stdout_path": "logs/functions_build_stdout.log",
+    "stderr_path": "logs/functions_build_stderr.log",
+    "timeout_seconds": 900,
+    "started_utc": "2026-01-27T23:44:11.632622Z",
+    "finished_utc": "2026-01-27T23:44:13.934927Z",
+    "passed": true
+  },
+  "web_admin_install": {
+    "id": "web_admin_install",
+    "cwd": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/web-admin",
+    "cmd": [
+      "npm",
+      "ci",
+      "--no-audit",
+      "--no-fund",
+      "--legacy-peer-deps"
+    ],
+    "rc": 0,
+    "seconds": 180,
+    "stdout_path": "logs/web_admin_install_stdout.log",
+    "stderr_path": "logs/web_admin_install_stderr.log",
+    "timeout_seconds": 180,
+    "started_utc": "2026-01-27T23:44:13.935519Z",
+    "finished_utc": "2026-01-27T23:44:25.975680Z",
+    "passed": true
+  },
+  "web_admin_build": {
+    "id": "web_admin_build",
+    "cwd": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/web-admin",
+    "cmd": [
+      "npm",
+      "run",
+      "build"
+    ],
+    "rc": 0,
+    "seconds": 900,
+    "stdout_path": "logs/web_admin_build_stdout.log",
+    "stderr_path": "logs/web_admin_build_stderr.log",
+    "timeout_seconds": 900,
+    "started_utc": "2026-01-27T23:44:25.977002Z",
+    "finished_utc": "2026-01-27T23:44:32.599926Z",
+    "passed": true
+  },
+  "web_admin_smoke": {
+    "id": "web_admin_smoke",
+    "rc": 0,
+    "passed": true
+  },
+  "config_firebase_json": {
+    "id": "config_firebase_json",
+    "rc": 0,
+    "passed": true
+  },
+  "config_firestore_rules": {
+    "id": "config_firestore_rules",
+    "rc": 0,
+    "passed": true
+  },
+  "flutter_customer_pub_get": {
+    "id": "flutter_customer_pub_get",
+    "cwd": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer",
+    "cmd": [
+      "flutter",
+      "pub",
+      "get"
+    ],
+    "rc": 0,
+    "seconds": 180,
+    "stdout_path": "logs/flutter_customer_pub_get_stdout.log",
+    "stderr_path": "logs/flutter_customer_pub_get_stderr.log",
+    "timeout_seconds": 180,
+    "started_utc": "2026-01-27T23:44:40.651704Z",
+    "finished_utc": "2026-01-27T23:44:42.601810Z",
+    "passed": true
+  },
+  "flutter_customer_build": {
+    "id": "flutter_customer_build",
+    "cwd": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer",
+    "cmd": [
+      "flutter",
+      "build",
+      "apk",
+      "--debug"
+    ],
+    "rc": 0,
+    "seconds": 900,
+    "stdout_path": "logs/flutter_customer_build_stdout.log",
+    "stderr_path": "logs/flutter_customer_build_stderr.log",
+    "timeout_seconds": 900,
+    "started_utc": "2026-01-27T23:44:42.602854Z",
+    "finished_utc": "2026-01-27T23:45:00.012140Z",
+    "passed": true
+  },
+  "flutter_merchant_pub_get": {
+    "id": "flutter_merchant_pub_get",
+    "cwd": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant",
+    "cmd": [
+      "flutter",
+      "pub",
+      "get"
+    ],
+    "rc": 0,
+    "seconds": 180,
+    "stdout_path": "logs/flutter_merchant_pub_get_stdout.log",
+    "stderr_path": "logs/flutter_merchant_pub_get_stderr.log",
+    "timeout_seconds": 180,
+    "started_utc": "2026-01-27T23:45:00.013928Z",
+    "finished_utc": "2026-01-27T23:45:01.632842Z",
+    "passed": true
+  },
+  "flutter_merchant_build": {
+    "id": "flutter_merchant_build",
+    "cwd": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant",
+    "cmd": [
+      "flutter",
+      "build",
+      "apk",
+      "--debug"
+    ],
+    "rc": 0,
+    "seconds": 900,
+    "stdout_path": "logs/flutter_merchant_build_stdout.log",
+    "stderr_path": "logs/flutter_merchant_build_stderr.log",
+    "timeout_seconds": 900,
+    "started_utc": "2026-01-27T23:45:01.635175Z",
+    "finished_utc": "2026-01-27T23:45:08.443982Z",
+    "passed": true
+  }
+}

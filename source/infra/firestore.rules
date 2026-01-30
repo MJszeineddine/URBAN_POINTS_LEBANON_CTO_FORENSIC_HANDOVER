@@ -1,0 +1,137 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    function isAdmin() {
+      return isAuthenticated() && (request.auth.token.role == 'admin' || exists(/databases/$(database)/documents/admins/$(request.auth.uid)));
+    }
+
+    function isOwner(userId) {
+      return isAuthenticated() && request.auth.uid == userId;
+    }
+
+    function isMerchantOwner(merchantId) {
+      return isAuthenticated() && request.auth.uid == merchantId;
+    }
+
+    // Users profile documents
+    match /users/{userId} {
+      allow read: if isOwner(userId) || isAdmin();
+      allow create: if false; // Created by Cloud Functions on auth user creation
+      allow update: if isOwner(userId) || isAdmin();
+      allow delete: if isAdmin();
+    }
+
+    // Customers collection
+    match /customers/{customerId} {
+      allow read: if isOwner(customerId) || isAdmin();
+      allow create: if isOwner(customerId);
+      allow update: if isOwner(customerId) || isAdmin();
+      allow delete: if isAdmin();
+    }
+
+    // Merchants collection
+    match /merchants/{merchantId} {
+      allow read: if true; // Public directory
+      allow create: if isAuthenticated();
+      allow update: if isMerchantOwner(merchantId) || isAdmin();
+      allow delete: if isAdmin();
+    }
+
+    // Admins registry (read-only to admins)
+    match /admins/{adminId} {
+      allow read: if isOwner(adminId) || isAdmin();
+      allow write: if false;
+    }
+
+    // Offers lifecycle
+    match /offers/{offerId} {
+      allow read: if (resource.data.is_active == true && (resource.data.status == 'active' || resource.data.status == 'approved')) ||
+                    (isAuthenticated() && (resource.data.merchant_id == request.auth.uid || isAdmin()));
+
+      allow create: if isAuthenticated() && request.resource.data.merchant_id == request.auth.uid;
+
+      // Merchants can update their own offers without changing status/is_active
+      allow update: if isMerchantOwner(resource.data.merchant_id)
+                    && request.resource.data.status == resource.data.status
+                    && request.resource.data.is_active == resource.data.is_active
+                    && request.resource.data.merchant_id == resource.data.merchant_id;
+
+      // Admins can update/approve/reject
+      allow update: if isAdmin();
+
+      allow delete: if isAdmin();
+    }
+
+    // QR tokens (server-only writes)
+    match /qr_tokens/{tokenId} {
+      allow read: if isAuthenticated() && (resource.data.user_id == request.auth.uid || resource.data.merchant_id == request.auth.uid || isAdmin());
+      allow write: if false;
+    }
+
+    // Redemptions (server-only writes)
+    match /redemptions/{redemptionId} {
+      allow read: if isAuthenticated() && (resource.data.user_id == request.auth.uid || resource.data.merchant_id == request.auth.uid || isAdmin());
+      allow write: if false;
+    }
+
+    // Idempotency keys (server-only)
+    match /idempotency_keys/{keyId} {
+      allow read: if isAdmin();
+      allow write: if false;
+    }
+
+    // Audit logs (server-only)
+    match /audit_logs/{logId} {
+      allow read: if isAdmin();
+      allow write: if false;
+    }
+
+    // Rate limits (server-only)
+    match /rate_limits/{limitId} {
+      allow read: if isAdmin();
+      allow write: if false;
+    }
+
+    // Points expiry events (server writes, owner/admin reads)
+    match /points_expiry_events/{eventId} {
+      allow read: if isAuthenticated() && (resource.data.user_id == request.auth.uid || isAdmin());
+      allow write: if false;
+    }
+
+    // Notifications collection
+    match /notifications/{notificationId} {
+      allow read: if isAuthenticated() && resource.data.user_id == request.auth.uid;
+      allow write: if false;
+    }
+
+    // Push campaigns (admin only)
+    match /push_campaigns/{campaignId} {
+      allow read, write: if isAdmin();
+    }
+
+    // Payment webhooks (server-only)
+    match /payment_webhooks/{webhookId} {
+      allow read: if isAdmin();
+      allow write: if false;
+    }
+
+    // OTP codes (server-only)
+    match /otp_codes/{otpId} {
+      allow read, write: if false;
+    }
+
+    // System alerts (admin only)
+    match /system_alerts/{alertId} {
+      allow read, write: if isAdmin();
+    }
+
+    // Default deny
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

@@ -1,0 +1,24 @@
+[2026-01-28T14:19:43.104Z] Starting MVP Smoke Gate
+[2026-01-28T14:19:43.105Z] Project: demo-mvp
+[2026-01-28T14:19:43.105Z] Evidence: ../../local-ci/evidence/MVP_SMOKE_20260128_161913
+[2026-01-28T14:19:43.105Z] Emulator ports: Firestore=8080, Auth=9099, Functions=5001
+[2026-01-28T14:19:43.106Z] FIREBASE_AUTH_EMULATOR_HOST: undefined
+[2026-01-28T14:19:43.106Z] FIRESTORE_EMULATOR_HOST: 127.0.0.1:8080
+[2026-01-28T14:19:43.106Z] [1/9] Initializing test environment...
+[2026-01-28T14:19:43.128Z] ✓ Test environment initialized
+[2026-01-28T14:19:43.129Z] [2/9] Seeding Firestore data...
+[2026-01-28T14:19:43.334Z]   Seeded: merchants, offers, users, subscriptions, points_transactions, points_balance
+[2026-01-28T14:19:43.334Z] ✓ Firestore data seeded
+[2026-01-28T14:19:43.334Z] [3/9] Initializing Admin SDK...
+[2026-01-28T14:19:43.334Z] Using auth emulator: 127.0.0.1:9099
+[2026-01-28T14:19:44.412Z] ✓ Admin SDK initialized
+[2026-01-28T14:19:44.412Z] [4/9] Creating auth users...
+[2026-01-28T14:19:44.414Z] 
+[2026-01-28T14:19:44.414Z] ═══════════════════════════════════════════════════════════
+[2026-01-28T14:19:44.414Z] MVP SMOKE GATE: FAIL ❌
+[2026-01-28T14:19:44.414Z] Error: Error while making request: connect ECONNREFUSED 127.0.0.1:9099. Error code: ECONNREFUSED
+[2026-01-28T14:19:44.414Z] Stack: Error: Error while making request: connect ECONNREFUSED 127.0.0.1:9099. Error code: ECONNREFUSED
+    at /Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/tools/smoke/node_modules/firebase-admin/lib/utils/api-request.js:265:19
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async main (file:///Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/tools/smoke/mvp_smoke.mjs:118:28)
+[2026-01-28T14:19:44.414Z] ═══════════════════════════════════════════════════════════

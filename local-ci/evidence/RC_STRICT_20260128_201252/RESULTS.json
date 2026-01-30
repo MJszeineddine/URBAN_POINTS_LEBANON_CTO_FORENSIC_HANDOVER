@@ -1,0 +1,60 @@
+{
+  "calls": [
+    {
+      "name": "getAvailableOffers",
+      "response": {
+        "success": true,
+        "offers": [
+          {
+            "id": "offer-test-001",
+            "title": "Test Offer",
+            "description": "Test offer for smoke tests",
+            "points_required": 10,
+            "points_cost": 10,
+            "image_url": "",
+            "valid_until": "2027-01-28T18:13:34.178Z",
+            "is_active": true,
+            "discount_percentage": 10,
+            "created_at": null,
+            "merchant_id": "merchant-test-001",
+            "merchant_name": "",
+            "category": "test",
+            "distance_km": null,
+            "used": false
+          }
+        ]
+      }
+    },
+    {
+      "name": "getOffersByLocationFunc",
+      "response": {
+        "success": true,
+        "offers": [],
+        "totalCount": 0
+      }
+    },
+    {
+      "name": "generateQRToken",
+      "response": {
+        "success": true,
+        "token": "eyJ1c2VySWQiOiJ0ZXN0LWN1c3RvbWVyLXVpZCIsIm9mZmVySWQiOiJvZmZlci10ZXN0LTAwMSIsIm1lcmNoYW50SWQiOiJ0ZXN0LW1lcmNoYW50LXVpZCIsImRldmljZUhhc2giOiJzbW9rZS10ZXN0LWRldmljZS1oYXNoIiwidGltZXN0YW1wIjoxNzY5NjI0MDE4NzAwLCJleHBpcmVzQXQiOjE3Njk2MjQwNzg3MDAsIm5vbmNlIjoiYWU4M2JjODM5NmUwNzg4MjMwMzcyYjVmNDBlNjFlNWYiLCJzaWduYXR1cmUiOiJlZjdjNWRlZTY5YTJkNTEzYWJmNjBiMWFjNzk0NzllOWIxZGVlOWQ1YmZjNTU3MGNhOTVjN2Y1YTZkYWViMzRjIn0=",
+        "displayCode": "296478",
+        "expiresAt": "2026-01-28T18:14:38.700Z",
+        "qr_token": "eyJ1c2VySWQiOiJ0ZXN0LWN1c3RvbWVyLXVpZCIsIm9mZmVySWQiOiJvZmZlci10ZXN0LTAwMSIsIm1lcmNoYW50SWQiOiJ0ZXN0LW1lcmNoYW50LXVpZCIsImRldmljZUhhc2giOiJzbW9rZS10ZXN0LWRldmljZS1oYXNoIiwidGltZXN0YW1wIjoxNzY5NjI0MDE4NzAwLCJleHBpcmVzQXQiOjE3Njk2MjQwNzg3MDAsIm5vbmNlIjoiYWU4M2JjODM5NmUwNzg4MjMwMzcyYjVmNDBlNjFlNWYiLCJzaWduYXR1cmUiOiJlZjdjNWRlZTY5YTJkNTEzYWJmNjBiMWFjNzk0NzllOWIxZGVlOWQ1YmZjNTU3MGNhOTVjN2Y1YTZkYWViMzRjIn0=",
+        "display_code": "296478",
+        "expires_at": "2026-01-28T18:14:38.700Z"
+      }
+    }
+  ],
+  "timings": {
+    "getAvailableOffers": 1325,
+    "getOffersByLocationFunc": 778,
+    "generateQRToken": 1061
+  },
+  "errors": [
+    {
+      "message": "validatePIN failed: Invalid input data",
+      "stack": "Error: validatePIN failed: Invalid input data\n    at main (file:///Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/tools/smoke/mvp_smoke.mjs:307:15)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)"
+    }
+  ]
+}

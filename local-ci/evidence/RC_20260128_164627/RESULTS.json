@@ -1,0 +1,68 @@
+{
+  "calls": [
+    {
+      "name": "getAvailableOffers",
+      "response": {
+        "success": true,
+        "offers": [
+          {
+            "id": "offer-test-001",
+            "title": "Test Offer",
+            "description": "Test offer for smoke tests",
+            "points_required": 10,
+            "points_cost": 10,
+            "image_url": "",
+            "valid_until": "2027-01-28T14:47:05.633Z",
+            "is_active": true,
+            "discount_percentage": 10,
+            "created_at": null,
+            "merchant_id": "merchant-test-001",
+            "merchant_name": "",
+            "category": "test",
+            "distance_km": null,
+            "used": false
+          }
+        ]
+      }
+    },
+    {
+      "name": "getOffersByLocationFunc",
+      "response": {
+        "success": true,
+        "offers": [],
+        "totalCount": 0
+      }
+    },
+    {
+      "name": "generateQRToken",
+      "response": {
+        "success": true,
+        "token": "eyJ1c2VySWQiOiJ0ZXN0LWN1c3RvbWVyLXVpZCIsIm9mZmVySWQiOiJvZmZlci10ZXN0LTAwMSIsIm1lcmNoYW50SWQiOiJ0ZXN0LW1lcmNoYW50LXVpZCIsImRldmljZUhhc2giOiJzbW9rZS10ZXN0LWRldmljZS1oYXNoIiwidGltZXN0YW1wIjoxNzY5NjExNjI5NzE5LCJleHBpcmVzQXQiOjE3Njk2MTE2ODk3MTksIm5vbmNlIjoiMTBkMTg2MDk5YWFjZGNmMjU4MDMwODM5OWU3NTE2MTgiLCJzaWduYXR1cmUiOiJlNGMzOGE2NGEyOWQ2OTg5NmVmZDA5NGQyNzZjYzIzNTBmZTgyY2Q1YTU3ZjUyMTVmMzg2MjcyMzcwZjhmNWFiIn0=",
+        "displayCode": "134403",
+        "expiresAt": "2026-01-28T14:48:09.719Z",
+        "qr_token": "eyJ1c2VySWQiOiJ0ZXN0LWN1c3RvbWVyLXVpZCIsIm9mZmVySWQiOiJvZmZlci10ZXN0LTAwMSIsIm1lcmNoYW50SWQiOiJ0ZXN0LW1lcmNoYW50LXVpZCIsImRldmljZUhhc2giOiJzbW9rZS10ZXN0LWRldmljZS1oYXNoIiwidGltZXN0YW1wIjoxNzY5NjExNjI5NzE5LCJleHBpcmVzQXQiOjE3Njk2MTE2ODk3MTksIm5vbmNlIjoiMTBkMTg2MDk5YWFjZGNmMjU4MDMwODM5OWU3NTE2MTgiLCJzaWduYXR1cmUiOiJlNGMzOGE2NGEyOWQ2OTg5NmVmZDA5NGQyNzZjYzIzNTBmZTgyY2Q1YTU3ZjUyMTVmMzg2MjcyMzcwZjhmNWFiIn0=",
+        "display_code": "134403",
+        "expires_at": "2026-01-28T14:48:09.719Z"
+      }
+    },
+    {
+      "name": "validateQRToken",
+      "response": {
+        "success": false,
+        "error": "PIN verification required. Please validate PIN first."
+      }
+    }
+  ],
+  "timings": {
+    "getAvailableOffers": 1225,
+    "getOffersByLocationFunc": 674,
+    "generateQRToken": 826,
+    "validateQRToken": 783
+  },
+  "errors": [
+    {
+      "message": "validateQRToken: Expected success indicator, got: {\"success\":false,\"error\":\"PIN verification required. Please validate PIN first.\"}",
+      "stack": "Error: validateQRToken: Expected success indicator, got: {\"success\":false,\"error\":\"PIN verification required. Please validate PIN first.\"}\n    at validateQRTokenResponse (file:///Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/tools/smoke/mvp_smoke.mjs:609:11)\n    at main (file:///Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/tools/smoke/mvp_smoke.mjs:280:5)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)"
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "timestamp": "20260128T003905Z",
+  "verdict": "GO",
+  "level_achieved": "GO_RUN",
+  "internal_blockers": [
+    "Smoke tests failed"
+  ],
+  "external_blockers": [],
+  "gates_total": 12,
+  "gates_passed": 11,
+  "gates_failed": 1,
+  "evidence_dir": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/local-ci/evidence/PIPELINE/20260128T003905Z"
+}

@@ -1,0 +1,13 @@
+{
+  "status": "FAIL",
+  "timestamp": "2026-01-28T14:24:20.533Z",
+  "error": "validateQRToken: Expected success indicator, got: {\"success\":false,\"error\":\"Value for argument \\\"data\\\" is not a valid Firestore document. Cannot use \\\"undefined\\\" as a Firestore value (found in field \\\"merchant_id\\\"). If you want to ignore undefined values, enable `ignoreUndefinedProperties`.\"}",
+  "stack": "Error: validateQRToken: Expected success indicator, got: {\"success\":false,\"error\":\"Value for argument \\\"data\\\" is not a valid Firestore document. Cannot use \\\"undefined\\\" as a Firestore value (found in field \\\"merchant_id\\\"). If you want to ignore undefined values, enable `ignoreUndefinedProperties`.\"}\n    at validateQRTokenResponse (file:///Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/tools/smoke/mvp_smoke.mjs:584:11)\n    at main (file:///Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/tools/smoke/mvp_smoke.mjs:265:5)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)",
+  "failedAt": "validateQRToken",
+  "region": "us-central1",
+  "ports": {
+    "firestore": "8080",
+    "auth": "9099",
+    "functions": "5001"
+  }
+}

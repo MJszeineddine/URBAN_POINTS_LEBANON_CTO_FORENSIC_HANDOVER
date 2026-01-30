@@ -1,0 +1,129 @@
+# =============================================================================
+# OS / Editor
+# =============================================================================
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*.swn
+.vscode/
+.idea/
+*.iml
+
+# =============================================================================
+# Node
+# =============================================================================
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+dist/
+build/
+coverage/
+.next/
+.turbo/
+.cache/
+.swc/
+out/
+lcov-report/
+.nyc_output/
+*.map
+__pycache__/
+.pytest_cache/
+
+# =============================================================================
+# Flutter/Dart
+# =============================================================================
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+build/
+android/.gradle/
+ios/Pods/
+ios/Podfile.lock
+*.dSYM/
+
+# =============================================================================
+# Firebase
+# =============================================================================
+.firebase/
+firebase-debug.log
+functions/.runtimeconfig.json
+
+# =============================================================================
+# Runtime & Logs
+# =============================================================================
+*.pid
+*.out
+*.err
+*.log
+emulator.log
+firestore-debug.log
+
+# =============================================================================
+# Environment / Secrets
+# =============================================================================
+.env
+.env.local
+.env.*.local
+.env.example
+.env.deployment
+serviceAccount*.json
+credentials.json
+google-services.json
+GoogleService-Info.plist
+firebase.json
+
+# =============================================================================
+# Sensitive Files
+# =============================================================================
+secrets/
+credentials/
+*.pem
+*.p8
+*.p12
+*.cer
+*.crt
+*.key
+*.asc
+*.keystore
+*.jks
+android/key.properties
+android/app/upload-keystore.jks
+*.mobileprovision
+ios/Runner/GeneratedPluginRegistrant.java
+
+# =============================================================================
+# Build Artifacts & Cache
+# =============================================================================
+*.bin
+*.zip
+*.7z
+*.rar
+*.tar
+*.tar.gz
+*.tar.bz2
+
+# =============================================================================
+# Documentation
+# =============================================================================
+**/docs/evidence/**
+local-ci/verification/
+local-ci/audit_snapshot/
+local-ci/verification/push_proof/
+local-ci/verification/push_fix/
+local-ci/verification/letter_by_letter/
+local-ci/verification/reality_map_one_shot/
+
+
+# Local-only generated/evidence (do not commit)
+INNERHTML_INVENTORY.md
+local-ci/verification/company_audit/
+
+# OS junk / runtime artifacts (ensure covered)
+.DS_Store
+*.pid
+*.out
+*.err

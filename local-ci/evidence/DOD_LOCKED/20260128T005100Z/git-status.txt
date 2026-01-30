@@ -1,0 +1,6 @@
+ M spec/DEFINITION_OF_DONE_LOCKED.md
+ D tools/_callable_ast_scan.mjs
+ M tools/dod_gate_runner_locked.py
+?? local-ci/evidence/DOD_LOCKED/20260128T004903Z/
+?? local-ci/evidence/DOD_LOCKED/20260128T005100Z/
+?? tools/_callable_ast_scan.js

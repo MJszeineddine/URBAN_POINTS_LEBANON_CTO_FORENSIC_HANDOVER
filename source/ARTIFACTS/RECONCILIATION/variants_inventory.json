@@ -1,0 +1,256 @@
+{
+  "scan_timestamp": "2026-01-03T12:54:15+00:00",
+  "canonical_root": "/home/user/urbanpoints-lebanon-complete-ecosystem",
+  "total_variants_found": 14,
+  "variants": [
+    {
+      "path": "/home/user/urban-points-admin",
+      "last_modified": "2025-11-09 11:01:54",
+      "dart_file_count": 59,
+      "has_urban_points_shared": false,
+      "shared_references": 0,
+      "provider_usage": 8,
+      "auth_heuristic": {
+        "phone_otp_files": 0,
+        "email_password_files": 2
+      },
+      "screens": ["analytics_dashboard_screen.dart", "edit_profile_screen.dart", "home_screen.dart", "login_screen.dart", "merchants_screen.dart", "offers_screen.dart", "profile_screen.dart", "qr_scanner_screen.dart", "settings_screen.dart", "transaction_history_screen.dart"],
+      "widgets": [],
+      "has_pubspec": true,
+      "status": "OLD_STANDALONE",
+      "notes": "Older admin app (Nov 9), superseded by canonical mobile-admin"
+    },
+    {
+      "path": "/home/user/urban-points-api",
+      "last_modified": "2025-11-02 15:33:00",
+      "dart_file_count": 0,
+      "has_urban_points_shared": false,
+      "shared_references": 0,
+      "provider_usage": 0,
+      "auth_heuristic": {
+        "phone_otp_files": 0,
+        "email_password_files": 0
+      },
+      "screens": [],
+      "widgets": [],
+      "has_pubspec": false,
+      "status": "LEGACY_API",
+      "notes": "REST API project, not Flutter app"
+    },
+    {
+      "path": "/home/user/urban-points-customer",
+      "last_modified": "2025-11-09 10:54:20",
+      "dart_file_count": 61,
+      "has_urban_points_shared": false,
+      "shared_references": 0,
+      "provider_usage": 9,
+      "auth_heuristic": {
+        "phone_otp_files": 0,
+        "email_password_files": 3
+      },
+      "screens": ["analytics_dashboard_screen.dart", "edit_profile_screen.dart", "favorites_screen.dart", "home_screen.dart", "leaderboard_screen.dart", "login_screen.dart", "merchant_detail_screen.dart", "merchants_screen.dart", "my_rewards_screen.dart", "offers_screen.dart", "profile_screen.dart", "qr_generation_screen.dart", "settings_screen.dart"],
+      "widgets": [],
+      "has_pubspec": true,
+      "status": "OLD_STANDALONE",
+      "notes": "Old customer app (Nov 9), superseded"
+    },
+    {
+      "path": "/home/user/urban-points-lebanon-complete",
+      "last_modified": "2025-11-02 18:00:23",
+      "dart_file_count": 118,
+      "has_urban_points_shared": false,
+      "shared_references": 0,
+      "provider_usage": 15,
+      "auth_heuristic": {
+        "phone_otp_files": 1,
+        "email_password_files": 4
+      },
+      "screens": [],
+      "widgets": [],
+      "has_pubspec": false,
+      "status": "PRE_ECOSYSTEM",
+      "notes": "Pre-ecosystem experiment with customer_app + merchant_app subdirs"
+    },
+    {
+      "path": "/home/user/urban-points-merchant",
+      "last_modified": "2025-11-09 10:59:33",
+      "dart_file_count": 48,
+      "has_urban_points_shared": false,
+      "shared_references": 0,
+      "provider_usage": 6,
+      "auth_heuristic": {
+        "phone_otp_files": 0,
+        "email_password_files": 2
+      },
+      "screens": ["analytics_dashboard_screen.dart", "create_offer_screen.dart", "edit_offer_screen.dart", "home_screen.dart", "login_screen.dart", "my_offers_screen.dart", "profile_screen.dart", "qr_scanner_screen.dart", "settings_screen.dart", "validate_redemption_screen.dart"],
+      "widgets": [],
+      "has_pubspec": true,
+      "status": "OLD_STANDALONE",
+      "notes": "Old merchant app (Nov 9), superseded"
+    },
+    {
+      "path": "/home/user/urban_points_admin",
+      "last_modified": "2025-11-25 14:26:40",
+      "dart_file_count": 62,
+      "has_urban_points_shared": true,
+      "shared_references": 245,
+      "provider_usage": 11,
+      "auth_heuristic": {
+        "phone_otp_files": 0,
+        "email_password_files": 3
+      },
+      "screens": ["all_reviews_screen.dart", "analytics_dashboard_screen.dart", "edit_profile_screen.dart", "help_support_screen.dart", "home_screen.dart", "language_selection_screen.dart", "login_screen.dart", "merchants_management_screen.dart", "notification_preferences_screen.dart", "offers_management_screen.dart", "profile_screen.dart", "reports_screen.dart", "settings_screen.dart", "users_management_screen.dart"],
+      "widgets": ["achievement_popup.dart", "advanced_filter_panel.dart", "offline_banner.dart", "skeleton_loader.dart"],
+      "has_pubspec": true,
+      "status": "OLD_STANDALONE_SHARED",
+      "notes": "Latest standalone admin (Nov 25), uses urban_points_shared package"
+    },
+    {
+      "path": "/home/user/urban_points_admin_web",
+      "last_modified": "2025-11-01 23:17:00",
+      "dart_file_count": 0,
+      "has_urban_points_shared": false,
+      "shared_references": 0,
+      "provider_usage": 0,
+      "auth_heuristic": {
+        "phone_otp_files": 0,
+        "email_password_files": 0
+      },
+      "screens": [],
+      "widgets": [],
+      "has_pubspec": false,
+      "status": "LEGACY_WEB",
+      "notes": "HTML-based web admin, not Flutter"
+    },
+    {
+      "path": "/home/user/urban_points_customer",
+      "last_modified": "2025-11-14 13:08:19",
+      "dart_file_count": 65,
+      "has_urban_points_shared": true,
+      "shared_references": 312,
+      "provider_usage": 11,
+      "auth_heuristic": {
+        "phone_otp_files": 2,
+        "email_password_files": 2
+      },
+      "screens": ["all_reviews_screen.dart", "analytics_dashboard_screen.dart", "earn_points_guide_screen.dart", "edit_profile_screen.dart", "favorites_screen.dart", "forgot_password_screen.dart", "gift_history_screen.dart", "help_support_screen.dart", "home_screen.dart", "language_selection_screen.dart", "leaderboard_screen.dart", "live_qr_redemption_screen.dart", "login_screen.dart", "merchant_detail_screen.dart", "merchants_screen.dart", "my_rewards_screen.dart", "my_vouchers_screen.dart", "notification_preferences_screen.dart", "offers_screen.dart", "onboarding_screen.dart"],
+      "widgets": ["achievement_popup.dart", "advanced_filter_panel.dart", "animated_counter.dart", "featured_carousel.dart", "loyalty_card_qr.dart", "map_view_toggle.dart", "merchant_gallery.dart", "offline_banner.dart", "parallax_header.dart", "premium_paywall_card.dart", "skeleton_loader.dart"],
+      "has_pubspec": true,
+      "status": "OLD_STANDALONE_SHARED",
+      "notes": "Most feature-rich old customer (Nov 14), uses urban_points_shared, 65 Dart files"
+    },
+    {
+      "path": "/home/user/urban_points_lebanon_customer",
+      "last_modified": "2025-11-02 16:07:00",
+      "dart_file_count": 42,
+      "has_urban_points_shared": false,
+      "shared_references": 0,
+      "provider_usage": 5,
+      "auth_heuristic": {
+        "phone_otp_files": 0,
+        "email_password_files": 2
+      },
+      "screens": [],
+      "widgets": [],
+      "has_pubspec": true,
+      "status": "OLD_LEBANON_VARIANT",
+      "notes": "Pre-ecosystem lebanon-specific customer"
+    },
+    {
+      "path": "/home/user/urban_points_lebanon_customer_minimal",
+      "last_modified": "2025-11-02 16:27:00",
+      "dart_file_count": 8,
+      "has_urban_points_shared": false,
+      "shared_references": 0,
+      "provider_usage": 0,
+      "auth_heuristic": {
+        "phone_otp_files": 0,
+        "email_password_files": 0
+      },
+      "screens": [],
+      "widgets": [],
+      "has_pubspec": false,
+      "status": "MINIMAL_EXPERIMENT",
+      "notes": "Stripped-down minimal customer"
+    },
+    {
+      "path": "/home/user/urban_points_lebanon_customer_v2",
+      "last_modified": "2025-11-02 17:23:00",
+      "dart_file_count": 53,
+      "has_urban_points_shared": false,
+      "shared_references": 0,
+      "provider_usage": 7,
+      "auth_heuristic": {
+        "phone_otp_files": 0,
+        "email_password_files": 2
+      },
+      "screens": [],
+      "widgets": [],
+      "has_pubspec": true,
+      "status": "OLD_V2_ATTEMPT",
+      "notes": "Version 2 attempt before ecosystem consolidation"
+    },
+    {
+      "path": "/home/user/urban_points_merchant",
+      "last_modified": "2025-11-14 13:09:21",
+      "dart_file_count": 52,
+      "has_urban_points_shared": true,
+      "shared_references": 198,
+      "provider_usage": 8,
+      "auth_heuristic": {
+        "phone_otp_files": 0,
+        "email_password_files": 2
+      },
+      "screens": ["analytics_dashboard_screen.dart", "create_offer_screen.dart", "edit_offer_screen.dart", "edit_profile_screen.dart", "help_support_screen.dart", "home_screen.dart", "language_selection_screen.dart", "login_screen.dart", "my_offers_screen.dart", "notification_preferences_screen.dart", "profile_screen.dart", "qr_scanner_screen.dart", "redemption_history_screen.dart", "settings_screen.dart", "validate_redemption_screen.dart"],
+      "widgets": ["offline_banner.dart", "skeleton_loader.dart"],
+      "has_pubspec": true,
+      "status": "OLD_STANDALONE_SHARED",
+      "notes": "Latest standalone merchant (Nov 14), uses urban_points_shared"
+    },
+    {
+      "path": "/home/user/urban_points_shared",
+      "last_modified": "2025-11-14 12:53:00",
+      "dart_file_count": 84,
+      "has_urban_points_shared": false,
+      "shared_references": 0,
+      "provider_usage": 3,
+      "auth_heuristic": {
+        "phone_otp_files": 0,
+        "email_password_files": 0
+      },
+      "screens": [],
+      "widgets": ["geofence_status_widget.dart"],
+      "has_pubspec": true,
+      "status": "SHARED_PACKAGE",
+      "notes": "Shared package with 84 files (models, services, widgets) - DO NOT PORT"
+    },
+    {
+      "path": "/home/user/urban_points_supabase",
+      "last_modified": "2025-10-24 00:00:00",
+      "dart_file_count": 0,
+      "has_urban_points_shared": false,
+      "shared_references": 0,
+      "provider_usage": 0,
+      "auth_heuristic": {
+        "phone_otp_files": 0,
+        "email_password_files": 0
+      },
+      "screens": [],
+      "widgets": [],
+      "has_pubspec": false,
+      "status": "LEGACY_BACKEND",
+      "notes": "Old Supabase backend project"
+    }
+  ],
+  "summary": {
+    "total_variants": 14,
+    "flutter_apps": 9,
+    "non_flutter": 3,
+    "uses_shared_package": 4,
+    "feature_rich_sources": [
+      "/home/user/urban_points_customer (65 files, 11 widgets)",
+      "/home/user/urban_points_admin (62 files)",
+      "/home/user/urban_points_shared (84 files)"
+    ]
+  }
+}

@@ -1,0 +1,72 @@
+name: GO/NO-GO Gate
+
+on:
+  push:
+    branches: ['**']
+  pull_request:
+    branches: [main, master, develop]
+
+jobs:
+  go-no-go:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+          cache: 'npm'
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install Firebase CLI
+        run: npm install -g firebase-tools
+
+      - name: Run GO/NO-GO Gate
+        id: gate
+        run: bash tools/gates/run_go_no_go.sh
+        continue-on-error: true
+
+      - name: Find Evidence Folder
+        id: evidence
+        if: always()
+        run: |
+          LATEST=$(ls -td local-ci/evidence/GO_NO_GO_* 2>/dev/null | head -1 || echo "none")
+          echo "path=$LATEST" >> $GITHUB_OUTPUT
+          echo "Evidence folder: $LATEST"
+
+      - name: Print Summary
+        if: always() && steps.evidence.outputs.path != 'none'
+        run: |
+          echo "=== SUMMARY.json ==="
+          cat ${{ steps.evidence.outputs.path }}/SUMMARY.json || echo "Missing"
+          echo ""
+          echo "=== VALIDATION.json ==="
+          cat ${{ steps.evidence.outputs.path }}/VALIDATION.json || echo "Missing"
+
+      - name: Upload Evidence Bundle
+        if: always() && steps.evidence.outputs.path != 'none'
+        uses: actions/upload-artifact@v4
+        with:
+          name: go-no-go-evidence-${{ github.sha }}
+          path: ${{ steps.evidence.outputs.path }}
+          retention-days: 30
+
+      - name: Check Gate Result
+        if: steps.gate.outcome == 'failure'
+        run: |
+          echo "::error::GO/NO-GO gate failed. Check evidence artifact for details."
+          exit 1

@@ -1,0 +1,10 @@
+{
+  "pid": 76902,
+  "ports": {
+    "firestore": 8080,
+    "functions": 5001
+  },
+  "status": "running",
+  "command": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/tools/smoke/node_modules/.bin/firebase emulators:start --only firestore,functions --project demo-urbanpoints",
+  "firebase_bin": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/tools/smoke/node_modules/.bin/firebase"
+}

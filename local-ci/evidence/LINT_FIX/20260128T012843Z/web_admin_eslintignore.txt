@@ -1,0 +1,16 @@
+.next/
+node_modules/
+local-ci/
+tools/
+**/.next/
+**/node_modules/
+**/local-ci/
+**/tools/
+**/audit_snapshot/
+**/audit_snaps/
+**/LATEST/
+**/dist/
+**/build/
+**/coverage/
+.git/
+**/.git/

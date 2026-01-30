@@ -1,0 +1,9 @@
+{
+  "repo_verdict": "GO",
+  "internal_blockers": [],
+  "external_blockers": [],
+  "gates_passed": 2,
+  "callable_parity_missing": [],
+  "rules_valid": true,
+  "config_canonical": true
+}

@@ -1,0 +1,36 @@
+{
+  "client_used": [
+    "adminBanUser",
+    "adminDisableOffer",
+    "adminUnbanUser",
+    "adminUpdateMerchantStatus",
+    "adminUpdateUserRole",
+    "approveManualPayment",
+    "approveOffer",
+    "calculateDailyStats",
+    "getPendingManualPayments",
+    "rejectManualPayment",
+    "rejectOffer"
+  ],
+  "backend_callables": [],
+  "missing": [
+    "adminBanUser",
+    "adminDisableOffer",
+    "adminUnbanUser",
+    "adminUpdateMerchantStatus",
+    "adminUpdateUserRole",
+    "approveManualPayment",
+    "approveOffer",
+    "calculateDailyStats",
+    "getPendingManualPayments",
+    "rejectManualPayment",
+    "rejectOffer"
+  ],
+  "count_client": 11,
+  "count_backend": 0,
+  "count_missing": 11,
+  "scan_coverage": {
+    "backend_mode": "FAILED",
+    "error": "TypeScript AST scan failed - TypeScript not available or AST error"
+  }
+}

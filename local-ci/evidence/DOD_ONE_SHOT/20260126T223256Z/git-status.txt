@@ -1,0 +1,5 @@
+?? local-ci/
+?? spec/DEFINITION_OF_DONE.md
+?? tools/ARTIFACTS/
+?? tools/audit_snapshot/
+?? tools/dod_gate_runner.py

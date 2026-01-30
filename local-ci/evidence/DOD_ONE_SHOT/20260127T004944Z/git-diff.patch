@@ -1,0 +1,198 @@
+diff --git a/source/backend/firebase-functions/src/callableWrappers.ts b/source/backend/firebase-functions/src/callableWrappers.ts
+index 1f99f09..7fdb421 100644
+--- a/source/backend/firebase-functions/src/callableWrappers.ts
++++ b/source/backend/firebase-functions/src/callableWrappers.ts
+@@ -32,10 +32,9 @@ export const createOffer = functions
+     maxInstances: 20
+   })
+   .https.onCall(monitorFunction('createOffer', async (data, context) => {
+-    // Client calls createOffer, delegate to createNewOffer handler
+-    // Use the same implementation as createNewOffer from core/offers
+-    const { createOfferCore } = await import('./core/offers');
+-    return createOfferCore(data, context, { db });
++    // Client calls createOffer, delegate to createOffer from core/offers
++    const { createOffer: coreCreateOffer } = await import('./core/offers');
++    return coreCreateOffer(data, context, { db });
+   }));
+ 
+ // =============================================================================
+@@ -50,9 +49,9 @@ export const getFilteredOffers = functions
+     maxInstances: 10
+   })
+   .https.onCall(monitorFunction('getFilteredOffers', async (data, context) => {
+-    // Delegate to searchOffers implementation
+-    const { getFilteredOffersCore } = await import('./core/offers');
+-    return getFilteredOffersCore(data, context, { db });
++    // Delegate to getFilteredOffers implementation
++    const { getFilteredOffers: coreGetFilteredOffers } = await import('./core/offers');
++    return coreGetFilteredOffers(data, context, { db });
+   }));
+ 
+ // =============================================================================
+@@ -387,3 +386,166 @@ export const checkSubscriptionAccess = functions
+       };
+     }
+   }));
++
++// =============================================================================
++// IMPLEMENTATION: approveOffer (Admin approval for merchant offers)
++// =============================================================================
++export const approveOffer = functions
++  .region('us-central1')
++  .runWith({
++    memory: '256MB',
++    timeoutSeconds: 30,
++    minInstances: 0,
++    maxInstances: 10
++  })
++  .https.onCall(monitorFunction('approveOffer', async (data, context) => {
++    // Require admin role
++    if (!context.auth) {
++      return { success: false, error: 'Unauthenticated' };
++    }
++
++    try {
++      const uid = context.auth.uid;
++      const userDoc = await db.collection('users').doc(uid).get();
++      const role = userDoc.data()?.role;
++
++      if (role !== 'admin') {
++        return { success: false, error: 'Admin role required' };
++      }
++
++      const { offerId } = data;
++      if (!offerId) {
++        return { success: false, error: 'offerId is required' };
++      }
++
++      await db.collection('offers').doc(offerId).update({
++        status: 'active',
++        approvedAt: new Date().toISOString(),
++        approvedBy: uid
++      });
++
++      return {
++        success: true,
++        message: 'Offer approved'
++      };
++    } catch (err: any) {
++      console.error('approveOffer error:', err);
++      return {
++        success: false,
++        error: err.message || 'Failed to approve offer'
++      };
++    }
++  }));
++
++// =============================================================================
++// IMPLEMENTATION: rejectOffer (Admin rejection)
++// =============================================================================
++export const rejectOffer = functions
++  .region('us-central1')
++  .runWith({
++    memory: '256MB',
++    timeoutSeconds: 30,
++    minInstances: 0,
++    maxInstances: 10
++  })
++  .https.onCall(monitorFunction('rejectOffer', async (data, context) => {
++    // Require admin role
++    if (!context.auth) {
++      return { success: false, error: 'Unauthenticated' };
++    }
++
++    try {
++      const uid = context.auth.uid;
++      const userDoc = await db.collection('users').doc(uid).get();
++      const role = userDoc.data()?.role;
++
++      if (role !== 'admin') {
++        return { success: false, error: 'Admin role required' };
++      }
++
++      const { offerId, reason } = data;
++      if (!offerId) {
++        return { success: false, error: 'offerId is required' };
++      }
++
++      await db.collection('offers').doc(offerId).update({
++        status: 'rejected',
++        rejectedAt: new Date().toISOString(),
++        rejectedBy: uid,
++        rejectionReason: reason || 'No reason provided'
++      });
++
++      return {
++        success: true,
++        message: 'Offer rejected'
++      };
++    } catch (err: any) {
++      console.error('rejectOffer error:', err);
++      return {
++        success: false,
++        error: err.message || 'Failed to reject offer'
++      };
++    }
++  }));
++
++// =============================================================================
++// IMPLEMENTATION: calculateDailyStats (Daily statistics aggregation)
++// =============================================================================
++export const calculateDailyStats = functions
++  .region('us-central1')
++  .runWith({
++    memory: '512MB',
++    timeoutSeconds: 60,
++    minInstances: 0,
++    maxInstances: 5
++  })
++  .https.onCall(monitorFunction('calculateDailyStats', async (data, context) => {
++    // Require admin role
++    if (!context.auth) {
++      return { success: false, error: 'Unauthenticated' };
++    }
++
++    try {
++      const uid = context.auth.uid;
++      const userDoc = await db.collection('users').doc(uid).get();
++      const role = userDoc.data()?.role;
++
++      if (role !== 'admin') {
++        return { success: false, error: 'Admin role required' };
++      }
++
++      const today = new Date().toISOString().split('T')[0];
++
++      // Calculate offer stats
++      const offersSnap = await db.collection('offers').where('status', '==', 'active').get();
++      const totalOffers = offersSnap.size;
++
++      // Calculate redemptions (last 24h)
++      const oneDayAgo = new Date(Date.now() - 24 * 60 * 60 * 1000);
++      const recentRedemptions = await db
++        .collectionGroup('qr_tokens')
++        .where('usedAt', '>=', oneDayAgo.toISOString())
++        .get();
++
++      const stats = {
++        date: today,
++        totalOffers,
++        totalUsers: (await db.collection('users').get()).size,
++        recentRedemptions: recentRedemptions.size,
++        calculatedAt: new Date().toISOString()
++      };
++
++      await db.collection('admin_stats').doc(today).set(stats);
++
++      return {
++        success: true,
++        stats
++      };
++    } catch (err: any) {
++      console.error('calculateDailyStats error:', err);
++      return {
++        success: false,
++        error: err.message || 'Failed to calculate stats'
++      };
++    }
++  }));

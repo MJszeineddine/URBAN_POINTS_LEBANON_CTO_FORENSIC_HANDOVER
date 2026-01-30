@@ -1,0 +1,28 @@
+{
+  "timestamp": "20260127T235605Z",
+  "repo_root": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER",
+  "git_commit": "454f298ee9adf96f70fbb88f55fe6cc2dff09a18",
+  "git_branch": "release/dod-locked",
+  "file_count": 52006,
+  "total_size_bytes": 518258768,
+  "total_size_mb": 494.25,
+  "evidence_dir": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/local-ci/evidence/SNAPSHOT/20260127T235605Z",
+  "excluded_dirs": [
+    ".git",
+    ".gradle",
+    ".idea",
+    ".next",
+    ".pytest_cache",
+    ".venv",
+    "Pods",
+    "__pycache__",
+    "build",
+    "coverage",
+    "dist",
+    "env",
+    "local-ci/evidence",
+    "node_modules",
+    "pubspec.lock",
+    "venv"
+  ]
+}

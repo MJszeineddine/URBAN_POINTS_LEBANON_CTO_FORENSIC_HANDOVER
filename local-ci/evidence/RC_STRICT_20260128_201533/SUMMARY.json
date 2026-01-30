@@ -1,0 +1,13 @@
+{
+  "status": "FAIL",
+  "timestamp": "2026-01-28T18:16:20.075Z",
+  "error": "Redemption failed after PIN: Merchant subscription inactive. Offer cannot be redeemed at this time.",
+  "stack": "Error: Redemption failed after PIN: Merchant subscription inactive. Offer cannot be redeemed at this time.\n    at main (file:///Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/tools/smoke/mvp_smoke.mjs:346:15)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)",
+  "failedAt": "generateQRToken",
+  "region": "us-central1",
+  "ports": {
+    "firestore": "8080",
+    "auth": "9099",
+    "functions": "5001"
+  }
+}

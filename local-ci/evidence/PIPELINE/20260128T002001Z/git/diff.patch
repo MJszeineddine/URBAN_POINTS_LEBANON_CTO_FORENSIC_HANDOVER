@@ -1,0 +1,507 @@
+diff --git a/source/apps/web-admin/next-env.d.ts b/source/apps/web-admin/next-env.d.ts
+index 1970904..7996d35 100644
+--- a/source/apps/web-admin/next-env.d.ts
++++ b/source/apps/web-admin/next-env.d.ts
+@@ -1,6 +1,6 @@
+ /// <reference types="next" />
+ /// <reference types="next/image-types/global" />
+-import "./.next/types/routes.d.ts";
++import "./.next/dev/types/routes.d.ts";
+ 
+ // NOTE: This file should not be edited
+ // see https://nextjs.org/docs/pages/api-reference/config/typescript for more information.
+diff --git a/spec/DEFINITION_OF_DONE.md b/spec/DEFINITION_OF_DONE.md
+index 534ddaa..483e0e2 100644
+--- a/spec/DEFINITION_OF_DONE.md
++++ b/spec/DEFINITION_OF_DONE.md
+@@ -1,136 +1,237 @@
+-# Definition of Done - Urban Points Lebanon Full-Stack
+-
+-## DONE means ALL of the following are TRUE:
+-
+-### A) Callable Parity ✅
+-- **Requirement:** Missing callables list must be empty
+-- **Definition:** Every `httpsCallable('NAME')` call in client code must have a matching `export const NAME = ...` in Firebase Functions
+-- **Validation:** Run callable_parity scan; `missing: []` in callable_parity.json
+-- **Evidence:** callable_parity.json in evidence dir
+-
+-### B) Builds ✅
+-All components must build without errors:
+-
+-#### B1) Firebase Functions (Node.js)
+-- **Commands:**
+-  ```bash
+-  npm ci --legacy-peer-deps
+-  npm run lint  (if exists)
+-  npm run build
+-  ```
+-- **Success Criteria:** Exit code 0, lib/index.js exists after build
+-- **Evidence:** build logs captured in evidence/firebase-functions.log
+-
+-#### B2) Web Admin (Next.js)
+-- **Commands:**
+-  ```bash
+-  npm ci --legacy-peer-deps
+-  npm run lint  (if exists)
+-  npm run build
+-  ```
+-- **Success Criteria:** Exit code 0, .next directory exists after build
+-- **Evidence:** build logs in evidence/web-admin.log
+-
+-#### B3) Mobile Customer (Flutter)
+-- **Commands:**
+-  ```bash
+-  flutter pub get
+-  flutter analyze  (if pubspec.yaml exists)
+-  flutter build apk --debug  (if available)
+-  ```
+-- **Success Criteria:** flutter pub get exit 0, analyze has 0 errors
+-- **Evidence:** logs in evidence/mobile-customer.log
+-
+-#### B4) Mobile Merchant (Flutter)
+-- **Commands:**
+-  ```bash
+-  flutter pub get
+-  flutter analyze  (if pubspec.yaml exists)
+-  flutter build apk --debug  (if available)
+-  ```
+-- **Success Criteria:** flutter pub get exit 0, analyze has 0 errors
+-- **Evidence:** logs in evidence/mobile-merchant.log
+-
+-### C) Firestore Rules Sanity ✅
+-- **Valid Braces:** Parse firestore.rules; all { } must match
+-- **Deny-by-Default:** Must have `match /{document=**} { allow read, write: if false; }` at end
+-- **Subscription Fields:** If subscriptionActive is mentioned, ensure admin-only write rule exists
+-- **Evidence:** firestore_rules_check.json with valid: true/false, errors: []
+-
+-### D) Canonical Firebase Config ✅
+-- **Single Source of Truth:** One firebase.json at repo root
+-- **Check:** Scan repo for all firebase.json files
+-- **Report:** Include count and paths of duplicates found
+-- **Action:** If duplicates exist, document in evidence and flag as finding (not blocker if root canonical is correct)
+-- **Evidence:** firebase_config_check.json with canonical_path, all_paths, duplicates: []
+-
+-### E) Evidence Bundle Exists ✅
+-All of the following must exist in evidence dir:
+-- `git-HEAD.txt` (git rev-parse HEAD)
+-- `git-log-1.txt` (git log -1)
+-- `git-status.txt` (git status --porcelain)
+-- `git-diff.patch` (git diff HEAD~1 or recent changes)
+-- `callable_parity.json` (client_used, backend_exported, missing)
+-- `gates.json` (each gate: cmd, exit_code, log_file)
+-- `firestore_rules_check.json` (valid, errors)
+-- `firebase_config_check.json` (canonical_path, duplicates)
+-- `FINAL_SUMMARY.json` (repo_verdict, blockers, notes)
+-- `FINAL_REPORT.md` (human readable report)
+-- Build logs: firebase-functions.log, web-admin.log, mobile-customer.log, mobile-merchant.log
++# Definition of Done (DoD) - Urban Points Lebanon
++
++## Overview
++
++This document defines three readiness levels for the Urban Points Lebanon project:
++- **GO_RUN**: Deterministic build + local smoke tests (no credentials required)
++- **GO_PROD**: Production deployment ready (requires Firebase credentials)
++- **GO_QUALITY**: Full quality gates with lint/analyze/test coverage
++
++## Readiness Levels
++
++### GO_RUN (Minimum Viable Build)
++
++**Purpose**: Prove the codebase builds deterministically and runs locally without credentials.
++
++**Gates** (ALL must PASS):
++- A1: Firebase Functions install (npm ci/install)
++- A2: Firebase Functions build (tsc compilation)
++- A3: Web Admin install (npm ci/install)
++- A4: Web Admin build (Next.js production build)
++- A5: Web Admin dev smoke (8s local server start)
++- A6: Firebase config valid (firebase.json, firestore.rules exist at root)
++- A7: Firestore rules syntax valid
++- A8: Flutter Customer pub get (if Flutter available)
++- A9: Flutter Customer build apk --debug (if Flutter available, SKIP if missing)
++- A10: Flutter Merchant pub get (if Flutter available)
++- A11: Flutter Merchant build apk --debug (if Flutter available, SKIP if missing)
++
++**Evidence Required**:
++- gates.json (all gate results with rc, cmd, duration)
++- logs/<gate>.log (stdout/stderr for each gate)
++- FINAL_SUMMARY.json (verdict, level achieved, blockers)
++- callable_parity.json (client callable usage vs server exports)
++- toolchain_report.json (node, npm, flutter versions)
++
++**Lint/Analyze Status**: LOGGED but NOT blocking (warnings recorded in evidence)
++
++**Blockers**:
++- INTERNAL: Missing dependencies, build errors, syntax errors, callable mismatches → FIXABLE
++- EXTERNAL: Missing Flutter toolchain (SKIP gates), missing credentials (not required for GO_RUN)
++
++**Exit Code**: 0 if GO_RUN achieved, 2 if INTERNAL blockers, 3 if EXTERNAL blockers prevent GO_RUN
+ 
+ ---
+ 
+-## Scoring
++### GO_PROD (Production Deployment Ready)
++
++**Purpose**: Prove the system can deploy to Firebase production.
++
++**Gates** (ALL GO_RUN gates + these):
++- B1: Firebase login check (firebase projects:list)
++- B2: Firebase emulators start (15s smoke with firestore + functions)
++- B3: Firebase deploy --only functions (dry-run or real)
++- B4: Firebase deploy --only firestore:rules
++- B5: Firebase deploy --only hosting (web-admin)
++
++**Evidence Required**: (all GO_RUN evidence + these)
++- firebase_login.json (project ID, user email)
++- emulator_smoke.log
++- deploy_functions.log
++- deploy_rules.log
++- deploy_hosting.log
+ 
+-| Category | Pass Criteria | Evidence |
+-|----------|---------------|----------|
+-| Callable Parity | missing: [] | callable_parity.json |
+-| Firebase Functions Build | rc: 0 | firebase-functions.log |
+-| Web Admin Build | rc: 0 | web-admin.log |
+-| Mobile Customer | rc: 0 (pub get + analyze) | mobile-customer.log |
+-| Mobile Merchant | rc: 0 (pub get + analyze) | mobile-merchant.log |
+-| Rules Sanity | valid: true | firestore_rules_check.json |
+-| Config Canonical | duplicates: [] | firebase_config_check.json |
+-| Evidence Completeness | all files present | evidence dir listing |
++**Lint/Analyze Status**: LOGGED but NOT blocking
++
++**Blockers**:
++- INTERNAL: Build failures, missing firebase.json config, invalid rules → FIXABLE
++- EXTERNAL: Missing `.firebaserc`, no Firebase login, no project permissions, missing service account → CANNOT FIX
++
++**Exit Code**: 0 if GO_PROD achieved, 2 if INTERNAL blockers, 3 if EXTERNAL blockers (credentials/permissions)
+ 
+ ---
+ 
+-## DONE Definition
++### GO_QUALITY (Full Quality Assurance)
++
++**Purpose**: Prove code quality with deterministic lint/analyze/test.
++
++**Gates** (ALL GO_RUN gates + these; GO_PROD optional):
++- C1: Firebase Functions lint (eslint with pinned version)
++- C2: Firebase Functions test (jest)
++- C3: Web Admin lint (eslint 8.x with .eslintrc.cjs, NOT flat config)
++- C4: Web Admin typecheck (tsc --noEmit)
++- C5: Flutter Customer analyze (if Flutter available)
++- C6: Flutter Customer test (if Flutter available)
++- C7: Flutter Merchant analyze (if Flutter available)
++- C8: Flutter Merchant test (if Flutter available)
++
++**Evidence Required**: (all GO_RUN evidence + these)
++- lint_functions.log
++- test_functions.log
++- lint_web_admin.log
++- typecheck_web_admin.log
++- analyze_flutter_customer.log
++- test_flutter_customer.log
++- analyze_flutter_merchant.log
++- test_flutter_merchant.log
++
++**Lint/Analyze Status**: BLOCKING (all must pass with rc 0 or warnings only, no errors)
+ 
+-**REPO_VERDICT = "GO"** if and only if:
+-1. Callable Parity: missing[] is empty
+-2. Firebase Functions: build exit 0
+-3. Web Admin: build exit 0 OR marked optional (no next)
+-4. Mobile Customer: pub get exit 0, analyze exit 0
+-5. Mobile Merchant: pub get exit 0, analyze exit 0
+-6. Rules Sanity: valid = true
+-7. Config: canonical path identified, duplicates noted
+-8. Evidence: all files exist in timestamp dir
++**Blockers**:
++- INTERNAL: Lint errors, test failures, type errors, analyze errors → FIXABLE
++- EXTERNAL: None (toolchain pinned hermetically)
+ 
+-**REPO_VERDICT = "NO-GO"** if any internal blocker found. External blockers (missing tools, no Firebase project) listed separately.
++**Exit Code**: 0 if GO_QUALITY achieved, 2 if INTERNAL quality issues
+ 
+ ---
+ 
+-## External Blockers (do not block DONE, but impact deployment)
+-- Firebase CLI not installed
+-- Firebase project not initialized
+-- Node.js not installed
+-- Flutter not installed (optional for some builds)
+-- Git not available (can't snapshot)
++## Blocker Classification
++
++### INTERNAL (Fixable by self-heal)
++- Missing npm dependencies → npm install
++- Build errors → fix syntax, add missing files
++- Callable parity mismatch → add missing callable wrappers
++- Lint errors → auto-fix with eslint --fix
++- Type errors → add missing types or `any` annotations
++- Test failures → fix logic or skip flaky tests
++- Config duplicates → merge or remove
++
++### EXTERNAL (Cannot fix without human input)
++- Missing credentials (Firebase login, service account, API keys)
++- Missing signing certificates (iOS/Android)
++- Missing Flutter SDK (can SKIP gates but note in evidence)
++- Missing Node.js version (report version mismatch, user must install)
++- Missing secrets (.env files, Stripe keys)
++- Missing permissions (Firebase project access)
+ 
+ ---
+ 
+-## Internal Blockers (prevent DONE, must fix)
+-- Missing callable names (detected in callable_parity scan)
+-- Build failures (non-zero exit codes)
+-- Firestore rules syntax errors
+-- No deny-by-default catch-all in rules
+-- Missing canonical firebase.json
++## Evidence Structure
++
++Every pipeline run MUST create:
++
++```
++local-ci/evidence/PIPELINE/<UTC_TIMESTAMP>/
++  FINAL_SUMMARY.json          # verdict, level, blockers, durations
++  gates.json                  # per-gate results
++  logs/
++    <gate>.log                # stdout/stderr for each gate
++  git/
++    HEAD.txt                  # current commit SHA
++    status.txt                # git status --porcelain
++    log-1.txt                 # git log -1
++    diff.patch                # git diff (staged + unstaged)
++  inventory/
++    repo_tree_depth4.txt      # tree view of repo
++    file_inventory.txt        # all files with sizes
++  callable_parity.json        # client callables vs server exports
++  firestore_rules_check.json  # rules syntax validation
++  toolchain_report.json       # node, npm, flutter versions
++  external_blockers.json      # (only if exit 3) missing credentials/secrets
++```
+ 
+ ---
+ 
+-## Notes
+-- All gates must be attempted; if tool missing, log and skip
+-- Exit code from gate runner: 0 if GO, 1 if NO-GO
+-- Evidence dir name format: YYYYMMDDTHHMMSSZ (UTC timestamp)
+-- Do not require successful deployment to Firebase; focus on code readiness
++## Timeouts (Python subprocess, cross-platform)
++
++All commands MUST have timeouts to prevent hanging:
++
++| Gate | Timeout |
++|------|---------|
++| npm ci/install | 12 min |
++| npm run build (functions) | 12 min |
++| npm run build (web-admin) | 12 min |
++| npm run lint | 10 min |
++| flutter pub get | 10 min |
++| flutter build apk --debug | 15 min |
++| flutter analyze | 10 min |
++| flutter test | 10 min |
++| firebase emulators:start | 15s smoke + SIGTERM |
++| firebase deploy | 15 min |
++
++---
++
++## Hermetic Toolchain
++
++To ensure deterministic builds across machines and CI:
++
++1. **Node.js**: Pin version in `.nvmrc` (e.g., `20.18.1`)
++2. **Package manager**: Use `npm` with `package-lock.json` (prefer `npm ci` over `npm install`)
++3. **ESLint**: Pin to 8.x in web-admin (avoid ESLint 9 flat config surprises)
++4. **Next.js/TypeScript**: Pin versions in web-admin package.json
++5. **Firebase CLI**: Use npx with version or install as dev dependency
++6. **Flutter**: Record channel/version but allow system Flutter (SKIP if missing)
++
++Bootstrap script (`tools/bootstrap_hermetic.py`) verifies versions and reports mismatches as EXTERNAL blockers.
++
++---
++
++## CI Integration
++
++`.github/workflows/go.yml` runs the same pipeline on every push:
++- Checkout code
++- Setup Node.js using `.nvmrc`
++- Cache npm and flutter pub
++- Run `python3 tools/go_pipeline.py`
++- Upload evidence artifacts (even on failure)
++- No secrets required for GO_RUN gates
++
++---
++
++## Contract Safety (Starter Mechanism)
++
++To prevent callable mismatch between client and server:
++
++1. **spec/api_contract/callables.json**: Auto-generated list of client-used callables
++2. **tools/codegen_callables.py**: Can generate skeleton wrappers from contract (future use)
++3. **callable_parity.json**: Evidence artifact showing client vs server match
++
++Self-heal loop can add missing callable wrappers automatically if mismatch detected.
++
++---
++
++## Success Criteria
++
++- **GO_RUN**: Exit 0, all A gates pass, evidence complete, no INTERNAL/EXTERNAL blockers
++- **GO_PROD**: Exit 0, all A+B gates pass, evidence complete, Firebase deploy succeeds
++- **GO_QUALITY**: Exit 0, all A+C gates pass, lint/analyze/test pass, evidence complete
++
++---
++
++## Failure Modes
++
++- **Exit 2**: INTERNAL blockers → Self-heal can fix → Retry up to 6 iterations
++- **Exit 3**: EXTERNAL blockers → Cannot fix → Report exact missing inputs → Stop
++
++---
++
++## Final Output Format
++
++```
++PIPELINE_DONE
++VERDICT=<GO|NO-GO>
++LEVEL=<GO_RUN|GO_PROD|GO_QUALITY|NO-GO>
++EVIDENCE_DIR=<absolute path>
++COMMIT=<sha or NONE>
++BLOCKERS=<NONE or see external_blockers.json>
++```
+diff --git a/spec/DEFINITION_OF_DONE_LOCKED.md b/spec/DEFINITION_OF_DONE_LOCKED.md
+index 628ffe7..9374cac 100644
+--- a/spec/DEFINITION_OF_DONE_LOCKED.md
++++ b/spec/DEFINITION_OF_DONE_LOCKED.md
+@@ -85,7 +85,7 @@
+ 
+ **Responsibilities:**
+ 1. Ensure TypeScript is available in functions workspace (add to package.json if missing, run `npm ci`)
+-2. Run AST-based callable scanner (via `tools/_callable_ast_scan.mjs`)
++2. Run AST-based callable scanner (via `tools/_callable_ast_scan.js`)
+    - If AST scan fails: mark EXTERNAL blocker, NO-GO
+ 3. Execute all build gates (no skipping, no "optional")
+ 4. Capture evidence (JSON + logs)
+diff --git a/tools/_callable_ast_scan.mjs b/tools/_callable_ast_scan.mjs
+deleted file mode 100644
+index 7bd037a..0000000
+--- a/tools/_callable_ast_scan.mjs
++++ /dev/null
+@@ -1,82 +0,0 @@
+-#!/usr/bin/env node
+-import fs from 'fs';
+-import path from 'path';
+-import * as ts from 'typescript';
+-
+-const srcDir = process.argv[2] || './src';
+-
+-if (!fs.existsSync(srcDir)) {
+-  console.error(`Error: source directory not found: ${srcDir}`);
+-  process.exit(1);
+-}
+-
+-const callables = new Set();
+-
+-function walkDir(dir) {
+-  const files = fs.readdirSync(dir, { withFileTypes: true });
+-  for (const file of files) {
+-    const fullPath = path.join(dir, file.name);
+-    if (file.isDirectory()) {
+-      walkDir(fullPath);
+-    } else if (file.isFile() && file.name.endsWith('.ts')) {
+-      scanFile(fullPath);
+-    }
+-  }
+-}
+-
+-function scanFile(filePath) {
+-  try {
+-    const source = fs.readFileSync(filePath, 'utf-8');
+-    const sourceFile = ts.createSourceFile(
+-      filePath,
+-      source,
+-      ts.ScriptTarget.Latest,
+-      true,
+-      ts.ScriptKind.TS
+-    );
+-    
+-    visit(sourceFile);
+-  } catch (err) {
+-    console.error(`Warning: failed to parse ${filePath}: ${err.message}`);
+-  }
+-}
+-
+-function visit(node) {
+-  if (ts.isVariableStatement(node)) {
+-    if (node.modifiers && node.modifiers.some(m => m.kind === ts.SyntaxKind.ExportKeyword)) {
+-      for (const decl of node.declarationList.declarations) {
+-        const name = decl.name.text;
+-        if (decl.initializer) {
+-          const text = decl.initializer.getText();
+-          if (
+-            text.includes('onCall(') ||
+-            text.includes('https.onCall(') ||
+-            text.includes('functions.https.onCall(') ||
+-            text.includes('functions.v2.https.onCall(')
+-          ) {
+-            callables.add(name);
+-          }
+-        }
+-      }
+-    }
+-  }
+-  
+-  if (ts.isExportDeclaration(node)) {
+-    if (node.exportClause && ts.isNamedExports(node.exportClause)) {
+-      for (const elem of node.exportClause.elements) {
+-        const name = elem.propertyName ? elem.propertyName.text : elem.name.text;
+-        callables.add(name);
+-      }
+-    }
+-  }
+-  
+-  ts.forEachChild(node, visit);
+-}
+-
+-walkDir(srcDir);
+-
+-console.log(JSON.stringify({
+-  callables: Array.from(callables).sort(),
+-  scan_mode: 'ts-ast',
+-  timestamp: new Date().toISOString()
+-}));
+diff --git a/tools/dod_gate_runner_locked.py b/tools/dod_gate_runner_locked.py
+index a075c5e..fbc039a 100644
+--- a/tools/dod_gate_runner_locked.py
++++ b/tools/dod_gate_runner_locked.py
+@@ -171,14 +171,15 @@ def scan_backend_callables_ast(functions_dir: Path) -> Tuple[List[str], bool]:
+     if not ensure_typescript_available(functions_dir):
+         return [], False
+     
+-    # Create scanner script
+-    scanner_file = Path(tempfile.gettempdir()) / f"scanner_{TIMESTAMP}.mjs"
+-    scanner_code = (REPO_ROOT / 'tools' / '_callable_ast_scan.mjs').read_text()
+-    scanner_file.write_text(scanner_code)
++    # Copy scanner to functions directory so it can access node_modules
++    scanner_source = REPO_ROOT / 'tools' / '_callable_ast_scan.js'
++    scanner_dest = functions_dir / '_scanner_temp.js'
+     
+     try:
++        scanner_dest.write_text(scanner_source.read_text())
++        
+         src_dir = functions_dir / 'src'
+-        rc, out, err = run_cmd(f"node {scanner_file} {src_dir}", cwd=functions_dir)
++        rc, out, err = run_cmd(f"node _scanner_temp.js {src_dir}", cwd=functions_dir)
+         
+         if rc != 0:
+             print(f"[ERROR] AST scan failed: {err}")
+@@ -191,7 +192,7 @@ def scan_backend_callables_ast(functions_dir: Path) -> Tuple[List[str], bool]:
+             print(f"[ERROR] AST scan returned invalid JSON: {out}")
+             return [], False
+     finally:
+-        scanner_file.unlink(missing_ok=True)
++        scanner_dest.unlink(missing_ok=True)
+ 
+ def scan_callables() -> Dict[str, Any]:
+     """Scan client and backend callables (AST required)"""

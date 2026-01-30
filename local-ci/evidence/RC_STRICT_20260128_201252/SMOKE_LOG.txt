@@ -1,0 +1,40 @@
+[2026-01-28T18:13:34.150Z] Starting MVP Smoke Gate
+[2026-01-28T18:13:34.153Z] Project: demo-mvp
+[2026-01-28T18:13:34.153Z] Evidence: ../../local-ci/evidence/RC_STRICT_20260128_201252
+[2026-01-28T18:13:34.153Z] Emulator ports: Firestore=8080, Auth=9099, Functions=5001
+[2026-01-28T18:13:34.153Z] FIREBASE_AUTH_EMULATOR_HOST: 127.0.0.1:9099
+[2026-01-28T18:13:34.153Z] FIRESTORE_EMULATOR_HOST: 127.0.0.1:8080
+[2026-01-28T18:13:34.153Z] [1/9] Initializing test environment...
+[2026-01-28T18:13:34.177Z] ✓ Test environment initialized
+[2026-01-28T18:13:34.178Z] [2/9] Seeding Firestore data...
+[2026-01-28T18:13:34.387Z]   Seeded: merchants, offers, users, subscriptions, points_transactions, points_balance
+[2026-01-28T18:13:34.387Z] ✓ Firestore data seeded
+[2026-01-28T18:13:34.387Z] [3/9] Initializing Admin SDK...
+[2026-01-28T18:13:34.387Z] Using auth emulator: 127.0.0.1:9099
+[2026-01-28T18:13:35.451Z] ✓ Admin SDK initialized
+[2026-01-28T18:13:35.451Z] [4/9] Creating auth users...
+[2026-01-28T18:13:35.470Z] ✓ Customer created: test-customer-uid
+[2026-01-28T18:13:35.476Z] ✓ Merchant created: test-merchant-uid
+[2026-01-28T18:13:35.476Z] ✓ Auth users created
+[2026-01-28T18:13:35.516Z]   Updated seed data with UIDs: customer=test-customer-uid, merchant=test-merchant-uid
+[2026-01-28T18:13:35.516Z] [5/9] Initializing Firebase Client SDK...
+[2026-01-28T18:13:35.537Z] ✓ Client SDK initialized and authenticated
+[2026-01-28T18:13:35.537Z] [6/9] Testing getAvailableOffers...
+[2026-01-28T18:13:36.867Z]   Validated: 1 offers, first offer has required DTO fields
+[2026-01-28T18:13:36.867Z] ✓ getAvailableOffers PASS (1325ms)
+[2026-01-28T18:13:36.867Z] [7/9] Testing getOffersByLocationFunc...
+[2026-01-28T18:13:37.645Z]   Warning: No offers returned (acceptable if empty)
+[2026-01-28T18:13:37.645Z] ✓ getOffersByLocationFunc PASS (778ms)
+[2026-01-28T18:13:37.645Z] [8/9] Testing generateQRToken...
+[2026-01-28T18:13:38.706Z]   Validated: qr_token exists (404 chars)
+[2026-01-28T18:13:38.706Z] ✓ generateQRToken PASS (1061ms) - token: eyJ1c2VySWQiOiJ0ZXN0...
+[2026-01-28T18:13:38.707Z] [9/9] Testing validateQRToken with PIN flow...
+[2026-01-28T18:13:39.605Z]   PIN verification required - completing PIN flow...
+[2026-01-28T18:13:40.377Z] 
+[2026-01-28T18:13:40.377Z] ═══════════════════════════════════════════════════════════
+[2026-01-28T18:13:40.377Z] MVP SMOKE GATE: FAIL ❌
+[2026-01-28T18:13:40.377Z] Error: validatePIN failed: Invalid input data
+[2026-01-28T18:13:40.377Z] Stack: Error: validatePIN failed: Invalid input data
+    at main (file:///Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/tools/smoke/mvp_smoke.mjs:307:15)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+[2026-01-28T18:13:40.377Z] ═══════════════════════════════════════════════════════════

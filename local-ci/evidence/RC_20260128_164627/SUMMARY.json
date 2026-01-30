@@ -1,0 +1,13 @@
+{
+  "status": "FAIL",
+  "timestamp": "2026-01-28T14:47:10.514Z",
+  "error": "validateQRToken: Expected success indicator, got: {\"success\":false,\"error\":\"PIN verification required. Please validate PIN first.\"}",
+  "stack": "Error: validateQRToken: Expected success indicator, got: {\"success\":false,\"error\":\"PIN verification required. Please validate PIN first.\"}\n    at validateQRTokenResponse (file:///Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/tools/smoke/mvp_smoke.mjs:609:11)\n    at main (file:///Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/tools/smoke/mvp_smoke.mjs:280:5)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)",
+  "failedAt": "validateQRToken",
+  "region": "us-central1",
+  "ports": {
+    "firestore": "8080",
+    "auth": "9099",
+    "functions": "5001"
+  }
+}

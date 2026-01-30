@@ -1,0 +1,40 @@
+[2026-01-28T14:24:15.309Z] Starting MVP Smoke Gate
+[2026-01-28T14:24:15.311Z] Project: demo-mvp
+[2026-01-28T14:24:15.311Z] Evidence: ../../local-ci/evidence/MVP_SMOKE_20260128_162344
+[2026-01-28T14:24:15.311Z] Emulator ports: Firestore=8080, Auth=9099, Functions=5001
+[2026-01-28T14:24:15.311Z] FIREBASE_AUTH_EMULATOR_HOST: 127.0.0.1:9099
+[2026-01-28T14:24:15.311Z] FIRESTORE_EMULATOR_HOST: 127.0.0.1:8080
+[2026-01-28T14:24:15.311Z] [1/9] Initializing test environment...
+[2026-01-28T14:24:15.340Z] ✓ Test environment initialized
+[2026-01-28T14:24:15.340Z] [2/9] Seeding Firestore data...
+[2026-01-28T14:24:15.571Z]   Seeded: merchants, offers, users, subscriptions, points_transactions, points_balance
+[2026-01-28T14:24:15.571Z] ✓ Firestore data seeded
+[2026-01-28T14:24:15.571Z] [3/9] Initializing Admin SDK...
+[2026-01-28T14:24:15.571Z] Using auth emulator: 127.0.0.1:9099
+[2026-01-28T14:24:16.639Z] ✓ Admin SDK initialized
+[2026-01-28T14:24:16.640Z] [4/9] Creating auth users...
+[2026-01-28T14:24:16.658Z] ✓ Customer created: test-customer-uid
+[2026-01-28T14:24:16.665Z] ✓ Merchant created: test-merchant-uid
+[2026-01-28T14:24:16.665Z] ✓ Auth users created
+[2026-01-28T14:24:16.705Z]   Updated seed data with UIDs: customer=test-customer-uid, merchant=test-merchant-uid
+[2026-01-28T14:24:16.706Z] [5/9] Initializing Firebase Client SDK...
+[2026-01-28T14:24:16.725Z] ✓ Client SDK initialized and authenticated
+[2026-01-28T14:24:16.725Z] [6/9] Testing getAvailableOffers...
+[2026-01-28T14:24:18.151Z]   Validated: 1 offers, first offer has required DTO fields
+[2026-01-28T14:24:18.151Z] ✓ getAvailableOffers PASS (1422ms)
+[2026-01-28T14:24:18.151Z] [7/9] Testing getOffersByLocationFunc...
+[2026-01-28T14:24:18.930Z]   Warning: No offers returned (acceptable if empty)
+[2026-01-28T14:24:18.931Z] ✓ getOffersByLocationFunc PASS (779ms)
+[2026-01-28T14:24:18.931Z] [8/9] Testing generateQRToken...
+[2026-01-28T14:24:19.744Z]   Validated: qr_token exists (404 chars)
+[2026-01-28T14:24:19.744Z] ✓ generateQRToken PASS (813ms) - token: eyJ1c2VySWQiOiJ0ZXN0...
+[2026-01-28T14:24:19.744Z] [9/9] Testing validateQRToken...
+[2026-01-28T14:24:20.532Z] 
+[2026-01-28T14:24:20.532Z] ═══════════════════════════════════════════════════════════
+[2026-01-28T14:24:20.532Z] MVP SMOKE GATE: FAIL ❌
+[2026-01-28T14:24:20.532Z] Error: validateQRToken: Expected success indicator, got: {"success":false,"error":"Value for argument \"data\" is not a valid Firestore document. Cannot use \"undefined\" as a Firestore value (found in field \"merchant_id\"). If you want to ignore undefined values, enable `ignoreUndefinedProperties`."}
+[2026-01-28T14:24:20.532Z] Stack: Error: validateQRToken: Expected success indicator, got: {"success":false,"error":"Value for argument \"data\" is not a valid Firestore document. Cannot use \"undefined\" as a Firestore value (found in field \"merchant_id\"). If you want to ignore undefined values, enable `ignoreUndefinedProperties`."}
+    at validateQRTokenResponse (file:///Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/tools/smoke/mvp_smoke.mjs:584:11)
+    at main (file:///Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/tools/smoke/mvp_smoke.mjs:265:5)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+[2026-01-28T14:24:20.532Z] ═══════════════════════════════════════════════════════════

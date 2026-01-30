@@ -1,0 +1,18 @@
+{
+  "id": "evt_test_checkout_completed",
+  "object": "event",
+  "type": "checkout.session.completed",
+  "created": 1737390000,
+  "livemode": false,
+  "data": {
+    "object": {
+      "id": "cs_test_session",
+      "object": "checkout.session",
+      "payment_status": "paid",
+      "customer": "cus_test123",
+      "metadata": {
+        "merchantId": "merchant_demo"
+      }
+    }
+  }
+}

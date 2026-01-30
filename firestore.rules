@@ -1,0 +1,76 @@
+// Firestore Security Rules - Urban Points Lebanon
+// Canonical location: repository root
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    function isAdmin() {
+      return isAuthenticated() && (request.auth.token.role == 'admin' || exists(/databases/$(database)/documents/admins/$(request.auth.uid)));
+    }
+
+    function isOwner(userId) {
+      return isAuthenticated() && request.auth.uid == userId;
+    }
+
+    function isMerchantOwner(merchantId) {
+      return isAuthenticated() && request.auth.uid == merchantId;
+    }
+
+    match /users/{userId} {
+      allow read: if isOwner(userId) || isAdmin();
+      allow create: if false;
+      allow update: if (isOwner(userId) && !('subscriptionActive' in request.resource.data.keys())) || isAdmin();
+      allow delete: if isAdmin();
+    }
+
+    match /customers/{customerId} {
+      allow read: if isOwner(customerId) || isAdmin();
+      allow create: if isOwner(customerId);
+      allow update: if isOwner(customerId) || isAdmin();
+      allow delete: if isAdmin();
+    }
+
+    match /merchants/{merchantId} {
+      allow read: if true;
+      allow create: if isAuthenticated();
+      allow update: if isMerchantOwner(merchantId) || isAdmin();
+      allow delete: if isAdmin();
+    }
+
+    match /admins/{adminId} {
+      allow read: if isOwner(adminId) || isAdmin();
+      allow write: if false;
+    }
+
+    match /offers/{offerId} {
+      allow read: if (resource.data.is_active == true && (resource.data.status == 'active' || resource.data.status == 'approved')) ||
+                    (isAuthenticated() && (resource.data.merchant_id == request.auth.uid || isAdmin()));
+      allow create: if isAuthenticated() && request.resource.data.merchant_id == request.auth.uid;
+      allow update: if isMerchantOwner(resource.data.merchant_id) && request.resource.data.status == resource.data.status;
+      allow update: if isAdmin();
+      allow delete: if isAdmin();
+    }
+
+    match /qr_tokens/{tokenId} {
+      allow read: if isAuthenticated() && (resource.data.user_id == request.auth.uid || isAdmin());
+      allow write: if false;
+    }
+
+    match /redemptions/{redemptionId} {
+      allow read: if isAuthenticated() && (resource.data.user_id == request.auth.uid || isAdmin());
+      allow write: if false;
+    }
+
+    match /audit_logs/{logId} {
+      allow read: if isAdmin();
+      allow write: if false;
+    }
+
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

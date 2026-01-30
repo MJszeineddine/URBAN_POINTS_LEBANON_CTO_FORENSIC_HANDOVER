@@ -1,0 +1,12 @@
+{
+  "repo_verdict": "NO-GO",
+  "internal_blockers": [
+    "Missing callables: ['adminBanUser', 'adminDisableOffer', 'adminUnbanUser', 'adminUpdateMerchantStatus', 'adminUpdateUserRole', 'approveManualPayment', 'approveOffer', 'calculateDailyStats', 'getPendingManualPayments', 'rejectManualPayment', 'rejectOffer']",
+    "One or more build gates failed"
+  ],
+  "external_blockers": [
+    "TypeScript AST callable scan failed - TypeScript unavailable or AST error"
+  ],
+  "gates_passed": 8,
+  "gates_total": 10
+}

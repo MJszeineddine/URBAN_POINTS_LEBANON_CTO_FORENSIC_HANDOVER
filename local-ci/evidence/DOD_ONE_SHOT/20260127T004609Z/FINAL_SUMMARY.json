@@ -1,0 +1,16 @@
+{
+  "repo_verdict": "NO-GO",
+  "internal_blockers": [
+    "Callable parity: 3 missing callables: ['approveOffer', 'calculateDailyStats', 'rejectOffer']",
+    "Gate failed: Web Admin (npm run lint - optional)",
+    "Gate failed: Flutter Customer (analyze)"
+  ],
+  "external_blockers": [
+    "Backend callable scan used regex fallback (TypeScript not available)"
+  ],
+  "gates_passed": 10,
+  "gates_total": 12,
+  "callable_parity_missing_count": 3,
+  "rules_valid": true,
+  "backend_scan_mode": "regex-fallback"
+}

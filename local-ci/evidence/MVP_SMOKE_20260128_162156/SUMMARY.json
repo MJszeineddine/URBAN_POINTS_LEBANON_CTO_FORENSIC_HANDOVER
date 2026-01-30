@@ -1,0 +1,14 @@
+{
+  "status": "FAIL",
+  "timestamp": "2026-01-28T14:22:29.867Z",
+  "error": "Function DocumentReference.set() called with invalid data. Unsupported field value: a custom Timestamp object (found in field subscription_expiry in document customers/test-customer-uid)",
+  "errorCode": "invalid-argument",
+  "stack": "FirebaseError: Function DocumentReference.set() called with invalid data. Unsupported field value: a custom Timestamp object (found in field subscription_expiry in document customers/test-customer-uid)",
+  "failedAt": "initialization",
+  "region": "us-central1",
+  "ports": {
+    "firestore": "8080",
+    "auth": "9099",
+    "functions": "5001"
+  }
+}

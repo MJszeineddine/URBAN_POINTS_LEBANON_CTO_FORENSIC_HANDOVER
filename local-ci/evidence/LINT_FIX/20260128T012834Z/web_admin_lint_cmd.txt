@@ -1,0 +1,1 @@
+npx --yes eslint . --ext .ts,.tsx,.js,.jsx --max-warnings 0

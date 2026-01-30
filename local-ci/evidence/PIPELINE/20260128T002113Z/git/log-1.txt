@@ -1,0 +1,5 @@
+commit 454f298ee9adf96f70fbb88f55fe6cc2dff09a18
+Author: Mohammad Jawad Zeineddine <12431623@students.liu.edu.lb>
+Date:   Wed Jan 28 00:48:09 2026 +0200
+
+    WIP: LOCKED DoD system + next.config.js fix attempt

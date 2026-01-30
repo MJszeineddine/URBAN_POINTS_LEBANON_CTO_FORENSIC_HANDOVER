@@ -1,0 +1,25 @@
+ M source/apps/web-admin/next-env.d.ts
+ M source/backend/firebase-functions/src/callableWrappers.ts
+ M spec/DEFINITION_OF_DONE_LOCKED.md
+ D tools/_callable_ast_scan.mjs
+ M tools/dod_gate_runner_locked.py
+ M tools/go_pipeline.py
+ M tools/self_heal.py
+?? Makefile
+?? local-ci/evidence/DOD_LOCKED/20260128T004903Z/
+?? local-ci/evidence/DOD_LOCKED/20260128T005100Z/
+?? local-ci/evidence/DOD_LOCKED/20260128T005246Z/
+?? local-ci/evidence/DOD_LOCKED/20260128T130000Z/
+?? local-ci/evidence/GO_PIPELINE/
+?? local-ci/evidence/LINT_FIX/
+?? local-ci/evidence/PIPELINE/
+?? local-ci/evidence/SNAPSHOT/
+?? source/apps/web-admin/.eslintignore
+?? source/apps/web-admin/eslint.config.js
+?? spec/DEFINITION_OF_DONE_GO_RUN.md
+?? tools/_callable_ast_scan.js
+?? tools/go_pipeline/
+?? tools/run_eslint_direct.py
+?? tools/run_lint_with_timeout.py
+?? tools/smoke/
+?? tools/snapshot_bundle.py

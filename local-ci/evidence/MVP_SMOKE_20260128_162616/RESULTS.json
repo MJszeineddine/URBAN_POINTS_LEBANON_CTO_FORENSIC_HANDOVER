@@ -1,0 +1,92 @@
+{
+  "calls": [
+    {
+      "name": "getAvailableOffers",
+      "response": {
+        "success": true,
+        "offers": [
+          {
+            "id": "offer-test-001",
+            "title": "Test Offer",
+            "description": "Test offer for smoke tests",
+            "points_required": 10,
+            "points_cost": 10,
+            "image_url": "",
+            "valid_until": "2027-01-28T14:26:55.889Z",
+            "is_active": true,
+            "discount_percentage": 10,
+            "created_at": null,
+            "merchant_id": "merchant-test-001",
+            "merchant_name": "",
+            "category": "test",
+            "distance_km": null,
+            "used": false
+          }
+        ]
+      }
+    },
+    {
+      "name": "getOffersByLocationFunc",
+      "response": {
+        "success": true,
+        "offers": [],
+        "totalCount": 0
+      }
+    },
+    {
+      "name": "generateQRToken",
+      "response": {
+        "success": true,
+        "token": "eyJ1c2VySWQiOiJ0ZXN0LWN1c3RvbWVyLXVpZCIsIm9mZmVySWQiOiJvZmZlci10ZXN0LTAwMSIsIm1lcmNoYW50SWQiOiJ0ZXN0LW1lcmNoYW50LXVpZCIsImRldmljZUhhc2giOiJzbW9rZS10ZXN0LWRldmljZS1oYXNoIiwidGltZXN0YW1wIjoxNzY5NjEwNDIxMjk4LCJleHBpcmVzQXQiOjE3Njk2MTA0ODEyOTgsIm5vbmNlIjoiMDNmZDBhNzZiMDlhNTUxYzQxMjVkMGQ0ZmU5MTVlZDYiLCJzaWduYXR1cmUiOiJkMzc1Mzk1OGZjNDU4NjEwNDAzZDExYzhjNzk2MWY0ZWFkMGYyNGU5ZTBhMzUwMmE1ODQ2ZmZjZmIyYjMwZDdmIn0=",
+        "displayCode": "626402",
+        "expiresAt": "2026-01-28T14:28:01.298Z",
+        "qr_token": "eyJ1c2VySWQiOiJ0ZXN0LWN1c3RvbWVyLXVpZCIsIm9mZmVySWQiOiJvZmZlci10ZXN0LTAwMSIsIm1lcmNoYW50SWQiOiJ0ZXN0LW1lcmNoYW50LXVpZCIsImRldmljZUhhc2giOiJzbW9rZS10ZXN0LWRldmljZS1oYXNoIiwidGltZXN0YW1wIjoxNzY5NjEwNDIxMjk4LCJleHBpcmVzQXQiOjE3Njk2MTA0ODEyOTgsIm5vbmNlIjoiMDNmZDBhNzZiMDlhNTUxYzQxMjVkMGQ0ZmU5MTVlZDYiLCJzaWduYXR1cmUiOiJkMzc1Mzk1OGZjNDU4NjEwNDAzZDExYzhjNzk2MWY0ZWFkMGYyNGU5ZTBhMzUwMmE1ODQ2ZmZjZmIyYjMwZDdmIn0=",
+        "display_code": "626402",
+        "expires_at": "2026-01-28T14:28:01.298Z"
+      }
+    },
+    {
+      "name": "validateQRToken",
+      "response": {
+        "skipped": true,
+        "reason": "Complex redemption flow - requires integration test"
+      }
+    },
+    {
+      "name": "getBalance",
+      "response": {
+        "success": true,
+        "totalBalance": 100,
+        "breakdown": {
+          "totalEarned": 100,
+          "totalSpent": 0,
+          "totalExpired": 0,
+          "currentBalance": 100
+        },
+        "balance": 100
+      }
+    },
+    {
+      "name": "getPointsHistory",
+      "response": {
+        "success": true,
+        "history": [
+          {
+            "timestamp": "2026-01-28T14:26:57.369Z",
+            "points": 5,
+            "description": "seed transaction"
+          }
+        ]
+      }
+    }
+  ],
+  "timings": {
+    "getAvailableOffers": 1593,
+    "getOffersByLocationFunc": 792,
+    "generateQRToken": 1151,
+    "validateQRToken": 0,
+    "getBalance": 886,
+    "getPointsHistory": 787
+  },
+  "errors": []
+}

@@ -1,0 +1,13 @@
+{
+  "timestamp": "20260128T002352Z",
+  "verdict": "NO-GO",
+  "level_achieved": "NO-GO",
+  "internal_blockers": [
+    "Missing server callables: createBillingPortalSession, createCheckoutSession, deleteUserData, exportUserData, generateQRToken, getAvailableOffers, getFilteredOffers, getPointsHistory, getUserProfile, redeemOffer, searchOffers, sendWhatsAppOTP, verifyWhatsAppOTP"
+  ],
+  "external_blockers": [],
+  "gates_total": 10,
+  "gates_passed": 10,
+  "gates_failed": 0,
+  "evidence_dir": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/local-ci/evidence/PIPELINE/20260128T002352Z"
+}

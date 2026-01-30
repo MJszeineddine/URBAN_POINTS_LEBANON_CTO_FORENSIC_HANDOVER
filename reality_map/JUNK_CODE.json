@@ -1,0 +1,1892 @@
+[
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/integration_test/pain_test.dart",
+    "line": 26,
+    "pattern": "print(",
+    "snippet": "print('\u2705 Merchant app startup: ${sw.elapsedMilliseconds}ms');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/integration_test/pain_test.dart",
+    "line": 33,
+    "pattern": "print(",
+    "snippet": "print('\u2705 QR scanner module available');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/integration_test/pain_test.dart",
+    "line": 43,
+    "pattern": "print(",
+    "snippet": "print('\u2705 Analytics dashboard: ${sw.elapsedMilliseconds}ms');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/web/index.html",
+    "line": 14,
+    "pattern": "PLACEHOLDER",
+    "snippet": "This is a placeholder for base href that will be replaced by the value of"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/web/firebase-messaging-sw.js",
+    "line": 22,
+    "pattern": "console.log",
+    "snippet": "console.log('[firebase-messaging-sw.js] Received background message ', payload);"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/web/firebase-messaging-sw.js",
+    "line": 49,
+    "pattern": "console.log",
+    "snippet": "console.log('[firebase-messaging-sw.js] Notification clicked', event);"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/ios/Flutter/ephemeral/flutter_lldb_helper.py",
+    "line": 21,
+    "pattern": "print(",
+    "snippet": "print(f'Failed to write into {base}[+{page_len}]', error)"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/ios/Flutter/ephemeral/flutter_lldb_helper.py",
+    "line": 24,
+    "pattern": "debugger",
+    "snippet": "def __lldb_init_module(debugger: lldb.SBDebugger, _):"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/ios/Flutter/ephemeral/flutter_lldb_helper.py",
+    "line": 25,
+    "pattern": "debugger",
+    "snippet": "target = debugger.GetDummyTarget()"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/ios/Flutter/ephemeral/flutter_lldb_helper.py",
+    "line": 32,
+    "pattern": "print(",
+    "snippet": "print(\"-- LLDB integration loaded --\")"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/windows/runner/main.cpp",
+    "line": 11,
+    "pattern": "debugger",
+    "snippet": "// new console when running with a debugger."
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/tool/auth_sanity.dart",
+    "line": 12,
+    "pattern": "print(",
+    "snippet": "print('========================================');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/tool/auth_sanity.dart",
+    "line": 13,
+    "pattern": "print(",
+    "snippet": "print('\ud83e\uddea DAY 2 AUTH SANITY CHECK - MERCHANT APP');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/tool/auth_sanity.dart",
+    "line": 14,
+    "pattern": "print(",
+    "snippet": "print('========================================\\n');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/tool/auth_sanity.dart",
+    "line": 17,
+    "pattern": "print(",
+    "snippet": "print('\ud83d\udcf1 Step 1: Initializing Firebase...');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/tool/auth_sanity.dart",
+    "line": 22,
+    "pattern": "print(",
+    "snippet": "print('\u2705 Firebase initialized successfully');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/tool/auth_sanity.dart",
+    "line": 23,
+    "pattern": "print(",
+    "snippet": "print('   Project: ${DefaultFirebaseOptions.currentPlatform.projectId}');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/tool/auth_sanity.dart",
+    "line": 25,
+    "pattern": "print(",
+    "snippet": "print('\u274c FAIL: Firebase initialization failed: $e');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/tool/auth_sanity.dart",
+    "line": 30,
+    "pattern": "print(",
+    "snippet": "print('\\n\ud83d\udcf1 Step 2: Checking current user...');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/tool/auth_sanity.dart",
+    "line": 35,
+    "pattern": "print(",
+    "snippet": "print('\u2139\ufe0f  No user currently signed in');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/tool/auth_sanity.dart",
+    "line": 37,
+    "pattern": "print(",
+    "snippet": "print('\u2705 User signed in:');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/tool/auth_sanity.dart",
+    "line": 38,
+    "pattern": "print(",
+    "snippet": "print('   UID: ${currentUser.uid}');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/tool/auth_sanity.dart",
+    "line": 39,
+    "pattern": "print(",
+    "snippet": "print('   Email: ${currentUser.email}');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/tool/auth_sanity.dart",
+    "line": 40,
+    "pattern": "print(",
+    "snippet": "print('   Email Verified: ${currentUser.emailVerified}');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/tool/auth_sanity.dart",
+    "line": 48,
+    "pattern": "print(",
+    "snippet": "print('\\n\ud83d\udcf1 Step 3: Testing sign-in with provided credentials...');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/tool/auth_sanity.dart",
+    "line": 53,
+    "pattern": "print(",
+    "snippet": "print('   Signed out previous user');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/tool/auth_sanity.dart",
+    "line": 62,
+    "pattern": "print(",
+    "snippet": "print('\u2705 Sign-in successful');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/tool/auth_sanity.dart",
+    "line": 63,
+    "pattern": "print(",
+    "snippet": "print('   UID: ${user.uid}');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/tool/auth_sanity.dart",
+    "line": 64,
+    "pattern": "print(",
+    "snippet": "print('   Email: ${user.email}');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/tool/auth_sanity.dart",
+    "line": 67,
+    "pattern": "print(",
+    "snippet": "print('\\n\ud83d\udcf1 Step 4: Fetching ID token and custom claims...');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/tool/auth_sanity.dart",
+    "line": 72,
+    "pattern": "print(",
+    "snippet": "print('\u2705 ID token retrieved');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/tool/auth_sanity.dart",
+    "line": 73,
+    "pattern": "print(",
+    "snippet": "print('   Token expires: ${idTokenResult.expirationTime}');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/tool/auth_sanity.dart",
+    "line": 74,
+    "pattern": "print(",
+    "snippet": "print('   Custom claims role: ${role ?? \"NOT SET\"}');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/tool/auth_sanity.dart",
+    "line": 77,
+    "pattern": "print(",
+    "snippet": "print('\\n\ud83d\udcf1 Step 5: Checking Firestore user document...');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/tool/auth_sanity.dart",
+    "line": 84,
+    "pattern": "print(",
+    "snippet": "print('\u274c FAIL: User document does not exist in Firestore /users/${user.uid}');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/tool/auth_sanity.dart",
+    "line": 85,
+    "pattern": "print(",
+    "snippet": "print('   Expected: Document created by onUserCreate trigger');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/tool/auth_sanity.dart",
+    "line": 93,
+    "pattern": "print(",
+    "snippet": "print('\u2705 User document found');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/tool/auth_sanity.dart",
+    "line": 94,
+    "pattern": "print(",
+    "snippet": "print('   Firestore role: ${firestoreRole ?? \"NOT SET\"}');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/tool/auth_sanity.dart",
+    "line": 95,
+    "pattern": "print(",
+    "snippet": "print('   isActive: $isActive');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/tool/auth_sanity.dart",
+    "line": 96,
+    "pattern": "print(",
+    "snippet": "print('   email: ${userData['email']}');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/tool/auth_sanity.dart",
+    "line": 97,
+    "pattern": "print(",
+    "snippet": "print('   pointsBalance: ${userData['pointsBalance']}');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/tool/auth_sanity.dart",
+    "line": 100,
+    "pattern": "print(",
+    "snippet": "print('\\n\ud83d\udcf1 Step 6: Validating role for Merchant app...');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/tool/auth_sanity.dart",
+    "line": 105,
+    "pattern": "print(",
+    "snippet": "print('\u274c FAIL: No role found in custom claims or Firestore');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/tool/auth_sanity.dart",
+    "line": 110,
+    "pattern": "print(",
+    "snippet": "print('\u274c FAIL: Invalid role for Merchant app');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/tool/auth_sanity.dart",
+    "line": 111,
+    "pattern": "print(",
+    "snippet": "print('   Expected: merchant');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/tool/auth_sanity.dart",
+    "line": 112,
+    "pattern": "print(",
+    "snippet": "print('   Got: $effectiveRole');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/tool/auth_sanity.dart",
+    "line": 117,
+    "pattern": "print(",
+    "snippet": "print('\u274c FAIL: User is not active (isActive: false)');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/tool/auth_sanity.dart",
+    "line": 121,
+    "pattern": "print(",
+    "snippet": "print('\u2705 Role validation PASSED');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/tool/auth_sanity.dart",
+    "line": 122,
+    "pattern": "print(",
+    "snippet": "print('   Role: $effectiveRole');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/tool/auth_sanity.dart",
+    "line": 123,
+    "pattern": "print(",
+    "snippet": "print('   isActive: $isActive');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/tool/auth_sanity.dart",
+    "line": 126,
+    "pattern": "print(",
+    "snippet": "print('\\n========================================');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/tool/auth_sanity.dart",
+    "line": 127,
+    "pattern": "print(",
+    "snippet": "print('\u2705 \u2705 \u2705 ALL CHECKS PASSED \u2705 \u2705 \u2705');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/tool/auth_sanity.dart",
+    "line": 128,
+    "pattern": "print(",
+    "snippet": "print('========================================');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/tool/auth_sanity.dart",
+    "line": 129,
+    "pattern": "print(",
+    "snippet": "print('Summary:');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/tool/auth_sanity.dart",
+    "line": 130,
+    "pattern": "print(",
+    "snippet": "print('  \u2022 Firebase: \u2705 Initialized');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/tool/auth_sanity.dart",
+    "line": 131,
+    "pattern": "print(",
+    "snippet": "print('  \u2022 Auth: \u2705 Signed in (${user.email})');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/tool/auth_sanity.dart",
+    "line": 132,
+    "pattern": "print(",
+    "snippet": "print('  \u2022 Claims: \u2705 Role = $effectiveRole');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/tool/auth_sanity.dart",
+    "line": 133,
+    "pattern": "print(",
+    "snippet": "print('  \u2022 Firestore: \u2705 User doc exists');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/tool/auth_sanity.dart",
+    "line": 134,
+    "pattern": "print(",
+    "snippet": "print('  \u2022 Role check: \u2705 Valid for Merchant app');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/tool/auth_sanity.dart",
+    "line": 135,
+    "pattern": "print(",
+    "snippet": "print('  \u2022 isActive: \u2705 true');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/tool/auth_sanity.dart",
+    "line": 136,
+    "pattern": "print(",
+    "snippet": "print('========================================\\n');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/tool/auth_sanity.dart",
+    "line": 139,
+    "pattern": "print(",
+    "snippet": "print('\u274c FAIL: Error accessing Firestore: $e');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/tool/auth_sanity.dart",
+    "line": 147,
+    "pattern": "print(",
+    "snippet": "print('\u274c FAIL: Sign-in failed: $e');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/tool/auth_sanity.dart",
+    "line": 151,
+    "pattern": "print(",
+    "snippet": "print('\\n\ud83d\udcf1 Step 3: Skipping sign-in test (no credentials provided)');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/tool/auth_sanity.dart",
+    "line": 152,
+    "pattern": "print(",
+    "snippet": "print('   Set TEST_EMAIL and TEST_PASSWORD env vars to enable');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/tool/auth_sanity.dart",
+    "line": 153,
+    "pattern": "print(",
+    "snippet": "print('\\n========================================');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/tool/auth_sanity.dart",
+    "line": 154,
+    "pattern": "print(",
+    "snippet": "print('\u26a0\ufe0f  PARTIAL CHECK COMPLETE');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/tool/auth_sanity.dart",
+    "line": 155,
+    "pattern": "print(",
+    "snippet": "print('========================================');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/tool/auth_sanity.dart",
+    "line": 156,
+    "pattern": "print(",
+    "snippet": "print('Summary:');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/tool/auth_sanity.dart",
+    "line": 157,
+    "pattern": "print(",
+    "snippet": "print('  \u2022 Firebase: \u2705 Initialized');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/tool/auth_sanity.dart",
+    "line": 158,
+    "pattern": "print(",
+    "snippet": "print('  \u2022 Auth: \u2139\ufe0f  ${currentUser != null ? \"User signed in\" : \"No user\"}');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/tool/auth_sanity.dart",
+    "line": 159,
+    "pattern": "print(",
+    "snippet": "print('  \u2022 E2E test: \u23ed\ufe0f  SKIPPED (no credentials)');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-merchant/tool/auth_sanity.dart",
+    "line": 160,
+    "pattern": "print(",
+    "snippet": "print('========================================\\n');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/analysis_options.yaml",
+    "line": 12,
+    "pattern": "TODO",
+    "snippet": "todo: ignore"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/integration_test/pain_test.dart",
+    "line": 34,
+    "pattern": "print(",
+    "snippet": "print('\u23f1\ufe0f  App startup: ${sw.elapsedMilliseconds}ms');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/integration_test/pain_test.dart",
+    "line": 37,
+    "pattern": "print(",
+    "snippet": "print('\u274c PAIN: Startup exceeded 10s');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/integration_test/pain_test.dart",
+    "line": 39,
+    "pattern": "print(",
+    "snippet": "print('\u2705 PASS: Startup within limit');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/integration_test/pain_test.dart",
+    "line": 51,
+    "pattern": "print(",
+    "snippet": "print('\u2705 PASS: Merchant flow navigation');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/integration_test/pain_test.dart",
+    "line": 75,
+    "pattern": "print(",
+    "snippet": "print('\u2705 ${entry.key}: ${entry.value}ms');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/integration_test/pain_test.dart",
+    "line": 95,
+    "pattern": "print(",
+    "snippet": "print('\u23f1\ufe0f  Network resilience (${delayS}s simulated): ${sw.elapsedMilliseconds}ms');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/web/index.html",
+    "line": 14,
+    "pattern": "PLACEHOLDER",
+    "snippet": "This is a placeholder for base href that will be replaced by the value of"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/web/firebase-messaging-sw.js",
+    "line": 22,
+    "pattern": "console.log",
+    "snippet": "console.log('[firebase-messaging-sw.js] Received background message ', payload);"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/web/firebase-messaging-sw.js",
+    "line": 49,
+    "pattern": "console.log",
+    "snippet": "console.log('[firebase-messaging-sw.js] Notification clicked', event);"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/ios/Flutter/ephemeral/flutter_lldb_helper.py",
+    "line": 21,
+    "pattern": "print(",
+    "snippet": "print(f'Failed to write into {base}[+{page_len}]', error)"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/ios/Flutter/ephemeral/flutter_lldb_helper.py",
+    "line": 24,
+    "pattern": "debugger",
+    "snippet": "def __lldb_init_module(debugger: lldb.SBDebugger, _):"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/ios/Flutter/ephemeral/flutter_lldb_helper.py",
+    "line": 25,
+    "pattern": "debugger",
+    "snippet": "target = debugger.GetDummyTarget()"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/ios/Flutter/ephemeral/flutter_lldb_helper.py",
+    "line": 32,
+    "pattern": "print(",
+    "snippet": "print(\"-- LLDB integration loaded --\")"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/lib/screens/notifications_screen.dart",
+    "line": 381,
+    "pattern": "TODO",
+    "snippet": "// TODO: Navigate to relevant screen based on type"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/lib/widgets/reconciled/reconciled_offline_banner.dart",
+    "line": 10,
+    "pattern": "TODO",
+    "snippet": "/// TODO: To activate this widget:"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/windows/runner/main.cpp",
+    "line": 11,
+    "pattern": "debugger",
+    "snippet": "// new console when running with a debugger."
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/tool/auth_sanity.dart",
+    "line": 12,
+    "pattern": "print(",
+    "snippet": "print('========================================');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/tool/auth_sanity.dart",
+    "line": 13,
+    "pattern": "print(",
+    "snippet": "print('\ud83e\uddea DAY 2 AUTH SANITY CHECK - CUSTOMER APP');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/tool/auth_sanity.dart",
+    "line": 14,
+    "pattern": "print(",
+    "snippet": "print('========================================\\n');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/tool/auth_sanity.dart",
+    "line": 17,
+    "pattern": "print(",
+    "snippet": "print('\ud83d\udcf1 Step 1: Initializing Firebase...');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/tool/auth_sanity.dart",
+    "line": 22,
+    "pattern": "print(",
+    "snippet": "print('\u2705 Firebase initialized successfully');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/tool/auth_sanity.dart",
+    "line": 23,
+    "pattern": "print(",
+    "snippet": "print('   Project: ${DefaultFirebaseOptions.currentPlatform.projectId}');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/tool/auth_sanity.dart",
+    "line": 25,
+    "pattern": "print(",
+    "snippet": "print('\u274c FAIL: Firebase initialization failed: $e');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/tool/auth_sanity.dart",
+    "line": 30,
+    "pattern": "print(",
+    "snippet": "print('\\n\ud83d\udcf1 Step 2: Checking current user...');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/tool/auth_sanity.dart",
+    "line": 35,
+    "pattern": "print(",
+    "snippet": "print('\u2139\ufe0f  No user currently signed in');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/tool/auth_sanity.dart",
+    "line": 37,
+    "pattern": "print(",
+    "snippet": "print('\u2705 User signed in:');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/tool/auth_sanity.dart",
+    "line": 38,
+    "pattern": "print(",
+    "snippet": "print('   UID: ${currentUser.uid}');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/tool/auth_sanity.dart",
+    "line": 39,
+    "pattern": "print(",
+    "snippet": "print('   Email: ${currentUser.email}');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/tool/auth_sanity.dart",
+    "line": 40,
+    "pattern": "print(",
+    "snippet": "print('   Email Verified: ${currentUser.emailVerified}');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/tool/auth_sanity.dart",
+    "line": 48,
+    "pattern": "print(",
+    "snippet": "print('\\n\ud83d\udcf1 Step 3: Testing sign-in with provided credentials...');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/tool/auth_sanity.dart",
+    "line": 53,
+    "pattern": "print(",
+    "snippet": "print('   Signed out previous user');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/tool/auth_sanity.dart",
+    "line": 62,
+    "pattern": "print(",
+    "snippet": "print('\u2705 Sign-in successful');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/tool/auth_sanity.dart",
+    "line": 63,
+    "pattern": "print(",
+    "snippet": "print('   UID: ${user.uid}');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/tool/auth_sanity.dart",
+    "line": 64,
+    "pattern": "print(",
+    "snippet": "print('   Email: ${user.email}');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/tool/auth_sanity.dart",
+    "line": 67,
+    "pattern": "print(",
+    "snippet": "print('\\n\ud83d\udcf1 Step 4: Fetching ID token and custom claims...');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/tool/auth_sanity.dart",
+    "line": 72,
+    "pattern": "print(",
+    "snippet": "print('\u2705 ID token retrieved');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/tool/auth_sanity.dart",
+    "line": 73,
+    "pattern": "print(",
+    "snippet": "print('   Token expires: ${idTokenResult.expirationTime}');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/tool/auth_sanity.dart",
+    "line": 74,
+    "pattern": "print(",
+    "snippet": "print('   Custom claims role: ${role ?? \"NOT SET\"}');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/tool/auth_sanity.dart",
+    "line": 77,
+    "pattern": "print(",
+    "snippet": "print('\\n\ud83d\udcf1 Step 5: Checking Firestore user document...');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/tool/auth_sanity.dart",
+    "line": 84,
+    "pattern": "print(",
+    "snippet": "print('\u274c FAIL: User document does not exist in Firestore /users/${user.uid}');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/tool/auth_sanity.dart",
+    "line": 85,
+    "pattern": "print(",
+    "snippet": "print('   Expected: Document created by onUserCreate trigger');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/tool/auth_sanity.dart",
+    "line": 93,
+    "pattern": "print(",
+    "snippet": "print('\u2705 User document found');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/tool/auth_sanity.dart",
+    "line": 94,
+    "pattern": "print(",
+    "snippet": "print('   Firestore role: ${firestoreRole ?? \"NOT SET\"}');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/tool/auth_sanity.dart",
+    "line": 95,
+    "pattern": "print(",
+    "snippet": "print('   isActive: $isActive');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/tool/auth_sanity.dart",
+    "line": 96,
+    "pattern": "print(",
+    "snippet": "print('   email: ${userData['email']}');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/tool/auth_sanity.dart",
+    "line": 97,
+    "pattern": "print(",
+    "snippet": "print('   pointsBalance: ${userData['pointsBalance']}');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/tool/auth_sanity.dart",
+    "line": 100,
+    "pattern": "print(",
+    "snippet": "print('\\n\ud83d\udcf1 Step 6: Validating role for Customer app...');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/tool/auth_sanity.dart",
+    "line": 105,
+    "pattern": "print(",
+    "snippet": "print('\u274c FAIL: No role found in custom claims or Firestore');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/tool/auth_sanity.dart",
+    "line": 110,
+    "pattern": "print(",
+    "snippet": "print('\u274c FAIL: Invalid role for Customer app');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/tool/auth_sanity.dart",
+    "line": 111,
+    "pattern": "print(",
+    "snippet": "print('   Expected: customer or user');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/tool/auth_sanity.dart",
+    "line": 112,
+    "pattern": "print(",
+    "snippet": "print('   Got: $effectiveRole');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/tool/auth_sanity.dart",
+    "line": 117,
+    "pattern": "print(",
+    "snippet": "print('\u274c FAIL: User is not active (isActive: false)');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/tool/auth_sanity.dart",
+    "line": 121,
+    "pattern": "print(",
+    "snippet": "print('\u2705 Role validation PASSED');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/tool/auth_sanity.dart",
+    "line": 122,
+    "pattern": "print(",
+    "snippet": "print('   Role: $effectiveRole');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/tool/auth_sanity.dart",
+    "line": 123,
+    "pattern": "print(",
+    "snippet": "print('   isActive: $isActive');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/tool/auth_sanity.dart",
+    "line": 126,
+    "pattern": "print(",
+    "snippet": "print('\\n========================================');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/tool/auth_sanity.dart",
+    "line": 127,
+    "pattern": "print(",
+    "snippet": "print('\u2705 \u2705 \u2705 ALL CHECKS PASSED \u2705 \u2705 \u2705');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/tool/auth_sanity.dart",
+    "line": 128,
+    "pattern": "print(",
+    "snippet": "print('========================================');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/tool/auth_sanity.dart",
+    "line": 129,
+    "pattern": "print(",
+    "snippet": "print('Summary:');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/tool/auth_sanity.dart",
+    "line": 130,
+    "pattern": "print(",
+    "snippet": "print('  \u2022 Firebase: \u2705 Initialized');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/tool/auth_sanity.dart",
+    "line": 131,
+    "pattern": "print(",
+    "snippet": "print('  \u2022 Auth: \u2705 Signed in (${user.email})');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/tool/auth_sanity.dart",
+    "line": 132,
+    "pattern": "print(",
+    "snippet": "print('  \u2022 Claims: \u2705 Role = $effectiveRole');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/tool/auth_sanity.dart",
+    "line": 133,
+    "pattern": "print(",
+    "snippet": "print('  \u2022 Firestore: \u2705 User doc exists');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/tool/auth_sanity.dart",
+    "line": 134,
+    "pattern": "print(",
+    "snippet": "print('  \u2022 Role check: \u2705 Valid for Customer app');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/tool/auth_sanity.dart",
+    "line": 135,
+    "pattern": "print(",
+    "snippet": "print('  \u2022 isActive: \u2705 true');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/tool/auth_sanity.dart",
+    "line": 136,
+    "pattern": "print(",
+    "snippet": "print('========================================\\n');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/tool/auth_sanity.dart",
+    "line": 139,
+    "pattern": "print(",
+    "snippet": "print('\u274c FAIL: Error accessing Firestore: $e');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/tool/auth_sanity.dart",
+    "line": 147,
+    "pattern": "print(",
+    "snippet": "print('\u274c FAIL: Sign-in failed: $e');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/tool/auth_sanity.dart",
+    "line": 151,
+    "pattern": "print(",
+    "snippet": "print('\\n\ud83d\udcf1 Step 3: Skipping sign-in test (no credentials provided)');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/tool/auth_sanity.dart",
+    "line": 152,
+    "pattern": "print(",
+    "snippet": "print('   Set TEST_EMAIL and TEST_PASSWORD env vars to enable');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/tool/auth_sanity.dart",
+    "line": 153,
+    "pattern": "print(",
+    "snippet": "print('\\n========================================');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/tool/auth_sanity.dart",
+    "line": 154,
+    "pattern": "print(",
+    "snippet": "print('\u26a0\ufe0f  PARTIAL CHECK COMPLETE');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/tool/auth_sanity.dart",
+    "line": 155,
+    "pattern": "print(",
+    "snippet": "print('========================================');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/tool/auth_sanity.dart",
+    "line": 156,
+    "pattern": "print(",
+    "snippet": "print('Summary:');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/tool/auth_sanity.dart",
+    "line": 157,
+    "pattern": "print(",
+    "snippet": "print('  \u2022 Firebase: \u2705 Initialized');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/tool/auth_sanity.dart",
+    "line": 158,
+    "pattern": "print(",
+    "snippet": "print('  \u2022 Auth: \u2139\ufe0f  ${currentUser != null ? \"User signed in\" : \"No user\"}');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/tool/auth_sanity.dart",
+    "line": 159,
+    "pattern": "print(",
+    "snippet": "print('  \u2022 E2E test: \u23ed\ufe0f  SKIPPED (no credentials)');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/mobile-customer/tool/auth_sanity.dart",
+    "line": 160,
+    "pattern": "print(",
+    "snippet": "print('========================================\\n');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/web-admin/index.html",
+    "line": 393,
+    "pattern": "PLACEHOLDER",
+    "snippet": "<input type=\"email\" id=\"email\" required placeholder=\"admin@urbanpoints.com\">"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/web-admin/index.html",
+    "line": 398,
+    "pattern": "PLACEHOLDER",
+    "snippet": "<input type=\"password\" id=\"password\" required placeholder=\"\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\">"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/web-admin/index.html",
+    "line": 504,
+    "pattern": "PLACEHOLDER",
+    "snippet": "<textarea id=\"rejectReason\" placeholder=\"e.g., Offer description is unclear, points cost is too high, etc.\"></textarea>"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/web-admin/tests/e2e/smoke.spec.ts",
+    "line": 11,
+    "pattern": "console.log",
+    "snippet": "console.log('Page loaded successfully');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/web-admin/tests/e2e/smoke.spec.ts",
+    "line": 21,
+    "pattern": "console.log",
+    "snippet": "console.log('Login page accessible');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/web-admin/pages/admin/payments.tsx",
+    "line": 324,
+    "pattern": "PLACEHOLDER",
+    "snippet": "placeholder=\"Enter reason for rejection...\""
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/apps/web-admin/pages/admin/analytics.tsx",
+    "line": 85,
+    "pattern": "PLACEHOLDER",
+    "snippet": "redemptions: Math.floor(Math.random() * 100), // Placeholder - would need actual aggregation"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/load_test.js",
+    "line": 149,
+    "pattern": "console.log",
+    "snippet": "console.log('Load test starting...');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/load_test.js",
+    "line": 150,
+    "pattern": "console.log",
+    "snippet": "console.log(`Target: ${BASE_URL}`);"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/load_test.js",
+    "line": 151,
+    "pattern": "console.log",
+    "snippet": "console.log(`Test User: ${TEST_USER_ID}`);"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/load_test.js",
+    "line": 157,
+    "pattern": "console.log",
+    "snippet": "console.log('Load test completed at:', new Date().toISOString());"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/load_test.js",
+    "line": 158,
+    "pattern": "console.log",
+    "snippet": "console.log('Started at:', data.timestamp);"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/uat_test.js",
+    "line": 45,
+    "pattern": "console.log",
+    "snippet": "console.log('\u2713 Test data seeded');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/uat_test.js",
+    "line": 56,
+    "pattern": "console.log",
+    "snippet": "console.log('\u2713 Test data cleaned');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/uat_test.js",
+    "line": 69,
+    "pattern": "console.log",
+    "snippet": "console.log('\\\\n[Scenario 1] Browse approved active offers');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/uat_test.js",
+    "line": 80,
+    "pattern": "console.log",
+    "snippet": "console.log(`\u2713 Found ${offers.size} active approved offers`);"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/uat_test.js",
+    "line": 83,
+    "pattern": "console.log",
+    "snippet": "console.log('\\\\n[Scenario 2] Monthly redemption limit enforcement');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/uat_test.js",
+    "line": 98,
+    "pattern": "console.log",
+    "snippet": "console.log(`\u2713 Monthly redemption check: ${existingRedemptions.size} found`);"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/uat_test.js",
+    "line": 101,
+    "pattern": "console.log",
+    "snippet": "console.log('\\\\n[Scenario 3] Rate limit validation');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/uat_test.js",
+    "line": 110,
+    "pattern": "console.log",
+    "snippet": "console.log(`\u2713 Rate limit check: ${rateLimitDoc.exists ? 'exists' : 'not yet'}`);"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/uat_test.js",
+    "line": 113,
+    "pattern": "console.log",
+    "snippet": "console.log('\\\\n[Scenario 4] Merchant exists check');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/uat_test.js",
+    "line": 121,
+    "pattern": "console.log",
+    "snippet": "console.log(`\u2713 Merchant check: ${merchantDoc.exists}`);"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/uat_test.js",
+    "line": 124,
+    "pattern": "console.log",
+    "snippet": "console.log('\\\\n[Scenario 5] Admin offer approval workflow');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/uat_test.js",
+    "line": 140,
+    "pattern": "console.log",
+    "snippet": "console.log(`\u2713 Pending offers check: ${pendingOffers.size} found`);"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/uat_test.js",
+    "line": 158,
+    "pattern": "console.log",
+    "snippet": "console.log('\\\\n=== UAT RESULTS ===');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/uat_test.js",
+    "line": 161,
+    "pattern": "console.log",
+    "snippet": "console.log(`Passed: ${passed}/${total}`);"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/uat_test.js",
+    "line": 162,
+    "pattern": "console.log",
+    "snippet": "console.log(JSON.stringify(results, null, 2));"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/jest.setup.js",
+    "line": 24,
+    "pattern": "console.log",
+    "snippet": "console.log('[JEST] Tests will use mocked Firebase (no emulator connection required)');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/load_test_firestore.js",
+    "line": 200,
+    "pattern": "console.log",
+    "snippet": "console.log('Firestore load test starting...');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/load_test_firestore.js",
+    "line": 201,
+    "pattern": "console.log",
+    "snippet": "console.log(`Target: ${FIRESTORE_BASE}`);"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/load_test_firestore.js",
+    "line": 202,
+    "pattern": "console.log",
+    "snippet": "console.log(`VU Prefix: ${VU_PREFIX}`);"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/load_test_firestore.js",
+    "line": 215,
+    "pattern": "console.log",
+    "snippet": "console.log('Firestore load test completed');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/load_test_firestore.js",
+    "line": 216,
+    "pattern": "console.log",
+    "snippet": "console.log('Started:', data.timestamp);"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/load_test_firestore.js",
+    "line": 217,
+    "pattern": "console.log",
+    "snippet": "console.log('Ended:', new Date().toISOString());"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/tools/loop.sh",
+    "line": 30,
+    "pattern": "console.log",
+    "snippet": "console.log(JSON.stringify(s,null,2));"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/tools/loop.sh",
+    "line": 33,
+    "pattern": "console.log",
+    "snippet": "console.log(\"NO coverage-summary.json found; relying on jest stdout in tests log.\");"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/lib/subscriptionAutomation.js",
+    "line": 67,
+    "pattern": "console.log",
+    "snippet": "console.log(`Processing renewals for subscriptions expiring before ${tomorrow.toISOString()}`);"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/lib/subscriptionAutomation.js",
+    "line": 75,
+    "pattern": "console.log",
+    "snippet": "console.log('No subscriptions to renew');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/lib/subscriptionAutomation.js",
+    "line": 78,
+    "pattern": "console.log",
+    "snippet": "console.log(`Found ${expiringSubscriptions.size} subscriptions to renew`);"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/lib/subscriptionAutomation.js",
+    "line": 171,
+    "pattern": "console.log",
+    "snippet": "console.log('Stripe not configured, simulating successful renewal');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/lib/subscriptionAutomation.js",
+    "line": 263,
+    "pattern": "console.log",
+    "snippet": "console.log('Renewal results:', renewalResults);"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/lib/subscriptionAutomation.js",
+    "line": 296,
+    "pattern": "console.log",
+    "snippet": "console.log('Sending expiry reminders');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/lib/subscriptionAutomation.js",
+    "line": 310,
+    "pattern": "console.log",
+    "snippet": "console.log(`No subscriptions expiring in ${days} days`);"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/lib/subscriptionAutomation.js",
+    "line": 313,
+    "pattern": "console.log",
+    "snippet": "console.log(`Found ${subscriptions.size} subscriptions expiring in ${days} days`);"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/lib/subscriptionAutomation.js",
+    "line": 334,
+    "pattern": "console.log",
+    "snippet": "console.log('Expiry reminders sent');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/lib/subscriptionAutomation.js",
+    "line": 356,
+    "pattern": "console.log",
+    "snippet": "console.log('Cleaning up expired subscriptions');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/lib/subscriptionAutomation.js",
+    "line": 363,
+    "pattern": "console.log",
+    "snippet": "console.log('No expired subscriptions to clean up');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/lib/subscriptionAutomation.js",
+    "line": 366,
+    "pattern": "console.log",
+    "snippet": "console.log(`Found ${expiredSubscriptions.size} expired subscriptions`);"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/lib/subscriptionAutomation.js",
+    "line": 393,
+    "pattern": "console.log",
+    "snippet": "console.log(`Marked ${expiredSubscriptions.size} subscriptions as expired`);"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/lib/subscriptionAutomation.js",
+    "line": 414,
+    "pattern": "console.log",
+    "snippet": "console.log('Calculating subscription metrics');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/lib/subscriptionAutomation.js",
+    "line": 451,
+    "pattern": "console.log",
+    "snippet": "console.log('Subscription metrics:', metrics);"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/lib/phase3Scheduler.js",
+    "line": 199,
+    "pattern": "console.log",
+    "snippet": "console.log('Starting merchant compliance check');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/lib/phase3Scheduler.js",
+    "line": 288,
+    "pattern": "console.log",
+    "snippet": "console.log('Compliance check results:', complianceResults);"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/lib/phase3Scheduler.js",
+    "line": 319,
+    "pattern": "console.log",
+    "snippet": "console.log('Starting QR token cleanup');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/lib/phase3Scheduler.js",
+    "line": 329,
+    "pattern": "console.log",
+    "snippet": "console.log(`Found ${expiredTokens.size} expired tokens to cleanup`);"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/lib/phase3Scheduler.js",
+    "line": 345,
+    "pattern": "console.log",
+    "snippet": "console.log(`Cleaned up ${deletedCount} tokens...`);"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/lib/phase3Scheduler.js",
+    "line": 352,
+    "pattern": "console.log",
+    "snippet": "console.log(`QR token cleanup complete. Marked ${deletedCount} tokens as expired`);"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/lib/phase3Scheduler.js",
+    "line": 383,
+    "pattern": "console.log",
+    "snippet": "console.log('Checking for expiring points...');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/lib/phase3Scheduler.js",
+    "line": 394,
+    "pattern": "console.log",
+    "snippet": "console.log('No points expiring in 30 days');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/lib/phase3Scheduler.js",
+    "line": 397,
+    "pattern": "console.log",
+    "snippet": "console.log(`Found ${expiringPoints.size} customers with expiring points`);"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/lib/phase3Scheduler.js",
+    "line": 423,
+    "pattern": "console.log",
+    "snippet": "console.log(`Points expiry warnings sent: ${notificationsSent}`);"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/lib/whatsapp.js",
+    "line": 85,
+    "pattern": "console.log",
+    "snippet": "console.log('Twilio WhatsApp not configured. Simulating message send.');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/lib/whatsapp.js",
+    "line": 343,
+    "pattern": "console.log",
+    "snippet": "console.log(`Cleaned up ${expiredOTPs.size} expired OTP codes`);"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/lib/stripe.js",
+    "line": 417,
+    "pattern": "console.log",
+    "snippet": "console.log(`Webhook already processed: ${event.id}`);"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/lib/stripe.js",
+    "line": 437,
+    "pattern": "console.log",
+    "snippet": "console.log(`Unhandled event type: ${event.type}`);"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/lib/stripe.js",
+    "line": 573,
+    "pattern": "console.log",
+    "snippet": "console.log(`Merchant ${merchantId} in grace period until ${gracePeriodEnd}`);"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/lib/pushCampaigns.js",
+    "line": 59,
+    "pattern": "console.log",
+    "snippet": "console.log('Checking for scheduled campaigns');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/lib/pushCampaigns.js",
+    "line": 65,
+    "pattern": "console.log",
+    "snippet": "console.log('No campaigns to send');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/lib/pushCampaigns.js",
+    "line": 68,
+    "pattern": "console.log",
+    "snippet": "console.log(`Found ${campaigns.size} campaigns to send`);"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/lib/pushCampaigns.js",
+    "line": 110,
+    "pattern": "console.log",
+    "snippet": "console.log(`Sending campaign: ${campaignId}`);"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/lib/pushCampaigns.js",
+    "line": 123,
+    "pattern": "console.log",
+    "snippet": "console.log('No target users found');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/lib/pushCampaigns.js",
+    "line": 126,
+    "pattern": "console.log",
+    "snippet": "console.log(`Sending to ${targetUserIds.length} users`);"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/lib/pushCampaigns.js",
+    "line": 139,
+    "pattern": "console.log",
+    "snippet": "console.log('No FCM tokens found');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/lib/pushCampaigns.js",
+    "line": 193,
+    "pattern": "console.log",
+    "snippet": "console.log(`Campaign sent: ${sentCount} successful, ${failedCount} failed`);"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/lib/phase3Notifications.js",
+    "line": 84,
+    "pattern": "console.log",
+    "snippet": "console.log(`FCM token registered for user ${userId}`);"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/lib/phase3Notifications.js",
+    "line": 122,
+    "pattern": "console.log",
+    "snippet": "console.log(`FCM token unregistered for user ${userId}`);"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/lib/phase3Notifications.js",
+    "line": 183,
+    "pattern": "console.log",
+    "snippet": "console.log(`Redemption notification sent to customer ${customerId}`);"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/lib/phase3Notifications.js",
+    "line": 208,
+    "pattern": "console.log",
+    "snippet": "console.log(`Redemption notification sent to merchant ${merchantId}`);"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/lib/phase3Notifications.js",
+    "line": 260,
+    "pattern": "console.log",
+    "snippet": "console.log(`Sending batch notification to ${userIds.length} users`);"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/lib/phase3Notifications.js",
+    "line": 313,
+    "pattern": "console.log",
+    "snippet": "console.log(`Batch notification completed. Sent: ${tokensSent}, Failed: ${tokensFailed}`);"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/lib/privacy.js",
+    "line": 258,
+    "pattern": "PLACEHOLDER",
+    "snippet": "// This is a placeholder - implement archival logic as needed"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/lib/privacy.js",
+    "line": 262,
+    "pattern": "console.log",
+    "snippet": "console.log(`Cleanup completed: Deleted ${deletedCount} expired tokens`);"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/lib/sms.js",
+    "line": 160,
+    "pattern": "console.log",
+    "snippet": "console.log(`SIMULATED SMS (${smsProvider}): ${data.phoneNumber} - ${data.message}`);"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/lib/sms.js",
+    "line": 282,
+    "pattern": "console.log",
+    "snippet": "console.log('No expired OTPs to clean up');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/lib/sms.js",
+    "line": 292,
+    "pattern": "console.log",
+    "snippet": "console.log(`Cleaned up ${expiredOTPs.size} expired OTPs`);"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/lib/scheduled_disabled.js",
+    "line": 24,
+    "pattern": "PLACEHOLDER",
+    "snippet": "// Export placeholder to document it exists"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/lib/paymentWebhooks.js",
+    "line": 94,
+    "pattern": "console.log",
+    "snippet": "console.log(`OMT webhook already processed: ${payload.transactionId}`);"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/lib/paymentWebhooks.js",
+    "line": 170,
+    "pattern": "console.log",
+    "snippet": "console.log(`Whish webhook already processed: ${payload.transactionId}`);"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/lib/paymentWebhooks.js",
+    "line": 238,
+    "pattern": "console.log",
+    "snippet": "console.log(`Card webhook already processed: ${payload.transactionId}`);"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/lib/paymentWebhooks.js",
+    "line": 295,
+    "pattern": "console.log",
+    "snippet": "console.log(`No pending transaction found: ${payload.transactionId}`);"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/lib/paymentWebhooks.js",
+    "line": 337,
+    "pattern": "console.log",
+    "snippet": "console.log(`Successfully processed payment: ${payload.transactionId}`);"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/lib/paymentWebhooks.js",
+    "line": 358,
+    "pattern": "console.log",
+    "snippet": "console.log(`No pending transaction found: ${payload.transactionId}`);"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/lib/paymentWebhooks.js",
+    "line": 369,
+    "pattern": "console.log",
+    "snippet": "console.log(`Payment failed: ${payload.transactionId}`);"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/src/phase3Notifications.ts",
+    "line": 73,
+    "pattern": "console.log",
+    "snippet": "console.log(`FCM token registered for user ${userId}`);"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/src/phase3Notifications.ts",
+    "line": 128,
+    "pattern": "console.log",
+    "snippet": "console.log(`FCM token unregistered for user ${userId}`);"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/src/phase3Notifications.ts",
+    "line": 196,
+    "pattern": "console.log",
+    "snippet": "console.log(`Redemption notification sent to customer ${customerId}`);"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/src/phase3Notifications.ts",
+    "line": 222,
+    "pattern": "console.log",
+    "snippet": "console.log(`Redemption notification sent to merchant ${merchantId}`);"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/src/phase3Notifications.ts",
+    "line": 296,
+    "pattern": "console.log",
+    "snippet": "console.log(`Sending batch notification to ${userIds.length} users`);"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/src/phase3Notifications.ts",
+    "line": 356,
+    "pattern": "console.log",
+    "snippet": "console.log(`Batch notification completed. Sent: ${tokensSent}, Failed: ${tokensFailed}`);"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/src/privacy.ts",
+    "line": 301,
+    "pattern": "PLACEHOLDER",
+    "snippet": "// This is a placeholder - implement archival logic as needed"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/src/privacy.ts",
+    "line": 305,
+    "pattern": "console.log",
+    "snippet": "console.log(`Cleanup completed: Deleted ${deletedCount} expired tokens`);"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/src/sms.ts",
+    "line": 154,
+    "pattern": "console.log",
+    "snippet": "console.log(`SIMULATED SMS (${smsProvider}): ${data.phoneNumber} - ${data.message}`);"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/src/sms.ts",
+    "line": 289,
+    "pattern": "console.log",
+    "snippet": "console.log('No expired OTPs to clean up');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/src/sms.ts",
+    "line": 299,
+    "pattern": "console.log",
+    "snippet": "console.log(`Cleaned up ${expiredOTPs.size} expired OTPs`);"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/src/stripe.ts",
+    "line": 494,
+    "pattern": "console.log",
+    "snippet": "console.log(`Webhook already processed: ${event.id}`);"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/src/stripe.ts",
+    "line": 515,
+    "pattern": "console.log",
+    "snippet": "console.log(`Unhandled event type: ${event.type}`);"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/src/stripe.ts",
+    "line": 676,
+    "pattern": "console.log",
+    "snippet": "console.log(`Merchant ${merchantId} in grace period until ${gracePeriodEnd}`);"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/src/pushCampaigns.ts",
+    "line": 40,
+    "pattern": "console.log",
+    "snippet": "console.log('Checking for scheduled campaigns');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/src/pushCampaigns.ts",
+    "line": 48,
+    "pattern": "console.log",
+    "snippet": "console.log('No campaigns to send');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/src/pushCampaigns.ts",
+    "line": 52,
+    "pattern": "console.log",
+    "snippet": "console.log(`Found ${campaigns.size} campaigns to send`);"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/src/pushCampaigns.ts",
+    "line": 101,
+    "pattern": "console.log",
+    "snippet": "console.log(`Sending campaign: ${campaignId}`);"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/src/pushCampaigns.ts",
+    "line": 115,
+    "pattern": "console.log",
+    "snippet": "console.log('No target users found');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/src/pushCampaigns.ts",
+    "line": 119,
+    "pattern": "console.log",
+    "snippet": "console.log(`Sending to ${targetUserIds.length} users`);"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/src/pushCampaigns.ts",
+    "line": 134,
+    "pattern": "console.log",
+    "snippet": "console.log('No FCM tokens found');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/src/pushCampaigns.ts",
+    "line": 197,
+    "pattern": "console.log",
+    "snippet": "console.log(`Campaign sent: ${sentCount} successful, ${failedCount} failed`);"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/src/scheduled_disabled.ts",
+    "line": 24,
+    "pattern": "PLACEHOLDER",
+    "snippet": "// Export placeholder to document it exists"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/src/paymentWebhooks.ts",
+    "line": 69,
+    "pattern": "console.log",
+    "snippet": "console.log(`OMT webhook already processed: ${payload.transactionId}`);"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/src/paymentWebhooks.ts",
+    "line": 157,
+    "pattern": "console.log",
+    "snippet": "console.log(`Whish webhook already processed: ${payload.transactionId}`);"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/src/paymentWebhooks.ts",
+    "line": 237,
+    "pattern": "console.log",
+    "snippet": "console.log(`Card webhook already processed: ${payload.transactionId}`);"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/src/paymentWebhooks.ts",
+    "line": 301,
+    "pattern": "console.log",
+    "snippet": "console.log(`No pending transaction found: ${payload.transactionId}`);"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/src/paymentWebhooks.ts",
+    "line": 350,
+    "pattern": "console.log",
+    "snippet": "console.log(`Successfully processed payment: ${payload.transactionId}`);"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/src/paymentWebhooks.ts",
+    "line": 376,
+    "pattern": "console.log",
+    "snippet": "console.log(`No pending transaction found: ${payload.transactionId}`);"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/src/paymentWebhooks.ts",
+    "line": 391,
+    "pattern": "console.log",
+    "snippet": "console.log(`Payment failed: ${payload.transactionId}`);"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/src/phase3Scheduler.ts",
+    "line": 198,
+    "pattern": "console.log",
+    "snippet": "console.log('Starting merchant compliance check');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/src/phase3Scheduler.ts",
+    "line": 300,
+    "pattern": "console.log",
+    "snippet": "console.log('Compliance check results:', complianceResults);"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/src/phase3Scheduler.ts",
+    "line": 335,
+    "pattern": "console.log",
+    "snippet": "console.log('Starting QR token cleanup');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/src/phase3Scheduler.ts",
+    "line": 348,
+    "pattern": "console.log",
+    "snippet": "console.log(`Found ${expiredTokens.size} expired tokens to cleanup`);"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/src/phase3Scheduler.ts",
+    "line": 369,
+    "pattern": "console.log",
+    "snippet": "console.log(`Cleaned up ${deletedCount} tokens...`);"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/src/phase3Scheduler.ts",
+    "line": 378,
+    "pattern": "console.log",
+    "snippet": "console.log(`QR token cleanup complete. Marked ${deletedCount} tokens as expired`);"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/src/phase3Scheduler.ts",
+    "line": 413,
+    "pattern": "console.log",
+    "snippet": "console.log('Checking for expiring points...');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/src/phase3Scheduler.ts",
+    "line": 427,
+    "pattern": "console.log",
+    "snippet": "console.log('No points expiring in 30 days');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/src/phase3Scheduler.ts",
+    "line": 431,
+    "pattern": "console.log",
+    "snippet": "console.log(`Found ${expiringPoints.size} customers with expiring points`);"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/src/phase3Scheduler.ts",
+    "line": 465,
+    "pattern": "console.log",
+    "snippet": "console.log(`Points expiry warnings sent: ${notificationsSent}`);"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/src/subscriptionAutomation.ts",
+    "line": 34,
+    "pattern": "console.log",
+    "snippet": "console.log(`Processing renewals for subscriptions expiring before ${tomorrow.toISOString()}`);"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/src/subscriptionAutomation.ts",
+    "line": 44,
+    "pattern": "console.log",
+    "snippet": "console.log('No subscriptions to renew');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/src/subscriptionAutomation.ts",
+    "line": 48,
+    "pattern": "console.log",
+    "snippet": "console.log(`Found ${expiringSubscriptions.size} subscriptions to renew`);"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/src/subscriptionAutomation.ts",
+    "line": 154,
+    "pattern": "console.log",
+    "snippet": "console.log('Stripe not configured, simulating successful renewal');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/src/subscriptionAutomation.ts",
+    "line": 255,
+    "pattern": "console.log",
+    "snippet": "console.log('Renewal results:', renewalResults);"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/src/subscriptionAutomation.ts",
+    "line": 292,
+    "pattern": "console.log",
+    "snippet": "console.log('Sending expiry reminders');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/src/subscriptionAutomation.ts",
+    "line": 310,
+    "pattern": "console.log",
+    "snippet": "console.log(`No subscriptions expiring in ${days} days`);"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/src/subscriptionAutomation.ts",
+    "line": 314,
+    "pattern": "console.log",
+    "snippet": "console.log(`Found ${subscriptions.size} subscriptions expiring in ${days} days`);"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/src/subscriptionAutomation.ts",
+    "line": 339,
+    "pattern": "console.log",
+    "snippet": "console.log('Expiry reminders sent');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/src/subscriptionAutomation.ts",
+    "line": 363,
+    "pattern": "console.log",
+    "snippet": "console.log('Cleaning up expired subscriptions');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/src/subscriptionAutomation.ts",
+    "line": 372,
+    "pattern": "console.log",
+    "snippet": "console.log('No expired subscriptions to clean up');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/src/subscriptionAutomation.ts",
+    "line": 376,
+    "pattern": "console.log",
+    "snippet": "console.log(`Found ${expiredSubscriptions.size} expired subscriptions`);"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/src/subscriptionAutomation.ts",
+    "line": 410,
+    "pattern": "console.log",
+    "snippet": "console.log(`Marked ${expiredSubscriptions.size} subscriptions as expired`);"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/src/subscriptionAutomation.ts",
+    "line": 433,
+    "pattern": "console.log",
+    "snippet": "console.log('Calculating subscription metrics');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/src/subscriptionAutomation.ts",
+    "line": 479,
+    "pattern": "console.log",
+    "snippet": "console.log('Subscription metrics:', metrics);"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/src/whatsapp.ts",
+    "line": 90,
+    "pattern": "console.log",
+    "snippet": "console.log('Twilio WhatsApp not configured. Simulating message send.');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/firebase-functions/src/whatsapp.ts",
+    "line": 384,
+    "pattern": "console.log",
+    "snippet": "console.log(`Cleaned up ${expiredOTPs.size} expired OTP codes`);"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/rest-api/test_api.sh",
+    "line": 23,
+    "pattern": "print(",
+    "snippet": "MERCHANT_COUNT=$(echo \"$MERCHANTS\" | python3 -c \"import json, sys; print(len(json.load(sys.stdin)['data']))\" 2>/dev/null)"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/rest-api/test_api.sh",
+    "line": 31,
+    "pattern": "print(",
+    "snippet": "OFFER_COUNT=$(echo \"$OFFERS\" | python3 -c \"import json, sys; print(len(json.load(sys.stdin)['data']))\" 2>/dev/null)"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/rest-api/test_api.sh",
+    "line": 47,
+    "pattern": "print(",
+    "snippet": "TOKEN=$(echo \"$REGISTER_RESPONSE\" | python3 -c \"import json, sys; print(json.load(sys.stdin)['data']['token'])\" 2>/dev/null)"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/rest-api/test_api.sh",
+    "line": 48,
+    "pattern": "print(",
+    "snippet": "USER_ID=$(echo \"$REGISTER_RESPONSE\" | python3 -c \"import json, sys; print(json.load(sys.stdin)['data']['user']['id'])\" 2>/dev/null)"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/rest-api/pm2-production-manager.sh",
+    "line": 158,
+    "pattern": "print(",
+    "snippet": "print(f\\\"  \u2022 Status: {d.get('status', 'N/A')}\\\")"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/rest-api/pm2-production-manager.sh",
+    "line": 159,
+    "pattern": "print(",
+    "snippet": "print(f\\\"  \u2022 Database: {d.get('database', 'N/A')}\\\")"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/rest-api/pm2-production-manager.sh",
+    "line": 160,
+    "pattern": "print(",
+    "snippet": "print(f\\\"  \u2022 Timezone: {d.get('tz', 'N/A')}\\\")"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/rest-api/pm2-production-manager.sh",
+    "line": 161,
+    "pattern": "print(",
+    "snippet": "print(f\\\"  \u2022 Payments Enabled: {d.get('PAYMENTS_ENABLED', 'N/A')}\\\")"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/rest-api/pm2-production-manager.sh",
+    "line": 162,
+    "pattern": "print(",
+    "snippet": "print(f\\\"  \u2022 Version: {d.get('version', 'N/A')}\\\")"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/rest-api/src/server.ts",
+    "line": 46,
+    "pattern": "console.log",
+    "snippet": "pool.on('connect', () => console.log('\u2705 Database connected'));"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/rest-api/src/server.ts",
+    "line": 800,
+    "pattern": "console.log",
+    "snippet": "console.log(`"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/rest-api/src/config/database.ts",
+    "line": 18,
+    "pattern": "console.log",
+    "snippet": "console.log('\u2705 Database connected successfully');"
+  },
+  {
+    "file": "/Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/source/backend/rest-api/src/config/database.ts",
+    "line": 32,
+    "pattern": "console.log",
+    "snippet": "console.log('executed query', { text, duration, rows: res.rowCount });"
+  }
+]

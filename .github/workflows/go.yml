@@ -1,0 +1,85 @@
+name: GO Pipeline
+
+on:
+  push:
+    branches: ['**']
+  pull_request:
+    branches: ['**']
+  workflow_dispatch:
+
+jobs:
+  go-run:
+    name: GO_RUN Level (Build + Smoke)
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Read .nvmrc
+        id: nvmrc
+        run: echo "NODE_VERSION=$(cat .nvmrc)" >> $GITHUB_OUTPUT
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ steps.nvmrc.outputs.NODE_VERSION }}
+          cache: 'npm'
+          cache-dependency-path: |
+            source/backend/firebase-functions/package-lock.json
+            source/apps/web-admin/package-lock.json
+      
+      - name: Setup Flutter (optional)
+        uses: subosito/flutter-action@v2
+        continue-on-error: true
+        with:
+          flutter-version: 'stable'
+          channel: 'stable'
+      
+      - name: Cache Flutter pub
+        uses: actions/cache@v3
+        continue-on-error: true
+        with:
+          path: |
+            ~/.pub-cache
+            source/apps/mobile-customer/.dart_tool
+            source/apps/mobile-merchant/.dart_tool
+          key: ${{ runner.os }}-flutter-${{ hashFiles('**/pubspec.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-flutter-
+      
+      - name: Bootstrap Hermetic Toolchain
+        run: python3 tools/bootstrap_hermetic.py
+      
+      - name: Run GO Pipeline
+        id: pipeline
+        run: |
+          python3 tools/go_pipeline.py
+          EXIT_CODE=$?
+          echo "exit_code=$EXIT_CODE" >> $GITHUB_OUTPUT
+          exit $EXIT_CODE
+        continue-on-error: true
+      
+      - name: Upload Evidence Artifacts
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pipeline-evidence-${{ github.sha }}
+          path: local-ci/evidence/PIPELINE/
+          retention-days: 30
+      
+      - name: Report Status
+        if: always()
+        run: |
+          if [ "${{ steps.pipeline.outputs.exit_code }}" = "0" ]; then
+            echo "✅ PIPELINE PASSED (GO)"
+          elif [ "${{ steps.pipeline.outputs.exit_code }}" = "2" ]; then
+            echo "❌ PIPELINE FAILED (INTERNAL blockers)"
+            exit 1
+          elif [ "${{ steps.pipeline.outputs.exit_code }}" = "3" ]; then
+            echo "⚠️  PIPELINE BLOCKED (EXTERNAL blockers)"
+            exit 1
+          else
+            echo "❌ PIPELINE ERROR"
+            exit 1
+          fi

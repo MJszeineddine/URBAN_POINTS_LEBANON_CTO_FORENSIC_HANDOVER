@@ -1,0 +1,28 @@
+{
+  "timestamp": "2026-01-28T00:58:48.882Z",
+  "tests": [
+    {
+      "name": "Firestore connection",
+      "status": "PASS"
+    },
+    {
+      "name": "Read offers collection",
+      "status": "PASS"
+    },
+    {
+      "name": "Read users collection",
+      "status": "PASS"
+    },
+    {
+      "name": "Points balance for test user",
+      "status": "PASS"
+    },
+    {
+      "name": "Write to points history",
+      "status": "PASS"
+    }
+  ],
+  "passed": 5,
+  "failed": 0,
+  "verdict": "PASS"
+}

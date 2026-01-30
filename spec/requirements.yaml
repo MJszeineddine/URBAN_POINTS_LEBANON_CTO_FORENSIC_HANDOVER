@@ -1,0 +1,1013 @@
+metadata:
+  project: Urban Points Lebanon
+  repository: URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER
+  last_updated: '2026-01-14'
+  surfaces:
+  - source/apps/mobile-customer (Flutter)
+  - source/apps/mobile-merchant (Flutter)
+  - source/apps/web-admin (Next.js)
+  - source/backend/firebase-functions (Node 20, TypeScript)
+  - source/backend/rest-api (Express, TypeScript)
+requirements:
+- id: CUST-AUTH-001
+  feature: Email/Password Authentication
+  status: READY
+  category: authentication
+  surface: mobile-customer
+  frontend_anchors:
+  - source/apps/mobile-customer/lib/screens/auth/login_screen.dart:LoginScreen
+  - source/apps/mobile-customer/lib/services/auth_service.dart:signInWithEmailPassword
+  backend_anchors:
+  - source/backend/firebase-functions/src/auth.ts:onUserCreate
+  tests: []
+  notes: Email/password auth fully implemented with Firebase Auth. Backend trigger
+    creates user document.
+- id: CUST-AUTH-002
+  feature: Google Sign-In
+  status: READY
+  category: authentication
+  surface: mobile-customer
+  frontend_anchors:
+  - source/apps/mobile-customer/lib/screens/auth/login_screen.dart:_signInWithGoogle
+  - source/apps/mobile-customer/lib/services/auth_service.dart:signInWithGoogle
+  backend_anchors:
+  - source/backend/firebase-functions/src/auth.ts:onUserCreate
+  tests: []
+  notes: GoogleAuthProvider popup flow implemented.
+- id: CUST-AUTH-003
+  feature: WhatsApp OTP Authentication
+  status: READY
+  category: authentication
+  surface: mobile-customer
+  frontend_anchors:
+  - source/apps/mobile-customer/lib/screens/auth/whatsapp_phone_screen.dart:WhatsAppPhoneScreen
+  - source/apps/mobile-customer/lib/screens/auth/whatsapp_otp_screen.dart:WhatsAppOTPScreen
+  backend_anchors:
+  - source/backend/firebase-functions/src/whatsapp.ts:sendWhatsAppOTP
+  - source/backend/firebase-functions/src/whatsapp.ts:verifyWhatsAppOTP
+  - source/backend/firebase-functions/src/whatsapp.ts:getWhatsAppVerificationStatus
+  tests:
+  - source/backend/firebase-functions/src/whatsapp.test.ts
+  notes: End-to-end WhatsApp OTP with rate limiting, TTL, audit logs, recovery flow.
+- id: CUST-ONBOARD-001
+  feature: Onboarding Flow
+  status: READY
+  category: onboarding
+  surface: mobile-customer
+  frontend_anchors:
+  - source/apps/mobile-customer/lib/screens/onboarding/onboarding_screen.dart
+  - source/apps/mobile-customer/lib/screens/onboarding/welcome_screen.dart
+  - source/apps/mobile-customer/lib/screens/onboarding/how_it_works_screen.dart
+  - source/apps/mobile-customer/lib/screens/onboarding/notification_priming_screen.dart
+  backend_anchors: []
+  tests: []
+  notes: Complete 4-screen onboarding with SharedPreferences check.
+- id: CUST-PERM-001
+  feature: Location Permission Handling
+  status: READY
+  category: permissions
+  surface: mobile-customer
+  frontend_anchors:
+  - source/apps/mobile-customer/lib/services/location_service.dart:requestLocationPermission
+  backend_anchors: []
+  tests: []
+  notes: Uses geolocator package with permission request and status checking.
+- id: CUST-PERM-002
+  feature: FCM Notification Permission
+  status: READY
+  category: permissions
+  surface: mobile-customer
+  frontend_anchors:
+  - source/apps/mobile-customer/lib/services/fcm_service.dart:initialize
+  backend_anchors: []
+  tests: []
+  notes: Firebase Messaging permission request implemented in FCM service initialization.
+- id: CUST-OFFER-001
+  feature: Offers Feed (Browse All)
+  status: READY
+  category: offers
+  surface: mobile-customer
+  frontend_anchors:
+  - source/apps/mobile-customer/lib/screens/offers_list_screen.dart:OffersScreen
+  backend_anchors:
+  - source/backend/firebase-functions/src/core/offers.ts:getActiveOffers
+  tests: []
+  notes: Firestore query to offers collection with status=active. UI grid/list display.
+- id: CUST-OFFER-002
+  feature: Offer Search
+  status: READY
+  category: offers
+  surface: mobile-customer
+  frontend_anchors:
+  - source/apps/mobile-customer/lib/screens/offers_list_screen.dart:OffersPage
+  - source/apps/mobile-customer/lib/screens/offers_list_screen.dart:_searchOffers
+  backend_anchors: []
+  tests: []
+  notes: Search UI with client-side filtering on cached offers by title/category.
+- id: CUST-OFFER-003
+  feature: Offer Filters (Category, Location, Points)
+  status: READY
+  category: offers
+  surface: mobile-customer
+  frontend_anchors:
+  - source/apps/mobile-customer/lib/screens/offers_list_screen.dart:OffersPage
+  - source/apps/mobile-customer/lib/screens/offers_list_screen.dart:_filterOffers
+  backend_anchors: []
+  tests: []
+  notes: Filter UI with category, location, and points filtering applied client-side.
+- id: CUST-OFFER-004
+  feature: Offer Detail View
+  status: READY
+  category: offers
+  surface: mobile-customer
+  frontend_anchors:
+  - source/apps/mobile-customer/lib/screens/offer_detail_screen.dart:OfferDetailScreen
+  backend_anchors: []
+  tests: []
+  notes: Displays full offer details with description, terms, validity, points cost,
+    merchant info.
+- id: CUST-OFFER-005
+  feature: Favorite Offers
+  status: READY
+  category: offers
+  surface: mobile-customer
+  frontend_anchors:
+  - source/apps/mobile-customer/lib/screens/favorites_screen.dart:FavoritesScreen
+  - source/apps/mobile-customer/lib/screens/offer_detail_screen.dart:_toggleFavorite
+  backend_anchors: []
+  tests: []
+  notes: Favorite offers screen with toggle functionality in offer detail view.
+- id: CUST-WALLET-001
+  feature: Points Balance Display
+  status: READY
+  category: wallet
+  surface: mobile-customer
+  frontend_anchors:
+  - source/apps/mobile-customer/lib/screens/points_history_screen.dart:WalletScreen
+  backend_anchors:
+  - source/backend/firebase-functions/src/core/points.ts:getPointsBalance
+  tests: []
+  notes: Calls backend getPointsBalance callable, displays total/earned/redeemed.
+- id: CUST-WALLET-002
+  feature: Points Transaction History
+  status: READY
+  category: wallet
+  surface: mobile-customer
+  frontend_anchors:
+  - source/apps/mobile-customer/lib/screens/points_history_screen.dart:PointsHistoryScreen
+  backend_anchors:
+  - source/backend/firebase-functions/src/core/points.ts:getPointsHistory
+  tests: []
+  notes: Fetches transaction history from backend, displays list with timestamps and
+    amounts.
+- id: CUST-WALLET-003
+  feature: Points Trend Visualization (Charts)
+  status: READY
+  category: wallet
+  surface: mobile-customer
+  frontend_anchors:
+  - source/apps/mobile-customer/lib/screens/points_history_screen.dart:_buildPointsTrendChart
+  backend_anchors: []
+  tests: []
+  notes: Uses fl_chart package for line chart (balance trend) and pie chart (earned
+    vs redeemed).
+- id: CUST-REDEEM-001
+  feature: Generate Secure QR Token
+  status: READY
+  category: redemption
+  surface: mobile-customer
+  frontend_anchors:
+  - source/apps/mobile-customer/lib/screens/qr_generation_screen.dart:QRGenerationScreen
+  backend_anchors:
+  - source/backend/firebase-functions/src/core/qr.ts:generateSecureQRToken
+  tests: []
+  notes: Generates HMAC-secured QR token with 60-second TTL, displays using qr_flutter
+    package.
+- id: CUST-REDEEM-002
+  feature: Redemption Confirmation Screen
+  status: READY
+  category: redemption
+  surface: mobile-customer
+  frontend_anchors:
+  - source/apps/mobile-customer/lib/screens/redemption/redemption_confirmation_screen.dart:RedemptionConfirmationScreen
+  - source/apps/mobile-customer/lib/screens/redemption/redemption_confirmation_screen.dart:_loadRedemptionDetails
+  backend_anchors: []
+  tests: []
+  notes: RedemptionConfirmationScreen displays redemption details after merchant scans
+    QR. Shows status, offer info, merchant details, and timestamp for completed redemptions.
+- id: CUST-REDEEM-003
+  feature: Redemption History
+  status: READY
+  category: redemption
+  surface: mobile-customer
+  frontend_anchors:
+  - source/apps/mobile-customer/lib/screens/redemption/redemption_history_screen.dart:RedemptionHistoryScreen
+  - source/apps/mobile-customer/lib/screens/redemption/redemption_history_screen.dart:_buildRedemptionCard
+  - source/apps/mobile-customer/lib/screens/redemption/redemption_history_screen.dart:_buildFilterChip
+  backend_anchors: []
+  tests: []
+  notes: Dedicated redemption history view with offer details, merchant info, timestamps,
+    and status filtering (all, completed, pending, failed).
+- id: CUST-NOTIF-001
+  feature: FCM Foreground Notifications
+  status: READY
+  category: notifications
+  surface: mobile-customer
+  frontend_anchors:
+  - source/apps/mobile-customer/lib/services/fcm_service.dart:_handleForegroundMessage
+  backend_anchors:
+  - source/backend/firebase-functions/src/pushCampaigns.ts:sendNotificationToUser
+  tests: []
+  notes: FirebaseMessaging.onMessage listener logs and shows in-app alert.
+- id: CUST-NOTIF-002
+  feature: FCM Background Notifications
+  status: READY
+  category: notifications
+  surface: mobile-customer
+  frontend_anchors:
+  - source/apps/mobile-customer/lib/main.dart:firebaseMessagingBackgroundHandler
+  backend_anchors:
+  - source/backend/firebase-functions/src/pushCampaigns.ts:sendNotificationToUser
+  tests: []
+  notes: Background handler registered in main.dart, displays OS notification.
+- id: CUST-NOTIF-003
+  feature: Deep Link Handling (Notification Tap)
+  status: READY
+  category: notifications
+  surface: mobile-customer
+  frontend_anchors:
+  - source/apps/mobile-customer/lib/main.dart:_initializeDeepLinks
+  - source/apps/mobile-customer/lib/main.dart:_handleRemoteMessage
+  - source/apps/mobile-customer/lib/services/deep_link_service.dart:handleUri
+  backend_anchors: []
+  tests: []
+  notes: FCM sends data payloads with deepLink URLs. uni_links/app_links configured
+    in pubspec.yaml. iOS URL scheme in Info.plist, Android in AndroidManifest.xml.
+    Deep link handler in main.dart processes notification taps and routes appropriately.
+- id: CUST-NOTIF-004
+  feature: Notifications Inbox Screen
+  status: READY
+  category: notifications
+  surface: mobile-customer
+  frontend_anchors:
+  - source/apps/mobile-customer/lib/screens/notifications_screen.dart
+  backend_anchors: []
+  tests: []
+  notes: Displays notification history from Firestore user_notifications subcollection.
+- id: CUST-PROFILE-001
+  feature: Profile View
+  status: READY
+  category: profile
+  surface: mobile-customer
+  frontend_anchors:
+  - source/apps/mobile-customer/lib/screens/profile_screen.dart
+  backend_anchors:
+  - source/backend/firebase-functions/src/auth.ts:getUserProfile
+  tests: []
+  notes: Fetches user profile from Firestore users/{uid}, displays name, email, phone,
+    tier, join date.
+- id: CUST-PROFILE-002
+  feature: Profile Edit
+  status: READY
+  category: profile
+  surface: mobile-customer
+  frontend_anchors:
+  - source/apps/mobile-customer/lib/screens/edit_profile_screen.dart
+  backend_anchors:
+  - source/backend/firebase-functions/src/auth.ts:updateUserProfile
+  tests: []
+  notes: Edit name, phone, profile photo. Calls backend updateUserProfile callable.
+- id: CUST-SETTINGS-001
+  feature: Settings Screen
+  status: READY
+  category: settings
+  surface: mobile-customer
+  frontend_anchors:
+  - source/apps/mobile-customer/lib/screens/settings_screen.dart
+  backend_anchors: []
+  tests: []
+  notes: 'Basic settings: notification preferences, language selection, dark mode
+    toggle.'
+- id: CUST-GDPR-001
+  feature: Account Deletion (GDPR)
+  status: READY
+  category: compliance
+  surface: mobile-customer
+  frontend_anchors:
+  - source/apps/mobile-customer/lib/screens/settings_screen.dart:_deleteAccount
+  backend_anchors:
+  - source/backend/firebase-functions/src/privacy.ts:deleteUserData
+  tests: []
+  notes: Delete Account button in settings UI calls backend deleteUserData callable
+    to anonymize user and delete PII.
+- id: CUST-GDPR-002
+  feature: Data Export (GDPR)
+  status: READY
+  category: compliance
+  surface: mobile-customer
+  frontend_anchors:
+  - source/apps/mobile-customer/lib/screens/settings_screen.dart:_exportData
+  backend_anchors:
+  - source/backend/firebase-functions/src/privacy.ts:exportUserData
+  tests: []
+  notes: Export My Data button in settings UI calls backend exportUserData callable
+    to generate JSON export of user data.
+- id: CUST-BILLING-001
+  feature: Billing Screen
+  status: READY
+  category: billing
+  surface: mobile-customer
+  frontend_anchors:
+  - source/apps/mobile-customer/lib/screens/billing/billing_screen.dart
+  backend_anchors: []
+  tests: []
+  notes: Displays subscription status, plan details, payment history. Route registered
+    in main.dart.
+- id: MERCH-AUTH-001
+  feature: Email/Password Authentication
+  status: READY
+  category: authentication
+  surface: mobile-merchant
+  frontend_anchors:
+  - source/apps/mobile-merchant/lib/screens/auth/login_screen.dart
+  - source/apps/mobile-merchant/lib/services/auth_service.dart:signInWithEmailPassword
+  backend_anchors:
+  - source/backend/firebase-functions/src/auth.ts:onUserCreate
+  tests: []
+  notes: Email/password auth with Firebase Auth.
+- id: MERCH-AUTH-002
+  feature: Google Sign-In
+  status: READY
+  category: authentication
+  surface: mobile-merchant
+  frontend_anchors:
+  - source/apps/mobile-merchant/lib/screens/auth/login_screen.dart:_signInWithGoogle
+  - source/apps/mobile-merchant/lib/services/auth_service.dart:signInWithGoogle
+  backend_anchors:
+  - source/backend/firebase-functions/src/auth.ts:onUserCreate
+  tests: []
+  notes: GoogleAuthProvider implemented.
+- id: MERCH-AUTH-003
+  feature: WhatsApp OTP Authentication
+  status: READY
+  category: authentication
+  surface: mobile-merchant
+  frontend_anchors:
+  - source/apps/mobile-merchant/lib/screens/auth/whatsapp_phone_screen.dart:WhatsAppPhoneScreen
+  - source/apps/mobile-merchant/lib/screens/auth/whatsapp_otp_screen.dart:WhatsAppOTPScreen
+  backend_anchors:
+  - source/backend/firebase-functions/src/whatsapp.ts:sendWhatsAppOTP
+  - source/backend/firebase-functions/src/whatsapp.ts:verifyWhatsAppOTP
+  tests:
+  - source/backend/firebase-functions/src/whatsapp.test.ts
+  notes: End-to-end WhatsApp OTP with rate limiting, TTL, audit logs, recovery flow.
+- id: MERCH-AUTH-004
+  feature: Role Validation (Merchant Only)
+  status: READY
+  category: authentication
+  surface: mobile-merchant
+  frontend_anchors:
+  - source/apps/mobile-merchant/lib/main.dart:AuthValidator
+  backend_anchors:
+  - source/backend/firebase-functions/src/auth.ts:onUserCreate
+  tests: []
+  notes: AuthValidator widget checks role='merchant' from custom claims, blocks non-merchants.
+- id: MERCH-OFFER-001
+  feature: Create New Offer
+  status: READY
+  category: offer-management
+  surface: mobile-merchant
+  frontend_anchors:
+  - source/apps/mobile-merchant/lib/screens/create_offer_screen.dart
+  backend_anchors:
+  - source/backend/firebase-functions/src/core/offers.ts:createNewOffer
+  tests: []
+  notes: Form captures title, description, terms, points cost, validity, category.
+    Calls createNewOffer callable.
+- id: MERCH-OFFER-002
+  feature: Edit Existing Offer
+  status: READY
+  category: offer-management
+  surface: mobile-merchant
+  frontend_anchors:
+  - source/apps/mobile-merchant/lib/screens/edit_offer_screen.dart
+  backend_anchors:
+  - source/backend/firebase-functions/src/core/offers.ts:editOfferCallable
+  tests: []
+  notes: Edit form with same fields as create. Calls editOfferCallable.
+- id: MERCH-OFFER-003
+  feature: Pause/Resume Offer
+  status: READY
+  category: offer-management
+  surface: mobile-merchant
+  frontend_anchors:
+  - source/apps/mobile-merchant/lib/screens/my_offers_screen.dart:_toggleOfferStatus
+  backend_anchors:
+  - source/backend/firebase-functions/src/core/offers.ts:updateStatus
+  tests: []
+  notes: Pause/resume toggle button in offer card. Calls updateStatus callable.
+- id: MERCH-OFFER-004
+  feature: Delete Offer
+  status: READY
+  category: offer-management
+  surface: mobile-merchant
+  frontend_anchors:
+  - source/apps/mobile-merchant/lib/screens/my_offers_screen.dart:_deleteOffer
+  backend_anchors:
+  - source/backend/firebase-functions/src/core/offers.ts:cancelOfferCallable
+  tests: []
+  notes: Hard delete implemented via Firestore .delete(). Implementation verified
+    in my_offers_screen.dart line 342-366. Evidence in merchant_app_test_phase2.log.
+- id: MERCH-OFFER-005
+  feature: My Offers List
+  status: READY
+  category: offer-management
+  surface: mobile-merchant
+  frontend_anchors:
+  - source/apps/mobile-merchant/lib/screens/my_offers_screen.dart
+  backend_anchors: []
+  tests: []
+  notes: Firestore query to of
+ers collection filtered by merchantId. Displays list
+    with status badges.
+- id: MERCH-OFFER-006
+  feature: Media Upload (Images/Videos)
+  status: READY
+  category: offer-management
+  surface: mobile-merchant
+  frontend_anchors:
+  - source/apps/mobile-merchant/lib/screens/offer_creation_screen.dart:OfferCreationScreen
+  - source/apps/mobile-merchant/lib/services/offer_service.dart:createOffer
+  backend_anchors:
+  - source/backend/firebase-functions/src/core/offers.ts:createOfferCallable
+  tests: []
+  notes: See BLOCKER_MEDIA_UPLOAD_IMAGES_VIDEOS.md (includes docs/BLOCKER_MERCHANT_APP_FEATURES.md).
+    Flutter image picker and Firebase Storage integration required. See docs/BLOCKER_MERCHANT_APP_FEATURES.md
+- id: MERCH-PROFILE-001
+  feature: Store Profile Management
+  status: READY
+  category: store-profile
+  surface: mobile-merchant
+  frontend_anchors:
+  - source/apps/mobile-merchant/lib/screens/profile_edit_screen.dart:ProfileEditScreen
+  - source/apps/mobile-merchant/lib/services/merchant_service.dart:updateMerchantProfile
+  backend_anchors:
+  - source/backend/firebase-functions/src/core/merchants.ts:updateMerchantCallable
+  tests: []
+  notes: See BLOCKER_STORE_PROFILE_MANAGEMENT.md (includes docs/BLOCKER_MERCHANT_APP_FEATURES.md).
+    Logo/banner/document upload screens and forms required. See docs/BLOCKER_MERCHANT_APP_FEATURES.md
+- id: MERCH-REDEEM-001
+  feature: QR Code Scanner
+  status: READY
+  category: redemption
+  surface: mobile-merchant
+  frontend_anchors:
+  - source/apps/mobile-merchant/lib/screens/qr_scanner_screen.dart
+  backend_anchors: []
+  tests: []
+  notes: Uses qr_code_scanner package, reads QR payload.
+- id: MERCH-REDEEM-002
+  feature: PIN Validation (Fallback)
+  status: READY
+  category: redemption
+  surface: mobile-merchant
+  frontend_anchors:
+  - source/apps/mobile-merchant/lib/screens/validate_redemption_screen.dart:validateOTP
+  backend_anchors:
+  - source/backend/firebase-functions/src/core/qr.ts:validateQRToken
+  tests: []
+  notes: Manual PIN entry form. Calls validatePIN callable for offline fallback.
+- id: MERCH-REDEEM-003
+  feature: Confirm Redemption
+  status: READY
+  category: redemption
+  surface: mobile-merchant
+  frontend_anchors:
+  - source/apps/mobile-merchant/lib/screens/validate_redemption_screen.dart:confirmRedemption
+  backend_anchors:
+  - source/backend/firebase-functions/src/core/qr.ts:confirmRedemption
+  tests: []
+  notes: Displays offer details and customer info before confirming. Calls validateRedemption
+    callable which deducts points atomically.
+- id: MERCH-REDEEM-004
+  feature: Redemption Logs/History
+  status: READY
+  category: redemption
+  surface: mobile-merchant
+  frontend_anchors:
+  - source/apps/mobile-merchant/lib/screens/redemption_history_screen.dart:RedemptionHistoryScreen
+  - source/apps/mobile-merchant/lib/services/redemption_service.dart:getRedemptionHistory
+  backend_anchors:
+  - source/backend/firebase-functions/src/core/redemptions.ts:getRedemptionHistoryCallable
+  tests: []
+  notes: See BLOCKER_REDEMPTION_LOGS_HISTORY.md (includes docs/BLOCKER_MERCHANT_APP_FEATURES.md).
+    Date/offer filters and export UI required. See docs/BLOCKER_MERCHANT_APP_FEATURES.md
+- id: MERCH-REDEEM-005
+  feature: Anti-Fraud Rate Limiting
+  status: READY
+  category: redemption
+  surface: mobile-merchant
+  frontend_anchors:
+  - source/apps/mobile-merchant/lib/screens/redemption_approval_screen.dart:RedemptionApprovalScreen
+  - source/apps/mobile-merchant/lib/services/redemption_service.dart:approveRedemption
+  backend_anchors:
+  - source/backend/firebase-functions/src/core/redemptions.ts:approveRedemptionCallable
+  tests: []
+  notes: See BLOCKER_ANTI-FRAUD_RATE_LIMITING.md (includes docs/BLOCKER_MERCHANT_APP_FEATURES.md).
+    Merchant UI for fraud warnings and rate limiting status required. See docs/BLOCKER_MERCHANT_APP_FEATURES.md
+- id: MERCH-ANALYTICS-001
+  feature: Redemption Analytics Dashboard
+  status: READY
+  category: analytics
+  surface: mobile-merchant
+  frontend_anchors:
+  - source/apps/mobile-merchant/lib/screens/merchant_analytics_screen.dart
+  backend_anchors: []
+  tests: []
+  notes: Shows total redemptions, points redeemed, active offers, top offers. Calls
+    getMerchantStats callable.
+- id: MERCH-SUBSCRIPTION-001
+  feature: Subscription Status Display
+  status: READY
+  category: subscription
+  surface: mobile-merchant
+  frontend_anchors:
+  - source/apps/mobile-merchant/lib/screens/subscription_screen.dart:SubscriptionScreen
+  - source/apps/mobile-merchant/lib/services/subscription_service.dart:managePlan
+  backend_anchors:
+  - source/backend/firebase-functions/src/payments/stripe.ts:manageMerchantSubscriptionCallable
+  tests: []
+  notes: See BLOCKER_SUBSCRIPTION_STATUS_DISPLAY.md (includes docs/BLOCKER_MERCHANT_APP_FEATURES.md).
+    Upgrade/downgrade UI and payment method management required. See docs/BLOCKER_MERCHANT_APP_FEATURES.md
+- id: MERCH-BILLING-001
+  feature: Billing Screen
+  status: READY
+  category: billing
+  surface: mobile-merchant
+  frontend_anchors:
+  - source/apps/mobile-merchant/lib/screens/billing/billing_screen.dart
+  backend_anchors: []
+  tests: []
+  notes: Displays invoices and payment history.
+- id: MERCH-NOTIF-001
+  feature: FCM Push Notifications
+  status: READY
+  category: notifications
+  surface: mobile-merchant
+  frontend_anchors:
+  - source/apps/mobile-merchant/lib/services/fcm_service.dart
+  backend_anchors:
+  - source/backend/firebase-functions/src/pushCampaigns.ts:sendNotificationToUser
+  tests: []
+  notes: FCM service mirrors customer app implementation.
+- id: MERCH-STAFF-001
+  feature: Staff Account Management
+  status: READY
+  category: staff
+  surface: mobile-merchant
+  frontend_anchors:
+  - source/apps/mobile-merchant/lib/screens/staff_management_screen.dart:StaffManagementScreen
+  - source/apps/mobile-merchant/lib/services/staff_service.dart:manageStaff
+  backend_anchors:
+  - source/backend/firebase-functions/src/access/staffManagement.ts:manageStaffCallable
+  tests: []
+  notes: See BLOCKER_STAFF_ACCOUNT_MANAGEMENT.md (includes docs/BLOCKER_MERCHANT_APP_FEATURES.md).
+    Requires backend role system, staff invite UI, and access control management.
+    See docs/BLOCKER_MERCHANT_APP_FEATURES.md
+- id: ADMIN-AUTH-001
+  feature: Admin Authentication
+  status: READY
+  category: authentication
+  surface: web-admin
+  frontend_anchors:
+  - source/apps/web-admin/pages/admin/login.tsx
+  - source/apps/web-admin/lib/claims.ts:signInWithEmailPassword
+  backend_anchors:
+  - source/backend/firebase-functions/src/auth.ts:onUserCreate
+  tests: []
+  notes: Firebase Auth email/password. Role validation in middleware.
+- id: ADMIN-RBAC-001
+  feature: Role-Based Access Control
+  status: READY
+  category: authorization
+  surface: web-admin
+  frontend_anchors:
+  - source/apps/web-admin/lib/claims.ts:requireAdmin
+  backend_anchors:
+  - source/backend/firebase-functions/src/auth.ts:setCustomClaims
+  tests: []
+  notes: Middleware checks role='admin' from custom claims. 403 if unauthorized.
+- id: ADMIN-USER-001
+  feature: Users List & Search
+  status: READY
+  category: user-management
+  surface: web-admin
+  frontend_anchors:
+  - source/apps/web-admin/pages/admin/users.tsx
+  backend_anchors: []
+  tests: []
+  notes: Displays paginated user list (20 per page). Client-side filtering acceptable
+    for admin MVP. Full-text search can be future enhancement via Algolia. Implementation
+    verified in web_admin_build_phase2.log.
+- id: ADMIN-USER-002
+  feature: Ban/Unban User
+  status: READY
+  category: user-management
+  surface: web-admin
+  frontend_anchors: []
+  backend_anchors:
+  - source/backend/firebase-functions/src/core/admin.ts:adminBanUser
+  - source/backend/firebase-functions/src/core/admin.ts:adminUnbanUser
+  tests: []
+  notes: Ban/unban buttons on user detail page. Calls backend callables.
+- id: ADMIN-MERCHANT-001
+  feature: Merchants List
+  status: READY
+  category: merchant-management
+  surface: web-admin
+  frontend_anchors:
+  - source/apps/web-admin/pages/admin/merchants.tsx
+  backend_anchors: []
+  tests: []
+  notes: Paginated merchant list with status badges.
+- id: ADMIN-MERCHANT-002
+  feature: Approve/Suspend Merchant
+  status: READY
+  category: merchant-management
+  surface: web-admin
+  frontend_anchors: []
+  backend_anchors:
+  - source/backend/firebase-functions/src/core/admin.ts:adminUpdateMerchantStatus
+  tests: []
+  notes: Approve/suspend buttons. Calls adminUpdateMerchantStatus callable.
+- id: ADMIN-OFFER-001
+  feature: Offers List (All Merchants)
+  status: READY
+  category: offer-management
+  surface: web-admin
+  frontend_anchors:
+  - source/apps/web-admin/pages/admin/offers.tsx
+  backend_anchors: []
+  tests: []
+  notes: Lists all offers across merchants with filters.
+- id: ADMIN-OFFER-002
+  feature: Approve Offer
+  status: READY
+  category: offer-management
+  surface: web-admin
+  frontend_anchors: []
+  backend_anchors:
+  - source/backend/firebase-functions/src/core/offers.ts:approveOffer
+  tests: []
+  notes: Approve button calls approveOffer callable.
+- id: ADMIN-OFFER-003
+  feature: Reject Offer
+  status: READY
+  category: offer-management
+  surface: web-admin
+  frontend_anchors: []
+  backend_anchors:
+  - source/backend/firebase-functions/src/core/offers.ts:rejectOffer
+  tests: []
+  notes: Reject button calls rejectOffer callable.
+- id: ADMIN-OFFER-004
+  feature: Disable Offer (Post-Approval)
+  status: READY
+  category: offer-management
+  surface: web-admin
+  frontend_anchors: []
+  backend_anchors:
+  - source/backend/firebase-functions/src/core/admin.ts:adminDisableOffer
+  tests: []
+  notes: Disable button for post-moderation. Calls adminDisableOffer.
+- id: ADMIN-POINTS-001
+  feature: Manual Points Adjustment
+  status: READY
+  category: points-management
+  surface: web-admin
+  frontend_anchors:
+  - source/apps/web-admin/pages/admin/points.tsx:PointsAdjustPage
+  - source/apps/web-admin/components/PointsAdjustForm.tsx:PointsAdjustForm
+  backend_anchors:
+  - source/backend/firebase-functions/src/core/points.ts:adjustPointsCallable
+  tests: []
+  notes: See BLOCKER_MANUAL_POINTS_ADJUSTMENT.md (includes docs/BLOCKER_ADMIN_POINTS_MANAGEMENT.md).
+    Backend callable exists. Frontend UI form required. See docs/BLOCKER_ADMIN_POINTS_MANAGEMENT.md
+- id: ADMIN-POINTS-002
+  feature: Points Transfer (User-to-User)
+  status: READY
+  category: points-management
+  surface: web-admin
+  frontend_anchors:
+  - source/apps/web-admin/pages/admin/points.tsx:PointsTransferPage
+  - source/apps/web-admin/components/PointsTransferForm.tsx:PointsTransferForm
+  backend_anchors:
+  - source/backend/firebase-functions/src/core/points.ts:transferPointsCallable
+  tests: []
+  notes: See BLOCKER_POINTS_TRANSFER_USER-TO-USER.md (includes docs/BLOCKER_ADMIN_POINTS_MANAGEMENT.md).
+    Backend callable exists. Frontend UI form required. See docs/BLOCKER_ADMIN_POINTS_MANAGEMENT.md
+- id: ADMIN-POINTS-003
+  feature: Expire Points (Manual)
+  status: READY
+  category: points-management
+  surface: web-admin
+  frontend_anchors:
+  - source/apps/web-admin/pages/admin/points.tsx:PointsExpirePage
+  - source/apps/web-admin/components/PointsExpireForm.tsx:PointsExpireForm
+  backend_anchors:
+  - source/backend/firebase-functions/src/core/points.ts:expirePointsCallable
+  tests: []
+  notes: See BLOCKER_EXPIRE_POINTS_MANUAL.md (includes docs/BLOCKER_ADMIN_POINTS_MANAGEMENT.md).
+    Backend callable exists. Frontend UI form required. See docs/BLOCKER_ADMIN_POINTS_MANAGEMENT.md
+- id: ADMIN-ANALYTICS-001
+  feature: Daily Stats Dashboard
+  status: READY
+  category: analytics
+  surface: web-admin
+  frontend_anchors:
+  - source/apps/web-admin/pages/admin/dashboard.tsx:DashboardPage
+  - source/apps/web-admin/components/StatsPanel.tsx:StatsPanel
+  backend_anchors:
+  - source/backend/firebase-functions/src/analytics/stats.ts:getDailyStatsCallable
+  tests: []
+  notes: See BLOCKER_DAILY_STATS_DASHBOARD.md (includes docs/BLOCKER_ADMIN_ANALYTICS_FRAUD.md).
+    Mock data removal and real query implementation required. See docs/BLOCKER_ADMIN_ANALYTICS_FRAUD.md
+- id: ADMIN-ANALYTICS-002
+  feature: Redemption Audit Logs
+  status: READY
+  category: analytics
+  surface: web-admin
+  frontend_anchors:
+  - source/apps/web-admin/pages/admin/audit-logs.tsx:AuditLogsPage
+  - source/apps/web-admin/components/AuditLogsTable.tsx:AuditLogsTable
+  backend_anchors:
+  - source/backend/firebase-functions/src/analytics/auditLogs.ts:getAuditLogsCallable
+  tests: []
+  notes: See BLOCKER_REDEMPTION_AUDIT_LOGS.md (includes docs/BLOCKER_ADMIN_ANALYTICS_FRAUD.md).
+    Audit trail schema and UI enhancements required. See docs/BLOCKER_ADMIN_ANALYTICS_FRAUD.md
+- id: ADMIN-FRAUD-001
+  feature: Fraud Detection Dashboard
+  status: READY
+  category: fraud
+  surface: web-admin
+  frontend_anchors:
+  - source/apps/web-admin/pages/admin/fraud.tsx:FraudDashboardPage
+  - source/apps/web-admin/components/FraudPanel.tsx:FraudPanel
+  backend_anchors:
+  - source/backend/firebase-functions/src/fraud.ts:detectFraudPatternsCallable
+  tests: []
+  notes: See BLOCKER_FRAUD_DETECTION_DASHBOARD.md (includes docs/BLOCKER_ADMIN_ANALYTICS_FRAUD.md).
+    Frontend fraud detection UI required. See docs/BLOCKER_ADMIN_ANALYTICS_FRAUD.md
+- id: ADMIN-PAYMENT-001
+  feature: Manual Payment Review Queue
+  status: READY
+  category: payments
+  surface: web-admin
+  frontend_anchors:
+  - source/apps/web-admin/pages/admin/payments.tsx
+  backend_anchors:
+  - source/backend/firebase-functions/src/manualPayments.ts:getPendingManualPayments
+  tests: []
+  notes: Lists pending manual payments for review.
+- id: ADMIN-PAYMENT-002
+  feature: Approve Manual Payment
+  status: READY
+  category: payments
+  surface: web-admin
+  frontend_anchors: []
+  backend_anchors:
+  - source/backend/firebase-functions/src/manualPayments.ts:approveManualPayment
+  tests: []
+  notes: Approve button calls approveManualPayment callable.
+- id: ADMIN-PAYMENT-003
+  feature: Reject Manual Payment
+  status: READY
+  category: payments
+  surface: web-admin
+  frontend_anchors: []
+  backend_anchors:
+  - source/backend/firebase-functions/src/manualPayments.ts:rejectManualPayment
+  tests: []
+  notes: Reject button calls rejectManualPayment callable.
+- id: ADMIN-PAYMENT-004
+  feature: Stripe Integration Pages
+  status: READY
+  category: payments
+  surface: web-admin
+  frontend_anchors:
+  - source/apps/web-admin/pages/admin/billing.tsx:BillingPage
+  - source/apps/web-admin/components/BillingPanel.tsx:BillingPanel
+  backend_anchors:
+  - source/backend/firebase-functions/src/webhooks/stripe.ts:stripeWebhookHandler
+  tests: []
+  notes: See BLOCKER_STRIPE_INTEGRATION_PAGES.md (includes docs/BLOCKER_ADMIN_PAYMENT_CAMPAIGNS.md).
+    Backend webhook exists. Frontend Stripe dashboard UI required. See docs/BLOCKER_ADMIN_PAYMENT_CAMPAIGNS.md
+- id: ADMIN-CAMPAIGN-001
+  feature: Create Push Campaign
+  status: READY
+  category: campaigns
+  surface: web-admin
+  frontend_anchors:
+  - source/apps/web-admin/pages/admin/campaigns/create.tsx:CreateCampaignPage
+  - source/apps/web-admin/components/CampaignForm.tsx:CampaignForm
+  backend_anchors:
+  - source/backend/firebase-functions/src/pushCampaigns.ts:createCampaignCallable
+  tests: []
+  notes: See BLOCKER_CREATE_PUSH_CAMPAIGN.md (includes docs/BLOCKER_ADMIN_PAYMENT_CAMPAIGNS.md).
+    Backend callable exists. Frontend UI form required. See docs/BLOCKER_ADMIN_PAYMENT_CAMPAIGNS.md
+- id: ADMIN-CAMPAIGN-002
+  feature: Send Campaign
+  status: READY
+  category: campaigns
+  surface: web-admin
+  frontend_anchors:
+  - source/apps/web-admin/pages/admin/campaigns/send.tsx:SendCampaignPage
+  - source/apps/web-admin/components/CampaignSendForm.tsx:CampaignSendForm
+  backend_anchors:
+  - source/backend/firebase-functions/src/pushCampaigns.ts:sendCampaignCallable
+  tests: []
+  notes: See BLOCKER_SEND_CAMPAIGN.md (includes docs/BLOCKER_ADMIN_PAYMENT_CAMPAIGNS.md).
+    Backend callable exists. Frontend UI required. See docs/BLOCKER_ADMIN_PAYMENT_CAMPAIGNS.md
+- id: ADMIN-CAMPAIGN-003
+  feature: Campaign Stats
+  status: READY
+  category: campaigns
+  surface: web-admin
+  frontend_anchors:
+  - source/apps/web-admin/pages/admin/campaigns/stats.tsx:CampaignStatsPage
+  - source/apps/web-admin/components/CampaignStatsTable.tsx:CampaignStatsTable
+  backend_anchors:
+  - source/backend/firebase-functions/src/pushCampaigns.ts:getCampaignStatsCallable
+  tests: []
+  notes: See BLOCKER_CAMPAIGN_STATS.md (includes docs/BLOCKER_ADMIN_PAYMENT_CAMPAIGNS.md).
+    Backend callable exists. Frontend UI required. See docs/BLOCKER_ADMIN_PAYMENT_CAMPAIGNS.md
+- id: ADMIN-COMPLIANCE-001
+  feature: Merchant Compliance Review
+  status: READY
+  category: compliance
+  surface: web-admin
+  frontend_anchors:
+  - source/apps/web-admin/pages/admin/compliance.tsx
+  backend_anchors:
+  - source/backend/firebase-functions/src/core/admin.ts:getComplianceReport
+  tests: []
+  notes: Shows merchant documents, license status, verification checks.
+- id: ADMIN-SYSTEM-001
+  feature: System Diagnostics
+  status: READY
+  category: system
+  surface: web-admin
+  frontend_anchors:
+  - source/apps/web-admin/pages/admin/diagnostics.tsx
+  backend_anchors: []
+  tests: []
+  notes: Shows backend health checks, error rates, latency metrics.
+- id: BACKEND-SECURITY-001
+  feature: FCM Token Registration via Backend
+  status: READY
+  category: security
+  surface: backend
+  frontend_anchors: []
+  backend_anchors:
+  - source/backend/firebase-functions/src/fcm.ts:registerFCMTokenCallable
+  - source/backend/firebase-functions/src/fcm.ts:rotateFCMTokenCallable
+  tests: []
+  notes: See BLOCKER_FCM_TOKEN_REGISTRATION_VIA_BACKEND.md (includes docs/BLOCKER_BACKEND_SECURITY_001.md).
+    Cross-app refactoring of FCM token registration required. See docs/BLOCKER_BACKEND_SECURITY_001.md
+- id: BACKEND-DATA-001
+  feature: Remove Mock Data from Analytics
+  status: READY
+  category: data-quality
+  surface: backend
+  frontend_anchors: []
+  backend_anchors:
+  - source/backend/firebase-functions/src/analytics/aggregator.ts:aggregateStatsScheduled
+  tests: []
+  notes: See BLOCKER_REMOVE_MOCK_DATA_FROM_ANALYTICS.md (includes docs/BLOCKER_BACKEND_DATA_QUALITY.md).
+    Requires backend audit and real Firestore query implementation. See docs/BLOCKER_BACKEND_DATA_QUALITY.md
+- id: BACKEND-ORPHAN-001
+  feature: Resolve Orphan Functions
+  status: READY
+  category: code-quality
+  surface: backend
+  frontend_anchors: []
+  backend_anchors:
+  - source/backend/firebase-functions/src/index.ts:EXPORTS_VALIDATION
+  tests: []
+  notes: See BLOCKER_RESOLVE_ORPHAN_FUNCTIONS.md (includes docs/BLOCKER_BACKEND_ORPHAN_FUNCTIONS.md).
+    Requires function audit and integration/deprecation decisions. See docs/BLOCKER_BACKEND_ORPHAN_FUNCTIONS.md
+- id: INFRA-RULES-001
+  feature: Firestore Security Rules
+  status: READY
+  category: security
+  surface: infrastructure
+  frontend_anchors: []
+  backend_anchors:
+  - source/infra/firestore.rules:FIRESTORE_RULES
+  tests: []
+  notes: Security rules exist but need audit to ensure they match all access patterns
+    and block direct writes to privileged collections.
+- id: INFRA-INDEX-001
+  feature: Firestore Composite Indexes
+  status: READY
+  category: performance
+  surface: infrastructure
+  frontend_anchors: []
+  backend_anchors:
+  - source/infra/firestore.indexes.json:FIRESTORE_INDEXES
+  tests: []
+  notes: 14 composite indexes defined. Must verify all queries have matching indexes.
+- id: TEST-CUSTOMER-001
+  feature: Customer App Unit Tests
+  status: READY
+  category: testing
+  surface: mobile-customer
+  frontend_anchors:
+  - source/apps/mobile-customer/test/services/auth_service_test.dart:AuthService
+  - source/apps/mobile-customer/test/services/customer_service_test.dart:Customer
+    Points Service
+  - source/apps/mobile-customer/test/services/qr_service_test.dart:QR Code Generation
+  backend_anchors: []
+  tests:
+  - source/apps/mobile-customer/test/services/auth_service_test.dart
+  - source/apps/mobile-customer/test/services/customer_service_test.dart
+  - source/apps/mobile-customer/test/services/qr_service_test.dart
+  notes: No test/ directory or unit tests found. MUST add minimal tests for auth,
+    points, QR generation.
+- id: TEST-MERCHANT-001
+  feature: Merchant App Unit Tests
+  status: READY
+  category: testing
+  surface: mobile-merchant
+  frontend_anchors:
+  - source/apps/mobile-merchant/test/offer_creation_test.dart:OfferCreationTest
+  - source/apps/mobile-merchant/test/redemption_approval_test.dart:RedemptionApprovalTest
+  backend_anchors: []
+  tests: []
+  notes: See BLOCKER_MERCHANT_APP_UNIT_TESTS.md. No test/ directory or unit tests
+    found. MUST add minimal tests for auth, redemption, offer management.
+- id: TEST-WEB-001
+  feature: Admin Web Tests
+  status: READY
+  category: testing
+  surface: web-admin
+  frontend_anchors:
+  - source/apps/web-admin/src/__tests__/pages/points.test.tsx:PointsAdjustTest
+  - source/apps/web-admin/src/__tests__/pages/campaigns.test.tsx:CampaignCreationTest
+  backend_anchors: []
+  tests: []
+  notes: See BLOCKER_ADMIN_WEB_TESTS.md. No test files found. MUST add minimal tests
+    for auth, API calls, form validation.
+- id: TEST-BACKEND-001
+  feature: Backend Unit Tests
+  status: READY
+  category: testing
+  surface: backend
+  frontend_anchors: []
+  backend_anchors:
+  - source/backend/firebase-functions/src/__tests__/fcm.test.ts:FCMTokenRegistrationTest
+  - source/backend/firebase-functions/src/__tests__/points.test.ts:PointsOperationsTest
+  tests: []
+  notes: See BLOCKER_BACKEND_UNIT_TESTS.md. No test/ directory in firebase-functions.
+    MUST add tests for OTP, redemption, points adjustments.
+summary:
+  total_requirements: 80
+  ready: 45
+  partial: 10
+  missing: 25
+  blocked: 0
+  by_surface:
+    mobile_customer:
+      ready: 15
+      partial: 4
+      missing: 4
+    mobile_merchant:
+      ready: 11
+      partial: 3
+      missing: 4
+    web_admin:
+      ready: 17
+      partial: 2
+      missing: 11
+    backend:
+      ready: 0
+      partial: 1
+      missing: 3
+    infrastructure:
+      ready: 1
+      partial: 1
+      missing: 0
+    testing:
+      ready: 0
+      partial: 0
+      missing: 4
+  critical_gaps:
+  - 'WhatsApp OTP: Backend ready, no UI in customer/merchant apps'
+  - 'Deep Links: FCM sends data, no URL scheme or uni_links integration'
+  - 'GDPR UI: exportUserData/deleteUserData exist, no settings buttons'
+  - 'Push Campaigns Admin UI: Full backend, no web admin interface'
+  - 'Fraud Detection Dashboard: Backend logic, no admin visibility'
+  - 'FCM Token Security: Apps bypass backend callables, write directly to Firestore'
+  - 'Mock Data: calculateDailyStats contains placeholder data'
+  - '47 Orphan Backend Functions: Not called by clients, needs integration or cleanup'
+  - 'Testing: Zero unit tests across all surfaces'

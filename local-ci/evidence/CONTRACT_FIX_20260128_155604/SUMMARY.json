@@ -1,0 +1,26 @@
+{
+  "gate": "CONTRACT_FIX",
+  "timestamp": "20260128_155604",
+  "status": "PASS",
+  "test_exit_code": 0,
+  "stub_check_passed": true,
+  "commit_hash": "a54436692885a138b90ab6d2d5b4f60d2c3407db",
+  "changed_files": [
+    "source/backend/firebase-functions/src/callableWrappers.ts",
+    "source/backend/firebase-functions/src/adapters/time.ts",
+    "source/backend/firebase-functions/src/adapters/offerDto.ts",
+    "source/backend/firebase-functions/src/index.ts",
+    "source/backend/firebase-functions/src/__tests__/contracts.customer.test.ts"
+  ],
+  "fixed_callables": [
+    "getAvailableOffers",
+    "getFilteredOffers",
+    "searchOffers",
+    "getPointsHistory",
+    "redeemOffer",
+    "generateQRToken",
+    "getOffersByLocationFunc",
+    "getBalance"
+  ],
+  "changes_summary": "Removed CommonJS stub overrides, added DTO adapters for time/offer, enforced Flutter contracts (points_required, qr_token, valid_until as ISO), implemented getPointsHistory"
+}

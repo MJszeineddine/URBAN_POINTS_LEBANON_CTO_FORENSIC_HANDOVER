@@ -1,0 +1,84 @@
+{
+  "timestamp": "2026-01-24T14:19:37.811939",
+  "verdict": "PASS",
+  "modules": {
+    "Subscription required to redeem offers": {
+      "status": "PRESENT",
+      "score": 100,
+      "evidence_count": 5,
+      "anchors": [
+        "source/backend/rest-api/src/server.ts:100",
+        "source/backend/rest-api/src/server.ts:132",
+        "source/backend/rest-api/src/server.ts:563",
+        "source/backend/rest-api/src/server.ts:95",
+        "source/backend/rest-api/src/server.ts:97"
+      ],
+      "blockers": []
+    },
+    "Once per offer per month limit": {
+      "status": "PRESENT",
+      "score": 100,
+      "evidence_count": 13,
+      "anchors": [
+        "source/backend/rest-api/src/server.ts:611",
+        "source/backend/rest-api/src/server.ts:613",
+        "source/backend/rest-api/src/server.ts:620",
+        "source/backend/rest-api/src/server.ts:623",
+        "source/backend/rest-api/src/server.ts:633",
+        "source/backend/rest-api/src/server.ts:635",
+        "source/backend/rest-api/src/server.ts:645",
+        "source/backend/rest-api/src/server.ts:646",
+        "source/backend/rest-api/src/server.ts:655",
+        "source/backend/rest-api/src/server.ts:656"
+      ],
+      "blockers": []
+    },
+    "Admin manual subscription activation": {
+      "status": "PRESENT",
+      "score": 100,
+      "evidence_count": 4,
+      "anchors": [
+        "source/backend/rest-api/src/server.ts:1018",
+        "source/backend/rest-api/src/server.ts:1024",
+        "source/backend/rest-api/src/server.ts:918",
+        "source/backend/rest-api/src/server.ts:922"
+      ],
+      "blockers": []
+    },
+    "Admin UI for manual subscriptions": {
+      "status": "PRESENT",
+      "score": 100,
+      "evidence_count": 3,
+      "anchors": [
+        "source/apps/web-admin/pages/admin/manual-subscriptions.tsx:174",
+        "source/apps/web-admin/pages/admin/manual-subscriptions.tsx:2",
+        "source/apps/web-admin/pages/admin/manual-subscriptions.tsx:322"
+      ],
+      "blockers": []
+    },
+    "Tests covering subscription features": {
+      "status": "PRESENT",
+      "score": 100,
+      "evidence_count": 11,
+      "anchors": [
+        "source/backend/rest-api/src/tests/subscription.integration.test.js:103",
+        "source/backend/rest-api/src/tests/subscription.integration.test.js:112",
+        "source/backend/rest-api/src/tests/subscription.integration.test.js:39",
+        "source/backend/rest-api/src/tests/subscription.integration.test.js:46",
+        "source/backend/rest-api/src/tests/subscription.integration.test.js:52",
+        "source/backend/rest-api/src/tests/subscription.integration.test.js:6",
+        "source/backend/rest-api/src/tests/subscription.integration.test.js:61",
+        "source/backend/rest-api/src/tests/subscription.integration.test.js:66",
+        "source/backend/rest-api/src/tests/subscription.integration.test.js:72",
+        "source/backend/rest-api/src/tests/subscription.integration.test.js:81"
+      ],
+      "blockers": []
+    }
+  },
+  "build_status": {
+    "backend_tests": 0,
+    "backend_build": 0,
+    "webadmin_build": 0
+  },
+  "overall_score": 100
+}

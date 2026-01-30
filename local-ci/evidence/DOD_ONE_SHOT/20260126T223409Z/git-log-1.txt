@@ -1,0 +1,27 @@
+commit b1c5aecb8ec1e73e833eff05abf7a055dfc57ac8
+Author: Mohammad Jawad Zeineddine <12431623@students.liu.edu.lb>
+Date:   Mon Jan 26 23:21:32 2026 +0200
+
+    release: today hotfix full-stack GO [evidence-ready]
+    
+    CHANGES:
+    - Fixed 9 callable name mismatches (createOffer, getFilteredOffers, generateQRToken, checkSubscriptionAccess, redeemOffer, getMyOffers, getAvailableOffers, getPointsHistory, searchOffers)
+    - Implemented manual subscription system (users/{uid}.subscriptionActive, subscriptionActivatedAt, subscriptionNote)
+    - Updated Firestore rules to support admin-only subscription field writes
+    - Added callable wrappers in firebase-functions/src/callableWrappers.ts
+    - Exported all callable wrappers from firebase-functions/src/index.ts
+    - Created release today gates script (tools/release_today/)
+    - Canonicalized deploy config files to repository root
+    
+    COMPONENTS READY:
+    ✅ Firebase Functions (callable wrappers)
+    ✅ Web Admin (manual subscription UI)
+    ✅ Mobile Customer (pubspec)
+    ✅ Mobile Merchant (pubspec)
+    ✅ Firestore Rules (subscription support)
+    
+    DEPLOYMENT:
+    firebase deploy --only functions,firestore,storage
+    
+    EVIDENCE:
+    local-ci/verification/release_today/LATEST/

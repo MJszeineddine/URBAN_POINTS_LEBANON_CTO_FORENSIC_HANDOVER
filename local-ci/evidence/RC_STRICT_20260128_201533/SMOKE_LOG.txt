@@ -1,0 +1,43 @@
+[2026-01-28T18:16:13.877Z] Starting MVP Smoke Gate
+[2026-01-28T18:16:13.879Z] Project: demo-mvp
+[2026-01-28T18:16:13.879Z] Evidence: ../../local-ci/evidence/RC_STRICT_20260128_201533
+[2026-01-28T18:16:13.879Z] Emulator ports: Firestore=8080, Auth=9099, Functions=5001
+[2026-01-28T18:16:13.879Z] FIREBASE_AUTH_EMULATOR_HOST: 127.0.0.1:9099
+[2026-01-28T18:16:13.879Z] FIRESTORE_EMULATOR_HOST: 127.0.0.1:8080
+[2026-01-28T18:16:13.879Z] [1/9] Initializing test environment...
+[2026-01-28T18:16:13.901Z] ✓ Test environment initialized
+[2026-01-28T18:16:13.901Z] [2/9] Seeding Firestore data...
+[2026-01-28T18:16:14.165Z]   Seeded: merchants, offers, users, subscriptions, points_transactions, points_balance
+[2026-01-28T18:16:14.165Z] ✓ Firestore data seeded
+[2026-01-28T18:16:14.166Z] [3/9] Initializing Admin SDK...
+[2026-01-28T18:16:14.166Z] Using auth emulator: 127.0.0.1:9099
+[2026-01-28T18:16:15.251Z] ✓ Admin SDK initialized
+[2026-01-28T18:16:15.251Z] [4/9] Creating auth users...
+[2026-01-28T18:16:15.275Z] ✓ Customer created: test-customer-uid
+[2026-01-28T18:16:15.299Z] ✓ Merchant created: test-merchant-uid
+[2026-01-28T18:16:15.299Z] ✓ Auth users created
+[2026-01-28T18:16:15.341Z]   Updated seed data with UIDs: customer=test-customer-uid, merchant=test-merchant-uid
+[2026-01-28T18:16:15.341Z] [5/9] Initializing Firebase Client SDK...
+[2026-01-28T18:16:15.359Z] ✓ Client SDK initialized and authenticated
+[2026-01-28T18:16:15.359Z] [6/9] Testing getAvailableOffers...
+[2026-01-28T18:16:16.582Z]   Validated: 1 offers, first offer has required DTO fields
+[2026-01-28T18:16:16.582Z] ✓ getAvailableOffers PASS (1219ms)
+[2026-01-28T18:16:16.582Z] [7/9] Testing getOffersByLocationFunc...
+[2026-01-28T18:16:17.263Z]   Warning: No offers returned (acceptable if empty)
+[2026-01-28T18:16:17.263Z] ✓ getOffersByLocationFunc PASS (681ms)
+[2026-01-28T18:16:17.263Z] [8/9] Testing generateQRToken...
+[2026-01-28T18:16:17.971Z]   Validated: qr_token exists (404 chars)
+[2026-01-28T18:16:17.971Z] ✓ generateQRToken PASS (708ms) - token: eyJ1c2VySWQiOiJ0ZXN0...
+[2026-01-28T18:16:17.971Z]   Token nonce: a8cbe24e2f3d4cda0bea558030872627
+[2026-01-28T18:16:17.971Z] [9/9] Testing validateQRToken with PIN flow...
+[2026-01-28T18:16:18.654Z]   PIN verification required - querying Firestore for displayCode and PIN...
+[2026-01-28T18:16:18.681Z]   Display code: 698754, PIN: 559301
+[2026-01-28T18:16:19.375Z]   ✓ PIN verified (693ms)
+[2026-01-28T18:16:20.074Z] 
+[2026-01-28T18:16:20.074Z] ═══════════════════════════════════════════════════════════
+[2026-01-28T18:16:20.074Z] MVP SMOKE GATE: FAIL ❌
+[2026-01-28T18:16:20.075Z] Error: Redemption failed after PIN: Merchant subscription inactive. Offer cannot be redeemed at this time.
+[2026-01-28T18:16:20.075Z] Stack: Error: Redemption failed after PIN: Merchant subscription inactive. Offer cannot be redeemed at this time.
+    at main (file:///Users/mohammadzeineddine/Downloads/URBAN_POINTS_LEBANON_CTO_FORENSIC_HANDOVER/tools/smoke/mvp_smoke.mjs:346:15)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+[2026-01-28T18:16:20.075Z] ═══════════════════════════════════════════════════════════

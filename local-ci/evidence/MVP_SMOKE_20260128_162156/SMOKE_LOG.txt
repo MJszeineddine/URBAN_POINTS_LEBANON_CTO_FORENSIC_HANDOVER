@@ -1,0 +1,24 @@
+[2026-01-28T14:22:28.425Z] Starting MVP Smoke Gate
+[2026-01-28T14:22:28.427Z] Project: demo-mvp
+[2026-01-28T14:22:28.427Z] Evidence: ../../local-ci/evidence/MVP_SMOKE_20260128_162156
+[2026-01-28T14:22:28.427Z] Emulator ports: Firestore=8080, Auth=9099, Functions=5001
+[2026-01-28T14:22:28.427Z] FIREBASE_AUTH_EMULATOR_HOST: 127.0.0.1:9099
+[2026-01-28T14:22:28.427Z] FIRESTORE_EMULATOR_HOST: 127.0.0.1:8080
+[2026-01-28T14:22:28.427Z] [1/9] Initializing test environment...
+[2026-01-28T14:22:28.454Z] ✓ Test environment initialized
+[2026-01-28T14:22:28.454Z] [2/9] Seeding Firestore data...
+[2026-01-28T14:22:28.675Z]   Seeded: merchants, offers, users, subscriptions, points_transactions, points_balance
+[2026-01-28T14:22:28.675Z] ✓ Firestore data seeded
+[2026-01-28T14:22:28.675Z] [3/9] Initializing Admin SDK...
+[2026-01-28T14:22:28.675Z] Using auth emulator: 127.0.0.1:9099
+[2026-01-28T14:22:29.779Z] ✓ Admin SDK initialized
+[2026-01-28T14:22:29.779Z] [4/9] Creating auth users...
+[2026-01-28T14:22:29.799Z] ✓ Customer created: test-customer-uid
+[2026-01-28T14:22:29.806Z] ✓ Merchant created: test-merchant-uid
+[2026-01-28T14:22:29.806Z] ✓ Auth users created
+[2026-01-28T14:22:29.866Z] 
+[2026-01-28T14:22:29.867Z] ═══════════════════════════════════════════════════════════
+[2026-01-28T14:22:29.867Z] MVP SMOKE GATE: FAIL ❌
+[2026-01-28T14:22:29.867Z] Error: Function DocumentReference.set() called with invalid data. Unsupported field value: a custom Timestamp object (found in field subscription_expiry in document customers/test-customer-uid)
+[2026-01-28T14:22:29.867Z] Stack: FirebaseError: Function DocumentReference.set() called with invalid data. Unsupported field value: a custom Timestamp object (found in field subscription_expiry in document customers/test-customer-uid)
+[2026-01-28T14:22:29.867Z] ═══════════════════════════════════════════════════════════
