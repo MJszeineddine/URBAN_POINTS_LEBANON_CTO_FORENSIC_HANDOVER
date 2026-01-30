@@ -127,3 +127,18 @@ local-ci/verification/company_audit/
 *.pid
 *.out
 *.err
+# NEVER track generated evidence/caches
+local-ci/evidence/
+local-ci/verification/
+local-ci/reports/
+local-ci/tmp/
+local-ci/.cache/
+
+# common caches
+node_modules/
+dist/
+build/
+.next/
+coverage/
+.turbo/
+.firebase/
